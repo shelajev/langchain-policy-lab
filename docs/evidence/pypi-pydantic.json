@@ -1,0 +1,32 @@
+{
+  "name": "pydantic",
+  "version": "2.14.0",
+  "requires_python": ">=3.10",
+  "requires_dist": [
+    "annotated-types>=0.6.0",
+    "pydantic-core==2.50.0",
+    "typing-extensions>=4.16.0",
+    "typing-inspection>=0.4.4",
+    "email-validator>=2.0.0; extra == \"email\"",
+    "tzdata; platform_system == \"Windows\" and extra == \"timezone\""
+  ],
+  "project_urls": {
+    "Changelog": "https://pydantic.dev/docs/validation/latest/get-started/changelog/",
+    "Documentation": "https://pydantic.dev/docs/validation/latest/get-started/",
+    "Funding": "https://github.com/sponsors/samuelcolvin",
+    "Homepage": "https://github.com/pydantic/pydantic",
+    "Source": "https://github.com/pydantic/pydantic"
+  },
+  "artifacts": [
+    {
+      "filename": "pydantic-2.14.0-py3-none-any.whl",
+      "sha256": "15fab1bea6f1dc5003b54fc2ecab230c1fd1dbade2acd4addc52d81e32416d4b",
+      "uploaded": "2026-10-08T14:34:46.864517Z"
+    },
+    {
+      "filename": "pydantic-2.14.0.tar.gz",
+      "sha256": "8a51a7aaddd60f55566d1f07bdd87b92b463903f39a8f26b71a06314cd1548ae",
+      "uploaded": "2026-10-08T14:34:48.341182Z"
+    }
+  ]
+}

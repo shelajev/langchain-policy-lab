@@ -1,0 +1,243 @@
+github.com/docker/buildx v0.33.0 f7897eba028583e0071642db3c011e860444f8cf
+dev (a1d110de)
+#0 building with "langchain-ci-proof" instance using docker-container driver
+
+#1 [internal] load build definition from langchain.yaml
+#1 transferring dockerfile: 727B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor langchain.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 999B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance langchain-context.md
+#5 transferring context: 42B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from langchain.dockerfile
+#6 transferring dockerfile: 965B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 257B done
+#8 DONE 0.0s
+
+#9 [build 1/7] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 1.03kB done
+#10 DONE 0.0s
+
+#11 [build 4/7] COPY sample/src ./src
+#11 CACHED
+
+#12 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
+#12 CACHED
+
+#13 [build 2/7] WORKDIR /opt/langchain/sample
+#13 CACHED
+
+#14 [build 5/7] COPY sample/data ./data
+#14 CACHED
+
+#15 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#15 0.459 Downloading cpython-3.13.7-linux-aarch64-gnu (download) (27.2MiB)
+#15 9.040  Downloaded cpython-3.13.7-linux-aarch64-gnu (download)
+#15 9.042 Installed Python 3.13.7 in 9.00s
+#15 9.042  + cpython-3.13.7-linux-aarch64-gnu
+#15 9.185 Using CPython 3.13.7
+#15 9.185 Creating virtual environment at: /opt/langchain/venv
+#15 9.187 Resolved 58 packages in 0.45ms
+#15 9.193    Building langchain-enterprise-sample @ file:///opt/langchain/sample
+#15 9.328 Downloading pydantic-core (2.0MiB)
+#15 9.328 Downloading zstandard (4.8MiB)
+#15 9.328 Downloading cryptography (4.5MiB)
+#15 9.329 Downloading google-genai (1.1MiB)
+#15 11.63       Built langchain-enterprise-sample @ file:///opt/langchain/sample
+#15 12.58  Downloaded google-genai
+#15 13.27  Downloaded pydantic-core
+#15 15.90  Downloaded cryptography
+#15 16.05  Downloaded zstandard
+#15 16.05 Prepared 49 packages in 6.85s
+#15 16.10 Installed 49 packages in 57ms
+#15 16.10  + annotated-types==0.8.0
+#15 16.10  + anyio==4.15.1
+#15 16.10  + certifi==2026.7.22
+#15 16.10  + cffi==2.1.1
+#15 16.10  + charset-normalizer==3.5.2
+#15 16.10  + cryptography==50.0.2
+#15 16.10  + distro==1.9.0
+#15 16.10  + filetype==1.2.0
+#15 16.10  + google-auth==2.61.0
+#15 16.10  + google-genai==2.29.0
+#15 16.10  + h11==0.16.0
+#15 16.10  + httpcore==1.0.9
+#15 16.10  + httpcore2==2.13.1
+#15 16.10  + httpx==0.28.1
+#15 16.10  + httpx2==2.13.1
+#15 16.10  + idna==3.20
+#15 16.10  + jsonpatch==1.34
+#15 16.10  + jsonpointer==3.2.0
+#15 16.10  + langchain==1.4.4
+#15 16.10  + langchain-core==1.6.9
+#15 16.10  + langchain-enterprise-sample==0.1.0 (from file:///opt/langchain/sample)
+#15 16.10  + langchain-google-genai==4.4.0
+#15 16.10  + langchain-protocol==0.0.19
+#15 16.10  + langgraph==1.2.14
+#15 16.10  + langgraph-checkpoint==4.2.0
+#15 16.10  + langgraph-prebuilt==1.1.0
+#15 16.10  + langgraph-sdk==0.4.6
+#15 16.10  + langsmith==0.14.5
+#15 16.10  + orjson==3.13.0
+#15 16.10  + ormsgpack==1.12.2
+#15 16.10  + packaging==26.3
+#15 16.10  + pyasn1==0.6.4
+#15 16.10  + pyasn1-modules==0.4.2
+#15 16.10  + pycparser==3.1
+#15 16.10  + pydantic==2.14.0
+#15 16.10  + pydantic-core==2.50.0
+#15 16.10  + pyyaml==6.0.3
+#15 16.10  + requests==2.34.2
+#15 16.10  + requests-toolbelt==1.0.0
+#15 16.10  + sniffio==1.3.1
+#15 16.10  + tenacity==9.1.4
+#15 16.10  + truststore==0.10.4
+#15 16.11  + typing-extensions==4.16.0
+#15 16.11  + typing-inspection==0.4.4
+#15 16.11  + urllib3==2.8.0
+#15 16.11  + uuid-utils==0.17.1
+#15 16.11  + websockets==16.1.1
+#15 16.11  + xxhash==4.0.1
+#15 16.11  + zstandard==0.25.0
+#15 DONE 16.2s
+
+#16 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
+#16 DONE 3.5s
+
+#17 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#17 DONE 0.3s
+
+#18 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
+#18 DONE 0.1s
+
+#19 [kit] stage sources /usr/share/sandbox/kit/langchain
+#19 DONE 0.0s
+#0 building with "langchain-ci-proof" instance using docker-container driver
+
+#1 [internal] load build definition from langchain.yaml
+#1 transferring dockerfile: 727B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor langchain.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 76B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance langchain-context.md
+#5 transferring context: 42B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from langchain.dockerfile
+#6 transferring dockerfile: 965B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 257B done
+#8 DONE 0.0s
+
+#9 [build 1/7] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 1.03kB done
+#10 DONE 0.0s
+
+#11 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#11 CACHED
+
+#12 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
+#12 CACHED
+
+#13 [build 2/7] WORKDIR /opt/langchain/sample
+#13 CACHED
+
+#14 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
+#14 CACHED
+
+#15 [build 5/7] COPY sample/data ./data
+#15 CACHED
+
+#16 [build 4/7] COPY sample/src ./src
+#16 CACHED
+
+#17 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#17 CACHED
+
+#18 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
+#18 CACHED
+
+#19 [kit] stage sources /usr/share/sandbox/kit/langchain
+#19 CACHED
+
+#20 exporting to oci image format
+#20 exporting layers
+#20 exporting layers 4.7s done
+#20 exporting manifest sha256:4893ecd98119e62d04f204cf17bdea32b61d83232fb0e4abdecae45709252322 done
+#20 exporting config sha256:2de50e366dec11e33f8a114499e0edfd0a29d4305d6a7e561ad01e400c53b75d 0.0s done
+#20 DONE 5.0s
+kit-tck dev (a1d110de) · validate · /tmp/langchain-layout-delivery 1.4.4
+
+  passed
+    ✓ agent-skill-content       [agent-skill@1/content-present]
+    ✓ descriptor-valid          [SPEC-v3 §9.3]
+    ✓ schema-version-annotation [SPEC-v3 §9.3]
+    ✓ capabilities-annotation   [SPEC-v3 §9.3]
+    ✓ built-by-annotation       [SPEC-v3 §9.3]
+    ✓ oci-annotations           [SPEC-v3 §9.3]
+    ✓ at-least-one-layer        [SPEC-v3 §10]
+    ✓ staged-sources            [SPEC-v3 §10]
+    ✓ staged-recipe             [SPEC-v3 §10]
+    ✓ agent-context-staged      [agent-context@1]
+    ✓ image-config              [SPEC-v3 §10]
+    ✓ overlay-home-ownership    [SPEC-v3 §10]
+    ✓ overlay-links-resolve     [SPEC-v3 §10]
+    ✓ sbx-platform-floor        [sbx@1]
+    ✓ sbx-persistent-env        [sbx@1]
+    ✓ derived-provides          [SPEC-v3 §9.6]
+    ✓ merged-set                [SPEC-v3 §9.5]
+    ✓ merged-set-declarations   [SPEC-v3 §9.5]
+    ✓ index-annotations         [SPEC-v3 §9.3]
+  19 checks · 19 passed
+
+✓ conforms
+
+specification
+  agent-skill@1/content-present  https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-skill@1.md#config
+  SPEC-v3 §9.3                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#93-annotations
+  SPEC-v3 §10                    https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#10-the-oci-layout
+  agent-context@1                https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md
+  sbx@1                          https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/sbx@1.md
+  SPEC-v3 §9.6                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#96-derived-provides
+  SPEC-v3 §9.5                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#95-merging-a-set

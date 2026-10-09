@@ -1,0 +1,1 @@
+compileall source/tests exit=0

@@ -1,0 +1,19 @@
+Collected 2026-10-09; exact commands are listed in docs/verification-report.md
+uv 0.9.26
+Python 3.13.7
+Client 29.4.3 Server 29.4.3
+github.com/docker/buildx v0.33.0 f7897eba028583e0071642db3c011e860444f8cf
+linux/aarch64
+dev (a1d110de)
+dev (a1d110de)
+go version go1.24.4 linux/arm64
+/tmp/langchain-ci-tools/kit-tck: go1.26.8
+	path	github.com/docker/sandbox-kit-spec/v3/cmd/kit-tck
+	mod	github.com/docker/sandbox-kit-spec/v3	v3.0.0-20261008125117-a1d110de252b
+	dep	github.com/containerd/log	v0.1.0	h1:TCJt7ioM2cr/tfR8GPbGf9/VRAX8D2B4PjzCpfX540I=
+	dep	github.com/containerd/platforms	v1.0.0-rc.5	h1:vXd569rDrz8LeMXzAnBsy6LADV5YtsD8oyaRarxdmSU=
+	dep	github.com/distribution/reference	v0.6.0	h1:0IXCQ5g4/QMHHkarYzh5l+u8T3t73zM5QvfrDyIgxBk=
+0.2.1 (bc295fecafb04287a819bc4f21aed4d510a6a1c0)
+Realization is current for claude-code, codex.
+sbx version: v0.47.0 0411f50ee4700fe7bd37e6e7e3aced563e850ca9
+6a3c45df52ff32722bb33e4d2c66f9920e284b9a3adeba17afcfcea3ad346eff  /tmp/sbx-v0.47.0-arm64.tar.gz

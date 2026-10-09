@@ -1,0 +1,143 @@
+# Docker Sandboxes environment for developing this repository with Codex.
+# This is the sbx CLI's environment configuration. It combines the
+# published Codex workload with the dev-tools mixin built from this
+# checkout, mounts the repository read/write, and declares environment
+# variables and credential bindings for development. Its
+# schemaVersion belongs to sbx environments; the Kit descriptors under
+# examples/ use the separate Kit v3 grammar.
+#
+# Before the first run, on the host:
+#   1. Install a Docker Sandboxes CLI with `sbx env` support; see
+#      README.md under "How to get started" for installation instructions.
+#   2. Run `sbx login` to sign in to Docker Sandboxes.
+#   3. Run `sbx secret ls` and check that the store has OpenAI OAuth and
+#      GitHub API-key credentials matching the bindings below. This file
+#      approves their use; it does not create them. For setup, use
+#      `sbx secret --help`, and keep secret values out of this file.
+#   4. Start an SSH agent and load a key that GitHub accepts
+#      (`ssh-add -l` must list at least one identity). The github-ssh kit
+#      below grants ssh-agent@1 as required, so create fails without one.
+#
+# From the repository root on the host:
+#   sbx env plan   # Preview the setup without changing anything.
+#   sbx env run    # Create the sandbox, or attach to the existing one.
+#
+# Run these commands without a path: `sbx env run .` skips the user file
+# ~/.sbxenv.yaml that is otherwise merged beneath this file. Keep
+# personal defaults there; this file supplies the shared settings.
+#
+# Inside the sandbox, ask Codex to work on the mounted checkout and run
+# the repository checks. Edits are also visible on the host. Tools include
+# Go, Docker with buildx, task, golangci-lint, and regctl:
+#   task --list    # Show available development tasks.
+#   task validate  # Check Go formatting and run go vet.
+#   task lint      # Run the Go and Markdown linters.
+#   task test      # Run all tests, including fake-adapter conformance.
+# See AGENTS.md for checks required by particular changes.
+#
+# On the host, run `sbx env rm` from the repository root to remove the
+# sandbox. Credential bindings remain unless you pass --prune-bindings.
+# This file is read-only inside the mounted workspace; edit it on the
+# host when changing the environment setup.
+schemaVersion: "1"
+name: sandbox-kit-spec-env
+
+# The v3 Codex workload kit this repository publishes from examples/codex.
+# `agent:` is the handle sbx derives from the kit's reference, not the
+# reference itself; the reference lives under kits:. Bump the tag when
+# `task versions:check` reports a newer Codex release and the kit has been
+# republished under it.
+agent: sbx-kit-codex
+kits:
+  # The kit's create-phase args select the model: they seed `model` and
+  # `model_reasoning_effort` into ~/.codex/config.toml, which is what
+  # `codex --model … -c model_reasoning_effort=…` would set per launch,
+  # and export CODEX_MODEL / CODEX_REASONING_EFFORT into the sandbox.
+  # `--kit-arg model=…` overrides per invocation.
+  - source: docker/sbx-kit-codex:0.161.0
+    args:
+      model: gpt-6.1-sol
+      reasoningEffort: high
+  # This repository's own toolchain — task, golangci-lint, regctl at the
+  # versions CI pins, and the egress a `task` run needs. Built from source
+  # on every create, so it always matches the checkout.
+  - ./examples/dev-tools
+  # GitHub git over SSH and commit signing through the host agent.
+  # Declares ssh-agent@1 as required, so the runtime exposes
+  # SSH_AUTH_SOCK and create fails when no host agent is available
+  # (see prerequisite 4 above). Without the grant the sandbox never
+  # sees the agent even when one is running.
+  - ./examples/github-ssh
+
+# The repository itself, mounted read/write. A relative path resolves
+# against this file's directory, so this mounts the repository wherever
+# `sbx env` is invoked from. This file is bound read-only inside the mount
+# because it decides what later invocations run on the host.
+workspace: .
+
+# Session transcripts survive sandbox removal in one shared host mount.
+# Archiving renames files between sessions and archived_sessions, which
+# fails across separate mounts. Symlinks keep both on the shared mount
+# while config.toml and auth.json remain managed by the Codex kit.
+lifecycle:
+  postCreate:
+    - name: Preserve Codex sessions on the host
+      command: |
+        set -eu
+        session_root="$HOME/.sandbox-state/$SBX_SANDBOX_NAME/codex"
+        mkdir -p "$session_root/sessions" "$session_root/archived_sessions"
+        sbx mount "$SBX_SANDBOX_NAME" \
+          "$session_root:/home/agent/codex-history:rw"
+        sbx exec "$SBX_SANDBOX_NAME" sh -eu -c '
+          mkdir -p /home/agent/.codex
+          for name in sessions archived_sessions; do
+            link="/home/agent/.codex/$name"
+            target="/home/agent/codex-history/$name"
+            if [ -L "$link" ]; then
+              test "$(readlink "$link")" = "$target"
+              continue
+            fi
+            # Refuse to replace a directory containing local sessions.
+            if [ -e "$link" ]; then
+              rmdir "$link"
+            fi
+            ln -s "$target" "$link"
+          done
+        '
+
+env:
+  # The template sets GODEBUG=tarinsecurepath=0,zipinsecurepath=0, which
+  # enables ErrInsecurePath checks for non-local archive entry names.
+  # The tck's layer-walk tests need entries such as `../..` to remain
+  # readable so they can exercise the walker's own path handling. An
+  # empty value restores Go's current defaults, which leave these checks
+  # disabled, so `task test` judges inside the sandbox as CI does.
+  GODEBUG: ""
+
+sandboxOptions:
+  # Re-resolve every kit tag against its registry on each create rather
+  # than trusting what the sandbox engine's image store already holds. A
+  # v3 composition is digest-locked at create time anyway; this makes the
+  # choice explicit so a republished tag is never served from cache.
+  pullPolicy: always
+
+# Which stored credentials the proxy may use on the agent's behalf, and
+# where. Both secrets already exist in the global store (`sbx secret ls`):
+# nothing is provisioned here, only approved. These merge into
+# ~/.config/sbx/credentials.yaml and survive `sbx env rm` unless it is
+# given --prune-bindings.
+bindings:
+  # ChatGPT OAuth for the codex kit: the token endpoint it refreshes at,
+  # and the resource host its model calls route through (the kit's
+  # credential@1 config names both).
+  openai:
+    oauth:
+      domains:
+        - auth.openai.com
+        - chatgpt.com
+  # The stored GitHub token, for gh and the REST API.
+  github:
+    apiKey:
+      domains:
+        - api.github.com
+        - github.com

@@ -1,0 +1,6 @@
+$ env -u GH_TOKEN acr install github:shelajev/blog-writer@61844184d925b9f925951241a0d476db7c193e7e --agent codex --agent claude-code --non-interactive
+Dependency state is already current.
+$ env -u GH_TOKEN acr realize
+Realization is already current for claude-code, codex.
+$ env -u GH_TOKEN acr check
+Realization is current for claude-code, codex.

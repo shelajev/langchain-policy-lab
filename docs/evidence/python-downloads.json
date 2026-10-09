@@ -1,0 +1,36 @@
+{
+  "cpython-3.13.7-linux-aarch64-gnu": {
+    "name": "cpython",
+    "arch": {
+      "family": "aarch64",
+      "variant": null
+    },
+    "os": "linux",
+    "libc": "gnu",
+    "major": 3,
+    "minor": 13,
+    "patch": 7,
+    "prerelease": "",
+    "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20250918/cpython-3.13.7%2B20250918-aarch64-unknown-linux-gnu-install_only_stripped.tar.gz",
+    "sha256": "0af6c9a17df4d5afdef37825d0cc703264c1a0a94dad825b2b6b6975b524c0d5",
+    "variant": null,
+    "build": "20250918"
+  },
+  "cpython-3.13.7-linux-x86_64-gnu": {
+    "name": "cpython",
+    "arch": {
+      "family": "x86_64",
+      "variant": null
+    },
+    "os": "linux",
+    "libc": "gnu",
+    "major": 3,
+    "minor": 13,
+    "patch": 7,
+    "prerelease": "",
+    "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20250918/cpython-3.13.7%2B20250918-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz",
+    "sha256": "888fb7e192caafdb33e028f865b7da68dce5e924cfe58fcef96323e175a70e3e",
+    "variant": null,
+    "build": "20250918"
+  }
+}

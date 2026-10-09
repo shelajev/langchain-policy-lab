@@ -1,0 +1,6 @@
+/tmp/tmp.h2jjVnibQp/uv-aarch64-unknown-linux-gnu.tar.gz: OK
+uv 0.9.26
+go: github.com/docker/sandbox-kit-spec/v3/cmd/kit-tck@a1d110de252bcc3cb2fa6d47fe37137a1a328b97 (in github.com/docker/sandbox-kit-spec/v3@v3.0.0-m.8.0.20261008125117-a1d110de252b):
+	The go.mod file for the module providing named packages contains one or
+	more replace directives. It must not contain directives that would cause
+	it to be interpreted differently than if it were the main module.

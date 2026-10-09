@@ -1,0 +1,18 @@
+{
+  "name": "packaging",
+  "version": "26.3",
+  "requires_python": ">=3.9",
+  "requires_dist": null,
+  "artifacts": [
+    {
+      "filename": "packaging-26.3-py3-none-any.whl",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "uploaded": "2026-08-04T18:15:27.159957Z"
+    },
+    {
+      "filename": "packaging-26.3.tar.gz",
+      "sha256": "94edc256424af38762eb31306eed28beb9f0efc50a8837492c9d6fd6004aed79",
+      "uploaded": "2026-08-04T18:15:28.737071Z"
+    }
+  ]
+}

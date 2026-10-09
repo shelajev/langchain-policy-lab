@@ -1,0 +1,152 @@
+{
+  "apis": [
+    {
+      "public_api": "langchain.tools.tool",
+      "implementation_module": "langchain_core.tools.convert",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/tools/convert.py",
+      "source_line": 77,
+      "file_sha256": "6b92dd07d522d0dda6d912555cfb531e0752b2a67d3fbb232536c195d969933d"
+    },
+    {
+      "public_api": "langchain_core.callbacks.CallbackManagerForRetrieverRun",
+      "implementation_module": "langchain_core.callbacks.manager",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/callbacks/manager.py",
+      "source_line": 1248,
+      "file_sha256": "1f934c3718231ac3bd4213224886d00bad2c2295a8da1095cdfa400365f45a58"
+    },
+    {
+      "public_api": "langchain_core.documents.Document",
+      "implementation_module": "langchain_core.documents.base",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/documents/base.py",
+      "source_line": 288,
+      "file_sha256": "41d89515bd238459f43f0b7e857db0321ea25464faa8d17d358e8c1095fe5865"
+    },
+    {
+      "public_api": "langchain_core.retrievers.BaseRetriever",
+      "implementation_module": "langchain_core.retrievers",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/retrievers.py",
+      "source_line": 55,
+      "file_sha256": "19e2ae45b5a5777d83f4b457d93179dec4183b27994810c56f2757e983b82222"
+    },
+    {
+      "public_api": "langchain_core.runnables.RunnableLambda",
+      "implementation_module": "langchain_core.runnables.base",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/runnables/base.py",
+      "source_line": 4707,
+      "file_sha256": "4cdcf9f699860ef49c02fe75339cdd8f302f050fa108b625f9a18d84cf3367ba"
+    },
+    {
+      "public_api": "langchain_core.prompts.ChatPromptTemplate",
+      "implementation_module": "langchain_core.prompts.chat",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/prompts/chat.py",
+      "source_line": 794,
+      "file_sha256": "3cdde855c387ee18713a0ad2226e55e8d091f9a7f9f2649cfc4fae9f93b68554"
+    },
+    {
+      "public_api": "langchain_core.language_models.chat_models.BaseChatModel",
+      "implementation_module": "langchain_core.language_models.chat_models",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/language_models/chat_models.py",
+      "source_line": 284,
+      "file_sha256": "7377a3e0d534d6fe9835cb35e39fc2bf7614ae2be26eb5664a0767dfb002cb03"
+    },
+    {
+      "public_api": "langchain_core.output_parsers.StrOutputParser",
+      "implementation_module": "langchain_core.output_parsers.string",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/output_parsers/string.py",
+      "source_line": 8,
+      "file_sha256": "87d240616e573e8f3ada8241465f8eaacd536db7503196bed7f43a691325fff5"
+    },
+    {
+      "public_api": "langchain_core.messages.AIMessage",
+      "implementation_module": "langchain_core.messages.ai",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/messages/ai.py",
+      "source_line": 160,
+      "file_sha256": "3a41fb1c38115bae737a1131e187177b46e665a48cc810117bf707058521bf0e"
+    },
+    {
+      "public_api": "langchain_core.outputs.ChatGeneration",
+      "implementation_module": "langchain_core.outputs.chat_generation",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/outputs/chat_generation.py",
+      "source_line": 17,
+      "file_sha256": "7f3dadacdfe7a899cdf679af039ad86c3b17fa3d67c1c498424358a167a4d870"
+    },
+    {
+      "public_api": "langchain_core.outputs.ChatResult",
+      "implementation_module": "langchain_core.outputs.chat_result",
+      "distribution": "langchain-core",
+      "version": "1.6.9",
+      "file": "langchain_core/outputs/chat_result.py",
+      "source_line": 10,
+      "file_sha256": "42094550d8eee8332185972684ff0c6062cd0e1536db45f7f22cb777ad6e8904"
+    },
+    {
+      "public_api": "pydantic.BaseModel",
+      "implementation_module": "pydantic.main",
+      "distribution": "pydantic",
+      "version": "2.14.0",
+      "file": "pydantic/main.py",
+      "source_line": 136,
+      "file_sha256": "84335fc05a112a2834af4a048f71c6a7c46b90f4468bee541da36e438a387190"
+    },
+    {
+      "public_api": "pydantic.Field",
+      "implementation_module": "pydantic.fields",
+      "distribution": "pydantic",
+      "version": "2.14.0",
+      "file": "pydantic/fields.py",
+      "source_line": 1327,
+      "file_sha256": "70538e4988a6748f96d7a991ace8ef8a56983bbd5f589afc13d31150531ebca7"
+    },
+    {
+      "public_api": "langchain_google_genai.ChatGoogleGenerativeAI",
+      "implementation_module": "langchain_google_genai.chat_models",
+      "distribution": "langchain-google-genai",
+      "version": "4.4.0",
+      "file": "langchain_google_genai/chat_models.py",
+      "source_line": 2200,
+      "file_sha256": "0f249f2e247b73ad0746a12d570b5222c6e508219634017b5e2c4329e7265cba"
+    }
+  ],
+  "provider_fields": {
+    "model": {
+      "present": true,
+      "alias": null
+    },
+    "temperature": {
+      "present": true,
+      "alias": null
+    },
+    "max_retries": {
+      "present": true,
+      "alias": "retries"
+    },
+    "timeout": {
+      "present": true,
+      "alias": "request_timeout"
+    },
+    "max_output_tokens": {
+      "present": true,
+      "alias": "max_tokens"
+    }
+  }
+}

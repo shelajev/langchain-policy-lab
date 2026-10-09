@@ -1,0 +1,51 @@
+{
+  "name": "langchain",
+  "version": "1.4.4",
+  "requires_python": "<4.0.0,>=3.10.0",
+  "requires_dist": [
+    "langchain-core<2.0.0,>=1.6.9",
+    "langgraph<1.3.0,>=1.2.11",
+    "pydantic<3.0.0,>=2.7.4",
+    "langchain-anthropic; extra == \"anthropic\"",
+    "langchain-aws; extra == \"aws\"",
+    "langchain-azure-ai; extra == \"azure-ai\"",
+    "langchain-baseten>=0.2.0; extra == \"baseten\"",
+    "langchain-community; extra == \"community\"",
+    "langchain-deepseek; extra == \"deepseek\"",
+    "langchain-fireworks; extra == \"fireworks\"",
+    "langchain-google-genai; extra == \"google-genai\"",
+    "langchain-google-vertexai; extra == \"google-vertexai\"",
+    "langchain-groq; extra == \"groq\"",
+    "langchain-huggingface; extra == \"huggingface\"",
+    "fastmcp<5.0.0,>=4.0.11; extra == \"mcp\"",
+    "langchain-meta; extra == \"meta\"",
+    "langchain-mistralai; extra == \"mistralai\"",
+    "langchain-ollama; extra == \"ollama\"",
+    "langchain-openai; extra == \"openai\"",
+    "langchain-perplexity; extra == \"perplexity\"",
+    "langchain-together; extra == \"together\"",
+    "langchain-xai; extra == \"xai\""
+  ],
+  "project_urls": {
+    "Changelog": "https://github.com/langchain-ai/langchain/releases?q=tag%3A%22langchain%3D%3D1%22",
+    "Documentation": "https://reference.langchain.com/python/langchain/langchain/",
+    "Homepage": "https://docs.langchain.com/",
+    "Issues": "https://github.com/langchain-ai/langchain/issues",
+    "Reddit": "https://www.reddit.com/r/LangChain/",
+    "Repository": "https://github.com/langchain-ai/langchain",
+    "Slack": "https://www.langchain.com/join-community",
+    "Twitter": "https://x.com/langchain_oss"
+  },
+  "artifacts": [
+    {
+      "filename": "langchain-1.4.4-py3-none-any.whl",
+      "sha256": "2fd27e9a2d54ebcd915ac5ea51d79c772e020567ef6c6a76678182055489b804",
+      "uploaded": "2026-10-08T22:14:09.321718Z"
+    },
+    {
+      "filename": "langchain-1.4.4.tar.gz",
+      "sha256": "baac6e13c08460e1decd0e60061b9a87c07135f1c977424040b0b57ff7bc7887",
+      "uploaded": "2026-10-08T22:14:10.860842Z"
+    }
+  ]
+}

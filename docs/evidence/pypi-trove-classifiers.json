@@ -1,0 +1,18 @@
+{
+  "name": "trove-classifiers",
+  "version": "2026.9.21.13",
+  "requires_python": null,
+  "requires_dist": null,
+  "artifacts": [
+    {
+      "filename": "trove_classifiers-2026.9.21.13-py3-none-any.whl",
+      "sha256": "8b1ff4f9c191b1040b71c37f1e445ab99732911e3cd91de52838453a854d7a17",
+      "uploaded": "2026-09-21T13:29:06.123578Z"
+    },
+    {
+      "filename": "trove_classifiers-2026.9.21.13.tar.gz",
+      "sha256": "0a9ebc8d4e2f3e8a22848c5258033035bec17a3012ac3fea16dbaa764489eb71",
+      "uploaded": "2026-09-21T13:29:07.301512Z"
+    }
+  ]
+}

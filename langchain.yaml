@@ -1,0 +1,18 @@
+# syntax=docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+schemaVersion: "3"
+kind: mixin
+displayName: LangChain Policy Lab
+description: Pinned Python and LangChain tooling with a synthetic policy retrieval sample
+sourceUrl: https://github.com/langchain-ai/langchain
+version: "${{ kit.args.version }}"
+args:
+  version:
+    default: "1.4.4"
+    pattern: '^1\.4\.4$'
+    description: Locked LangChain version; update the dependency lock to change it
+    buildArg: LANGCHAIN_VERSION
+provides: ["langchain@${{ kit.args.version }}"]
+capabilities:
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./langchain-context.md

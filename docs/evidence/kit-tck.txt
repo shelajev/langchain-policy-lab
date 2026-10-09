@@ -1,0 +1,34 @@
+kit-tck dev (a1d110de) · validate · /tmp/langchain-layout 1.4.4
+
+  passed
+    ✓ agent-skill-content       [agent-skill@1/content-present]
+    ✓ descriptor-valid          [SPEC-v3 §9.3]
+    ✓ schema-version-annotation [SPEC-v3 §9.3]
+    ✓ capabilities-annotation   [SPEC-v3 §9.3]
+    ✓ built-by-annotation       [SPEC-v3 §9.3]
+    ✓ oci-annotations           [SPEC-v3 §9.3]
+    ✓ at-least-one-layer        [SPEC-v3 §10]
+    ✓ staged-sources            [SPEC-v3 §10]
+    ✓ staged-recipe             [SPEC-v3 §10]
+    ✓ agent-context-staged      [agent-context@1]
+    ✓ image-config              [SPEC-v3 §10]
+    ✓ overlay-home-ownership    [SPEC-v3 §10]
+    ✓ overlay-links-resolve     [SPEC-v3 §10]
+    ✓ sbx-platform-floor        [sbx@1]
+    ✓ sbx-persistent-env        [sbx@1]
+    ✓ derived-provides          [SPEC-v3 §9.6]
+    ✓ merged-set                [SPEC-v3 §9.5]
+    ✓ merged-set-declarations   [SPEC-v3 §9.5]
+    ✓ index-annotations         [SPEC-v3 §9.3]
+  19 checks · 19 passed
+
+✓ conforms
+
+specification
+  agent-skill@1/content-present  https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-skill@1.md#config
+  SPEC-v3 §9.3                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#93-annotations
+  SPEC-v3 §10                    https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#10-the-oci-layout
+  agent-context@1                https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md
+  sbx@1                          https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/sbx@1.md
+  SPEC-v3 §9.6                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#96-derived-provides
+  SPEC-v3 §9.5                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#95-merging-a-set

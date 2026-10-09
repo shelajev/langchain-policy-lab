@@ -1,0 +1,9 @@
+1.7.12
+installed by downloading from release page
+built with go1.26.1 compiler for linux/arm64
+actionlint exit=0; no external shellcheck/pyflakes
+bash -n scripts/check-filesystem.sh exit=0
+bash -n scripts/check-kit.sh exit=0
+bash -n scripts/check-sample.sh exit=0
+bash -n scripts/clean-checkout.sh exit=0
+bash -n scripts/install-ci-tools.sh exit=0

@@ -1,0 +1,8 @@
+schemaVersion: 2
+agents:
+    - claude-code
+    - codex
+freshness: outdated
+dependencies:
+    - source: github:shelajev/blog-writer
+      requested: 61844184d925b9f925951241a0d476db7c193e7e

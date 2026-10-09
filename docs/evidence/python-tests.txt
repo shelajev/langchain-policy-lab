@@ -1,0 +1,60 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /Users/shelajev/ai-contrib/kits/langchain/sample/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/shelajev/ai-contrib/kits/langchain/sample
+configfile: pyproject.toml
+testpaths: tests
+plugins: langsmith-0.14.5, anyio-4.15.1
+collecting ... collected 49 items
+
+tests/test_behavior.py::test_ingestion PASSED                            [  2%]
+tests/test_behavior.py::test_evaluation_cases[What is the Tier 1 meal allowance?-grounded-$90-travel_policy.md] PASSED [  4%]
+tests/test_behavior.py::test_evaluation_cases[What is the receipt threshold?-grounded-$25-expense_policy.md] PASSED [  6%]
+tests/test_behavior.py::test_evaluation_cases[What is the home office equipment stipend?-grounded-$500-remote_work_policy.md] PASSED [  8%]
+tests/test_behavior.py::test_evaluation_cases[What is the monthly internet reimbursement?-grounded-$50-remote_work_policy.md] PASSED [ 10%]
+tests/test_behavior.py::test_evaluation_cases[Where are API keys and secrets stored?-grounded-vault-security_policy.md] PASSED [ 12%]
+tests/test_behavior.py::test_evaluation_cases[What are the data classification levels?-grounded-Restricted-security_policy.md] PASSED [ 14%]
+tests/test_behavior.py::test_evaluation_cases[Can I bring my pet python into the office?-unsupported--None] PASSED [ 16%]
+tests/test_behavior.py::test_evaluation_cases[What is the company car policy?-unsupported--None] PASSED [ 18%]
+tests/test_behavior.py::test_evaluation_cases[What holiday bonuses are paid?-unsupported--None] PASSED [ 20%]
+tests/test_behavior.py::test_evaluation_cases[What is the stock option vesting schedule?-unsupported--None] PASSED [ 22%]
+tests/test_behavior.py::test_evaluation_cases[What are the parental leave benefits?-unsupported--None] PASSED [ 24%]
+tests/test_behavior.py::test_suite PASSED                                [ 26%]
+tests/test_behavior.py::test_retriever_ranking_and_bounds PASSED         [ 28%]
+tests/test_behavior.py::test_fake_answers_changed_corpus_not_canned PASSED [ 30%]
+tests/test_behavior.py::test_meal_tool[1-90] PASSED                      [ 32%]
+tests/test_behavior.py::test_meal_tool[2-70] PASSED                      [ 34%]
+tests/test_behavior.py::test_meal_tool[3-50] PASSED                      [ 36%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs0] PASSED         [ 38%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs1] PASSED         [ 40%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs2] PASSED         [ 42%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs3] PASSED         [ 44%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs4] PASSED         [ 46%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs5] PASSED         [ 48%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs6] PASSED         [ 51%]
+tests/test_behavior.py::test_receipt_boundary[0-False] PASSED            [ 53%]
+tests/test_behavior.py::test_receipt_boundary[24.99-False] PASSED        [ 55%]
+tests/test_behavior.py::test_receipt_boundary[25-True] PASSED            [ 57%]
+tests/test_behavior.py::test_receipt_boundary[25.01-True] PASSED         [ 59%]
+tests/test_behavior.py::test_receipt_boundary[100000-True] PASSED        [ 61%]
+tests/test_behavior.py::test_invalid_receipt_inputs[-1] PASSED           [ 63%]
+tests/test_behavior.py::test_invalid_receipt_inputs[100001] PASSED       [ 65%]
+tests/test_behavior.py::test_invalid_receipt_inputs[nan] PASSED          [ 67%]
+tests/test_behavior.py::test_invalid_receipt_inputs[inf] PASSED          [ 69%]
+tests/test_behavior.py::test_invalid_receipt_inputs[True] PASSED         [ 71%]
+tests/test_behavior.py::test_invalid_receipt_inputs[25] PASSED           [ 73%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[not json-model_or_output_failure] PASSED [ 75%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[{"answer":"invented", "chunk_ids": ["not-a-source"]}-invalid_citations] PASSED [ 77%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[{"answer":"empty", "chunk_ids": []}-model_or_output_failure] PASSED [ 79%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[{"answer":"duplicates", "chunk_ids": ["expense_policy:1", "expense_policy:1"]}-invalid_citations] PASSED [ 81%]
+tests/test_behavior.py::test_model_exception_is_sanitized PASSED         [ 83%]
+tests/test_behavior.py::test_unsupported_never_calls_model PASSED        [ 85%]
+tests/test_behavior.py::test_provider_explicit_approval PASSED           [ 87%]
+tests/test_behavior.py::test_invalid_corpus PASSED                       [ 89%]
+tests/test_behavior.py::test_missing_tool_section PASSED                 [ 91%]
+tests/test_behavior.py::test_invalid_question[] PASSED                   [ 93%]
+tests/test_behavior.py::test_invalid_question[          ] PASSED         [ 95%]
+tests/test_behavior.py::test_invalid_question[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] PASSED [ 97%]
+tests/test_behavior.py::test_cli PASSED                                  [100%]
+
+============================== 49 passed in 0.10s ==============================

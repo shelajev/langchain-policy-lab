@@ -1,0 +1,47 @@
+langchain-ci-proof
+#1 [internal] booting buildkit
+#1 pulling image moby/buildkit:v0.29.0@sha256:0039c1d47e8748b5afea56f4e85f14febaf34452bd99d9552d2daa82262b5cc5
+#1 pulling image moby/buildkit:v0.29.0@sha256:0039c1d47e8748b5afea56f4e85f14febaf34452bd99d9552d2daa82262b5cc5 15.4s done
+#1 creating container buildx_buildkit_langchain-ci-proof0
+#1 creating container buildx_buildkit_langchain-ci-proof0 0.3s done
+#1 DONE 15.7s
+Name:          langchain-ci-proof
+Driver:        docker-container
+Last Activity: 2026-10-09 12:05:33 +0000 UTC
+
+Nodes:
+Name:                  langchain-ci-proof0
+Endpoint:              unix:///var/run/docker.sock
+Driver Options:        image="moby/buildkit:v0.29.0@sha256:0039c1d47e8748b5afea56f4e85f14febaf34452bd99d9552d2daa82262b5cc5"
+Status:                running
+BuildKit daemon flags: --allow-insecure-entitlement=network.host
+BuildKit version:      v0.29.0
+Platforms:             linux/arm64
+Labels:
+ org.mobyproject.buildkit.worker.executor:         oci
+ org.mobyproject.buildkit.worker.hostname:         501799399f67
+ org.mobyproject.buildkit.worker.network:          host
+ org.mobyproject.buildkit.worker.oci.process-mode: sandbox
+ org.mobyproject.buildkit.worker.selinux.enabled:  false
+ org.mobyproject.buildkit.worker.snapshotter:      overlayfs
+GC Policy rule#0:
+ All:            false
+ Filters:        type==source.local,type==exec.cachemount,type==source.git.checkout
+ Keep Duration:  48h0m0s
+ Max Used Space: 488.3MiB
+GC Policy rule#1:
+ All:            false
+ Keep Duration:  1440h0m0s
+ Reserved Space: 953.7MiB
+ Max Used Space: 7.451GiB
+ Min Free Space: 1.863GiB
+GC Policy rule#2:
+ All:            false
+ Reserved Space: 953.7MiB
+ Max Used Space: 7.451GiB
+ Min Free Space: 1.863GiB
+GC Policy rule#3:
+ All:            true
+ Reserved Space: 953.7MiB
+ Max Used Space: 7.451GiB
+ Min Free Space: 1.863GiB

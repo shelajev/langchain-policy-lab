@@ -1,0 +1,13 @@
+*
+!langchain.yaml
+!langchain.dockerfile
+!langchain-context.md
+!sample/
+!sample/pyproject.toml
+!sample/uv.lock
+!sample/.python-version
+!sample/src/
+!sample/src/**
+!sample/data/
+!sample/data/**
+sample/**/__pycache__/

@@ -1,0 +1,32 @@
+{
+  "name": "langchain-google-genai",
+  "version": "4.4.0",
+  "requires_python": "<4.0.0,>=3.10.0",
+  "requires_dist": [
+    "filetype<2.0.0,>=1.2.0",
+    "google-genai<3.0.0,>=2.20.0",
+    "langchain-core<2.0.0,>=1.6.1",
+    "pydantic<3.0.0,>=2.0.0"
+  ],
+  "project_urls": {
+    "Changelog": "https://github.com/langchain-ai/langchain-google/releases?q=%22genai%22",
+    "Documentation": "https://reference.langchain.com/python/integrations/langchain_google_genai/",
+    "Homepage": "https://docs.langchain.com/oss/python/integrations/providers/google",
+    "Reddit": "https://www.reddit.com/r/LangChain/",
+    "Slack": "https://www.langchain.com/join-community",
+    "Source": "https://github.com/langchain-ai/langchain-google/tree/master/libs/genai",
+    "Twitter": "https://x.com/LangChainAI"
+  },
+  "artifacts": [
+    {
+      "filename": "langchain_google_genai-4.4.0-py3-none-any.whl",
+      "sha256": "8e23a1307bd2158590bbf9d99f1d658fc84a9d9ddb77fb1b372f8875a2bafbbf",
+      "uploaded": "2026-09-01T20:15:44.533201Z"
+    },
+    {
+      "filename": "langchain_google_genai-4.4.0.tar.gz",
+      "sha256": "7871beec56ac07b719f77c46997845db6ff2267b817bffb0f97877053b0895d7",
+      "uploaded": "2026-09-01T20:15:45.816059Z"
+    }
+  ]
+}

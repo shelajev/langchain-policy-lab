@@ -1,0 +1,39 @@
+{
+  "name": "langchain-core",
+  "version": "1.6.9",
+  "requires_python": "<4.0.0,>=3.10.0",
+  "requires_dist": [
+    "httpx<1.0.0,>=0.23.0",
+    "jsonpatch<2.0.0,>=1.33.0",
+    "langchain-protocol>=0.0.17",
+    "langsmith<1.0.0,>=0.3.45",
+    "packaging>=23.2.0",
+    "pydantic<3.0.0,>=2.7.4",
+    "pyyaml<7.0.0,>=5.3.0",
+    "tenacity!=8.4.0,<10.0.0,>=8.1.0",
+    "typing-extensions<5.0.0,>=4.7.0",
+    "uuid-utils<1.0,>=0.12.0"
+  ],
+  "project_urls": {
+    "Changelog": "https://github.com/langchain-ai/langchain/releases?q=%22langchain-core%3D%3D1%22",
+    "Documentation": "https://reference.langchain.com/python/langchain_core/",
+    "Homepage": "https://docs.langchain.com/",
+    "Issues": "https://github.com/langchain-ai/langchain/issues",
+    "Reddit": "https://www.reddit.com/r/LangChain/",
+    "Repository": "https://github.com/langchain-ai/langchain",
+    "Slack": "https://www.langchain.com/join-community",
+    "Twitter": "https://x.com/langchain_oss"
+  },
+  "artifacts": [
+    {
+      "filename": "langchain_core-1.6.9-py3-none-any.whl",
+      "sha256": "2bacea12270fd4cfdeeefdc5977e7e8b3c30814c509534d1ef43f4e5b7d3f657",
+      "uploaded": "2026-10-08T20:11:18.189245Z"
+    },
+    {
+      "filename": "langchain_core-1.6.9.tar.gz",
+      "sha256": "34394228603e6f0bd24ce4e773b58b7d160e1b8cf489ecb350cf41f5366f5e92",
+      "uploaded": "2026-10-08T20:11:19.881163Z"
+    }
+  ]
+}

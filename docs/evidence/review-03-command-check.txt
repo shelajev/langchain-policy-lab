@@ -1,0 +1,6 @@
+Round 03 alleged command typo checked against the exact submitted packet:
+alleged spelling absent (rg exit 1)
+27:uv run --locked --offline python -m langchain_enterprise.cli --eval-suite
+208:uv run --locked --offline python -m langchain_enterprise.cli --eval-suite
+219:Try `--tool meal --days 31` or `--policies /nonexistent --eval-suite` to see a
+306:sbx env exec sample/sbxenv.yaml -- /opt/langchain/venv/bin/python -m langchain_enterprise.cli --policies /opt/langchain/sample/data/policies --eval-suite

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.image.manifest.v1+json",
+  "config": {
+    "mediaType": "application/vnd.oci.image.config.v1+json",
+    "digest": "sha256:2de50e366dec11e33f8a114499e0edfd0a29d4305d6a7e561ad01e400c53b75d",
+    "size": 984
+  },
+  "layers": [
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:2c18cfa034573bd0cb32e3548f34f91c1bdcdda550c4a812082075f578fdee61",
+      "size": 53942577
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:7bfead315e7cc8245f828c9f3453e22173115e5403d4eb9df85caad3c9883650",
+      "size": 690
+    },
+    {
+      "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+      "digest": "sha256:bf2804d20b8688ebcfd0f0c8b1ea20e9a3f04eb7dcc760365f6c564f93986fa9",
+      "size": 1133
+    }
+  ],
+  "annotations": {
+    "org.opencontainers.image.description": "Pinned Python and LangChain tooling with a synthetic policy retrieval sample",
+    "org.opencontainers.image.source": "https://github.com/langchain-ai/langchain",
+    "org.opencontainers.image.title": "LangChain Policy Lab",
+    "org.opencontainers.image.version": "1.4.4",
+    "vnd.docker.sandbox.kit.built-by": "{\"name\":\"docker/sandbox-kit\",\"version\":\"3.0.0-m.8\",\"revision\":\"129be2ff45e8f9463450eb3cf04ddcb52c2b76e5\"}",
+    "vnd.docker.sandbox.kit.capabilities": "com.docker.sandbox/agent-context@1",
+    "vnd.docker.sandbox.kit.descriptor": "{\"schemaVersion\":\"3\",\"displayName\":\"LangChain Policy Lab\",\"description\":\"Pinned Python and LangChain tooling with a synthetic policy retrieval sample\",\"sourceUrl\":\"https://github.com/langchain-ai/langchain\",\"version\":\"1.4.4\",\"kind\":\"mixin\",\"provides\":[\"langchain@1.4.4\"],\"capabilities\":[{\"type\":\"com.docker.sandbox/agent-context@1\",\"config\":{\"contentFile\":\"/usr/share/sandbox/kit/langchain/langchain-context.md\"}}],\"args\":{\"version\":{\"default\":\"1.4.4\",\"description\":\"Locked LangChain version; update the dependency lock to change it\",\"pattern\":\"^1\\\\.4\\\\.4$\",\"buildArg\":\"LANGCHAIN_VERSION\"}}}",
+    "vnd.docker.sandbox.kit.schema-version": "3"
+  }
+}

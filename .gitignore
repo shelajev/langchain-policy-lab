@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.egg-info/
+build/
+dist/
+.env
+.env.*
+.agents/cache/
+.agents/state/
+.agents/.acr-transactions/
+.claude/
+.codex/
+.agents/registry.lock.tmp
+*.oci.tar
+layout/

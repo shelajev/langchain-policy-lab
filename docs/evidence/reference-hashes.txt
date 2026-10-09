@@ -1,0 +1,11 @@
+b3866ed38c95e0801eeca5336baf3eea993e1b092dcdc29472060a8da8f705ec  docs/references/LICENSE
+e94eadf542d505c0d7780d47155233bd32d1d49e3ce74c720d605e1ba8cdc850  docs/references/docs/spec/SPEC-v3.md
+37d88672c5898a36b367e6af6393566e4814c0250f2faf15a8f216f9a68f01ac  docs/references/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md
+94559fa69bfb8c846db110ef8b78b03726f83185b9f2b9ef0463cb9711ece3e8  docs/references/sbxenv.yaml
+f89642b266f1622573236e1c7623ad264c43efbc885107854b4a97343e98ba2a  docs/references/schema/capabilities/com.docker.sandbox/agent-context@1.schema.json
+08fb7fcf790c6a90c94667b75f6734a3f6d2af4449ffc439c2ef7d744a3e7b12  docs/references/schema/capabilities/com.docker.sandbox/credential@1.schema.json
+b5a4915889483425e6efa6379ad76d65f99a7f6d5c46a573c5bafa180ad6fd6a  docs/references/schema/capabilities/com.docker.sandbox/network-policy@1.schema.json
+efe56188cd45f971217856f129035538e9521ccb9d2c94553e264cdc6a866d5e  docs/references/schema/kit.schema.json
+22525a8c4bac197fa88cfeb1ca04162ca2e57440f520dc50988f7fe525cc9244  docs/references/skills/create-kit-v3/RECIPES.md
+ee9b643804e05729eacead824c0a0074b624a7abf371c93f186d837a7d9e55d3  docs/references/skills/create-kit-v3/SKILL.md
+1771bd0d06640feabd58d09adf0967acdf846fae9603e316dc303c40cfde80ca  docs/references/skills/migrate-kit-to-v3/FIELD-MAPPING.md

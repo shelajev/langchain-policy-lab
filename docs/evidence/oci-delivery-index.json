@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 2,
+  "mediaType": "application/vnd.oci.image.index.v1+json",
+  "manifests": [
+    {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "digest": "sha256:4893ecd98119e62d04f204cf17bdea32b61d83232fb0e4abdecae45709252322",
+      "size": 2191,
+      "annotations": {
+        "io.containerd.image.name": "docker.io/library/langchain:1.4.4",
+        "org.opencontainers.image.created": "2026-10-09T12:15:44Z",
+        "org.opencontainers.image.ref.name": "1.4.4"
+      },
+      "platform": {
+        "architecture": "arm64",
+        "os": "linux"
+      }
+    }
+  ]
+}
