@@ -28,7 +28,7 @@ matter. Actual SBX composition and policy enforcement remain a HUMAN check.
 No inference about enterprise security or compliance follows from kit-tck.
 
 GitHub Actions is configured to build and verify on a real Ubuntu runner,
-including fresh-checkout testing. Its hosted execution is pending. Live model
+including fresh-checkout testing. Its first hosted run passed. Live model
 validation is also pending: the extractive fake checks plumbing, while the
 Gemini provider is a separately approved, potentially billable path.
 
@@ -47,4 +47,4 @@ it owns those decisions and its runtime policies. Start with the
 
 No personal or corporate author identity has been selected. This is a factual
 explainer, not a Docker corporate announcement or an account of an author's
-customer experience. Publication and distribution are not authorized.
+customer experience. The repository has been shared privately on GitHub; no kit image or corporate announcement has been published.

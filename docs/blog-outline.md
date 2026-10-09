@@ -21,7 +21,8 @@ support assistants. This proposes a post; it is not an approved new-blog draft.
 
 Use only the published [guide](user-guide.md) and [verification report](verification-report.md)
 as reader-visible supporting evidence. Do not invent a customer story, personal
-failure anecdote, deployment results or a passed hosted workflow.
+failure anecdote or deployment results. The first hosted workflow has now passed;
+cite its actual run rather than treating authored CI as evidence of execution.
 
 ## Pending author gates
 
@@ -32,4 +33,4 @@ failure anecdote, deployment results or a passed hosted workflow.
 - Approve publication destination and any product/security claims separately.
 
 These optional gates do not block the kit, sample or neutral guide. No post,
-image or repository has been published or pushed.
+image has been published. The repository has been pushed privately to GitHub.

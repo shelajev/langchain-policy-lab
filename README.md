@@ -1,4 +1,57 @@
-# LangChain policy lab: Docker Sandboxes v3 kit
+# LangChain Policy Lab for Docker Sandboxes
+
+This repository demonstrates how Docker Sandboxes can give a LangChain developer
+a reusable development environment and a working project to learn from. We built
+a **v3 kit mixin**, a **sample enterprise policy assistant**, and a **developer
+guide** that connects the two.
+
+A developer's first task is concrete: answer “What can I expense on a business
+trip?” from company policy documents, show the source of the answer, and calculate
+a meal allowance. The sample uses fictional documents so a team can try that
+workflow without uploading employee data or obtaining a model API key.
+
+## Start here
+
+| Reader | What to read |
+| --- | --- |
+| SBX product manager: what did we build, and why? | [Product overview and developer story](docs/product-overview.md) |
+| LangChain developer: how do I try it? | [Step-by-step developer guide](docs/user-guide.md) |
+| Platform engineer: what goes into a sandbox? | [Kit descriptor](langchain.yaml), [image recipe](langchain.dockerfile), and [sample environment](sample/sbxenv.yaml) |
+| Reviewer: what works, and what remains untested? | [Verification report](docs/verification-report.md) and [independent QC report](docs/qc-delivery-report.md) |
+| Someone explaining the project to others | [Marketing brief](docs/marketing-brief.md) and [proposed blog outline](docs/blog-outline.md) |
+
+## What is in the repository?
+
+- **The kit:** a Docker Sandboxes v3 mixin that packages Python, pinned LangChain
+  dependencies, the sample application, and guidance for the coding agent. A mixin
+  adds these to an existing workload rather than supplying its own operating
+  system or agent. It is built locally; there is no published Docker Hub image.
+- **The sample project:** a small policy assistant with retrieval, cited answers,
+  meal and receipt tools, and an evaluation suite. The default model returns
+  retrieved text deterministically. Optional Gemini support provides a path to
+  a real model once provider access is approved.
+- **The sandbox declaration:** `sample/sbxenv.yaml` shows how to combine the
+  pinned shell workload with this local kit and the project workspace.
+- **The guide and checks:** a runnable developer journey, tests, kit build and
+  conformance checks, and a GitHub Actions workflow. The marketing brief and blog
+  outline describe how the example could be presented; a finished blog post has
+  not been written.
+
+## What has been demonstrated?
+
+Independent review passed 49 tests, 11 evaluation cases, and 19 kit conformance
+checks. The bundled application also ran in a Debian filesystem probe without
+system Python, as a non-root user, with networking disabled and a read-only root
+filesystem. The [first hosted GitHub Actions run](https://github.com/shelajev/langchain-policy-lab/actions/runs/37961247968)
+passed as well.
+
+The remaining product demonstration is the **actual composed SBX environment**:
+launching the workload plus mixin, checking the resulting environment, and
+verifying runtime policy enforcement. That has not been run. Live Gemini sample
+validation is also pending. The current result is a tested learning lab, with
+those runtime checks explicitly handed off to a human.
+
+## Try the sample
 
 Build a small support assistant over four synthetic company policies. It ingests
 Markdown sections, retrieves passages, returns source/section/chunk citations,
@@ -83,7 +136,7 @@ bash scripts/check-filesystem.sh
 
 GitHub Actions executes these checks,
 behavioral tests and an isolated clean-checkout journey on `ubuntu-24.04`;
-the hosted workflow itself has not been run from this unpublished repository.
+the first hosted workflow passed after this repository was pushed to GitHub.
 
 ## Next steps
 

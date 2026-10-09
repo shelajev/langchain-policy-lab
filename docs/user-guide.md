@@ -25,7 +25,7 @@ The Python journey requires Git, Linux, uv **0.9.26** and access to public Pytho
 downloads. `sample/.python-version` pins **CPython 3.13.7**. uv downloads the
 managed interpreter when requested; no system Python installation is needed.
 The local verified target is Linux arm64, Debian 12/glibc 2.36. The automated
-workflow targets native x86-64 `ubuntu-24.04`; its hosted run is still pending.
+workflow targets native x86-64 `ubuntu-24.04`; its first hosted run passed.
 macOS, Windows, Alpine/musl and arbitrary minimal images are not verified targets.
 
 To obtain uv, use its official 0.9.26 release at
@@ -45,7 +45,8 @@ checksum services, GHCR and Docker Hub. Runtime deterministic checks need none
 of those connections. No credential is needed for the Python quickstart.
 
 Start from a checkout or an extracted copy of this repository. Commands below
-begin at its root unless a `cd` changes the directory. Nothing is published.
+begin at its root unless a `cd` changes the directory. The repository is on GitHub;
+the kit image has not been published to a registry.
 
 ## 1. Install the locked sample
 
@@ -216,7 +217,7 @@ GitHub Actions uses a real `ubuntu-24.04` runner, downloads checksum-pinned uv,
 fetches Docker's exact kit-tck source commit, builds it with Go 1.26.8 and
 executes all verification scripts. Required checks have no conditional skips
 or `continue-on-error`. No hosted SBX runner or daemon is assumed. The workflow
-is authored but has not been dispatched from this unpublished local repository.
+passed in its first hosted run after the repository was pushed to GitHub.
 
 ## 6. Optional HUMAN Docker Sandboxes journey
 
