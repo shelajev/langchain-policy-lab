@@ -118,3 +118,30 @@ moved script effects before commands and linked acquisition prerequisites; it
 did not change scope, numeric rules, evidence or author stance. Initial reader
 drafts are kept for exact source-to-revision comparison. No voice devices or
 personal anecdotes were fabricated to alter scanner counts.
+
+## Resumed final editorial disposition (2026-10-09)
+
+Review 07 reports READABLE using Gemini 2.5 Flash. Its complete input is preserved
+in `reviews/reader-draft-07.md`; the historical temporary-path checksum remains
+in `evidence/reader-packet-07.sha256`. The repository packet has the same digest,
+and its four sections match the final README, guide, brief and outline.
+The reviewed changes explain kit-tck and sbx where readers encounter them;
+they do not alter commands, prerequisites, scope or verification claims.
+
+The sole review-07 suggestion, explicitly stating that the PATH directory must
+match the install directory, is retained as optional advice, not a blocker.
+Both supplied commands already use `/tmp/langchain-tools`. No prose was changed
+after review 07 and no additional reader/model call was made during resumption.
+
+Final-mode reruns reproduce the saved README/guide scanner JSON exactly:
+README has two contextual #14 hits and guide has eleven; both have zero
+required hits and no assistant-chatter candidates. Raw exits are 1, not a
+finding-free sweep. The existing passage-specific dispositions remain valid;
+the definitions introduce no new required finding or preservation regression.
+Manual changed-passage catalog review and theme/continuity checks retain the
+neutral operational explanations without adding a second theme statement.
+Author preservation: pass against the existing credential-free, synthetic-lab
+and optional-HUMAN contract. Paragraph continuity: pass. Personal voice
+calibration: not applicable, no identity selected. Audience review: READABLE.
+Marketing brief and blog outline remain proposals; publication and any later
+authored blog/identity selection remain optional human decisions.

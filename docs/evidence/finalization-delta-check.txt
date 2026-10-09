@@ -1,0 +1,69 @@
+Resumed finalization date: 2026-10-09 (sandbox Linux arm64).
+Run: 000000000000000018dce9089ec47888-77dc8541234fc8cc, round 1, implement seq 2.
+Base: 6bd01195855214624f11b565e182cc59a342eb75.
+
+Decision: retain reviewed README/user-guide definition additions and their
+matching final sweep JSON; discard alias-only interrupted Dockerfile and
+sample-check-script edits. No executable/dependency/descriptor/workflow delta.
+
+Observed resumed checks:
+
+1. sha256sum -c docs/evidence/deliverable-hashes.txt
+   Exit 0. sample/uv.lock, sample/pyproject.toml, langchain.yaml and
+   langchain.dockerfile all report OK against preserved hashes.
+
+2. git diff --exit-code 6bd01195855214624f11b565e182cc59a342eb75 --
+     langchain.dockerfile langchain.yaml scripts sample .github
+   Exit 0; no output. Both index/worktree executable input changes were restored.
+
+3. bash -n scripts/*.sh
+   Exit 0; no output. Syntax check only; no scripts/hooks/daemon were launched.
+
+4. git diff --check; git diff --cached --check
+   Both exited 0; no whitespace errors.
+
+5. Reader-packet check (Node fs/string comparison, no model/network call)
+   Each complete section matches its current artifact, ignoring only trailing
+   whitespace: README.md, docs/user-guide.md, docs/marketing-brief.md and
+   docs/blog-outline.md. Repository copy is byte-identical to the original:
+   8fb299365fa2267ea309b945143a049a0fb30385883e8c763c4b7349d03f9178.
+   sha256sum -c docs/evidence/reader-packet-07.sha256 also reported OK while
+   the historical temporary input was present. The original hash is preserved.
+
+6. python3 .codex/skills/acr__shelajev__blog-writer__blog-writer/sweep.py
+     --mode final README.md
+   Raw exit 1: 2 contextual #14 hits, 0 required hits.
+   The same invocation on docs/user-guide.md:
+   Raw exit 1: 11 contextual #14 hits, 0 required hits.
+   Parsed JSON equals each preserved *-sweep-final.json exactly.
+   No assistant-chatter candidates; retained contextual dispositions are
+   recorded in docs/editorial-process.md. Not a finding-free sweep.
+
+7. Recovered evidence, NOT a new test run
+   /tmp/langchain-clean-checkout.log copied byte-for-byte through apply_patch
+   to docs/evidence/clean-checkout-base.txt. Both SHA-256 hashes:
+   c531487a7b9cea09220be0e4e5103da21f799ec8e2d4aa8c3f14a0c8d9d8865f.
+   Log line 2 names the full preserved base; line 136 reports 49 passed;
+   line 337 reports successful isolated-cache/managed-Python clean checkout.
+   The log also records the 11-case evaluation and CLI/import journey.
+
+8. Staged content credential/cache checks (Node, no values printed)
+   Checked tracked index contents against available non-placeholder credential
+   environment values: no matches. Four recognized non-secret proxy-managed
+   placeholder values excluded; one non-placeholder value checked.
+   Recognizable private-key/Google/GitHub credential patterns: no matches.
+   No tracked .env, .venv, __pycache__, .pytest_cache or *.pyc paths.
+   This bounded scan does not prove absence of every unknown credential format.
+
+9. Actual role references
+   Read authoritative /home/agent/crew/models pins, current status/handoff and
+   only selected metadata/model identifiers from existing session files.
+   Implementer gpt-6.1-sol and planner google/gemini-3.8-flash match their
+   session metadata; QC observed identifier claude-opus-5-5 matches its pin.
+   Sanitized references are in docs/final-delivery.md; no transcripts copied.
+
+No repeated source/OCI, kit-tck, sample suite or filesystem build was needed:
+all material inputs remain identical to their verified base. Preserved results
+are scoped to their recorded versions and are not fresh final-tip executions.
+No live sample model, new reader call, SBX composition/policy or hosted Actions
+execution occurred. Independent Claude QC is pending and is not self-certified.

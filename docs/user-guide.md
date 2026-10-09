@@ -34,6 +34,8 @@ Linux architecture, check its published checksum, extract it, and put `uv` on
 `PATH`. If also preparing kit tooling, `scripts/install-ci-tools.sh` does this
 with pinned checksums for x86-64 and arm64, and builds kit-tck; it additionally
 requires curl, tar, sha256sum, Git and Go with toolchain downloads enabled.
+kit-tck is Docker's checker for kit artifact format and declarations, not a
+sandbox runtime or a runtime security test.
 
 Building the kit requires a functioning Docker Engine and Buildx that supports
 OCI directory export. Local checks used Docker **29.4.3**, Buildx **0.33.0** and
@@ -217,6 +219,9 @@ or `continue-on-error`. No hosted SBX runner or daemon is assumed. The workflow
 is authored but has not been dispatched from this unpublished local repository.
 
 ## 6. Optional HUMAN Docker Sandboxes journey
+
+`sbx` is the Docker Sandboxes command-line tool. Its `sbxenv.yaml` environment
+file selects a workload, mixins and workspace for the runtime to assemble.
 
 This section is a handoff, not a locally observed pass. On a human-controlled
 machine with Docker Sandboxes **v0.47.0** or a compatible Kits-v3 runtime and an

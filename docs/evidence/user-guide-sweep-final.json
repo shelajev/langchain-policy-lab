@@ -26,7 +26,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 64,
+      "line": 66,
       "detail": "[9, 12, 9] of [9, 12, 9, 26, 10]",
       "context": "Expect `uv 0.9.26` and a `sample/.venv` containing the pinned project. The default sync in",
       "verify_context": true,
@@ -36,7 +36,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 89,
+      "line": 91,
       "detail": "[12, 11, 8] of [12, 11, 8]",
       "context": "Open `data/policies/travel_policy.md`, find **Meal allowance**, and compare its text to th",
       "verify_context": true,
@@ -46,7 +46,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 124,
+      "line": 126,
       "detail": "[10, 11, 15] of [10, 11, 15, 13, 14, 8]",
       "context": "Meal inputs are strict integers: tiers 1-3 and days 1-30. Receipt amounts must be finite n",
       "verify_context": true,
@@ -56,7 +56,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 139,
+      "line": 141,
       "detail": "[12, 16, 15] of [12, 16, 15, 7, 16]",
       "context": "Expect the pet question to return `unsupported`, no citations, and exit 0. The evaluation ",
       "verify_context": true,
@@ -66,7 +66,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 188,
+      "line": 190,
       "detail": "[12, 9, 8] of [22, 12, 9, 8, 9]",
       "context": "The recipe starts from digest-pinned uv on Debian, installs a managed interpreter inside `",
       "verify_context": true,
@@ -76,7 +76,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 245,
+      "line": 250,
       "detail": "[12, 13, 17] of [7, 12, 13, 17, 13, 8]",
       "context": "Review and approve the environment plan yourself. These commands create and remove a sandb",
       "verify_context": true,
@@ -86,7 +86,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 267,
+      "line": 272,
       "detail": "[17, 12, 17] of [17, 12, 17, 19, 16]",
       "context": "Use only an existing organization-approved `GEMINI_API_KEY` or `GOOGLE_API_KEY` already su",
       "verify_context": true,
@@ -96,7 +96,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 283,
+      "line": 288,
       "detail": "[14, 10, 13] of [8, 14, 10, 13, 11, 10]",
       "context": "Both the provider selection and `--approve-live` are required. The SDK has zero retries, a",
       "verify_context": true,
@@ -106,7 +106,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 298,
+      "line": 303,
       "detail": "[10, 12, 14] of [10, 12, 14, 15]",
       "context": "The demo's heading-based chunk IDs change when sections are reordered. The lexical retriev",
       "verify_context": true,
@@ -139,42 +139,42 @@
         },
         {
           "heading": "## 1. Install the locked sample",
-          "line": 48,
+          "line": 50,
           "count": 0
         },
         {
           "heading": "## 2. Retrieve policy passages and inspect citations",
-          "line": 76,
+          "line": 78,
           "count": 0
         },
         {
           "heading": "## 3. Invoke bounded read-only tools",
-          "line": 111,
+          "line": 113,
           "count": 0
         },
         {
           "heading": "## 4. Evaluate refusals and failures",
-          "line": 131,
+          "line": 133,
           "count": 0
         },
         {
           "heading": "## 5. Build and verify the mixin",
-          "line": 158,
+          "line": 160,
           "count": 0
         },
         {
           "heading": "## 6. Optional HUMAN Docker Sandboxes journey",
-          "line": 219,
+          "line": 221,
           "count": 0
         },
         {
           "heading": "## 7. Optional approved live Gemini",
-          "line": 260,
+          "line": 265,
           "count": 0
         },
         {
           "heading": "## Enterprise adaptation choices",
-          "line": 290,
+          "line": 295,
           "count": 0
         }
       ],

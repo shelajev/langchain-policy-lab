@@ -16,10 +16,10 @@ sample and editorial checks from actual runtime policy checks.
 | Python behavioral tests | PASS, 49 tests | `evidence/python-tests.txt` |
 | Sample CLI/evaluation/provider import | PASS, fake/offline, 11 cases | `evidence/sample-script.txt` |
 | Non-SBX filesystem dependency probe | PASS, Debian arm64, no system Python | `evidence/filesystem-probe.txt` |
-| Clean-checkout journey | Pending committed-checkout run | See final update below |
+| Clean-checkout journey | PASS at base `6bd0119`; executable inputs unchanged at finalization | `evidence/clean-checkout-base.txt` |
 | ACR realization | PASS with GH_TOKEN removed from command environment | `evidence/tool-versions.txt` |
 | SBX grammar provenance | Official v0.47.0 help observed; NOT daemon validation | `evidence/sbx-help.txt` |
-| Editorial stateless Gemini review | Pending full-draft reader call | See editorial report |
+| Editorial stateless Gemini review | READABLE, review 07; optional suggestion retained | `reviews/gemini-07.md`, `editorial-process.md` |
 | Live sample model-provider validation | NOT RUN | Optional explicitly approved API use |
 | Assembled SBX composition/policy checks | NOT RUN, optional HUMAN handoff | No daemon/host execution authorized |
 | Hosted GitHub Actions | Authored, NOT RUN | Local scripts are checked separately |
@@ -201,5 +201,27 @@ Independent crew QC is pending; implementation cannot self-declare its verdict.
 
 ## Final update
 
-Final committed-checkout, script reruns and editorial results are appended here
-after their observed execution. Planned checks above are not passes.
+Resumed finalization preserved the observed clean-checkout output for full base
+`6bd01195855214624f11b565e182cc59a342eb75` in
+`evidence/clean-checkout-base.txt`. It reports 49 passing tests, the 11-case
+evaluation and the complete CLI journey with an isolated cache/interpreter.
+This is recovered evidence, not a fresh execution at the final delivery tip.
+
+The interrupted alias-only changes to the Dockerfile and sample check script
+were discarded. All executable, descriptor, dependency, sample and workflow
+inputs remain byte-identical to the verified base. Consequently source/OCI,
+19/19 kit-tck, Debian filesystem and sample results remain applicable to those
+recorded inputs; no redundant rebuild or runtime launch was performed.
+
+README/guide definition additions are retained. The exact review-07 packet is
+now repository-local; all four artifact sections match the final prose. Both
+changed artifacts' final scanner JSON outputs match a resumed scanner rerun:
+zero required hits, raw exit 1 for contextual hits retained with dispositions.
+Review 07 is READABLE. Its PATH-directory consistency suggestion is advisory;
+the supplied commands already use the same directory. No further reader call
+was needed because the reviewed prose did not change.
+
+`final-delivery.md` and `evidence/finalization-delta-check.txt` record the narrow
+checks and handoff. Independent Claude QC remains pending at this commit.
+SBX composition/policy, hosted Actions and live sample-provider validation
+remain unrun; none is inferred from the artifact or editorial passes.

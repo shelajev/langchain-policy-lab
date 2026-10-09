@@ -56,6 +56,8 @@ credentials, extra mounts or privilege. Linux glibc compatibility is deliberatel
 narrow: local evidence covers arm64 on Debian 12, not Alpine or arbitrary bases.
 
 From the root, with Docker/Buildx, Go and curl available:
+kit-tck is Docker's kit artifact conformance checker; it checks the packaged
+descriptor/layers, not whether a composed sandbox runs or enforces policy.
 `install-ci-tools.sh` downloads checksum-pinned uv and builds Docker's kit-tck
 from an exact source commit into the temporary directory you supply:
 
@@ -87,7 +89,8 @@ the hosted workflow itself has not been run from this unpublished repository.
 
 - Read [the full guide](docs/user-guide.md) for failure handling, version pins,
   optional approved Gemini calls and the HUMAN Docker Sandboxes journey.
-- `sample/sbxenv.yaml` describes a pinned shell workload plus this local mixin;
+- `sbx` is the Docker Sandboxes command-line tool. `sample/sbxenv.yaml` is its
+  environment configuration file, selecting a pinned shell workload plus this local mixin;
   CLI grammar was checked against official sbx **v0.47.0** help. Assembled SBX
   runtime and policy checks are optional and not run here.
 - [Verification report](docs/verification-report.md) separates observed checks
