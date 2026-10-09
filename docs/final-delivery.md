@@ -69,3 +69,13 @@ The implementer stops editing after committing. If independent QC evidence is
 not yet durable, only a subsequent authorized revise round may preserve its
 sanitized report and must obtain fresh QC of that new exact tip. No `qc.json`
 or self-declared QC verdict is written by the implementer.
+
+## Subsequent initial QC and evidence-preservation revision
+
+The pending status above records the original pre-QC handoff. Independent
+Claude subsequently reported round-1 PASS at exact commit
+`3540a424f7d6c3db4e6b967d025f0fb8016aec38`, with fresh observed checks.
+`qc-delivery-report.md` and `reviews/claude-qc-round-01.md` preserve that result,
+actual provenance and the recovered confirmation-only attempt. This authorized
+round-2 revision changes evidence only. Fresh independent QC of the new exact
+tip remains pending; the initial PASS is not claimed for the evidence commit.
