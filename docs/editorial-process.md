@@ -145,3 +145,115 @@ and optional-HUMAN contract. Paragraph continuity: pass. Personal voice
 calibration: not applicable, no identity selected. Audience review: READABLE.
 Marketing brief and blog outline remain proposals; publication and any later
 authored blog/identity selection remain optional human decisions.
+
+## Editorial follow-up (2026-10-09, run r2)
+
+Completed on 2026-10-10 from preserved uncommitted work, using the saved plan.
+The five drafts now distinguish the SBX product-manager route from the LangChain
+developer's credential-free journey, the mixin from the sample and environment
+declaration, and execution evidence from unrun human handoffs. Hosted Actions
+run 37961247968 remains the recorded pass; actual SBX composition and the live
+Gemini sample remain unrun. No implementation or runtime behavior changed.
+
+The pinned blog-writer was realized through ACR in a scratch project outside
+the repository, with freshness disabled and no hook created. Its package 1.2.0
+content hash is
+`sha256:2366fc9f075d01a1ff50eb86637c63647bf26cf51e301b4badfc6e10cf6c8c92`,
+matching the project lock. Repository realization had encountered GitHub access
+denied with the sandbox's `GH_TOKEN` present, then a `config_conflict` over a
+missing freshness-hook ledger entry with that environment name unset. The
+scratch route used `env -u GH_TOKEN`; no credential value was inspected and
+neither the lock nor hook configuration was changed. On resumption the scratch
+skill still existed, so installation and completed sweeps were not repeated.
+
+Applied the scoped non-blog route, author-preservation contract,
+anti-pattern catalog, theme/continuity checks, sweep dispositions and fresh-reader
+procedure. New-blog intake, identity creation, blog anatomy, shape history and
+publication steps were skipped as outside this tutorial/explainer/brief/outline
+assignment. The approved guide profile was consulted as guidance; its contents
+were not copied or passed to Gemini. Formal personal voice calibration is not
+applicable: no identity, official endorsement or first-person experience was
+invented.
+
+### Sweeps and preservation
+
+All five final drafts have zero required hits and no assistant-chatter candidates.
+The retained raw exits are 1, not finding-free sweeps. All hits are contextual
+catalog #14 sentence-length windows. The original r2 JSON remains intact; only
+the changed guide was re-swept, with its final result in
+`evidence/user-guide-sweep-r2-03.json`. Its 14 contextual hits supersede the
+earlier guide's 13. Other final counts are README 1, product overview 7,
+marketing brief 2 and blog outline 3.
+
+Passage-specific dispositions (line numbers refer to the matching saved sweep):
+
+| Draft | Retained #14 windows and their concrete functions |
+| --- | --- |
+| README | 44: Linux/uv prerequisite, acquisition link and no-Docker boundary. |
+| Product overview | 12: SBX definition and reader routes; 53: meal example and tool behavior; 58: unsupported query and limits; 64: evaluation before adaptation; 82: agent-context request versus runtime access; 106: artifacts versus adoption work; 111: brief versus runnable guide. |
+| Marketing brief | 16: mixin, sample and declaration roles; 54: supported positioning versus unverified claims. |
+| Blog outline | 3: proposed angle, audience and status; 30: source/evidence and authorship boundaries; 47: optional author gates versus kit delivery/publication. |
+| User guide (r2-03) | 25: kit/workload/mixin definitions; 41: reader prerequisites; 47: pinned versions and verified targets; 53: official asset source, Linux architectures and required tools; 113: checkout and working directory; 133: installed environment and dependency effects; 158: compare citations with policy; 193: tool input boundaries; 208: unsupported query, evaluation and failures; 257: recipe and validation scope; 334: human lifecycle approval and cleanup; 358: separately approved provider credentials; 374: live-call opt-in and bounds; 389: chunk-ID limits and adaptation work. |
+
+Retained these windows because each sequence carries distinct prerequisites,
+actions, consequences or scope boundaries. Sentence-count arithmetic does not
+establish obscured relationships or a repeated rhetorical cadence in these
+passages; rewriting to change counts would remove useful instructions or pad
+them. Manual changed-passage review found no added slogan, theme restatement,
+fabricated experience or unsupported runtime claim. Paragraph continuity and
+author preservation pass: the former “select the archive ... put uv on PATH”
+instruction is now explicit download, checksum, nested extraction, local install
+and version-check steps; the pinned version, Linux scope and credential-free
+sample commands are preserved. Official archive verification is recorded in
+`evidence/uv-0.9.26-release-verification-r2.md`.
+
+### Three stateless audience reviews
+
+Each Gemini 2.5 Flash call received only `reviews/audience-r2.md` and its new
+packet of the five complete reader-visible drafts. The audience brief specifies
+the product manager and developer, their prerequisites and the linked Actions
+evidence. No profile, source tree, plan, crew file, earlier review or conversation
+was supplied; no additional supporting material was sent.
+
+- r2-01: NEEDS REVISION. Added conceptual success criteria and execution order
+  for optional SBX commands, explicitly not observed daemon output. Declined the
+  optional request for fuller live-Gemini output examples: live validation is
+  unrun, exact wording varies, and the guide already names the policy check.
+- r2-02: NEEDS REVISION. Replaced vague uv acquisition advice with verified
+  commands for x86_64 and aarch64 GNU/Linux. The suggested review filenames were
+  not used; official assets include the full architecture/OS/libc target and
+  extract into a target-named directory. There was no further optional style
+  advice in this review.
+- r2-03: READABLE, with one remaining finding. **Open for independent QC:** the
+  README introduces “Docker Sandboxes v3 mixin kit” before defining the terms
+  for a product manager with no prior SBX/Kits knowledge. The reviewer recommends
+  a short immediate explanation or concept-first wording. This is recorded as
+  a comprehension gap, not dismissed as style. The three-run cap is exhausted;
+  no further draft edit or model call was made after this review.
+
+The three exact packet digests are saved in `evidence/reader-packet-r2-01.sha256`,
+`evidence/reader-packet-r2-02.sha256` and `evidence/reader-packet-r2-03.sha256`.
+`evidence/editorial-r2-hashes.sha256` maps the five final drafts and the final
+packet. Re-splitting r2-03 reproduces each final draft byte-for-byte; the other
+four drafts also match r2-02 and retain their completed sweeps. Audience review
+is separate from factual accuracy and runtime validation. Independent QC must
+assess the open finding on the exact clean tip.
+
+### Recovery and final checks
+
+An earlier run's crew start attempt failed. Agents exited after their model
+probes, before any plan or edits. Cause unknown. The task resumed from b3b6b5f.
+Run r2 was then interrupted twice by a runtime stop. The host diagnosed sandboxd
+auto-stop after host session disconnect, not agent/model failure. Work resumed
+from preserved uncommitted drafts, sweeps and the first two Gemini reviews.
+No runtime repair, access change or hook trust was performed.
+
+Final cheap checks cover Markdown relative links/anchors, external URL syntax,
+the exact hosted Actions URL, new Bash-block syntax, packet equality, saved
+hashes, allowed-file scope, symlinks, credential-value patterns and diff
+whitespace. Results are recorded in `evidence/editorial-r2-checks.md`, including
+the retained blank EOF separator in each exact reviewed packet. The staged
+whitespace check excludes that one class per command to preserve reviewed bytes;
+prose has no whitespace findings and no persistent Git configuration changed.
+Unchanged builds, tests, OCI checks and kit-tck were not rerun. No SBX composition,
+live sample invocation, push or publication occurred.

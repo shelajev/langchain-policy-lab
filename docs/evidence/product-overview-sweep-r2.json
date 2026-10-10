@@ -1,0 +1,156 @@
+{
+  "ok": true,
+  "path": "docs/product-overview.md",
+  "mode": "final",
+  "hits": [
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 12,
+      "detail": "[11, 13, 16] of [11, 13, 16]",
+      "context": "SBX is the Docker Sandboxes runtime and its `sbx` command-line tool. Product managers can ",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 53,
+      "detail": "[8, 6, 8] of [8, 6, 8, 17]",
+      "context": "Next, they calculate a three-day trip's meal allowance. A bounded LangChain tool returns $",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 58,
+      "detail": "[10, 10, 5] of [10, 10, 5, 12]",
+      "context": "Then the developer asks a question the documents cannot answer. The example pet question r",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 64,
+      "detail": "[14, 18, 17] of [12, 14, 18, 17]",
+      "context": "The developer runs an evaluation suite and tests before changing the project. They can the",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 82,
+      "detail": "[11, 13, 12] of [11, 13, 12, 11]",
+      "context": "The mixin requests only agent context: packaged guidance for the agent. It does not itself",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 106,
+      "detail": "[15, 13, 10] of [33, 15, 13, 10]",
+      "context": "This gives a concrete artifact set for discussing framework-specific kits: what environmen",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 111,
+      "detail": "[13, 15, 17] of [13, 15, 17]",
+      "context": "For sharing the idea, the [marketing brief](marketing-brief.md) explains the audience and ",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    }
+  ],
+  "candidates": {
+    "assistant_chatter": []
+  },
+  "observations": {
+    "em_dashes": {
+      "paired_asides": [],
+      "spacing": {
+        "spaced": 0,
+        "closed": 0,
+        "mixed": 0,
+        "boundary": 0
+      },
+      "sections": [
+        {
+          "heading": "# A LangChain developer journey with Docker Sandboxes kits",
+          "line": 1,
+          "count": 0
+        },
+        {
+          "heading": "## The kit and the project serve different purposes",
+          "line": 17,
+          "count": 0
+        },
+        {
+          "heading": "## Follow the developer's first task",
+          "line": 46,
+          "count": 0
+        },
+        {
+          "heading": "## Where SBX fits into that journey",
+          "line": 75,
+          "count": 0
+        },
+        {
+          "heading": "## What a product manager can assess today",
+          "line": 94,
+          "count": 0
+        }
+      ],
+      "total": 0,
+      "note": "Observations only: apply patterns #7 and #8 with same-mode identity evidence and assignment genre."
+    }
+  },
+  "coverage": {
+    "ran": [
+      "#3/#4 fragment chains",
+      "#14 low burstiness",
+      "#18 unicode giveaways",
+      "#28/#30 announcement clauses (enumerable shapes only)",
+      "#31 category claims (shape only \u2014 the subject swap is the check)"
+    ],
+    "supplemental_checks": [
+      "WP:OAICITE citation-artifact leakage",
+      "WP:TRACKING AI-source tracking parameters",
+      "WP:ASSISTANT assistant-chatter candidate discovery",
+      "WP:SECTIONBREAK thematic breaks between every section",
+      "WP:FINALIZATION unresolved placeholders and VERIFY markers"
+    ],
+    "not_run_judgment": [
+      "#1 contrastive negation \u2014 is it the same slot?",
+      "#7 paired em-dashes \u2014 compare identity, genre, and rhetorical function",
+      "#8 em-dash density \u2014 compare observations with same-mode evidence",
+      "#10 introductory filler \u2014 apply the delete test",
+      "#12 AI vocabulary \u2014 the watchlist qualifiers are the check",
+      "#17 synonym cycling \u2014 do two phrases denote one concept?",
+      "#28 labelled devices \u2014 delete-test the clauses the sweep did not match",
+      "#30 telegraphing \u2014 delete-test the clauses the sweep did not match",
+      "#32 stacked data points \u2014 do two numbers make one point?",
+      "#35 temporal filler \u2014 apply the delete test",
+      "#36 corporate cliche \u2014 apply the interchangeability test",
+      "#40 vague connection \u2014 name the relationship",
+      "#41 source-unavailability hedging \u2014 cut unsupported claims",
+      "#42 ceremonial coverage \u2014 use what the source establishes",
+      "#43 intent-only sentences \u2014 restate each load-bearing sentence as a claim"
+    ],
+    "patterns_examined": 7,
+    "patterns_total": 43,
+    "note": "36 of the 43 patterns were not examined by this script. An empty hits list is not an anti-pattern check: the judgment sweeps in not_run_judgment and the rest of references/ai-anti-patterns.md still need a read."
+  }
+}

@@ -7,6 +7,14 @@ retrieval pipeline before adapting it to internal support. The exercise connects
 policy ingestion, cited answers, bounded tools and evaluation with a reproducible
 Docker Sandboxes v3 mixin. All policies and thresholds are fictional.
 
+Your first result is a credential-free policy-QA workflow: check the retrieved
+answer against its citations, invoke an expense tool explicitly, and run the
+evaluation before changing the sample. Steps 1-4 run locally without Docker or
+SBX. Step 5 builds and checks the kit artifact. Steps 6-7 are optional human
+handoffs for actual SBX composition and live Gemini; both remain unrun here.
+For the product story instead of commands, read the
+[product overview](product-overview.md) and [marketing brief](marketing-brief.md).
+
 The default assistant is an extractive fake chat model. It returns retrieved
 passages verbatim, so its results test orchestration and citation plumbing rather
 than live LLM reasoning. A separately approved Gemini path is available later.
@@ -19,7 +27,21 @@ artifacts and handles their typed capability requests. This mixin's sole
 request, agent context, supplies packaged guidance text for the agent to read.
 It does not provide policy data from the workload or grant network access.
 
+[langchain.yaml](../langchain.yaml) declares the mixin and its capability;
+[langchain.dockerfile](../langchain.dockerfile) builds the overlay;
+[langchain-context.md](../langchain-context.md) contains the agent guidance.
+The editable [sample project](../sample/) supplies the policy-QA exercise.
+Its [sample/sbxenv.yaml](../sample/sbxenv.yaml) declares a pinned shell workload,
+this local mixin and the repository workspace for the optional runtime path.
+The mixin requests no credentials, extra mounts or privilege. Workload requests
+and runtime policies still matter to the composed environment's access.
+
 ## Prerequisites and downloads
+
+Assume basic Python, terminal and Git knowledge. No prior uv, SBX or Kits v3
+knowledge is needed. uv manages Python installations and locked project
+dependencies; the commands below explain its relevant options. Familiarity
+with containers is useful for step 5 onward, where Docker tooling is required.
 
 The Python journey requires Git, Linux, uv **0.9.26** and access to public Python
 downloads. `sample/.python-version` pins **CPython 3.13.7**. uv downloads the
@@ -28,10 +50,54 @@ The local verified target is Linux arm64, Debian 12/glibc 2.36. The automated
 workflow targets native x86-64 `ubuntu-24.04`; its first hosted run passed.
 macOS, Windows, Alpine/musl and arbitrary minimal images are not verified targets.
 
-To obtain uv, use its official 0.9.26 release at
-`https://github.com/astral-sh/uv/releases/tag/0.9.26`. Select the archive for your
-Linux architecture, check its published checksum, extract it, and put `uv` on
-`PATH`. If also preparing kit tooling, `scripts/install-ci-tools.sh` does this
+If uv is missing, install it from the [official 0.9.26 release](https://github.com/astral-sh/uv/releases/tag/0.9.26).
+The following commands support x86_64 and aarch64 (arm64) Linux with glibc.
+They require curl, tar, and the `sha256sum` and `install` commands from GNU
+coreutils. If a command is missing, install its package with your Linux
+distribution's package manager first.
+
+Run this block in Bash from any directory. It downloads into a temporary
+directory, checks the published checksum, extracts the archive's nested
+directory, and installs only `uv` to `~/.local/bin`. The parentheses keep the
+working-directory change local; `set -eu` stops installation on an error.
+
+```bash
+(
+  set -eu
+  case "$(uname -m)" in
+    x86_64) target="x86_64-unknown-linux-gnu" ;;
+    aarch64|arm64) target="aarch64-unknown-linux-gnu" ;;
+    *) printf 'Supported architectures: x86_64 and aarch64\n' >&2; exit 1 ;;
+  esac
+  download_dir="$(mktemp -d)"
+  cd "$download_dir"
+  archive="uv-$target.tar.gz"
+  release_url="https://github.com/astral-sh/uv/releases/download/0.9.26"
+  curl --fail --location --output "$archive" "$release_url/$archive"
+  curl --fail --location --output "$archive.sha256" "$release_url/$archive.sha256"
+  sha256sum -c "$archive.sha256"
+  tar -xzf "$archive"
+  mkdir -p "$HOME/.local/bin"
+  install -m 755 "uv-$target/uv" "$HOME/.local/bin/uv"
+)
+```
+
+Expect `uv-<target>.tar.gz: OK` from the checksum check. A failed download or
+checksum check stops the block before installation; do not continue on an error.
+After the block succeeds, add the install directory to this terminal's PATH
+and verify the version:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+uv --version
+```
+
+The version line must start with `uv 0.9.26`. The PATH change applies to this
+terminal only. For future
+Bash terminals, add `export PATH="$HOME/.local/bin:$PATH"` to `~/.bashrc`, or
+repeat that export in each terminal before running the sample commands.
+
+If also preparing kit tooling, `scripts/install-ci-tools.sh` installs uv
 with pinned checksums for x86-64 and arm64, and builds kit-tck; it additionally
 requires curl, tar, sha256sum, Git and Go with toolchain downloads enabled.
 kit-tck is Docker's checker for kit artifact format and declarations, not a
@@ -224,7 +290,7 @@ passed in its first hosted run after the repository was pushed to GitHub.
 `sbx` is the Docker Sandboxes command-line tool. Its `sbxenv.yaml` environment
 file selects a workload, mixins and workspace for the runtime to assemble.
 
-This section is a handoff, not a locally observed pass. On a human-controlled
+This actual composed SBX run is an unrun human handoff. On a human-controlled
 machine with Docker Sandboxes **v0.47.0** or a compatible Kits-v3 runtime and an
 existing working daemon, inspect `sample/sbxenv.yaml`. It selects the official
 digest-pinned `docker/sbx-kit-shell:1.0.0` workload, adds `../` as this mixin,
@@ -239,7 +305,9 @@ Installing just an extracted CLI is sufficient for the help checks performed
 here, but not for this daemon-backed journey. Follow Docker's platform/runtime
 requirements and verify the installed `sbx version` before continuing.
 
-From the repository root, the v0.47.0 help supports:
+From the repository root, the v0.47.0 help supports the commands below. Run
+them one at a time: inspect the plan before approving the run, and wait for
+the evaluation to finish before removing the environment.
 
 ```bash
 sbx env plan sample/sbxenv.yaml
@@ -247,6 +315,21 @@ sbx env run --detached sample/sbxenv.yaml
 sbx env exec sample/sbxenv.yaml -- /opt/langchain/venv/bin/python -m langchain_enterprise.cli --policies /opt/langchain/sample/data/policies --eval-suite
 sbx env rm sample/sbxenv.yaml
 ```
+
+Expected outcomes for the human operator, not outputs observed in this delivery:
+
+- `plan` prints the proposed environment and changes nothing. Check that it
+  selects the pinned shell workload, local LangChain mixin and repository workspace.
+- After your approval, `run --detached` creates or starts the declared sandbox
+  without attaching a terminal. The following `exec` must reach its bundled Python;
+  a failed launch or missing interpreter is a failed composition check.
+- `exec` should print evaluation JSON with `passed: true` for the same 11 cases
+  as the local run. Save the actual result; an error or failing case needs investigation.
+- After removal approval, `rm` should remove the declared sandbox. Treat a
+  cleanup error as unfinished cleanup, not a passing handoff.
+
+These success criteria do not predict exact daemon messages or demonstrate
+denied-network behavior. Record actual output and check runtime policy separately.
 
 Review and approve the environment plan yourself. These commands create and
 remove a sandbox only on that human machine. No host lifecycle commands,
@@ -264,6 +347,8 @@ secure, a human must check actual composition, merged environment and denied
 network behavior under their own organization's policy.
 
 ## 7. Optional approved live Gemini
+
+Live Gemini sample validation remains an unrun human handoff.
 
 The sample can send the question and retrieved synthetic passages to
 `gemini-2.5-flash` using `langchain-google-genai==4.4.0`. This may incur provider
