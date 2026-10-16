@@ -1,0 +1,304 @@
+{
+  "entrypoint": "src/ticket_triage/app.py",
+  "excluded": [
+    ".env (always)",
+    ".pytest_cache",
+    ".venv",
+    "key and credential files (always)",
+    "private/ (always)",
+    "src/ticket_triage/__pycache__",
+    "tests/__pycache__"
+  ],
+  "findings": [
+    {
+      "confidence": "declared",
+      "file": "pyproject.toml",
+      "id": "e67636b447a7b42c",
+      "kind": "dependency",
+      "line": 6,
+      "value": "httpx"
+    },
+    {
+      "confidence": "declared",
+      "file": "pyproject.toml",
+      "id": "7ec4a5c6fb438324",
+      "kind": "dependency",
+      "line": 6,
+      "value": "langchain-core"
+    },
+    {
+      "confidence": "inferred",
+      "file": "pyproject.toml",
+      "id": "f722740a078f1ea4",
+      "kind": "env-name",
+      "line": 6,
+      "value": "GEMINI_API_KEY"
+    },
+    {
+      "confidence": "inferred",
+      "file": "pyproject.toml",
+      "id": "3aae005633753d25",
+      "kind": "env-name",
+      "line": 6,
+      "value": "GOOGLE_API_KEY"
+    },
+    {
+      "confidence": "inferred",
+      "file": "pyproject.toml",
+      "id": "e06299dc6bf69367",
+      "kind": "provider-host",
+      "line": 6,
+      "value": "generativelanguage.googleapis.com"
+    },
+    {
+      "confidence": "declared",
+      "file": "pyproject.toml",
+      "id": "b14aa44ef93e3362",
+      "kind": "provider-package",
+      "line": 6,
+      "value": "langchain-google-genai"
+    },
+    {
+      "confidence": "inferred",
+      "file": "src/ticket_triage/app.py",
+      "id": "6a0ba9240e119312",
+      "kind": "optional-tracing",
+      "line": 0,
+      "value": "LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled)"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/app.py",
+      "id": "db7087de1ac56a42",
+      "kind": "scope-confirmation",
+      "line": 0,
+      "value": "Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/app.py",
+      "id": "b96768704a56e667",
+      "kind": "env-name",
+      "line": 20,
+      "value": "LANGSMITH_TRACING"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/app.py",
+      "id": "a0c39dbac3bade1c",
+      "kind": "env-name",
+      "line": 21,
+      "value": "LANGCHAIN_TRACING_V2"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/app.py",
+      "id": "33fcf85aad809285",
+      "kind": "file-read",
+      "line": 23,
+      "value": "developer must confirm data paths"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/app.py",
+      "id": "ecb30d470b252382",
+      "kind": "dynamic-url",
+      "line": 27,
+      "value": ""
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/app.py",
+      "id": "cc9124f43e726045",
+      "kind": "env-name",
+      "line": 27,
+      "value": "TRIAGE_STATUS_URL"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/chain.py",
+      "id": "9806f8c67a2a145f",
+      "kind": "env-name",
+      "line": 27,
+      "value": "TRIAGE_MODEL"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "src/ticket_triage/sources.py",
+      "id": "de6c7c05a1434621",
+      "kind": "dynamic-url",
+      "line": 6,
+      "value": ""
+    },
+    {
+      "confidence": "declared",
+      "file": "src/ticket_triage/sources.py",
+      "id": "1d3e0b1a6d70ba41",
+      "kind": "literal-host",
+      "line": 13,
+      "value": "hooks.example.invalid"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "tests/test_app.py",
+      "id": "fc568246fa600700",
+      "kind": "process-or-socket",
+      "line": 2,
+      "value": "socket"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "tests/test_app.py",
+      "id": "41df9692f97dfa06",
+      "kind": "file-read",
+      "line": 17,
+      "value": "developer must confirm data paths"
+    },
+    {
+      "confidence": "declared",
+      "file": "tests/test_app.py",
+      "id": "641df40c78ee350e",
+      "kind": "literal-host",
+      "line": 25,
+      "value": "status.example.invalid"
+    },
+    {
+      "confidence": "unresolved",
+      "file": "tests/test_app.py",
+      "id": "96141b50af073eb3",
+      "kind": "env-name",
+      "line": 38,
+      "value": "TRIAGE_STATUS_URL"
+    },
+    {
+      "confidence": "declared",
+      "file": "tests/test_app.py",
+      "id": "ccbf409717a56f08",
+      "kind": "literal-host",
+      "line": 38,
+      "value": "status.example.invalid"
+    }
+  ],
+  "helperVersion": "1.0.0",
+  "inputHashes": {
+    ".env.example": "9d7923737412d73c513b8f718fc6aaa0516f843bbbd0e6bebeefcca9f4bc1c25",
+    ".gitignore": "d8db58404ee80ecb7e60c5c8f1cb611af68aae874a188191a6b222e45d43ae35",
+    ".python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "README.md": "62bf04c84d6006ba1bb4b9c0b7266ff72ddffd7d6cff450e417abc77b0b53d8e",
+    "data/tickets/t-101.json": "5fc2f0831b53e47f3b01be808e92c9c6bf2dd1ccd5a0651a7b1adbc9cd4bf184",
+    "pyproject.toml": "f10d036ec933a1bcd34814c78c20dc4de0e09eeeeea3d6c366d034257a921bde",
+    "src/ticket_triage/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/ticket_triage/app.py": "5ef35cc98ef7ca135d871e75d93869ac3eeac0f4469382434d0d0ec1b536f567",
+    "src/ticket_triage/chain.py": "3077153286f909dbb1a00bb988a6bdf4d62164e6f127b7b3974e1067954ec78f",
+    "src/ticket_triage/sources.py": "0657032c6708b5abb637d637efe8dd78c22037bb45c43d558bdfefb82bff6f53",
+    "tests/test_app.py": "8dfe8afb84679b686de8bae5b9d3b3db825b6a7037312fd20a7eb040de70bb20",
+    "uv.lock": "3a5a3de89524e011924c1eb8bba6f6d42f4d2291e36ba0b1dcd2ce2cfa91ad07"
+  },
+  "questions": [
+    {
+      "evidence": "pyproject.toml:6",
+      "id": "e67636b447a7b42c",
+      "question": "dependency: httpx; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "pyproject.toml:6",
+      "id": "7ec4a5c6fb438324",
+      "question": "dependency: langchain-core; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "pyproject.toml:6",
+      "id": "f722740a078f1ea4",
+      "question": "env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "pyproject.toml:6",
+      "id": "3aae005633753d25",
+      "question": "env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "pyproject.toml:6",
+      "id": "e06299dc6bf69367",
+      "question": "provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "pyproject.toml:6",
+      "id": "b14aa44ef93e3362",
+      "question": "provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/app.py:0",
+      "id": "6a0ba9240e119312",
+      "question": "optional-tracing: LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled); allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/app.py:0",
+      "id": "db7087de1ac56a42",
+      "question": "scope-confirmation: Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/app.py:20",
+      "id": "b96768704a56e667",
+      "question": "env-name: LANGSMITH_TRACING; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/app.py:21",
+      "id": "a0c39dbac3bade1c",
+      "question": "env-name: LANGCHAIN_TRACING_V2; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/app.py:23",
+      "id": "33fcf85aad809285",
+      "question": "file-read: developer must confirm data paths; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/app.py:27",
+      "id": "ecb30d470b252382",
+      "question": "dynamic-url: inspect this location; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/app.py:27",
+      "id": "cc9124f43e726045",
+      "question": "env-name: TRIAGE_STATUS_URL; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/chain.py:27",
+      "id": "9806f8c67a2a145f",
+      "question": "env-name: TRIAGE_MODEL; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/sources.py:6",
+      "id": "de6c7c05a1434621",
+      "question": "dynamic-url: inspect this location; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "src/ticket_triage/sources.py:13",
+      "id": "1d3e0b1a6d70ba41",
+      "question": "literal-host: hooks.example.invalid; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "tests/test_app.py:2",
+      "id": "fc568246fa600700",
+      "question": "process-or-socket: socket; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "tests/test_app.py:17",
+      "id": "41df9692f97dfa06",
+      "question": "file-read: developer must confirm data paths; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "tests/test_app.py:25",
+      "id": "641df40c78ee350e",
+      "question": "literal-host: status.example.invalid; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "tests/test_app.py:38",
+      "id": "96141b50af073eb3",
+      "question": "env-name: TRIAGE_STATUS_URL; allow with reason, deny, or out-of-scope?"
+    },
+    {
+      "evidence": "tests/test_app.py:38",
+      "id": "ccbf409717a56f08",
+      "question": "literal-host: status.example.invalid; allow with reason, deny, or out-of-scope?"
+    }
+  ]
+}

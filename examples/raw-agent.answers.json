@@ -1,0 +1,57 @@
+{
+  "name": "single-file",
+  "launch": "python agent.py",
+  "dataPaths": [],
+  "decisions": {
+    "9cecf24e13bc3f3f": {
+      "action": "deny",
+      "reason": "Tracing is disabled; no LangSmith network or key requested"
+    },
+    "4a5dadb29ae4a1d0": {
+      "action": "allow",
+      "reason": "Developer selects gemini-2.5-flash for synthetic ticket classification, with separate live budget approval; no files or other runtime resources needed"
+    },
+    "1313c81151bf928b": {
+      "action": "deny",
+      "reason": "Keep LANGSMITH_TRACING false; tracing is not part of this task"
+    },
+    "e052a12c9a3c7012": {
+      "action": "out-of-scope",
+      "reason": "Core dependency needs no additional runtime access"
+    },
+    "a0fddeaa0198d02c": {
+      "action": "out-of-scope",
+      "reason": "Use the GOOGLE_API_KEY proxy sentinel; no second Gemini credential needed"
+    },
+    "fcdff6b3142ba65f": {
+      "action": "allow",
+      "reason": "Use GOOGLE_API_KEY as the SDK sentinel for the runtime-only gemini service binding; host must approve and bind it"
+    },
+    "2f23ceb98c1a74c0": {
+      "action": "allow",
+      "reason": "Only the selected Gemini API host is needed"
+    },
+    "3f81b54c78a07b5d": {
+      "action": "allow",
+      "credential": "gemini",
+      "reason": "Selected Gemini provider; no alternate provider or endpoint authorized"
+    },
+    "f0e004b3ac835aae": {
+      "action": "out-of-scope",
+      "reason": "Use the GOOGLE_API_KEY proxy sentinel; no second Gemini credential needed"
+    },
+    "f468e3608a7f1579": {
+      "action": "allow",
+      "reason": "Use GOOGLE_API_KEY as the SDK sentinel for the runtime-only gemini service binding; host must approve and bind it"
+    },
+    "92a0ca4d3a8270f8": {
+      "action": "allow",
+      "reason": "Only the selected Gemini API host is needed"
+    },
+    "4131e93f13fbe35b": {
+      "action": "allow",
+      "credential": "gemini",
+      "reason": "Selected Gemini provider; no alternate provider or endpoint authorized"
+    }
+  }
+}

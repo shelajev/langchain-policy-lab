@@ -1,80 +1,80 @@
-# LangChain Policy Lab for Docker Sandboxes
+# Run your LangChain in Docker Sandboxes
 
-Try a policy assistant over four fictional company documents: retrieve a meal
-allowance, inspect its citations, calculate a trip total, and test an unsupported
-question. The default model copies retrieved passages deterministically, so you
-can check the LangChain pipeline without employee data or a model API key.
+Run your existing `agent.py` or Python project in a shell sandbox, with reviewed
+dependencies and deliberate access. Keep its layout; a reusable kit is optional.
+Start with the [tutorial](docs/run-your-langchain-in-docker-sandboxes.md) for the
+manual and coding-agent routes, or the [guide](docs/user-guide.md).
 
-This independent learning lab packages that exercise as a Docker Sandboxes v3
-mixin kit. It is not a production support service or an official Docker guide.
+## Quick path: direct execution
 
-## Choose your route
-
-- For the SBX product story, read the [product overview](docs/product-overview.md),
-  then the [marketing brief](docs/marketing-brief.md) for audiences and supported claims.
-- To run the sample, start with the quickstart below and continue in the
-  [developer guide](docs/user-guide.md) for explanations, failures and optional paths.
-- The [blog outline](docs/blog-outline.md) is a proposal only; author selection
-  and publication approval remain pending.
-
-## What you get
-
-- [langchain.yaml](langchain.yaml) declares the v3 mixin;
-  [langchain.dockerfile](langchain.dockerfile) builds its file overlay with Python
-  3.13.7, locked dependencies and the bundled sample. A workload supplies the
-  operating system and agent launch. There is no published kit image.
-- [langchain-context.md](langchain-context.md) supplies packaged guidance for
-  the coding agent through the mixin's sole capability request, agent context.
-  The mixin requests no credentials, network access, extra mounts or privilege;
-  a chosen workload and runtime policy still determine the sandbox's access.
-- [sample/](sample/) provides policy retrieval, source/section/chunk citations,
-  bounded read-only meal and receipt tools, and evaluations. The developer's
-  goal is a repeatable policy-QA workflow before considering the optional live
-  Gemini path, which needs separate provider approval.
-- [sample/sbxenv.yaml](sample/sbxenv.yaml) declares how to combine the pinned
-  shell workload, local mixin and repository workspace. It is a runtime
-  environment declaration, not a Python install step or a grant of live access.
-- Local review passed 49 tests, 11 evaluation cases and 19 kit conformance checks,
-  plus a Debian filesystem probe. [Hosted Actions run 37961247968](https://github.com/shelajev/langchain-policy-lab/actions/runs/37961247968)
-  passed. Actual composed SBX execution and live Gemini sample validation are
-  **unrun human handoffs**; artifact checks do not establish runtime policy enforcement.
-
-## Quickstart without a paid credential
-
-Start at the repository root on Linux with Git and uv **0.9.26** installed.
-If uv is missing, follow [Prerequisites and downloads](docs/user-guide.md#prerequisites-and-downloads)
-first. No Docker daemon or SBX installation is needed for this Python path.
-
-uv downloads the managed interpreter into its user-level Python store, shown by
-`uv python dir` (normally `~/.local/share/uv/python` on Linux). `--no-bin` avoids
-adding Python launchers to your user bin directory; it does not replace system
-Python. `uv sync` creates `sample/.venv` and installs the locked dependencies.
+From this repository root, inspect the ready-locked single-file example, then
+prepare a separate sanitized workspace and access plan:
 
 ```bash
-uv python install --no-bin 3.13.7
-cd sample
-uv sync --locked --managed-python
-uv run --locked --offline python -m langchain_enterprise.cli --query 'What is the Tier 1 meal allowance?'
-uv run --locked --offline python -m langchain_enterprise.cli --tool meal --city-tier 1 --days 3
-uv run --locked --offline python -m langchain_enterprise.cli --query 'Can I bring my pet python into the office?'
-uv run --locked --offline python -m langchain_enterprise.cli --eval-suite
-uv run --locked --offline pytest -v
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py inspect --project examples/single-file-agent --entrypoint agent.py
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py direct --project examples/single-file-agent --entrypoint agent.py --answers examples/single-file-agent.answers.json --out /tmp/my-agent-direct
 ```
 
-Installation downloads Python and packages. Subsequent commands use the local
-installation; `--offline` prevents uv dependency downloads, not arbitrary Python
-networking. The default model makes no model request.
+Use a fresh output directory. Review `ACCESS.md`, `RUN.md`, `setup-deps.sh`,
+`sbxenv.yaml` and `workspace/` before approving anything. The answers belong to
+this synthetic fixture, not your app. For an unstructured `agent.py` plus
+requirements, the [tutorial](docs/run-your-langchain-in-docker-sandboxes.md)
+shows normal reviewed lock creation and matching raw-fixture answers.
 
-Expect a `grounded` answer containing `$90` and a `travel_policy.md` citation,
-a tool result with `total_usd: 270`, an `unsupported` pet question with no
-citations, evaluation `passed: true` for 11 cases, and 49 passing tests. These
-results test retrieval, citations and tool behavior, not live-model reasoning.
+Inspection needs Python 3.11+ and never imports source. The direct plan preserves
+included files byte-for-byte, excludes secrets/private files, and mounts only
+`workspace/`. It selects the official pinned shell workload, not a generated
+mixin. The shell has Python; setup verifies and installs uv inside the sandbox,
+then installs the locked dependencies there. No app source runs on the host.
 
-## Continue or inspect the evidence
+On a supported, approved Docker Sandboxes host, follow the generated `RUN.md`
+in order: existing credential, plan/create, scoped policy, in-sandbox setup,
+remove bootstrap grants, launch, denied checks and cleanup. All SBX runtime
+steps are **NOT RUN here**. After that setup, an offline app check is:
 
-The [developer guide](docs/user-guide.md) keeps kit build commands and prerequisites
-in one place, followed by the separately unrun [SBX handoff](docs/user-guide.md#6-optional-human-docker-sandboxes-journey)
-and [live Gemini path](docs/user-guide.md#7-optional-approved-live-gemini).
-The [verification report](docs/verification-report.md) and
-[independent QC report](docs/qc-delivery-report.md) describe observed checks and
-their limits; [provenance](docs/provenance.md) records the source and API pins.
+```bash
+sbx env exec /tmp/my-agent-direct/sbxenv.yaml -- .venv/bin/python agent.py --fake-model
+```
+
+For a real model call, approve input, budget and credential use separately.
+Direct uses built-in service `google`; the optional generated kit uses its
+own `gemini` service. Never copy a key into YAML or the workspace. Inspect
+inherited policy: one narrow allow does not cancel broader existing grants.
+
+## With a coding agent, or manually
+
+Ask your agent to read [the repository skill](skills/langchain-sandbox-kit/SKILL.md):
+
+> Run my existing LangChain app at ./examples/single-file-agent in Docker
+> Sandboxes. Inspect agent.py without executing it, ask about unresolved access,
+> and prepare a direct-run plan. Preserve the app; reusable packaging is optional.
+
+For discovery **in your own project**, copy the whole skill folder into
+`.agents/skills/langchain-sandbox-kit/` (Codex) or
+`.claude/skills/langchain-sandbox-kit/` (Claude Code). Keep scripts, templates
+and references together; do not install into host-global skill directories.
+The [manual tutorial](docs/run-your-langchain-in-docker-sandboxes.md) writes
+an environment and sanitized workspace by hand without the helper.
+
+## Optional: reusable kit
+
+LangChain is ordinary Python. A kit packages environment, dependencies and
+policy for repeatable distribution or cloud baking; it is not a per-file
+conversion or a prerequisite for the first local run. Existing kit generation,
+manual template edits and build/TCK checks remain in the [guide](docs/user-guide.md).
+The larger [ticket-triage example](examples/ticket-triage/README.md) adds data,
+status and webhook questions without changing the direct-first workflow.
+
+Cloud cannot mount your host workspace. It requires an approved transfer or
+baked kit, separate secrets/bindings and cloud policy. The host reports cloud
+diagnose passed authentication/API/subscription; actual cloud runtime remains
+**NOT RUN**, as does local SBX. Ordinary container success is not SBX confinement.
+The [host handoff](docs/acceptance-handoff.md) lists allowed/denied checks.
+Isolation does not solve prompt injection or side effects on allowed services.
+
+## Supporting example: policy lab
+
+The earlier retrieval/tool lab remains at `sample/`, packaged by `langchain.yaml`
+and `langchain.dockerfile`. See the [policy-lab guide](docs/policy-lab-guide.md).
+Its [checks](scripts/check-sample.sh), build/TCK and filesystem probe continue
+in CI; it is a supporting fixture, not the primary product journey.

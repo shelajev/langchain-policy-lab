@@ -1,5 +1,10 @@
 # Resumed delivery and independent QC handoff
 
+Historical policy-lab delivery record. For the current existing-app workflow,
+see the [README](../README.md), [article](run-your-langchain-in-docker-sandboxes.md)
+and [current evidence matrix](evidence/runtime-matrix.md). This earlier record
+does not close the current local/cloud runtime acceptance or independent QC.
+
 Date: 2026-10-09. Branch: `feat/langchain-enterprise-kit`.
 Run: `000000000000000018dce9089ec47888-77dc8541234fc8cc`, round 1,
 implementation handoff sequence 2.

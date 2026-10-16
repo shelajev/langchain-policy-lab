@@ -1,0 +1,26 @@
+{
+  "review": "r4-01",
+  "model": "gemini-3.8-flash",
+  "history": "none",
+  "files": [
+    "docs/run-your-langchain-in-docker-sandboxes.md",
+    "docs/reviews/audience-r3.md",
+    "README.md",
+    "docs/user-guide.md"
+  ],
+  "fileSha256": {
+    "docs/run-your-langchain-in-docker-sandboxes.md": "ddc2d954f8a8a195f749aedad60e232e828f6b2956e044cbf337c921451f8ffa",
+    "docs/reviews/audience-r3.md": "0133388d3d4b6bee4c121f1e85d426ccd0cd4d85bcb0dcab971154fc7641bfab",
+    "README.md": "68a655d0b0733b6fedf99e34811d6dfe50a913f6df1060e660e9e05c967ed631",
+    "docs/user-guide.md": "f50ecab1a23e07f5ca5c5f018fab96af85f75fb6f2405fc225c0a63eed28e124"
+  },
+  "packetSha256": "20da5524cfe7917df13322e8022223b784c71ed682fe126ff3aa7ff889f4a651",
+  "requestSha256": "20da5524cfe7917df13322e8022223b784c71ed682fe126ff3aa7ff889f4a651",
+  "profileIncluded": false,
+  "tool": "pinned blog-writer fresh-reader.py; completed attempt used scratch copy with timeout 240s only",
+  "attempts": [
+    {"timeoutSeconds": 60, "result": "TimeoutError; no completed review", "diagnostic": "docs/evidence/audience-r4-01-attempt1.txt"},
+    {"timeoutSeconds": 240, "result": "completed; NEEDS REVISION"}
+  ],
+  "responseFormatting": "two whitespace-only lines trimmed; wording unchanged"
+}

@@ -1,0 +1,6 @@
+**
+!app/.python-version
+!app/agent.py
+!app/pyproject.toml
+!app/uv.lock
+!single-file-context.md

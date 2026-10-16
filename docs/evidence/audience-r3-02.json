@@ -1,0 +1,14 @@
+{
+  "review": "02",
+  "model": "gemini-3.8-flash",
+  "history": "none",
+  "files": [
+    "docs/reviews/audience-r3.md",
+    "README.md",
+    "docs/user-guide.md",
+    "docs/run-your-langchain-in-docker-sandboxes.md"
+  ],
+  "packetSha256": "b7c56cc1195b56106ee8fa3c0914ffd7ed186dce48c5de7f44b50e5b2a110a2c",
+  "requestSha256": "9a1f0ec6b4e982610376b974431b828a5d41ff61167c168afd194d49bdd143fd",
+  "profileIncluded": false
+}

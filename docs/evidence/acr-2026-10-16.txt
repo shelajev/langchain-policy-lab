@@ -1,0 +1,15 @@
+2026-10-16T08:27:19Z
+Dependency state is already current.
+install exit=0
+acr realize: materialize github:shelajev/blog-writer: GitHub access denied: Bad credentials; run 'gh auth login' or configure Git HTTPS credentials and retry; retry the command, then report the failure at https://github.com/jbaruch/agentic-context-registry/issues if it persists
+realize exit=1
+2026-10-16T08:42:00Z
+Host-approved anonymous ACR realization, credentials omitted for this command only
+acr realize: compile config target ".claude/settings.json": config_conflict: .claude/settings.json: ledger-owned structured entry freshness-session-start was edited or removed; resolve the conflicting managed content, then retry the command
+EXIT: 4
+2026-10-16T08:43:07Z
+Host-approved scratch route, freshness none, no hook trust
+Dependency state updated in agents.yaml and .agents/registry.lock; run 'acr realize' to materialize locked artifacts.
+install EXIT: 0
+Applied 53 realization change(s) for codex.
+realize EXIT: 0

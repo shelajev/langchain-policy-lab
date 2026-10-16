@@ -1,0 +1,6 @@
+2026-10-16T08:35:25Z
+COMMAND: bash scripts/check-generated-container.sh
+Evidence class: container only; NOT SBX runtime confinement proof.
+{"category": "technical", "summary": "Synthetic offline classification; investigate the reported issue.", "ticket_id": "T-101"}
+PASS: fake app, sanitized filesystem, clean network-none failure; not SBX policy proof.
+EXIT: 0

@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "schema_version": 1,
+      "slug": "run-your-langchain-in-docker-sandboxes",
+      "date": "2026-10-16",
+      "opening_mode": "permission-problem",
+      "arc": "inspect-review-package-run",
+      "closing_mode": "acceptance-boundary",
+      "interventions": []
+    }
+  ]
+}

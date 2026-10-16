@@ -1,0 +1,11 @@
+--- pinned/fresh-reader.py
++++ scratch/fresh-reader.py
+@@ -70,7 +70,7 @@
+             headers={"Content-Type": "application/json", "x-goog-api-key": key},
+             method="POST",
+         )
+-        with urlopen(request, timeout=60) as response:
++        with urlopen(request, timeout=240) as response:
+             result = json.load(response)
+         candidate = result.get("candidates", [{}])[0]
+         finish = candidate.get("finishReason")

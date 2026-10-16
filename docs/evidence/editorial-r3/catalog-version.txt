@@ -1,0 +1,4 @@
+2026-10-16T08:48:15Z
+Catalog version check failed: [Errno 2] No such file or directory: 'tessl'. Check the plugin manifest and Tessl registry access, then retry; skip the refresh comparison meanwhile.
+{"installed": "1.1.50", "latest": null, "status": "unknown"}
+EXIT: 2

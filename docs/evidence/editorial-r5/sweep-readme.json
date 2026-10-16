@@ -1,0 +1,116 @@
+{
+  "ok": true,
+  "path": "README.md",
+  "mode": "final",
+  "hits": [
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 18,
+      "detail": "[5, 10, 10] of [5, 10, 10, 17]",
+      "context": "Use a fresh output directory. Review `ACCESS.md`, `RUN.md`, `setup-deps.sh`, `sbxenv.yaml`",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 39,
+      "detail": "[12, 14, 9] of [12, 14, 9, 12]",
+      "context": "For a real model call, approve input, budget and credential use separately. Direct uses bu",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 52,
+      "detail": "[18, 13, 14] of [18, 13, 14]",
+      "context": "For discovery **in your own project**, copy the whole skill folder into `.agents/skills/la",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    }
+  ],
+  "candidates": {
+    "assistant_chatter": []
+  },
+  "observations": {
+    "em_dashes": {
+      "paired_asides": [],
+      "spacing": {
+        "spaced": 0,
+        "closed": 0,
+        "mixed": 0,
+        "boundary": 0
+      },
+      "sections": [
+        {
+          "heading": "# Run your LangChain in Docker Sandboxes",
+          "line": 1,
+          "count": 0
+        },
+        {
+          "heading": "## Quick path: direct execution",
+          "line": 8,
+          "count": 0
+        },
+        {
+          "heading": "## With a coding agent, or manually",
+          "line": 44,
+          "count": 0
+        },
+        {
+          "heading": "## Optional: reusable kit",
+          "line": 59,
+          "count": 0
+        },
+        {
+          "heading": "## Supporting example: policy lab",
+          "line": 75,
+          "count": 0
+        }
+      ],
+      "total": 0,
+      "note": "Observations only: apply patterns #7 and #8 with same-mode identity evidence and assignment genre."
+    }
+  },
+  "coverage": {
+    "ran": [
+      "#3/#4 fragment chains",
+      "#14 low burstiness",
+      "#18 unicode giveaways",
+      "#28/#30 announcement clauses (enumerable shapes only)",
+      "#31 category claims (shape only \u2014 the subject swap is the check)"
+    ],
+    "supplemental_checks": [
+      "WP:OAICITE citation-artifact leakage",
+      "WP:TRACKING AI-source tracking parameters",
+      "WP:ASSISTANT assistant-chatter candidate discovery",
+      "WP:SECTIONBREAK thematic breaks between every section",
+      "WP:FINALIZATION unresolved placeholders and VERIFY markers"
+    ],
+    "not_run_judgment": [
+      "#1 contrastive negation \u2014 is it the same slot?",
+      "#7 paired em-dashes \u2014 compare identity, genre, and rhetorical function",
+      "#8 em-dash density \u2014 compare observations with same-mode evidence",
+      "#10 introductory filler \u2014 apply the delete test",
+      "#12 AI vocabulary \u2014 the watchlist qualifiers are the check",
+      "#17 synonym cycling \u2014 do two phrases denote one concept?",
+      "#28 labelled devices \u2014 delete-test the clauses the sweep did not match",
+      "#30 telegraphing \u2014 delete-test the clauses the sweep did not match",
+      "#32 stacked data points \u2014 do two numbers make one point?",
+      "#35 temporal filler \u2014 apply the delete test",
+      "#36 corporate cliche \u2014 apply the interchangeability test",
+      "#40 vague connection \u2014 name the relationship",
+      "#41 source-unavailability hedging \u2014 cut unsupported claims",
+      "#42 ceremonial coverage \u2014 use what the source establishes",
+      "#43 intent-only sentences \u2014 restate each load-bearing sentence as a claim"
+    ],
+    "patterns_examined": 7,
+    "patterns_total": 43,
+    "note": "36 of the 43 patterns were not examined by this script. An empty hits list is not an anti-pattern check: the judgment sweeps in not_run_judgment and the rest of references/ai-anti-patterns.md still need a read."
+  }
+}

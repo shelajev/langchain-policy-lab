@@ -1,4 +1,4 @@
-# Current implementation plan
+# Historical policy-lab implementation plan
 
 Run `000000000000000018dcd9b9d5da52d8-f628885e0369bb1d`, round 1, implementer.
 The original supplied plan was the first repository edit, before implementation;

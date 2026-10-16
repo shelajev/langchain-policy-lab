@@ -1,0 +1,209 @@
+[
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 9,
+    "pattern": "#14",
+    "context": "This tutorial packages an existing Python app as a Docker Sandboxes v3 mixin. You inspect ",
+    "decision": "retained",
+    "reason": "The new overview now distinguishes the ticket-triage assisted example from adapting a single-file template; each sentence supplies a different first-use premise, correcting review blocker 1.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 20,
+    "pattern": "#14",
+    "context": "One important limit up front: the repository's offline tests, generated build, artifact TC",
+    "decision": "retained",
+    "reason": "The evidence caveat distinguishes an observed build/container result from unexecuted SBX runtime and an already authorized model call; removing a sentence would collapse independent evidence classes. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 30,
+    "pattern": "#14",
+    "context": "If your app is a single `agent.py` plus a requirements file, keep it that way. Inspection ",
+    "decision": "retained",
+    "reason": "Preserves the single-file source layout while separating inspect support from generation prerequisites and the reviewed launch choice. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 56,
+    "pattern": "#14",
+    "context": "On other hosts, build kit-tck from the exact spec commit in [provenance](provenance.md). A",
+    "decision": "retained",
+    "reason": "Names the alternate-host installation route, real runtime prerequisite and keyless first app check; these are distinct actions rather than repeated assertions.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 123,
+    "pattern": "#14",
+    "context": "Expect questions, not a complete permissions proof. Is `TRIAGE_STATUS_URL` actually used i",
+    "decision": "retained",
+    "reason": "Questions name independent runtime choices (status, webhook, tracing, data and model), rather than restating one point. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 128,
+    "pattern": "#14",
+    "context": "Every current finding needs an explicit allow, deny or out-of-scope answer, with a reason.",
+    "decision": "retained",
+    "reason": "Decision completeness, dynamic host requirements, broad-host exceptions and secret exclusion are separate rules needed before generation. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 137,
+    "pattern": "#14",
+    "context": "The [worked answers](../examples/ticket-triage.answers.json) allow only Gemini for model u",
+    "decision": "retained",
+    "reason": "Connects the concrete answers to model, tracing and data choices, then warns about external-service cost and side effects. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 186,
+    "pattern": "#14",
+    "context": "For a root `agent.py`, start from the [single-file kit](../examples/single-file-agent-kit/",
+    "decision": "retained",
+    "reason": "New manual entry point distinguishes the agent.py template from reader answers and the larger src example, then names the working directory; these are the specific first-use premises requested. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 273,
+    "pattern": "#14",
+    "context": "These paths use the generated and validated copy. The repository's `examples/ticket-triage",
+    "decision": "retained",
+    "reason": "Names the generated directory used throughout the workflow, distinguishes the reference fixture, and requires consistent substitution before introducing the manual alternative. These are separate missing premises found by the reader, not filler to alter cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 285,
+    "pattern": "#14",
+    "context": "Use your own offline arguments if your script differs from the fixture. Review the plan be",
+    "decision": "retained",
+    "reason": "Tells manual users to preserve their own offline arguments, then explains plan review, shell workload selection, sanitized mount and explicit execution.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 292,
+    "pattern": "#14",
+    "context": "Fake mode needs no credential. For a real request, the host must bind an existing `gemini`",
+    "decision": "retained",
+    "reason": "Explains keyless fake execution, real service binding and why a host environment variable is insufficient before the live command. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 22,
+    "pattern": "#14",
+    "context": "On another host, build kit-tck from the exact commit in [provenance](provenance.md). No ke",
+    "decision": "retained",
+    "reason": "Separates alternate-host tool installation, offline keylessness, real runtime support and the no-nested-daemon boundary. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 60,
+    "pattern": "#14",
+    "context": "The fake model checks pipeline wiring, not answer quality. Optional status fetch and webho",
+    "decision": "retained",
+    "reason": "Clarifies fake-model scope, disabled optional side effects/tracing and the separate live-use approval. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 71,
+    "pattern": "#14",
+    "context": "Inspection parses Python AST, TOML and lock metadata, without imports, resolvers or projec",
+    "decision": "retained",
+    "reason": "Describes inspection method, finding evidence/confidence and redaction/exclusion; these are distinct safety properties. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 83,
+    "pattern": "#14",
+    "context": "For another app, change project and entrypoint. Supported generation layout: root Python f",
+    "decision": "retained",
+    "reason": "Names supported layout and exact lock constraints, then unsupported source types and the separate resolver responsibility. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 90,
+    "pattern": "#14",
+    "context": "Read the [worked answers](../examples/ticket-triage.answers.json) and [answer contract](..",
+    "decision": "retained",
+    "reason": "Defines answer lookup, mandatory finding IDs, credential scope, denied endpoints and declared data for the example. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 97,
+    "pattern": "#14",
+    "context": "Dynamic URLs need named hosts before an allow decision. Wildcard/IP access requires an exp",
+    "decision": "retained",
+    "reason": "Distinguishes exact dynamic hosts, exceptional wildcard/IP authority and secret-free answers. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 134,
+    "pattern": "#14",
+    "context": "The original ignore file is not reused as the build context policy. The helper always remo",
+    "decision": "retained",
+    "reason": "Explains why the context allowlist differs from the source ignore file and how symlinks, secret literals and selected source paths are handled. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 237,
+    "pattern": "#14",
+    "context": "Use a fresh layout. Version 0.1.0 identifies the app kit, not LangChain itself. The [commi",
+    "decision": "retained",
+    "reason": "The original generated-example check still needs a fresh layout, version meaning, golden comparison and a return-to-root instruction. The counted sentence-length similarity does not establish obscured relationships or padded cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 262,
+    "pattern": "#14",
+    "context": "These commands use the copy generated and validated above. The repository's `examples/tick",
+    "decision": "retained",
+    "reason": "Keeps the generated output separate from the committed reference, requires substitutions on every command, and introduces the single-file alternative. Removing a sentence would reintroduce the path confusion identified in review.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 274,
+    "pattern": "#14",
+    "context": "The mixin adds app files and capabilities; the workload owns entrypoint, user and `sbx@1`.",
+    "decision": "retained",
+    "reason": "Distinguishes mixin/workload ownership, explicit exec, keyless mode and real credential binding; then limits ticket-specific denial flags to that app.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "README.md",
+    "line": 34,
+    "pattern": "#14",
+    "context": "Use fresh output/layout paths. The answers are reviewed decisions for **this synthetic app",
+    "decision": "retained",
+    "reason": "Explains fresh paths, example-specific decisions and static/helper limits before host runtime approval.",
+    "rawEvidence": "docs/evidence/editorial-r4/README-final.json"
+  },
+  {
+    "file": "README.md",
+    "line": 79,
+    "pattern": "#14",
+    "context": "Exact commands and logs: [runtime matrix](docs/evidence/runtime-matrix.md). A kit requests",
+    "decision": "retained",
+    "reason": "Connects exact logs, requested-versus-granted authority, effective composition and limits on isolation; each qualification is needed.",
+    "rawEvidence": "docs/evidence/editorial-r4/README-final.json"
+  }
+]

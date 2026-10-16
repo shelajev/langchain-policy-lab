@@ -1,0 +1,93 @@
+{
+  "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+  "rawExit": 1,
+  "requiredHits": 0,
+  "assistantChatter": 0,
+  "contextualHits": 12,
+  "dispositions": [
+    {
+      "line": 16,
+      "pattern": "#14",
+      "context": "[Docker Sandboxes](https://docs.docker.com/ai/sandboxes/) provides microVM-based isolation",
+      "decision": "retain",
+      "reason": "The mount and network examples qualify the microVM claim; the closing question depends on those examples."
+    },
+    {
+      "line": 27,
+      "pattern": "#14",
+      "context": "You need this repository checkout, Python 3.11+ for the inspector, and uv 0.9.26 for lock ",
+      "decision": "retain",
+      "reason": "Prerequisites distinguish inspection, optional packaging and unrun host runtime before the first command."
+    },
+    {
+      "line": 47,
+      "pattern": "#14",
+      "context": "Use fresh paths. These commands add dependency metadata without changing or running `agent",
+      "decision": "retain",
+      "reason": "Fresh paths, metadata-only effects, existing-project caution and compatible pins are successive qualifications of the preceding lock commands."
+    },
+    {
+      "line": 56,
+      "pattern": "#14",
+      "context": "Before copying, read the script and requirements. Confirm the model and exact provider hos",
+      "decision": "retain",
+      "reason": "The resource checklist precedes a concrete fixture decision and uncertainty warning; it develops the manual-copy task."
+    },
+    {
+      "line": 133,
+      "pattern": "#14",
+      "context": "Review `ACCESS.md`, `RUN.md`, `setup-deps.sh`, manifest hashes and `workspace/`. The helpe",
+      "decision": "retain",
+      "reason": "Review items are followed by the helper limits and guarded overwrite behavior; each warning explains the plan just produced."
+    },
+    {
+      "line": 192,
+      "pattern": "#14",
+      "context": "The first should return a valid category, using the approved Gemini host. The second must ",
+      "decision": "retain",
+      "reason": "Allowed and denied outcomes are contrasted with origin controls and excluded-file checks; the sentences are operationally dependent."
+    },
+    {
+      "line": 216,
+      "pattern": "#14",
+      "context": "A reusable kit packages the environment, dependencies and policy for repeatable distributi",
+      "decision": "retain",
+      "reason": "Optional kit purpose is followed by the larger fixture and its denied destinations; the paragraph is a route transition, not a repeated thesis."
+    },
+    {
+      "line": 225,
+      "pattern": "#14",
+      "context": "The [worked answers](../examples/ticket-triage.answers.json) allow only Gemini for model u",
+      "decision": "retain",
+      "reason": "The fixture answers distinguish runtime credential, denied extras and input data before the generation command."
+    },
+    {
+      "line": 274,
+      "pattern": "#14",
+      "context": "For a root `agent.py`, start from the [single-file kit](../examples/single-file-agent-kit/",
+      "decision": "retain",
+      "reason": "The manual kit paragraph identifies the single-file template, larger alternative and no-helper boundary before concrete copying."
+    },
+    {
+      "line": 361,
+      "pattern": "#14",
+      "context": "These paths use the generated and validated copy. The repository's `examples/ticket-triage",
+      "decision": "retain",
+      "reason": "Generated copy identity is followed by the reference-only contrast and an alternate-path handoff; readers need each distinction."
+    },
+    {
+      "line": 373,
+      "pattern": "#14",
+      "context": "Use your own offline arguments if your script differs from the fixture. Review the plan be",
+      "decision": "retain",
+      "reason": "Offline argument substitution leads into plan review and workload ownership, explaining which command actually launches the app."
+    },
+    {
+      "line": 380,
+      "pattern": "#14",
+      "context": "Fake mode needs no credential. For a real request, the host must bind an existing `gemini`",
+      "decision": "retain",
+      "reason": "Fake credential-free use is qualified by the real-call binding and secret handling; these sentences are not independent interchangeable claims."
+    }
+  ]
+}

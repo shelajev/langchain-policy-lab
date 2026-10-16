@@ -1,0 +1,368 @@
+UTC: 2026-10-16T09:03:31Z
+Evidence class: manual source/build/TCK/container only; NOT local/cloud SBX or live-model acceptance.
++ cmp /tmp/tmp.Tmvwa1JPle/agent.py /Users/shelajev/ai-contrib/.herdr-workspaces/langchain-sandbox-workflow/skills/langchain-sandbox-kit/tests/fixtures/raw-agent/agent.py
++ printf '%s\n' [TEST CANARY REDACTED]
++ cp -R /Users/shelajev/ai-contrib/.herdr-workspaces/langchain-sandbox-workflow/examples/single-file-agent-kit /tmp/manual-agent-kit
++ cd /tmp/manual-agent-kit
++ mv single-file.yaml manual-agent.yaml
++ mv single-file.dockerfile manual-agent.dockerfile
++ mv single-file-context.md manual-agent-context.md
++ rm -r app
++ mkdir app
++ cp /tmp/tmp.Tmvwa1JPle/agent.py /tmp/tmp.Tmvwa1JPle/pyproject.toml /tmp/tmp.Tmvwa1JPle/uv.lock /tmp/tmp.Tmvwa1JPle/.python-version app/
++ sed -i 's/single-file/manual-agent/g; s/deny: \[\]/deny: ["api.smith.langchain.com"]/' manual-agent.yaml
++ sed -i s/single-file/manual-agent/g manual-agent.dockerfile manual-agent-context.md .dockerignore sbxenv.local.yaml sbxenv.cloud.yaml
++ cat
++ rm kit-manifest.json
++ cmp app/agent.py /tmp/tmp.Tmvwa1JPle/agent.py
++ test '!' -e app/.env
++ grep -r -l [TEST CANARY REDACTED] .
++ docker buildx build . -f manual-agent.yaml --progress plain --output type=cacheonly
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from manual-agent.yaml
+#1 transferring dockerfile: 899B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor manual-agent.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 1.50kB done
+#4 DONE 0.0s
+
+#5 [internal] load guidance manual-agent-context.md
+#5 transferring context: 239B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from manual-agent.dockerfile
+#6 transferring dockerfile: 601B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 136B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 CACHED
+
+#10 [build 2/5] WORKDIR /opt/manual-agent/app
+#10 DONE 0.0s
+
+#11 [internal] load build context
+#11 transferring context: 241.95kB done
+#11 DONE 0.0s
+
+#12 [build 3/5] COPY app/ ./
+#12 DONE 0.0s
+
+#13 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#13 0.911 Downloading cpython-3.13.7-linux-aarch64-gnu (download) (27.2MiB)
+#13 3.312  Downloaded cpython-3.13.7-linux-aarch64-gnu (download)
+#13 3.315 Installed Python 3.13.7 in 3.22s
+#13 3.315  + cpython-3.13.7-linux-aarch64-gnu
+#13 3.455 Using CPython 3.13.7
+#13 3.455 Creating virtual environment at: /opt/manual-agent/venv
+#13 3.458 Resolved 50 packages in 0.43ms
+#13 3.634 Downloading google-genai (1.2MiB)
+#13 3.635 Downloading cryptography (4.5MiB)
+#13 3.636 Downloading zstandard (4.8MiB)
+#13 3.636 Downloading pydantic-core (2.0MiB)
+#13 4.259  Downloaded google-genai
+#13 4.464  Downloaded pydantic-core
+#13 4.709  Downloaded zstandard
+#13 4.717  Downloaded cryptography
+#13 4.717 Prepared 48 packages in 1.25s
+#13 4.752 Installed 48 packages in 34ms
+#13 4.752  + annotated-types==0.8.0
+#13 4.752  + anyio==4.15.1
+#13 4.752  + certifi==2026.7.22
+#13 4.752  + cffi==2.1.1
+#13 4.752  + charset-normalizer==3.5.2
+#13 4.752  + cryptography==50.0.2
+#13 4.752  + distro==1.9.0
+#13 4.752  + filetype==1.2.0
+#13 4.752  + google-auth==2.62.0
+#13 4.752  + google-genai==2.31.0
+#13 4.752  + h11==0.16.0
+#13 4.752  + httpcore==1.0.9
+#13 4.752  + httpcore2==2.13.1
+#13 4.752  + httpx==0.28.1
+#13 4.752  + httpx2==2.13.1
+#13 4.752  + idna==3.20
+#13 4.752  + jsonpatch==1.35
+#13 4.752  + jsonpointer==3.2.1
+#13 4.752  + langchain==1.4.4
+#13 4.752  + langchain-core==1.6.9
+#13 4.752  + langchain-google-genai==4.4.0
+#13 4.752  + langchain-protocol==0.0.19
+#13 4.752  + langgraph==1.2.15
+#13 4.752  + langgraph-checkpoint==4.3.0
+#13 4.753  + langgraph-prebuilt==1.1.1
+#13 4.753  + langgraph-sdk==0.4.7
+#13 4.753  + langsmith==0.14.11
+#13 4.753  + orjson==3.13.0
+#13 4.753  + ormsgpack==1.13.0
+#13 4.753  + packaging==26.3
+#13 4.753  + pyasn1==0.6.4
+#13 4.753  + pyasn1-modules==0.4.2
+#13 4.753  + pycparser==3.11
+#13 4.753  + pydantic==2.14.1
+#13 4.753  + pydantic-core==2.50.1
+#13 4.753  + pyyaml==6.0.3
+#13 4.753  + requests==2.34.2
+#13 4.753  + requests-toolbelt==1.0.0
+#13 4.753  + sniffio==1.3.1
+#13 4.753  + tenacity==9.1.4
+#13 4.753  + truststore==0.10.5
+#13 4.753  + typing-extensions==4.16.0
+#13 4.753  + typing-inspection==0.4.4
+#13 4.753  + urllib3==2.8.0
+#13 4.753  + uuid-utils==0.17.1
+#13 4.753  + websockets==16.1.1
+#13 4.753  + xxhash==4.0.1
+#13 4.753  + zstandard==0.25.0
+#13 DONE 4.9s
+
+#14 [build 5/5] RUN chown -R 0:0 /opt/manual-agent
+#14 DONE 1.9s
+
+#15 [stage-1 1/1] COPY --from=build /opt/manual-agent /opt/manual-agent
+#15 DONE 0.3s
+
+#16 [kit] stage guidance /usr/share/sandbox/kit/manual-agent/manual-agent-context.md
+#16 DONE 0.1s
+
+#17 [kit] stage sources /usr/share/sandbox/kit/manual-agent
+#17 DONE 0.0s
++ docker buildx build . -f manual-agent.yaml --progress plain -t manual-agent:0.1.0 --output type=oci,dest=/tmp/manual-agent-layout,tar=false
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from manual-agent.yaml
+#1 transferring dockerfile: 899B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor manual-agent.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 946B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance manual-agent-context.md
+#5 transferring context: 239B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from manual-agent.dockerfile
+#6 transferring dockerfile: 601B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 136B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 241.95kB done
+#10 DONE 0.0s
+
+#11 [kit] stage guidance /usr/share/sandbox/kit/manual-agent/manual-agent-context.md
+#11 CACHED
+
+#12 [build 5/5] RUN chown -R 0:0 /opt/manual-agent
+#12 CACHED
+
+#13 [build 3/5] COPY app/ ./
+#13 CACHED
+
+#14 [stage-1 1/1] COPY --from=build /opt/manual-agent /opt/manual-agent
+#14 CACHED
+
+#15 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#15 CACHED
+
+#16 [build 2/5] WORKDIR /opt/manual-agent/app
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/manual-agent
+#17 CACHED
+
+#18 exporting to oci image format
+#18 exporting layers
+#18 exporting layers 5.0s done
+#18 exporting manifest sha256:86ab84b34aa8b39ff7a23e3d2ba63c3e82cde1de735adebaad0b4b2461db78f5 done
+#18 exporting config sha256:e00996ed97e39172bc19648ffc921935d3a9bf21518879384ab78031434c59a9 done
+#18 DONE 5.1s
++ kit-tck validate --verbose --layout /tmp/manual-agent-layout 0.1.0
+kit-tck dev (a1d110de) · validate · /tmp/manual-agent-layout 0.1.0
+
+  passed
+    ✓ agent-skill-content       [agent-skill@1/content-present]
+    ✓ descriptor-valid          [SPEC-v3 §9.3]
+    ✓ schema-version-annotation [SPEC-v3 §9.3]
+    ✓ capabilities-annotation   [SPEC-v3 §9.3]
+    ✓ built-by-annotation       [SPEC-v3 §9.3]
+    ✓ oci-annotations           [SPEC-v3 §9.3]
+    ✓ at-least-one-layer        [SPEC-v3 §10]
+    ✓ staged-sources            [SPEC-v3 §10]
+    ✓ staged-recipe             [SPEC-v3 §10]
+    ✓ agent-context-staged      [agent-context@1]
+    ✓ image-config              [SPEC-v3 §10]
+    ✓ overlay-home-ownership    [SPEC-v3 §10]
+    ✓ overlay-links-resolve     [SPEC-v3 §10]
+    ✓ sbx-platform-floor        [sbx@1]
+    ✓ sbx-persistent-env        [sbx@1]
+    ✓ derived-provides          [SPEC-v3 §9.6]
+    ✓ merged-set                [SPEC-v3 §9.5]
+    ✓ merged-set-declarations   [SPEC-v3 §9.5]
+    ✓ index-annotations         [SPEC-v3 §9.3]
+  19 checks · 19 passed
+
+✓ conforms
+
+specification
+  agent-skill@1/content-present  https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-skill@1.md#config
+  SPEC-v3 §9.3                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#93-annotations
+  SPEC-v3 §10                    https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#10-the-oci-layout
+  agent-context@1                https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md
+  sbx@1                          https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/sbx@1.md
+  SPEC-v3 §9.6                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#96-derived-provides
+  SPEC-v3 §9.5                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#95-merging-a-set
++ docker buildx build . -f manual-agent.yaml --progress plain -t manual-agent:probe-overlay --load
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from manual-agent.yaml
+#1 transferring dockerfile: 899B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor manual-agent.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 82B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance manual-agent-context.md
+#5 transferring context: 45B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from manual-agent.dockerfile
+#6 transferring dockerfile: 601B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 136B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 165B done
+#10 DONE 0.0s
+
+#11 [build 5/5] RUN chown -R 0:0 /opt/manual-agent
+#11 CACHED
+
+#12 [kit] stage guidance /usr/share/sandbox/kit/manual-agent/manual-agent-context.md
+#12 CACHED
+
+#13 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#13 CACHED
+
+#14 [stage-1 1/1] COPY --from=build /opt/manual-agent /opt/manual-agent
+#14 CACHED
+
+#15 [build 3/5] COPY app/ ./
+#15 CACHED
+
+#16 [build 2/5] WORKDIR /opt/manual-agent/app
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/manual-agent
+#17 CACHED
+
+#18 exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:86ab84b34aa8b39ff7a23e3d2ba63c3e82cde1de735adebaad0b4b2461db78f5 done
+#18 exporting config sha256:e00996ed97e39172bc19648ffc921935d3a9bf21518879384ab78031434c59a9 done
+#18 exporting attestation manifest sha256:bc00f176688345c72c618099cd3db8e951d56f73dc0e1a96aa363e8b9a96d76d done
+#18 exporting manifest list sha256:2ab3f6f14ae0207b58ee1710b07275edbab7e9c488205e18df7a2aa74db1772d done
+#18 naming to docker.io/library/manual-agent:probe-overlay done
+#18 unpacking to docker.io/library/manual-agent:probe-overlay
+#18 unpacking to docker.io/library/manual-agent:probe-overlay 1.3s done
+#18 DONE 1.3s
++ docker build -t manual-agent:probe -f - .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 335B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/manual-agent:probe-overlay
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 136B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
+#5 CACHED
+
+#6 [overlay 1/1] FROM docker.io/library/manual-agent:probe-overlay@sha256:2ab3f6f14ae0207b58ee1710b07275edbab7e9c488205e18df7a2aa74db1772d
+#6 resolve docker.io/library/manual-agent:probe-overlay@sha256:2ab3f6f14ae0207b58ee1710b07275edbab7e9c488205e18df7a2aa74db1772d done
+#6 DONE 0.0s
+
+#7 [stage-1 2/2] COPY --from=overlay /opt/manual-agent /opt/manual-agent
+#7 DONE 0.5s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 4.6s done
+#8 exporting manifest sha256:0dccfd9469a099ae36c1d50f8870ccf3cfe0d1370baa3e844dfd007b703027a7 done
+#8 exporting config sha256:1c1c7bcd72eeca4c48e931097b40b027ccd775db3e6d7fd0757f7993da38cb41 done
+#8 exporting attestation manifest sha256:8a6883871970b4c391034ff4b601624cfc3a6d2e7c400b6461ea1c8a639e85ad done
+#8 exporting manifest list sha256:f0a3def42b342e291a92863cd3559a6561eacd0b536696a1870f0aa5ed4fe203 done
+#8 naming to docker.io/library/manual-agent:probe done
+#8 unpacking to docker.io/library/manual-agent:probe
+#8 unpacking to docker.io/library/manual-agent:probe 1.3s done
+#8 DONE 5.9s
++ docker run --rm --network none --read-only --user 1000:1000 -e PYTHONDONTWRITEBYTECODE=1 manual-agent:probe sh -eu -c '
+  cd /opt/manual-agent/app
+  python agent.py --fake-model
+  test -z "$(find /opt/manual-agent -name .env -o -name private -o -name id_rsa)"
+  if grep -r -l [TEST CANARY REDACTED] /opt/manual-agent; then exit 1; fi
+'
+{"category":"technical","ticket_id":"T-101"}
++ printf '%s\n' 'PASS: manual replacement/rename/policy/context/env/permissions/manifest checklist; byte-identical source, build, TCK and sanitized offline container.'
+PASS: manual replacement/rename/policy/context/env/permissions/manifest checklist; byte-identical source, build, TCK and sanitized offline container.

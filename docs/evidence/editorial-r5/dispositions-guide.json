@@ -1,0 +1,79 @@
+{
+  "file": "docs/user-guide.md",
+  "rawExit": 1,
+  "requiredHits": 0,
+  "assistantChatter": 0,
+  "contextualHits": 10,
+  "dispositions": [
+    {
+      "line": 9,
+      "pattern": "#14",
+      "context": "Run commands from the repository root. Inspection needs Python 3.11+; lock preparation use",
+      "decision": "retain",
+      "reason": "Tool prerequisites are separated from host runtime and no-nested-daemon boundaries before first use."
+    },
+    {
+      "line": 44,
+      "pattern": "#14",
+      "context": "These answers match only this raw fixture after the commands above. The ready-locked `exam",
+      "decision": "retain",
+      "reason": "Answer identity distinguishes raw and ready-locked fixture metadata, then introduces the all-findings contract."
+    },
+    {
+      "line": 53,
+      "pattern": "#14",
+      "context": "Review ACCESS.md, RUN.md, setup-deps.sh, sbxenv.yaml, direct-manifest.json and workspace/.",
+      "decision": "retain",
+      "reason": "The review list leads into runtime-not-started, snapshot selection and data/exclusion rules."
+    },
+    {
+      "line": 89,
+      "pattern": "#14",
+      "context": "For another project, retain its package layout and explicitly copy reviewed source, metada",
+      "decision": "retain",
+      "reason": "Manual layout preservation leads into explicit exclusions, mount-filter limitations and setup-script effects."
+    },
+    {
+      "line": 123,
+      "pattern": "#14",
+      "context": "Review the plan before approval. Verify exec starts in the mounted workspace with the expe",
+      "decision": "retain",
+      "reason": "Plan approval, working directory and stdin setup are explained in command order; the binding warning follows that setup."
+    },
+    {
+      "line": 147,
+      "pattern": "#14",
+      "context": "The allowed call should produce a valid category. The second request should be rejected by",
+      "decision": "retain",
+      "reason": "Allowed output, denied policy event, origin control and cleanup qualify one another and prevent false confinement claims."
+    },
+    {
+      "line": 195,
+      "pattern": "#14",
+      "context": "The original ignore file is not reused as the build context policy. The helper always remo",
+      "decision": "retain",
+      "reason": "Snapshot allowlisting is qualified by hard exclusions and source-file selection; the similar lengths do not make the safety reasoning redundant."
+    },
+    {
+      "line": 298,
+      "pattern": "#14",
+      "context": "Use a fresh layout. Version 0.1.0 identifies the app kit, not LangChain itself. The [commi",
+      "decision": "retain",
+      "reason": "Layout/version identity leads to reference-artifact distinction and reader-owned output checks."
+    },
+    {
+      "line": 323,
+      "pattern": "#14",
+      "context": "These commands use the copy generated and validated above. The repository's `examples/tick",
+      "decision": "retain",
+      "reason": "Generated-copy identity explains why the repository golden is not the launch path, then gives manual substitution."
+    },
+    {
+      "line": 335,
+      "pattern": "#14",
+      "context": "The mixin adds app files and capabilities; the workload owns entrypoint, user and `sbx@1`.",
+      "decision": "retain",
+      "reason": "Mixin workload ownership precedes effective-policy and real-call requirements; it develops the optional kit handoff."
+    }
+  ]
+}

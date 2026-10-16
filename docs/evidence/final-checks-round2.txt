@@ -1,0 +1,17 @@
+UTC: 2026-10-16T09:23:39Z
+Evidence: final source/document/static checks only; NOT local/cloud SBX or a repeated live app test.
+Code/build cohort: bcf3fdef83eb8ed147875265dee9463d28167be9
+PASS: 105 relative file/directory links across 17 current reader-facing files; archived review packets excluded.
+PASS: changed shell scripts Bash syntax
+PASS: app path, generated runtime/cleanup path and Bash blocks: README.md
+PASS: app path, generated runtime/cleanup path and Bash blocks: docs/user-guide.md
+PASS: app path, generated runtime/cleanup path and Bash blocks: docs/run-your-langchain-in-docker-sandboxes.md
+PASS: final reader packet/request/response hashes, four-file boundary, STOP and READABLE
+PASS: sweeps have zero required hits/chatter; 23 contextual dispositions, raw findings retained
+PASS: app/helper/locks/templates/check scripts unchanged since clean clone; independent-QC bean readiness only
+grep: docs/evidence/final-checks-round2.txt: input file is also the output
+Capture retry: claim scan output moved to scratch to avoid scanning its own stdout file.
+PASS: requested account/login-unavailability scan returned no matches (exit 1).
+PASS: reviewable CI patch applies, crew copy identical, .github unchanged
+PASS: worktree diff whitespace
+Final checks: PASS. Exit: 0.

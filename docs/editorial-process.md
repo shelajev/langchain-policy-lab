@@ -1,5 +1,51 @@
 # Editorial working record
 
+## Bring-your-own-app tutorial, 2026-10-16
+
+Current reader deliverables: [article](run-your-langchain-in-docker-sandboxes.md),
+[README](../README.md) and [guide](user-guide.md). Older sections below are
+historical policy-lab records, not claims about the new workflow.
+
+Pinned blog-writer `61844184d925b9f925951241a0d476db7c193e7e` was installed and
+realized through ACR. Root realization failed on credentials and then its
+existing freshness ledger. The host authorized the established anonymous
+scratch route; freshness none, no hook created/trusted, no profile copied and
+no configuration repaired. That route passed: [actual output](evidence/acr-2026-10-16.txt).
+
+Read the realized instructions; applied scoped documentation review to the
+README/guide/product copy and the full new-blog intake/plan/revision/shape route
+to the article. Recovery followed the initial prose draft; the route was replayed
+as a review/revision pass, not backdated. Title/path/neutral voice came from the
+task, so no extra author choice was needed. Profiles were used in place only,
+never copied, committed, quoted in reports or sent to Gemini. No byline or
+personal/corporate claim was invented. The [working record](editorial-research-langchain-sandboxes.md)
+records preservation, audits, limitations and independent completion states.
+
+Catalog: installed 1.1.50, latest unknown, exit 2 because `tessl` is absent;
+followed its route to skip freshness comparison. Shape audit returned
+no_history. Recording first refused a missing storage directory; after ordinary
+directory creation its owner script created the history. No history was deleted
+or hand-edited. [Draft/final sweep JSON](evidence/editorial-r3/) preserves exit 1:
+zero required hits, 24 contextual #14 hits retained with
+[individual dispositions](evidence/editorial-r3/dispositions.json), not a zero-hit
+claim. Manual three-pass catalog, structural, accuracy, preservation and
+paragraph-continuity reviews completed. Formal personal-author voice calibration
+is not asserted for the explicitly neutral/unattributed tutorial; no author's
+endorsement is implied.
+
+Fresh/stateless Gemini received **only** reader prerequisites, README, guide and
+article, never profiles/private plans/source trees/crew files/earlier reviews or
+history. Exact model and packet/request hashes:
+[r3-01](evidence/audience-r3-01.json), [r3-02](evidence/audience-r3-02.json).
+Both returned READABLE with no substantive blockers:
+[review 1](reviews/gemini-r3-01.md), [final review](reviews/gemini-r3-02.md).
+Review 2 followed the substantive single-file and authorized-live-evidence
+clarifications. Optional repetition of a `cd` or PATH snippet was declined:
+prose already names the repository-root context and links setup before checks,
+so neither is a missing premise. No optional-polish loop or third call.
+Final verdict: **READABLE**. Audience review is not code validation or actual
+local/cloud acceptance: [runtime gaps](evidence/runtime-matrix.md).
+
 ## Assignment and preservation contract
 
 Route: scoped non-blog writing, using ACR 0.2.1's project-local realization of
@@ -257,3 +303,155 @@ whitespace check excludes that one class per command to preserve reviewed bytes;
 prose has no whitespace findings and no persistent Git configuration changed.
 Unchanged builds, tests, OCI checks and kit-tck were not rerun. No SBX composition,
 live sample invocation, push or publication occurred.
+
+## Round 4: bounded raw-script and manual-path corrections, 2026-10-16
+
+Scoped revision of the existing tutorial, guide and README, not a new article
+or an optional polish pass. Reused the approved anonymous scratch ACR
+realization of blog-writer at `61844184d925b9f925951241a0d476db7c193e7e`.
+No root realization, hook trust, host skill installation or configuration repair.
+Guide/blog profiles were read in place only; none were copied, quoted here,
+committed or included in Gemini requests. The tutorial stays neutral and
+unattributed; no invented author experience or endorsement.
+
+Preservation contract: keep the existing app's source and launch semantics,
+make resource choices explicit, teach a usable manual route, and retain the
+build/TCK/container versus local/cloud runtime distinction. The old manual
+instruction to replace source and adjust paths is now an eight-file checklist
+using the single-file template, with verified raw dependency-lock commands and
+a concrete offline container recipe. The source script remains byte-identical.
+The mixin still does not own launch; both examples use explicit `sbx env exec`.
+The cloud diagnosis is attributed to the host, not to the crew.
+
+Independent editorial states:
+
+- Author preservation: PASS. The vague replacement instruction now names
+  actual generated fields and commands. The false same-app promise was
+  corrected to distinguish assisted ticket-triage from the manual agent.py
+  template. Public prompt paths now name `./examples/ticket-triage`, and the
+  generated `/tmp/my-ticket-triage-kit` path survives through build, local/cloud
+  execution and cleanup. No application behavior or permissions were broadened.
+- Mechanical sweep: FINDINGS, raw exit 1 for each final artifact. Zero required
+  hits and zero assistant-chatter candidates; 23 contextual #14 hits retained.
+  [Raw JSON and individual dispositions](evidence/editorial-r4/) remain visible,
+  not relabeled as a clean sweep.
+- Manual anti-pattern review: COMPLETE for changed passages and their context.
+  The file checklist is procedural work, not a glossary or feature matrix;
+  counted sentence lengths do not establish padded cadence. No fabricated
+  experience, unsupported runtime assertion or added theme slogan was found.
+  Scope was not widened to unrelated prose or sentence-count rewrites.
+- Voice calibration: NOT APPLICABLE to an individual author; no formal personal
+  calibration or author approval is asserted. Assignment mode: neutral technical
+  tutorial/local revision. The in-place profiles inform clarity and register,
+  not an impersonated byline.
+- Paragraph continuity: PASS. Template selection precedes edits, edits precede
+  build/TCK/probe, and each host path names its matching app/launch/cleanup.
+  Modular numbered edits intentionally follow files, not a narrative cadence.
+
+Fresh review used the pinned `fresh-reader.py` with only the audience brief,
+article, README and guide: no profile, source tree, earlier review, crew file,
+conversation or tool access. The initial 60-second attempt timed out without
+a completed review ([diagnostic](evidence/audience-r4-01-attempt1.txt)). A scratch
+copy changed only the timeout to 240 seconds, not the request or tool selection
+([exact diff](evidence/editorial-r4/reader-timeout.diff)). No installed skill was
+modified. This is editorial review, not a repeat of the live application test.
+
+- [r4-01](reviews/gemini-r4-01.md), [packet hash](evidence/audience-r4-01.json):
+  NEEDS REVISION. Fixed the false same-app promise, supplied tool installation
+  and prerequisites, added generated-kit validation, and supplied the manual
+  app's actual local/cloud launch commands. Ticket-only negative-test flags
+  are no longer presented as single-file script arguments.
+- [r4-02](reviews/gemini-r4-02.md), [packet hash](evidence/audience-r4-02.json):
+  NEEDS REVISION. Fixed the prompt's nonexistent relative path and used the
+  generated output, rather than the reference fixture, for execution/cleanup
+  in all three reader-facing files. Optional stylistic changes were not made.
+  Saved responses have trailing whitespace trimmed; wording is intact.
+- [r4-03](reviews/gemini-r4-03.md), [exact final packet/request hashes and
+  parameters](evidence/audience-r4-03.json): **READABLE**, no substantive
+  blockers. Only optional notes about the TCK version argument and a working
+  directory reminder remain. No optional polish was applied: the guide already
+  defines kit version, and runtime commands use absolute environment-file
+  paths. This is the final, unchanged reader packet, not an inferred verdict.
+
+The r4-03 transport/completion failures are preserved separately: a timeout,
+an incomplete 5,000-token attempt, then a 16,000-token `MAX_TOKENS` result
+([usage/finish metadata](evidence/audience-r4-03-attempt3-metadata.json)). These
+were not called completed reviews. The final retry kept the same four reader
+files, pinned reader instruction and model, used a 16,000-token cap with the
+documented request-level `thinkingConfig.thinkingLevel: low`, and completed
+with `STOP` ([completion metadata](evidence/audience-r4-03-completion.json)).
+The configuration source and each request hash are in the packet record.
+No private context, profile, previous review or thought signature was supplied.
+No runtime/global configuration changed, and no live app test was repeated.
+
+The code/build regression cohort is the
+[clean-clone run](evidence/clean-checkout-2026-10-16T091120Z.txt) at
+bcf3fdef83eb8ed147875265dee9463d28167be9. Subsequent edits change reader paths,
+prerequisite explanations and evidence/bean/editorial records only; final
+reader links, Bash syntax and packet bytes are checked separately. This record
+does not issue independent exact-tip QC or local/cloud SBX acceptance.
+
+## Direct-first delta: preserved earlier review
+
+r4-03 reviewed the earlier kit-first draft. Its completed review and failed-attempt
+history remain unchanged; it is superseded for the final direct-first article
+by r5-01. The saved completed response SHA-256 matches audience-r4-03.json,
+and its historical packet hashes match commit 3f0651a.
+
+## Direct-first final reader and scoped edit
+
+The existing article/README/guide were revised through the pinned
+`shelajev/blog-writer@61844184d925b9f925951241a0d476db7c193e7e` scoped route,
+using the existing anonymous scratch ACR realization. No host skill install,
+credential restoration, hooks or runtime/global configuration change occurred.
+Approved guide/blog profiles were consulted in place only; none was copied,
+quoted here, committed or included in the reader packet.
+
+Preservation contract: retain the host/files/network/credential rationale,
+unchanged-app behavior, concrete manual and agent-assisted instructions,
+separate local/cloud status and allowed/denied verification. The authorized
+change makes direct existing-app execution primary and kit generation optional.
+The opening now says the existing agent.py runs in a shell sandbox; “Why isolate
+the agent and the app?” retains the runtime-exposure argument. The manual
+allowlist/workload/setup sequence and assisted `direct` sequence precede
+“Optional: package a reusable kit”, which retains the concrete kit-edit checklist.
+No personal experience, corporate identity or publication claim was added.
+
+[Final r5-01 review](reviews/gemini-r5-01.md) made exactly **one** stateless call
+with only article, README, guide and audience prerequisites. No profiles, crew
+files, history, source trees or earlier reviews were supplied. Configuration:
+gemini-3.8-flash, thinkingLevel low, maxOutputTokens 32768, temperature 0.2,
+600-second client timeout. It completed with **STOP**, a verdict and a clean
+END OF REVIEW terminator. [Hashes, usage and completion record](evidence/audience-r5-01.json)
+preserve the actual **NEEDS REVISION** verdict: one substantive first-use gap,
+the unexplained internal term “crew” in cloud attribution. Replaced it in the
+article and matching guide with explicit host-reported/not-independently-verified
+wording. This does not change the host diagnose attribution or cloud NOT RUN.
+No second reader call or optional editorial polish followed. The record includes
+original packet and final repaired-file hashes; the repaired wording was not
+re-reviewed. This is audience comprehension evidence, not runtime validation.
+
+Independent editorial states:
+- Author preservation: pass for the requested direct-first shift and retained
+  rationale, manual instructions, optional kit checklist and runtime caveats.
+- Mechanical sweep: final-mode findings, zero required/chatter; 25 contextual
+  low-burstiness matches retained with [per-passage dispositions](evidence/editorial-r5/).
+  Raw exit 1 is not relabelled as zero hits.
+- Manual anti-pattern review: complete within the changed passages and their
+  context; no fabricated experience, blanket grants or unexplained route switch.
+- Voice calibration: neutral developer tutorial, supplied profiles used in place;
+  no personal attribution or identity impersonation.
+- Assignment mode: scoped direct-first technical revision, not new-blog intake.
+- Calibration evidence: task's neutral tutorial direction and the mounted guide/
+  blog profiles, consulted in place; no profile excerpts are reproduced.
+- Paragraph continuity: pass; why leads to direct setup, access verification,
+  optional distribution and cloud limitations. Unaffected kit instructions remain.
+
+The [single clean-clone run](evidence/clean-checkout-round3.txt) at
+99ec914318bcf3e15f83c4c9b42831f8333c36c7 passed 49 lab + 4 app + 29 helper
+tests, three TCK cohorts (19/19 each), kit/container probes, raw locking and the
+new direct/manual ordinary-container checks. Later changes are prose, evidence
+and bean records only. One initial staged audit found trailing whitespace in
+captured registry output; whitespace was normalized and the final audit rerun.
+No passed baseline was separately restarted and no live app call was repeated.
+Exact-tip independent QC and actual local/cloud SBX checks remain open.

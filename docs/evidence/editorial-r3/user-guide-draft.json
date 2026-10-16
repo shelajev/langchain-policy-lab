@@ -1,0 +1,205 @@
+{
+  "ok": true,
+  "path": "docs/user-guide.md",
+  "mode": "draft",
+  "hits": [
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 19,
+      "detail": "[11, 7, 11] of [11, 7, 11, 9, 15, 14, 3]",
+      "context": "On another host, build kit-tck from the exact commit in [provenance](provenance.md). No ke",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 57,
+      "detail": "[9, 9, 5] of [9, 9, 5, 12]",
+      "context": "The fake model checks pipeline wiring, not answer quality. Optional status fetch and webho",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 68,
+      "detail": "[8, 10, 8] of [14, 8, 10, 8, 8]",
+      "context": "Inspection parses Python AST, TOML and lock metadata, without imports, resolvers or projec",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 80,
+      "detail": "[11, 11, 13] of [7, 19, 11, 11, 13]",
+      "context": "For another app, change project and entrypoint. Supported generation layout: root Python f",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 87,
+      "detail": "[7, 8, 4] of [7, 8, 4, 12, 13, 5]",
+      "context": "Read the [worked answers](../examples/ticket-triage.answers.json) and [answer contract](..",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 94,
+      "detail": "[9, 13, 10] of [9, 13, 10]",
+      "context": "Dynamic URLs need named hosts before an allow decision. Wildcard/IP access requires an exp",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 131,
+      "detail": "[6, 10, 11] of [12, 20, 6, 10, 11]",
+      "context": "The original ignore file is not reused as the build context policy. The helper always remo",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 144,
+      "detail": "[4, 9, 9] of [4, 9, 9, 6]",
+      "context": "Use a fresh layout. Version 0.1.0 identifies the app kit, not LangChain itself. The [commi",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 169,
+      "detail": "[10, 14, 11] of [10, 14, 11, 9, 17, 9, 16, 10]",
+      "context": "For your generated `/tmp` copy, substitute its absolute environment-file path. The mixin a",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    }
+  ],
+  "candidates": {
+    "assistant_chatter": []
+  },
+  "observations": {
+    "em_dashes": {
+      "paired_asides": [],
+      "spacing": {
+        "spaced": 0,
+        "closed": 0,
+        "mixed": 0,
+        "boundary": 0
+      },
+      "sections": [
+        {
+          "heading": "# Package an existing LangChain app",
+          "line": 1,
+          "count": 0
+        },
+        {
+          "heading": "## Prerequisites",
+          "line": 7,
+          "count": 0
+        },
+        {
+          "heading": "### Already have agent.py?",
+          "line": 27,
+          "count": 0
+        },
+        {
+          "heading": "## 1. Check the existing app",
+          "line": 44,
+          "count": 0
+        },
+        {
+          "heading": "## 2. Inspect without executing input",
+          "line": 61,
+          "count": 0
+        },
+        {
+          "heading": "## 3. Answer resource questions",
+          "line": 85,
+          "count": 0
+        },
+        {
+          "heading": "## 4. Generate a separate build context",
+          "line": 108,
+          "count": 0
+        },
+        {
+          "heading": "## 5. Build and check the same files manually",
+          "line": 135,
+          "count": 0
+        },
+        {
+          "heading": "## 6. Run the app inside local SBX",
+          "line": 159,
+          "count": 0
+        },
+        {
+          "heading": "## 7. Adapt for cloud and clean up",
+          "line": 178,
+          "count": 0
+        },
+        {
+          "heading": "## Conclusion",
+          "line": 195,
+          "count": 0
+        }
+      ],
+      "total": 0,
+      "note": "Observations only: apply patterns #7 and #8 with same-mode identity evidence and assignment genre."
+    }
+  },
+  "coverage": {
+    "ran": [
+      "#3/#4 fragment chains",
+      "#14 low burstiness",
+      "#18 unicode giveaways",
+      "#28/#30 announcement clauses (enumerable shapes only)",
+      "#31 category claims (shape only \u2014 the subject swap is the check)"
+    ],
+    "supplemental_checks": [
+      "WP:OAICITE citation-artifact leakage",
+      "WP:TRACKING AI-source tracking parameters",
+      "WP:ASSISTANT assistant-chatter candidate discovery",
+      "WP:SECTIONBREAK thematic breaks between every section"
+    ],
+    "not_run_judgment": [
+      "#1 contrastive negation \u2014 is it the same slot?",
+      "#7 paired em-dashes \u2014 compare identity, genre, and rhetorical function",
+      "#8 em-dash density \u2014 compare observations with same-mode evidence",
+      "#10 introductory filler \u2014 apply the delete test",
+      "#12 AI vocabulary \u2014 the watchlist qualifiers are the check",
+      "#17 synonym cycling \u2014 do two phrases denote one concept?",
+      "#28 labelled devices \u2014 delete-test the clauses the sweep did not match",
+      "#30 telegraphing \u2014 delete-test the clauses the sweep did not match",
+      "#32 stacked data points \u2014 do two numbers make one point?",
+      "#35 temporal filler \u2014 apply the delete test",
+      "#36 corporate cliche \u2014 apply the interchangeability test",
+      "#40 vague connection \u2014 name the relationship",
+      "#41 source-unavailability hedging \u2014 cut unsupported claims",
+      "#42 ceremonial coverage \u2014 use what the source establishes",
+      "#43 intent-only sentences \u2014 restate each load-bearing sentence as a claim"
+    ],
+    "patterns_examined": 7,
+    "patterns_total": 43,
+    "note": "36 of the 43 patterns were not examined by this script. An empty hits list is not an anti-pattern check: the judgment sweeps in not_run_judgment and the rest of references/ai-anti-patterns.md still need a read."
+  }
+}

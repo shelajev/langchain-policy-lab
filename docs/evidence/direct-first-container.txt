@@ -1,0 +1,175 @@
+Evidence class: raw source/lock and ordinary shell-image container; NOT local/cloud SBX confinement.
+Evidence class: raw source/lock setup/build only; NOT SBX or live-model execution.
+# Inspection
+
+- ac44dc36b992bda9: lock-setup: Create reviewed dependency metadata with normal uv tooling before generation: .python-version, pyproject.toml, uv.lock; allow with reason, deny, or out-of-scope? (agent.py:0)
+- 9cecf24e13bc3f3f: optional-tracing: LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled); allow with reason, deny, or out-of-scope? (agent.py:0)
+- 4a5dadb29ae4a1d0: scope-confirmation: Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources; allow with reason, deny, or out-of-scope? (agent.py:0)
+- 1313c81151bf928b: env-name: LANGSMITH_TRACING; allow with reason, deny, or out-of-scope? (agent.py:14)
+- f0e004b3ac835aae: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- f468e3608a7f1579: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 92a0ca4d3a8270f8: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 4131e93f13fbe35b: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+
+Next: review answers, then direct for an access plan; generate is optional reusable packaging.
+PASS: requirements inspected, lock-setup question raised, .env excluded
+Initialized project `single-file-agent`
+Pinned `.python-version` to `3.13.7`
+Using CPython 3.13.7 interpreter at: /usr/bin/python3.13
+Resolved 50 packages in 620ms
+Using CPython 3.13.7 interpreter at: /usr/bin/python3.13
+Resolved 50 packages in 1ms
+# Inspection
+
+- 9cecf24e13bc3f3f: optional-tracing: LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled); allow with reason, deny, or out-of-scope? (agent.py:0)
+- 4a5dadb29ae4a1d0: scope-confirmation: Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources; allow with reason, deny, or out-of-scope? (agent.py:0)
+- 1313c81151bf928b: env-name: LANGSMITH_TRACING; allow with reason, deny, or out-of-scope? (agent.py:14)
+- e052a12c9a3c7012: dependency: langchain-core; allow with reason, deny, or out-of-scope? (pyproject.toml:7)
+- a0fddeaa0198d02c: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- fcdff6b3142ba65f: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- 2f23ceb98c1a74c0: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- 3f81b54c78a07b5d: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- f0e004b3ac835aae: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- f468e3608a7f1579: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 92a0ca4d3a8270f8: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 4131e93f13fbe35b: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+
+Next: review answers, then direct for an access plan; generate is optional reusable packaging.
+PASS: unchanged agent.py SHA256=c930322fd3b6a4aed5fda913babaef015eeed0c32d4e3724f0d197dc8d2f9955
+wrote reviewable access plan; no runtime started
+PASS: raw fixture lock setup reused for direct snapshot; no kit build requested.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from direct-probe.dockerfile
+#1 transferring dockerfile: 832B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#2 ...
+
+#3 [internal] load metadata for docker.io/docker/sbx-kit-shell:1.0.0@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+#3 DONE 1.1s
+
+#2 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#2 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [dependencies 1/4] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#5 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#5 CACHED
+
+#6 [stage-1 1/3] FROM docker.io/docker/sbx-kit-shell:1.0.0@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+#6 resolve docker.io/docker/sbx-kit-shell:1.0.0@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de done
+#6 DONE 0.0s
+
+#7 [dependencies 2/4] WORKDIR /opt/direct/project
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 241.09kB done
+#8 DONE 0.0s
+
+#9 [dependencies 3/4] COPY workspace/pyproject.toml workspace/uv.lock workspace/.python-version ./
+#9 DONE 0.0s
+
+#10 [dependencies 4/4] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --python 3.13.7 --managed-python
+#10 1.104 Downloading cpython-3.13.7-linux-aarch64-gnu (download) (27.2MiB)
+#10 12.92  Downloaded cpython-3.13.7-linux-aarch64-gnu (download)
+#10 12.92 Installed Python 3.13.7 in 12.82s
+#10 12.92  + cpython-3.13.7-linux-aarch64-gnu
+#10 13.06 Using CPython 3.13.7
+#10 13.06 Creating virtual environment at: /opt/direct/venv
+#10 13.06 Resolved 50 packages in 0.34ms
+#10 13.34 Downloading zstandard (4.8MiB)
+#10 13.34 Downloading google-genai (1.2MiB)
+#10 13.34 Downloading cryptography (4.5MiB)
+#10 13.35 Downloading pydantic-core (2.0MiB)
+#10 13.97  Downloaded google-genai
+#10 14.10  Downloaded pydantic-core
+#10 14.44  Downloaded cryptography
+#10 14.46  Downloaded zstandard
+#10 14.46 Prepared 48 packages in 1.39s
+#10 14.52 Installed 48 packages in 60ms
+#10 14.52  + annotated-types==0.8.0
+#10 14.52  + anyio==4.15.1
+#10 14.52  + certifi==2026.7.22
+#10 14.52  + cffi==2.1.1
+#10 14.52  + charset-normalizer==3.5.2
+#10 14.52  + cryptography==50.0.2
+#10 14.52  + distro==1.9.0
+#10 14.52  + filetype==1.2.0
+#10 14.52  + google-auth==2.62.0
+#10 14.52  + google-genai==2.31.0
+#10 14.52  + h11==0.16.0
+#10 14.52  + httpcore==1.0.9
+#10 14.52  + httpcore2==2.13.1
+#10 14.52  + httpx==0.28.1
+#10 14.52  + httpx2==2.13.1
+#10 14.52  + idna==3.20
+#10 14.52  + jsonpatch==1.35
+#10 14.52  + jsonpointer==3.2.1
+#10 14.52  + langchain==1.4.4
+#10 14.52  + langchain-core==1.6.9
+#10 14.52  + langchain-google-genai==4.4.0
+#10 14.52  + langchain-protocol==0.0.19
+#10 14.52  + langgraph==1.2.15
+#10 14.52  + langgraph-checkpoint==4.3.0
+#10 14.52  + langgraph-prebuilt==1.1.1
+#10 14.52  + langgraph-sdk==0.4.7
+#10 14.52  + langsmith==0.14.11
+#10 14.52  + orjson==3.13.0
+#10 14.52  + ormsgpack==1.13.0
+#10 14.52  + packaging==26.3
+#10 14.52  + pyasn1==0.6.4
+#10 14.52  + pyasn1-modules==0.4.2
+#10 14.52  + pycparser==3.11
+#10 14.52  + pydantic==2.14.1
+#10 14.52  + pydantic-core==2.50.1
+#10 14.52  + pyyaml==6.0.3
+#10 14.52  + requests==2.34.2
+#10 14.52  + requests-toolbelt==1.0.0
+#10 14.52  + sniffio==1.3.1
+#10 14.52  + tenacity==9.1.4
+#10 14.52  + truststore==0.10.5
+#10 14.52  + typing-extensions==4.16.0
+#10 14.52  + typing-inspection==0.4.4
+#10 14.52  + urllib3==2.8.0
+#10 14.52  + uuid-utils==0.17.1
+#10 14.52  + websockets==16.1.1
+#10 14.52  + xxhash==4.0.1
+#10 14.52  + zstandard==0.25.0
+#10 DONE 14.6s
+
+#11 [stage-1 2/3] COPY --from=dependencies /opt/direct /opt/direct
+#11 DONE 0.4s
+
+#12 [stage-1 3/3] WORKDIR /workspace
+#12 DONE 0.0s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 4.6s done
+#13 exporting manifest sha256:152a9a6519d33bb709ec44752a9645f750a6ff4c24c8e9ddd1d5701b730951b7 done
+#13 exporting config sha256:f01aa112fd5f88a83e0882892945407e91f347d9febc95882b60abb33cd159f4 done
+#13 exporting attestation manifest sha256:9b65821c6a7a88d78f4e0fe1e36ae01f7b5d98c5ece76449d600cff87b9924cd done
+#13 exporting manifest list sha256:6161fe4c62bafd876aa355c866a3adfd5f3826a4babd6e394e613d14cb5dd319 done
+#13 naming to docker.io/library/langchain-direct:probe done
+#13 unpacking to docker.io/library/langchain-direct:probe
+#13 unpacking to docker.io/library/langchain-direct:probe 1.3s done
+#13 DONE 5.9s
+{"category":"technical","ticket_id":"T-101"}
+PASS: unchanged app in pinned shell-image container, read-only snapshot, uid1000, no network.
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import socket; socket.create_connection(('192.0.2.1', 443), timeout=3)
+                   ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/direct/python/cpython-3.13.7-linux-aarch64-gnu/lib/python3.13/socket.py", line 864, in create_connection
+    raise exceptions[0]
+  File "/opt/direct/python/cpython-3.13.7-linux-aarch64-gnu/lib/python3.13/socket.py", line 849, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+OSError: [Errno 101] Network is unreachable
+PASS: ordinary container network-none negative control failed as expected; not SBX policy evidence.

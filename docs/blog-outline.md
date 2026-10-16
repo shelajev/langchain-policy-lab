@@ -1,11 +1,15 @@
-# Proposed blog outline
+# Superseded policy-lab outline
+
+Historical planning only. The finished primary tutorial is
+[Run your LangChain in Docker Sandboxes](run-your-langchain-in-docker-sandboxes.md).
+The old lab is now a supporting fixture; its guide is [here](policy-lab-guide.md).
 
 Working angle: **Follow a policy answer from a Markdown section to its citation**.
 Audience: Python developers and AI platform engineers evaluating internal
 support assistants. This proposes a post; it is not an approved new-blog draft.
 For the existing product story, read the [product overview](product-overview.md)
-and [marketing brief](marketing-brief.md). The [README quickstart](../README.md#quickstart-without-a-paid-credential)
-and [developer guide](user-guide.md) provide the runnable journey.
+and [marketing brief](marketing-brief.md). The [README](../README.md)
+and [policy-lab guide](policy-lab-guide.md) provide the relevant journeys.
 
 1. Open with the Tier 1 meal question and its synthetic `$90` passage. Show the
    source, section and chunk ID before discussing an LLM.
@@ -27,7 +31,7 @@ and [developer guide](user-guide.md) provide the runnable journey.
 6. Close with the decisions a platform team still owns: approved data and
    provider access, runtime policy tests, access control and realistic evaluation.
 
-Use the repository's [guide](user-guide.md) and [verification report](verification-report.md)
+Use the repository's [policy-lab guide](policy-lab-guide.md) and [historical verification report](verification-report.md)
 as reader-visible supporting evidence. Do not invent a customer story, personal
 failure anecdote or deployment results.
 [Hosted workflow run 37961247968](https://github.com/shelajev/langchain-policy-lab/actions/runs/37961247968)

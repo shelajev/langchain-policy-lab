@@ -1,0 +1,23 @@
+Initialized project `single-file-agent`
+Pinned `.python-version` to `3.13.7`
+Using CPython 3.13.7 interpreter at: /usr/bin/python3.13
+Resolved 50 packages in 18ms
+Using CPython 3.13.7 interpreter at: /usr/bin/python3.13
+Resolved 50 packages in 1ms
+# Inspection
+
+- 9cecf24e13bc3f3f: optional-tracing: LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled); allow with reason, deny, or out-of-scope? (agent.py:0)
+- 4a5dadb29ae4a1d0: scope-confirmation: Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources; allow with reason, deny, or out-of-scope? (agent.py:0)
+- 1313c81151bf928b: env-name: LANGSMITH_TRACING; allow with reason, deny, or out-of-scope? (agent.py:14)
+- e052a12c9a3c7012: dependency: langchain-core; allow with reason, deny, or out-of-scope? (pyproject.toml:7)
+- a0fddeaa0198d02c: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- fcdff6b3142ba65f: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- 2f23ceb98c1a74c0: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- 3f81b54c78a07b5d: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- f0e004b3ac835aae: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- f468e3608a7f1579: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 92a0ca4d3a8270f8: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 4131e93f13fbe35b: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+
+Next: review answers, then direct for an access plan; generate is optional reusable packaging.
+wrote reviewable access plan; no runtime started

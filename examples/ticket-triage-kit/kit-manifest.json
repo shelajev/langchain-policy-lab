@@ -1,0 +1,37 @@
+{
+  "answersHash": "ef290f78bc9ede200c3b5619b68cd55b4c122441db0a5877c0d6b98b61eac243",
+  "entrypoint": "src/ticket_triage/app.py",
+  "helperVersion": "1.0.0",
+  "inputHashes": {
+    ".env.example": "9d7923737412d73c513b8f718fc6aaa0516f843bbbd0e6bebeefcca9f4bc1c25",
+    ".gitignore": "d8db58404ee80ecb7e60c5c8f1cb611af68aae874a188191a6b222e45d43ae35",
+    ".python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "README.md": "62bf04c84d6006ba1bb4b9c0b7266ff72ddffd7d6cff450e417abc77b0b53d8e",
+    "data/tickets/t-101.json": "5fc2f0831b53e47f3b01be808e92c9c6bf2dd1ccd5a0651a7b1adbc9cd4bf184",
+    "pyproject.toml": "f10d036ec933a1bcd34814c78c20dc4de0e09eeeeea3d6c366d034257a921bde",
+    "src/ticket_triage/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/ticket_triage/app.py": "5ef35cc98ef7ca135d871e75d93869ac3eeac0f4469382434d0d0ec1b536f567",
+    "src/ticket_triage/chain.py": "3077153286f909dbb1a00bb988a6bdf4d62164e6f127b7b3974e1067954ec78f",
+    "src/ticket_triage/sources.py": "0657032c6708b5abb637d637efe8dd78c22037bb45c43d558bdfefb82bff6f53",
+    "tests/test_app.py": "8dfe8afb84679b686de8bae5b9d3b3db825b6a7037312fd20a7eb040de70bb20",
+    "uv.lock": "3a5a3de89524e011924c1eb8bba6f6d42f4d2291e36ba0b1dcd2ce2cfa91ad07"
+  },
+  "name": "ticket-triage",
+  "outputHashes": {
+    ".dockerignore": "5be70bb75608f69a82de519f2753566fe82263f3892a8fea8bfdf58c8116ae1c",
+    "PERMISSIONS.md": "35353114a90c840593afd6dd559acccef29bad8c5c85f023454405183dbed9ef",
+    "app/.python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "app/data/tickets/t-101.json": "5fc2f0831b53e47f3b01be808e92c9c6bf2dd1ccd5a0651a7b1adbc9cd4bf184",
+    "app/pyproject.toml": "f10d036ec933a1bcd34814c78c20dc4de0e09eeeeea3d6c366d034257a921bde",
+    "app/src/ticket_triage/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/src/ticket_triage/app.py": "5ef35cc98ef7ca135d871e75d93869ac3eeac0f4469382434d0d0ec1b536f567",
+    "app/src/ticket_triage/chain.py": "3077153286f909dbb1a00bb988a6bdf4d62164e6f127b7b3974e1067954ec78f",
+    "app/src/ticket_triage/sources.py": "0657032c6708b5abb637d637efe8dd78c22037bb45c43d558bdfefb82bff6f53",
+    "app/uv.lock": "3a5a3de89524e011924c1eb8bba6f6d42f4d2291e36ba0b1dcd2ce2cfa91ad07",
+    "sbxenv.cloud.yaml": "c783e14258cb63b7010e600a9978b7c7762af5b378c9c4fc7a6175d87a98ca93",
+    "sbxenv.local.yaml": "ecfb1d53a3334c5ecf5b79b57a13208577ac2250026174ee5dbe3f8548fff93b",
+    "ticket-triage-context.md": "b606dcf588fa1d340b9543f686dc392963cc3fb5e1a49620cc14abfc6d7d6bb7",
+    "ticket-triage.dockerfile": "a6469b05121d83072858c6022c0e22b4732ae5ac0ab75cc0c740486ff081379c",
+    "ticket-triage.yaml": "e56788edb248ada0a3a6d5cb0d0fcc92a492549105b95c57a6aefef3bc8f2465"
+  }
+}

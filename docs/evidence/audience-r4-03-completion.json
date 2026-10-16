@@ -1,0 +1,18 @@
+{
+  "modelVersion": "gemini-3.8-flash",
+  "usageMetadata": {
+    "promptTokenCount": 11209,
+    "candidatesTokenCount": 729,
+    "totalTokenCount": 11938,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 11209
+      }
+    ],
+    "serviceTier": "standard"
+  },
+  "finishReasons": [
+    "STOP"
+  ]
+}
