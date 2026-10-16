@@ -18,6 +18,7 @@ if command -v docker >/dev/null && command -v kit-tck >/dev/null; then
   bash "$temporary/checkout/scripts/check-kit.sh" "$temporary/policy-layout"
   bash "$temporary/checkout/scripts/check-filesystem.sh"
   bash "$temporary/checkout/scripts/check-generated-kit.sh" "$temporary/generated-layout"
+  bash "$temporary/checkout/scripts/check-raw-single-file.sh"
   bash "$temporary/checkout/scripts/check-single-file.sh"
 else
   printf '%s\n' 'NOT RUN: kit build/TCK/container scripts require docker and kit-tck on PATH.'

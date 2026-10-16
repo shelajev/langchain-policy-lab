@@ -95,9 +95,12 @@ sbx env rm ./examples/ticket-triage-kit/sbxenv.local.yaml
 
 ## H2: cloud SBX
 
-Requires the host's existing Docker login (`sbx login`), explicit permission for
-cloud baking/upload of the sanitized app, cloud quota and a separately approved
-cloud-side Gemini service secret/binding. The crew did not log in, create
+The host reports that `sbx --cloud diagnose` passed authentication, API
+reachability and subscription: the host cloud account and API are reachable.
+This is host-reported diagnosis, not a crew observation or runtime acceptance.
+Cloud runtime execution is still **NOT RUN**. What remains is explicit approval
+for cloud baking/upload of the sanitized app, a separately approved cloud-side
+Gemini secret/binding, and the actual allowed/denied runs. The crew did not log in, create
 credentials, upload content or publish images. Check target support for v3 kit
 credentials before proceeding. No host mount is present in this cloud file.
 

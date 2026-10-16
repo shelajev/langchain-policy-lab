@@ -36,6 +36,7 @@ Broad/IP access: none
 
 This is a mixin, not a workload. The pinned shell workload owns entrypoint, user and sbx@1.
 Run the command in the context file with sbx env exec after environment creation.
+Launch from /opt/ticket-triage/app: `python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model`.
 
 ## What this does not protect
 

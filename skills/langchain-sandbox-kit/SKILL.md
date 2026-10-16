@@ -16,8 +16,19 @@ to this skill directory, not the user's app.
    dependencies is the first use case; packaged `src/` apps also work. Preserve
    the source layout and behavior. Generation requires `pyproject.toml`, hashed
    public-PyPI `uv.lock`, exact direct pins and exact `.python-version`.
-   If only requirements exist, guide reviewed dependency setup with normal
-   project tooling (`uv lock`), without changing the app or running its source.
+   If only requirements exist, confirm versions, then use normal tooling without
+   changing or running the app. For the raw fixture, with uv 0.9.26 in APP:
+
+   ```bash
+   uv init --bare --no-workspace --name single-file-agent --python 3.13.7
+   uv python pin 3.13.7
+   uv add --no-sync 'langchain==1.4.4' 'langchain-core==1.6.9' 'langchain-google-genai==4.4.0'
+   uv lock
+   ```
+
+   These reviewed example pins are not defaults for other apps. Read
+   [dependency setup](references/dependencies.md), including requirements-only
+   and build-backend constraints, before proceeding.
    The helper itself never resolves dependencies. Review config/build backends
    before tooling; ask concrete version questions rather than inventing pins.
 2. Run:

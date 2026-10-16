@@ -1,0 +1,26 @@
+{
+  "answersHash": "a06559ce32d7316489977738d680cd4d11cd4a78900243174f5f439ce06dd864",
+  "entrypoint": "agent.py",
+  "helperVersion": "1.0.0",
+  "inputHashes": {
+    ".python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "README.md": "d4f1e9d0928e6b6a8ba1ad066d0207997c71ba2c6028a286c96a19643a2d9911",
+    "agent.py": "c930322fd3b6a4aed5fda913babaef015eeed0c32d4e3724f0d197dc8d2f9955",
+    "pyproject.toml": "9949881307daff3cbc43d331da6b1c30536cd7d9b31491c3284d45b228697ae5",
+    "uv.lock": "df896d506dfbab7ef07877dc3fcb0c16eed04043b4ff85244882d572d9c5d707"
+  },
+  "name": "single-file",
+  "outputHashes": {
+    ".dockerignore": "dcc36f7aebfdf20c7f809a7714913979ce0ad1e6c832ee4229381e543956c4e4",
+    "PERMISSIONS.md": "f9eb3b6a8d4c7f2b87fdff5f413594ebcbec1181ebd61a0920214aa91e781a89",
+    "app/.python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "app/agent.py": "c930322fd3b6a4aed5fda913babaef015eeed0c32d4e3724f0d197dc8d2f9955",
+    "app/pyproject.toml": "9949881307daff3cbc43d331da6b1c30536cd7d9b31491c3284d45b228697ae5",
+    "app/uv.lock": "df896d506dfbab7ef07877dc3fcb0c16eed04043b4ff85244882d572d9c5d707",
+    "sbxenv.cloud.yaml": "3be0634d9e0c0abdb345cc464cc4bab758b1f884bba6958638ca108e714d4d5a",
+    "sbxenv.local.yaml": "06052cc302117e81a8347de9b4e318803c6335ae2befb25636124190e50d214e",
+    "single-file-context.md": "34ea0ab2cc9072f7605c0e0c37ab5a8735fad34de417ccc76f9d74c064a3a411",
+    "single-file.dockerfile": "dd02405275976834109f755a29240aea613a458e63cf72459474f79becb03b33",
+    "single-file.yaml": "e157d836a1c44834394b5256d3e7e47d97763027e7b8ded81c98814533d1b64f"
+  }
+}

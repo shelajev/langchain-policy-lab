@@ -1,0 +1,21 @@
+{
+  "review": "r4-02",
+  "model": "gemini-3.8-flash",
+  "history": "none",
+  "files": [
+    "docs/run-your-langchain-in-docker-sandboxes.md",
+    "docs/reviews/audience-r3.md",
+    "README.md",
+    "docs/user-guide.md"
+  ],
+  "fileSha256": {
+    "docs/run-your-langchain-in-docker-sandboxes.md": "4f881c213fba256c04b922b50e77a8cefc5a4d6e858d3b4121ce4dc584047a36",
+    "docs/reviews/audience-r3.md": "0133388d3d4b6bee4c121f1e85d426ccd0cd4d85bcb0dcab971154fc7641bfab",
+    "README.md": "3266e8a0c58841da787a8ff53be85a77b5a1df81cacad1dc1eb0c58a7fd72174",
+    "docs/user-guide.md": "8bc951fe3c00b11db6016ad3fffb689f377faf58ae12f785a45fd7f52f0de8ca"
+  },
+  "packetSha256": "9383fc6718945d4c0c91ff507200455b0472194c58e60380d0f8fb8d603cd5bf",
+  "requestSha256": "9383fc6718945d4c0c91ff507200455b0472194c58e60380d0f8fb8d603cd5bf",
+  "profileIncluded": false,
+  "tool": "pinned blog-writer fresh-reader.py scratch copy with timeout 240s only"
+}

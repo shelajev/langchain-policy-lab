@@ -1,0 +1,238 @@
+UTC: 2026-10-16T09:03:41Z
+Evidence class: source/build only, not SBX runtime.
++ docker buildx build examples/single-file-agent-kit -f examples/single-file-agent-kit/single-file.yaml --progress plain --output type=cacheonly
+#0 building with "default" instance using docker driver
+
+#1 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#1 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#1 CACHED
+
+#2 [internal] load build definition from single-file.yaml
+#2 transferring dockerfile: 870B done
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 DONE 0.0s
+
+#4 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#4 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#4 DONE 0.0s
+
+#5 [internal] load kit descriptor single-file.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#5 transferring dockerfile: 1.47kB done
+#5 DONE 0.0s
+
+#6 [internal] load guidance single-file-context.md
+#6 transferring context: 236B done
+#6 DONE 0.0s
+
+#7 [internal] load build definition from single-file.dockerfile
+#7 transferring dockerfile: 593B done
+#7 DONE 0.0s
+
+#8 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#8 DONE 0.0s
+
+#9 [internal] load .dockerignore
+#9 transferring context: 135B done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 104.63kB done
+#10 DONE 0.0s
+
+#11 [kit] stage guidance /usr/share/sandbox/kit/single-file/single-file-context.md
+#11 CACHED
+
+#12 [stage-1 1/1] COPY --from=build /opt/single-file /opt/single-file
+#12 CACHED
+
+#13 [build 5/5] RUN chown -R 0:0 /opt/single-file
+#13 CACHED
+
+#14 [build 3/5] COPY app/ ./
+#14 CACHED
+
+#15 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#15 CACHED
+
+#16 [build 2/5] WORKDIR /opt/single-file/app
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/single-file
+#17 CACHED
++ docker buildx build examples/single-file-agent-kit -f examples/single-file-agent-kit/single-file.yaml --progress plain -t single-file:0.1.0 --output type=oci,dest=/tmp/tmp.qTmbiWnRsK/layout,tar=false
+#0 building with "default" instance using docker driver
+
+#1 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#1 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#1 CACHED
+
+#2 [internal] load build definition from single-file.yaml
+#2 transferring dockerfile: 870B done
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 DONE 0.0s
+
+#4 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#4 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#4 DONE 0.0s
+
+#5 [internal] load kit descriptor single-file.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#5 transferring dockerfile: 80B done
+#5 DONE 0.0s
+
+#6 [internal] load guidance single-file-context.md
+#6 transferring context: 44B done
+#6 DONE 0.0s
+
+#7 [internal] load build definition from single-file.dockerfile
+#7 transferring dockerfile: 593B done
+#7 DONE 0.0s
+
+#8 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#8 DONE 0.0s
+
+#9 [internal] load .dockerignore
+#9 transferring context: 135B done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 165B done
+#10 DONE 0.0s
+
+#11 [stage-1 1/1] COPY --from=build /opt/single-file /opt/single-file
+#11 CACHED
+
+#12 [build 3/5] COPY app/ ./
+#12 CACHED
+
+#13 [build 5/5] RUN chown -R 0:0 /opt/single-file
+#13 CACHED
+
+#14 [kit] stage guidance /usr/share/sandbox/kit/single-file/single-file-context.md
+#14 CACHED
+
+#15 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#15 CACHED
+
+#16 [build 2/5] WORKDIR /opt/single-file/app
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/single-file
+#17 CACHED
+
+#18 exporting to oci image format
+#18 exporting layers done
+#18 exporting manifest sha256:f47373e9c6e630e0ea3ead658e0ec29a2afc7d6c162eeab4cb5a701c9952dd5c done
+#18 exporting config sha256:7373f22ea3dbed544d79ae07d97ffcea30c8483abc40556ec77b2ccbd5dd0cf6 done
+#18 DONE 0.2s
++ docker buildx build examples/single-file-agent-kit -f examples/single-file-agent-kit/single-file.yaml --progress plain -t single-file:probe-overlay --load
+#0 building with "default" instance using docker driver
+
+#1 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#1 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#1 CACHED
+
+#2 [internal] load build definition from single-file.yaml
+#2 transferring dockerfile: 870B done
+#2 DONE 0.0s
+
+#3 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 DONE 0.0s
+
+#4 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#4 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#4 DONE 0.0s
+
+#5 [internal] load kit descriptor single-file.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#5 transferring dockerfile: 80B done
+#5 DONE 0.0s
+
+#6 [internal] load guidance single-file-context.md
+#6 transferring context: 44B done
+#6 DONE 0.0s
+
+#7 [internal] load build definition from single-file.dockerfile
+#7 transferring dockerfile: 593B done
+#7 DONE 0.0s
+
+#8 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#8 DONE 0.0s
+
+#9 [internal] load .dockerignore
+#9 transferring context: 135B done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 165B done
+#10 DONE 0.0s
+
+#11 [build 3/5] COPY app/ ./
+#11 CACHED
+
+#12 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#12 CACHED
+
+#13 [stage-1 1/1] COPY --from=build /opt/single-file /opt/single-file
+#13 CACHED
+
+#14 [build 2/5] WORKDIR /opt/single-file/app
+#14 CACHED
+
+#15 [kit] stage guidance /usr/share/sandbox/kit/single-file/single-file-context.md
+#15 CACHED
+
+#16 [build 5/5] RUN chown -R 0:0 /opt/single-file
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/single-file
+#17 CACHED
+
+#18 exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:f47373e9c6e630e0ea3ead658e0ec29a2afc7d6c162eeab4cb5a701c9952dd5c done
+#18 exporting config sha256:7373f22ea3dbed544d79ae07d97ffcea30c8483abc40556ec77b2ccbd5dd0cf6 done
+#18 exporting attestation manifest sha256:3a078e86cadfaec14500d25eb6c9fee4a4ea33a344daa6d5f6bb5e0298ebbb67 done
+#18 exporting manifest list sha256:ecd188af5613875879d91983dbef13ecd080cca62c819a6e5ced23ff1ac66ae2 done
+#18 naming to docker.io/library/single-file:probe-overlay done
+#18 unpacking to docker.io/library/single-file:probe-overlay done
+#18 DONE 0.0s
++ docker build -t single-file:probe -f scripts/single-file-probe.dockerfile .
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from single-file-probe.dockerfile
+#1 transferring dockerfile: 349B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/single-file:probe-overlay
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 257B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
+#5 DONE 0.0s
+
+#6 [overlay 1/1] FROM docker.io/library/single-file:probe-overlay@sha256:ecd188af5613875879d91983dbef13ecd080cca62c819a6e5ced23ff1ac66ae2
+#6 resolve docker.io/library/single-file:probe-overlay@sha256:ecd188af5613875879d91983dbef13ecd080cca62c819a6e5ced23ff1ac66ae2 0.0s done
+#6 DONE 0.0s
+
+#7 [stage-1 2/2] COPY --from=overlay /opt/single-file /opt/single-file
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:83d68510061df6f9b1f2ac26f838a65cbae8797386b077de527acc55cf362e16 done
+#8 exporting config sha256:636c6db9c252fe2f629421a78839d1ed4d2c3840676425a3f9440c5c69810e5d done
+#8 exporting attestation manifest sha256:9bac916fdada0389fa7375b81a547605450e817335ea23dc1c437fce0e82813a done
+#8 exporting manifest list sha256:ac5c7d664c05d63b6f94dfe47c2dbb2d99e8f9660054b25c3488ae5acceac546 done
+#8 naming to docker.io/library/single-file:probe done
+#8 unpacking to docker.io/library/single-file:probe done
+#8 DONE 0.0s

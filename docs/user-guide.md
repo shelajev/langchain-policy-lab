@@ -1,8 +1,9 @@
 # Package an existing LangChain app
 
 Use a normal Python app, inspect its resources, and review its Docker Sandboxes
-packaging before you grant access. The same ticket-triage app works through the
-coding-agent and manual paths. There is no Sandbox API in its application code.
+packaging before you grant access. The coding-agent example uses ticket-triage;
+the manual path adapts a single-file kit for your own `agent.py`. Neither app
+needs a Sandbox API in its code.
 
 ## Prerequisites
 
@@ -132,7 +133,97 @@ additional project ignore rules conservatively. Symlinks and incomplete scans
 block generation. Secret-like source must be removed, not acknowledged into an
 image. Only root Python files, `src/`, lock/config and declared data are copied.
 
-## 5. Build and check the same files manually
+## 5. Adapt the single-file template manually
+
+No helper is needed on this path. The
+[single-file kit](../examples/single-file-agent-kit/) is a template, not your
+app or your answers; the [ticket-triage kit](../examples/ticket-triage-kit/)
+shows a larger packaged `src/` app. From the repository root:
+
+```bash
+cp -R examples/single-file-agent-kit /tmp/manual-agent-kit
+cd /tmp/manual-agent-kit
+mv single-file.yaml manual-agent.yaml
+mv single-file.dockerfile manual-agent.dockerfile
+mv single-file-context.md manual-agent-context.md
+```
+
+Use `manual-agent` consistently, or replace it everywhere with your own name:
+
+1. `app/`: remove the example files; copy your unchanged `agent.py`,
+   `pyproject.toml`, `uv.lock`, `.python-version` and required data, never `.env`
+   or private files. For requirements-only input, first run the
+   [raw-script lock commands](../examples/single-file-agent/README.md#starting-with-just-agentpy-and-requirementstxt)
+   in your app, after choosing compatible exact versions.
+2. `manual-agent.yaml`: edit `displayName`, `version` and
+   `provides: ["manual-agent@0.1.0"]`; set `agent-context@1`'s
+   `config.contentFile: ./manual-agent-context.md`. Under `network-policy@1`,
+   edit `config.runtime.allow` / `deny` to your exact hosts. Use the
+   [provider host table](../skills/langchain-sandbox-kit/references/capabilities.md).
+   Change `credential@1`'s `config.service`, `phase: runtime`, `apiKey.name`
+   and `apiKey.inject` domain/header/format for your provider, or remove it for
+   a keyless app. Gemini's template is service `gemini`, sentinel
+   `GOOGLE_API_KEY`, `proxyManaged: true`, domain
+   `generativelanguage.googleapis.com`, header `x-goog-api-key`, format `"%s"`.
+   `optional: true` supports the offline run. No real key belongs here.
+3. `manual-agent.dockerfile`: change every `/opt/single-file` to
+   `/opt/manual-agent` and both `3.13.7` values to your exact Python pin.
+   `COPY app/ ./` already includes allowlisted data. If you move data outside
+   that tree, change the build COPY and final overlay COPY accordingly.
+4. `.dockerignore`: retain `**` and explicit `!app/agent.py`,
+   `!app/pyproject.toml`, `!app/uv.lock`, `!app/.python-version`, your data files
+   and `!manual-agent-context.md`. Remove stale entries; never use `!**`.
+5. `manual-agent-context.md`: use your launch command, for example
+   `cd /opt/manual-agent/app && python agent.py`. The workload owns launch,
+   identity and `sbx@1`; this context is guidance, not an entrypoint.
+6. `sbxenv.local.yaml` / `sbxenv.cloud.yaml`: set `name: manual-agent`,
+   update the app `kits` path if not `./`, and retain the pinned shell workload.
+   Only local has `workspace: .`, pointing to the sanitized kit.
+7. `PERMISSIONS.md`: replace every example allow/deny reason, model, data,
+   tracing and credential decision, and the launch command, with your own.
+8. Delete `kit-manifest.json`: manual edits invalidate helper hashes.
+   This route uses neither the helper nor `explain` / `generate --force`;
+   its overwrite checks do not apply.
+
+Build and TCK-check the edited copy with a fresh layout path:
+
+```bash
+docker buildx build . -f manual-agent.yaml --progress plain --output type=cacheonly
+docker buildx build . -f manual-agent.yaml --progress plain -t manual-agent:0.1.0 --output type=oci,dest=/tmp/manual-agent-layout,tar=false
+kit-tck validate --verbose --layout /tmp/manual-agent-layout 0.1.0
+```
+
+### Probe your manual overlay
+
+Still in `/tmp/manual-agent-kit`, load the overlay and compose an ordinary
+Debian probe. It is not the SBX shell workload. The commands below assume your
+app has the fixture's `--fake-model` mode; replace only that command with your
+own offline invocation if needed. Do not run generated app source on the host.
+
+```bash
+docker buildx build . -f manual-agent.yaml --progress plain -t manual-agent:probe-overlay --load
+docker build -t manual-agent:probe -f - . <<'DOCKERFILE'
+FROM manual-agent:probe-overlay AS overlay
+FROM debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+COPY --from=overlay /opt/manual-agent /opt/manual-agent
+ENV PATH="/opt/manual-agent/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+DOCKERFILE
+docker run --rm --network none --read-only --user 1000:1000 -e PYTHONDONTWRITEBYTECODE=1 manual-agent:probe sh -eu -c '
+  cd /opt/manual-agent/app
+  python agent.py --fake-model
+  test -z "$(find /opt/manual-agent -name .env -o -name private -o -name id_rsa)"
+'
+```
+
+Verify that the build succeeds, TCK passes, your own command produces its
+expected offline output, and only reviewed source/dependencies/data appear in
+the image. The path check is not a general secret detector: inspect the
+allowlist and source for embedded keys too. Filesystem compatibility and absent
+private files do not prove SBX policy, credential injection or microVM confinement.
+
+### Check the packaged example instead
+
+For the generated ticket-triage copy from step 4, rather than your manual app:
 
 ```bash
 cd /tmp/my-ticket-triage-kit
@@ -167,13 +258,23 @@ sbx env exec ./examples/ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/t
 ```
 
 For your generated `/tmp` copy, substitute its absolute environment-file path.
+For the manual single-file kit, use this alternative host handoff instead,
+with your own offline arguments if they differ (NOT RUN here):
+
+```bash
+sbx env plan /tmp/manual-agent-kit/sbxenv.local.yaml
+sbx env run --detach /tmp/manual-agent-kit/sbxenv.local.yaml
+sbx env exec /tmp/manual-agent-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/manual-agent/app && python agent.py --fake-model'
+```
+
 The mixin adds app files and capabilities; the workload owns entrypoint, user
 and `sbx@1`. Starting a sandbox is not starting the app: `env exec` runs it.
 The optional credential means fake mode needs no secret. A real call needs an
 existing, explicitly approved `gemini` service binding, not just a host env var.
 Do not put the key into YAML or argv. Follow the [host handoff](acceptance-handoff.md)
 for credential preparation, allowed and denied operations, boundary events and
-origin controls. A failed request alone is not proof of policy denial.
+origin controls; its status/webhook flags apply only to ticket-triage, not your
+single-file app. A failed request alone is not proof of policy denial.
 
 ## 7. Adapt for cloud and clean up
 
@@ -185,8 +286,21 @@ sbx --cloud env rm ./examples/ticket-triage-kit/sbxenv.cloud.yaml
 sbx env rm ./examples/ticket-triage-kit/sbxenv.local.yaml
 ```
 
-Cloud needs an existing login, upload/baking approval, compatible target and
-separate cloud-side secrets/bindings. It cannot mount your host workspace;
+For the manual single-file kit, use its paths and launch command instead:
+
+```bash
+sbx --cloud env plan /tmp/manual-agent-kit/sbxenv.cloud.yaml
+sbx --cloud env run --detach /tmp/manual-agent-kit/sbxenv.cloud.yaml
+sbx --cloud env exec /tmp/manual-agent-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/manual-agent/app && python agent.py --fake-model'
+sbx --cloud env rm /tmp/manual-agent-kit/sbxenv.cloud.yaml
+sbx env rm /tmp/manual-agent-kit/sbxenv.local.yaml
+```
+
+The host reports `sbx --cloud diagnose` passed authentication, API reachability
+and subscription; the host cloud account and API are reachable. The crew did
+not observe that diagnosis. Cloud runtime execution is still **NOT RUN**;
+cloud-side secrets/bindings, upload/baking approval and actual allowed/denied
+runs remain open. Cloud cannot mount your host workspace;
 the app is already baked in. No cloud upload ran here. Repeat the same
 allowed/denied checks; local acceptance is not cloud acceptance. Keep the same
 account/endpoint/file paths for cleanup. This is cloud execution, not production

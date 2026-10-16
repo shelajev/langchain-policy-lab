@@ -1,0 +1,15 @@
+{
+  "name": "single-file",
+  "launch": "python agent.py",
+  "dataPaths": [],
+  "decisions": {
+    "9cecf24e13bc3f3f": {"action": "deny", "reason": "Tracing is disabled; no LangSmith network or key requested"},
+    "4a5dadb29ae4a1d0": {"action": "allow", "reason": "Developer selects gemini-2.5-flash for synthetic ticket classification, with separate live budget approval; no files or other runtime resources needed"},
+    "1313c81151bf928b": {"action": "deny", "reason": "Keep LANGSMITH_TRACING false; tracing is not part of this task"},
+    "f49f7a94f69d9ad9": {"action": "out-of-scope", "reason": "Core dependency needs no additional runtime access"},
+    "51c020dc69b226a0": {"action": "out-of-scope", "reason": "Use the GOOGLE_API_KEY proxy sentinel; no second Gemini credential needed"},
+    "e2dd8c867d3e8404": {"action": "allow", "reason": "Use GOOGLE_API_KEY as the SDK sentinel for the runtime-only gemini service binding; host must approve and bind it"},
+    "d965572bb0e3e88a": {"action": "allow", "reason": "Only the selected Gemini API host is needed"},
+    "99e16f2b158c65a9": {"action": "allow", "credential": "gemini", "reason": "Selected Gemini provider; no alternate provider or endpoint authorized"}
+  }
+}

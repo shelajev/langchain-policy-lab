@@ -19,7 +19,7 @@
   "name": "ticket-triage",
   "outputHashes": {
     ".dockerignore": "5be70bb75608f69a82de519f2753566fe82263f3892a8fea8bfdf58c8116ae1c",
-    "PERMISSIONS.md": "40020b7a58f605a593d3d8ec3b4954ac48269fbaf8e181c64c6e35b565b66207",
+    "PERMISSIONS.md": "35353114a90c840593afd6dd559acccef29bad8c5c85f023454405183dbed9ef",
     "app/.python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
     "app/data/tickets/t-101.json": "5fc2f0831b53e47f3b01be808e92c9c6bf2dd1ccd5a0651a7b1adbc9cd4bf184",
     "app/pyproject.toml": "f10d036ec933a1bcd34814c78c20dc4de0e09eeeeea3d6c366d034257a921bde",

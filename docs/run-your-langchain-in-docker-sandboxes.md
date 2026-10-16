@@ -8,8 +8,9 @@ app and when the app itself is processing an untrusted ticket.
 
 This tutorial packages an existing Python app as a Docker Sandboxes v3 mixin.
 You inspect its resources, answer concrete permission questions, review the
-package and run the app inside a sandbox. There is an agent-assisted path and
-an equivalent manual path. Both use the same ticket-triage app and files.
+package and run the app inside a sandbox. The agent-assisted example packages
+ticket-triage; the manual path adapts a single-file template for your own
+`agent.py`. Both produce the same kinds of reviewable kit files.
 
 One important limit up front: the repository's offline tests, generated build,
 artifact TCK and ordinary-container probe passed. One host-authorized live
@@ -42,9 +43,18 @@ you do not want a packaging tool to make silently.
 
 Use this repository checkout, uv 0.9.26, Python 3.13.7 and Docker with buildx.
 Static inspection needs only Python 3.11+. Build validation additionally needs
-the pinned `kit-tck`; the [guide](user-guide.md) shows its user-local installer.
-Actual sandbox steps need a supported Docker Sandboxes host with `sbx`, not a
-nested daemon. No API key is needed for this first command, from the repo root:
+the pinned `kit-tck`. On Linux x86_64/aarch64, from the repository root, install
+project tools into a chosen scratch directory and add them to this shell's PATH:
+
+```bash
+bash scripts/install-ci-tools.sh /tmp/triage-tools
+export PATH="/tmp/triage-tools:$PATH"
+```
+
+On other hosts, build kit-tck from the exact spec commit in
+[provenance](provenance.md). Actual sandbox steps need a supported Docker
+Sandboxes host with `sbx`, not a nested daemon. No API key is needed for this
+first app check, from the repo root:
 
 ```bash
 bash scripts/check-example.sh
@@ -153,54 +163,100 @@ bake a key into an image. Remove the secret from source and rotate any real key
 that was exposed through normal operator procedures. Keep `.env`, private
 directories and credential files out of snapshots, reports and build contexts.
 
-## The manual path uses the same kit
-
-You do not need a coding agent or a generator to understand the result. The
-[committed kit](../examples/ticket-triage-kit/) is the exact golden output of
-the same app and reviewed answers. Copy it to a new directory to work manually:
+Before approving the generated kit for runtime, build and TCK-check that copy.
+These checks are separate from environment creation, not an assumption that
+`sbx env run` has validated your artifact:
 
 ```bash
-cp -R examples/ticket-triage-kit /tmp/manual-ticket-triage-kit
-cd /tmp/manual-ticket-triage-kit
+(
+  cd /tmp/my-ticket-triage-kit
+  docker buildx build . -f ticket-triage.yaml --progress plain --output type=cacheonly
+  docker buildx build . -f ticket-triage.yaml --progress plain -t ticket-triage:0.1.0 --output type=oci,dest=/tmp/generated-triage-layout,tar=false
+  kit-tck validate --verbose --layout /tmp/generated-triage-layout 0.1.0
+)
 ```
 
-Inspect `app/` against the existing example, then review
-`ticket-triage.yaml`, `ticket-triage.dockerfile`, `PERMISSIONS.md` and both
-environment files. For another app, replace the sanitized source/lock/data
-and adjust the paths, provides name, capabilities and context command together.
-Do not copy its answers as your own.
+Use a fresh layout path. The subshell leaves you at the repository root.
+Continue to the local host handoff, or take the manual route instead.
 
-The descriptor's important distinction is `kind: mixin`. Its runtime network
-request allows `generativelanguage.googleapis.com`, denies the example webhook
-and status hosts, and requests an optional proxy-managed runtime credential.
-The credential names `GOOGLE_API_KEY` for the SDK's in-sandbox sentinel and
-rewrites `x-goog-api-key` only for that allowed domain. The real credential
-belongs at the boundary, not in the app snapshot.
+## The manual path starts from an agent.py template
 
-The Dockerfile starts from the digest-pinned uv image, installs exact Python
-3.13.7, uses `uv sync --locked --no-dev --no-editable`, and copies the result
-into a scratch overlay at `/opt/ticket-triage`. The frozen lock includes
-transitive artifact hashes and pinned build constraints. Runtime policy does
-not govern the earlier image-build downloads; those are a separate supply-chain
-surface to review.
-
-A mixin does not own `ENTRYPOINT`, `CMD`, runtime user or `sbx@1`. The pinned
-shell workload in each environment file owns launch and identity. The context
-file explains how to run the app; it does not run it automatically.
-
-Build the manual copy and validate its artifact:
+For a root `agent.py`, start from the
+[single-file kit](../examples/single-file-agent-kit/). It is a template, not
+your app or your answers. The [ticket-triage kit](../examples/ticket-triage-kit/)
+is the larger `src/` example. No helper is needed for this manual route.
+From the repository root, copy the template to a new directory:
 
 ```bash
-docker buildx build . -f ticket-triage.yaml --progress plain --output type=cacheonly
-docker buildx build . -f ticket-triage.yaml --progress plain -t ticket-triage:0.1.0 --output type=oci,dest=/tmp/manual-triage-layout,tar=false
-kit-tck validate --verbose --layout /tmp/manual-triage-layout 0.1.0
+cp -R examples/single-file-agent-kit /tmp/manual-agent-kit
+cd /tmp/manual-agent-kit
+mv single-file.yaml manual-agent.yaml
+mv single-file.dockerfile manual-agent.dockerfile
+mv single-file-context.md manual-agent-context.md
 ```
 
-Use a fresh layout path. Back at the repository root,
-`bash scripts/check-generated-kit.sh /tmp/another-fresh-layout` also probes the
-overlay in a network-none, read-only, nonroot Debian container. That verifies
-application/filesystem compatibility with that probe base, not the actual SBX
-workload composition or its network boundary. Those remain host checks.
+Use `manual-agent` consistently below, or replace it everywhere with your name.
+Make these edits before building:
+
+1. **`app/`**: remove the example files and put your own unchanged `agent.py`,
+   `pyproject.toml`, `uv.lock` and `.python-version` here, plus required data.
+   If you only have requirements, first use the verified
+   [raw-script lock commands](../examples/single-file-agent/README.md#starting-with-just-agentpy-and-requirementstxt)
+   in your app directory, choosing compatible exact versions. Never copy `.env`,
+   private files or keys.
+2. **`manual-agent.yaml`**: set `displayName: manual-agent`, `version: "0.1.0"`
+   and `provides: ["manual-agent@0.1.0"]`. Change
+   `agent-context@1`'s `config.contentFile` to `./manual-agent-context.md`.
+   Under `network-policy@1`, edit `config.runtime.allow` and `deny` to exact
+   provider/other hosts you approve or forbid; no URL paths or blanket wildcard.
+   The template allows `generativelanguage.googleapis.com`. See the
+   [provider host table](../skills/langchain-sandbox-kit/references/capabilities.md).
+   Under `credential@1`, change `config.service`, `phase: runtime`,
+   `apiKey.name`, and `apiKey.inject`'s `domain`, `header` and `format` for your
+   provider, or remove that capability if no key is needed. Gemini uses service
+   `gemini`, sentinel `GOOGLE_API_KEY`, domain `generativelanguage.googleapis.com`,
+   header `x-goog-api-key`, format `"%s"` and `proxyManaged: true`. Keep real keys
+   out of YAML; the host binds the service separately. `optional: true` permits
+   the offline fake run without a key.
+3. **`manual-agent.dockerfile`**: replace every `/opt/single-file` with
+   `/opt/manual-agent`. Set both Python `3.13.7` occurrences to your exact
+   `.python-version`. `COPY app/ ./` already includes your allowed data; if you
+   change that layout, adjust this COPY and the final overlay COPY together.
+   Keep the pinned base and locked install; image-build downloads are separate
+   from runtime network policy.
+4. **`.dockerignore`**: keep the initial `**` and allow only your files, for
+   example `!app/agent.py`, `!app/pyproject.toml`, `!app/uv.lock`,
+   `!app/.python-version`, explicit data files, and `!manual-agent-context.md`.
+   Remove old entries; do not replace this with `!**`.
+5. **`manual-agent-context.md`**: set the app directory and your launch command,
+   for example `cd /opt/manual-agent/app && python agent.py`. This is guidance,
+   not automatic execution: the shell workload owns entrypoint, user and
+   `sbx@1`; `sbx env exec` launches the app after composition.
+6. **`sbxenv.local.yaml` / `sbxenv.cloud.yaml`**: change `name: manual-agent`
+   and the `kits` app path if it is no longer `./`. Keep the pinned shell kit.
+   Local `workspace: .` is only the sanitized kit; cloud has no `workspace`.
+7. **`PERMISSIONS.md`**: replace the example decisions and reasons with yours,
+   including every allow/deny, selected model, data, tracing, credential and
+   launch command. Static inspection is not proof of complete permissions.
+8. **`kit-manifest.json`**: delete it. Manual edits make the helper's hashes
+   stale. This route does not call the helper, `explain` or `generate --force`;
+   helper-owned overwrite checks are not part of manual maintenance.
+
+Build your edited copy and validate its artifact, using a fresh layout path:
+
+```bash
+docker buildx build . -f manual-agent.yaml --progress plain --output type=cacheonly
+docker buildx build . -f manual-agent.yaml --progress plain -t manual-agent:0.1.0 --output type=oci,dest=/tmp/manual-agent-layout,tar=false
+kit-tck validate --verbose --layout /tmp/manual-agent-layout 0.1.0
+```
+
+Verify your edits against your app, not the repository's original probe: the
+build succeeds, TCK passes, and a network-none/read-only/uid1000 container probe
+of your overlay runs `python agent.py --fake-model` (or your own offline command)
+from `/opt/manual-agent/app`, with no `.env`, private data or keys in the image.
+Use the [guide's container recipe](user-guide.md#probe-your-manual-overlay).
+That checks filesystem compatibility, not actual SBX confinement or credential
+injection. Those remain host checks.
 
 ## Run your app inside local Docker Sandboxes
 
@@ -212,7 +268,17 @@ sbx env run --detach ./examples/ticket-triage-kit/sbxenv.local.yaml
 sbx env exec ./examples/ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
 ```
 
-For your generated or manual copy, use its absolute environment-file path.
+For your generated ticket-triage copy, use its absolute environment-file path
+with the same ticket-triage launch command. For the manual single-file copy,
+use this alternative host handoff instead (also NOT RUN here):
+
+```bash
+sbx env plan /tmp/manual-agent-kit/sbxenv.local.yaml
+sbx env run --detach /tmp/manual-agent-kit/sbxenv.local.yaml
+sbx env exec /tmp/manual-agent-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/manual-agent/app && python agent.py --fake-model'
+```
+
+Use your own offline arguments if your script differs from the fixture.
 Review the plan before approval. It selects the v3 shell workload and app
 mixin, and mounts only the sanitized kit directory. `env exec` is the part
 that runs your LangChain app in the sandbox. Starting a coding agent is not a
@@ -225,9 +291,11 @@ that binding. The [handoff](acceptance-handoff.md) explains private overrides,
 cloud separation and the exact live command. Do not put real keys into YAML,
 image layers, shell arguments or evidence.
 
-Acceptance also needs deliberate negative tests. Under the same composition,
-try status enrichment to `example.com`, direct HTTP to the denied destinations,
-and the webhook flag. Check that `.env` and private data are absent. Retain
+Acceptance also needs deliberate negative tests. For ticket-triage, under the
+same composition, try status enrichment to `example.com`, direct HTTP to denied
+destinations, and the webhook flag. Those flags do not exist in the single-file
+fixture; for your own app, test its applicable operations against a deliberately
+forbidden host. Check that `.env` and private data are absent. Retain
 boundary events, not just error text. The illustrative `.invalid` webhook can
 fail DNS even with no policy at all; an origin 403 can also resemble a boundary
 403. The handoff includes resolvable-origin controls and expected exits.
@@ -235,13 +303,24 @@ fail DNS even with no policy at all; an origin 403 can also resemble a boundary
 ## Cloud changes the resources, not the app
 
 The cloud file keeps the baked app and removes `workspace` entirely. Cloud
-cannot mount the host directory. With approved upload/baking, existing login
-and compatible target support:
+cannot mount the host directory. The host reports `sbx --cloud diagnose` passed
+authentication, API reachability and subscription: the host cloud account and
+API are reachable. The crew did not observe that diagnosis. Cloud runtime
+execution is still **NOT RUN**; cloud-side secret/binding, approval to bake or
+upload, and the actual allowed/denied runs remain open. On the approved host:
 
 ```bash
 sbx --cloud env plan ./examples/ticket-triage-kit/sbxenv.cloud.yaml
 sbx --cloud env run --detach ./examples/ticket-triage-kit/sbxenv.cloud.yaml
 sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
+```
+
+For the manual single-file copy, use the matching cloud handoff instead:
+
+```bash
+sbx --cloud env plan /tmp/manual-agent-kit/sbxenv.cloud.yaml
+sbx --cloud env run --detach /tmp/manual-agent-kit/sbxenv.cloud.yaml
+sbx --cloud env exec /tmp/manual-agent-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/manual-agent/app && python agent.py --fake-model'
 ```
 
 The target needs its own secret and explicit domain approval for a live call.
@@ -255,6 +334,10 @@ Clean up each environment using the same account, target and file paths:
 sbx --cloud env rm ./examples/ticket-triage-kit/sbxenv.cloud.yaml
 sbx env rm ./examples/ticket-triage-kit/sbxenv.local.yaml
 ```
+
+For the manual alternative, remove `/tmp/manual-agent-kit/sbxenv.cloud.yaml`
+with `sbx --cloud env rm` and `/tmp/manual-agent-kit/sbxenv.local.yaml` with
+`sbx env rm` instead.
 
 Running a job in cloud isolation is not production serving deployment. You
 still need ingress, lifecycle management, scaling, durability, auditing,

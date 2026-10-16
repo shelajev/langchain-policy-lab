@@ -63,7 +63,8 @@ For normal discovery **in your own project**, copy the entire skill folder into
 relative scripts/templates/references are required. This repo leaves ACR-managed
 agent folders alone and installs nothing into personal host skill directories.
 See [source provenance](docs/provenance.md). The [manual path](docs/user-guide.md)
-uses the same app, snapshot, descriptor, recipe and environment files.
+shows how to adapt a single-file kit template to your own app, dependencies,
+launch command and permissions without running the helper.
 
 ## What has actually passed?
 

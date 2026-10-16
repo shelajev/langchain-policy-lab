@@ -227,7 +227,7 @@ def inspect(project, entrypoint):
         elif fnmatch.fnmatchcase(PurePosixPath(filename).name, "requirements*.txt"):
             try:
                 for line, dependency in enumerate(raw.decode("utf-8").splitlines(), 1):
-                    match = re.match(r"([A-Za-z0-9_-]+)(?:==|[<>=;\[ ])", dependency)
+                    match = re.match(r"([A-Za-z0-9_-]+)(?:[<>=;\[ ]|$)", dependency.strip())
                     if match:
                         package_finding(match[1], filename, line)
             except UnicodeError:
@@ -237,6 +237,9 @@ def inspect(project, entrypoint):
                 raw.decode("utf-8")
             except UnicodeError:
                 add("unparseable", filename)
+    missing_lock_files = sorted({"pyproject.toml", "uv.lock", ".python-version"} - files.keys())
+    if missing_lock_files:
+        add("lock-setup", entrypoint, value="Create reviewed dependency metadata with normal uv tooling before generation: " + ", ".join(missing_lock_files))
     if any(item["kind"] == "env-name" and "TRACING" in item["value"] for item in findings):
         add("optional-tracing", entrypoint, value="LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled)", confidence="inferred")
     add("scope-confirmation", entrypoint, value="Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources")
@@ -305,6 +308,7 @@ def permissions(report, answers, allowed, denied):
              "Broad/IP access: " + ("explicitly authorized; review carefully" if any(item.get("allowBroad") for item in answers["decisions"].values()) else "none"),
              "", "## Launch ownership", "", "This is a mixin, not a workload. The pinned shell workload owns entrypoint, user and sbx@1.",
              "Run the command in the context file with sbx env exec after environment creation.",
+             f"Launch from /opt/{answers['name']}/app: `{answers['launch']}`.",
              "", "## What this does not protect", "", "Static inspection is incomplete. Denied/out-of-scope findings are not proof of absence.",
              "No install-phase network is requested; image builds still download locked dependencies.",
              "Other kits and host policy affect the effective boundary. Allowed services can incur costs, store data or have side effects.",

@@ -245,6 +245,30 @@ class HelperTests(unittest.TestCase):
         self.assertEqual((self.project / "agent.py").read_bytes(), original)
         self.assertIn("python agent.py", (self.output / "demo-context.md").read_text())
 
+    def test_raw_requirements_ask_for_lock_without_running_source(self):
+        for filename in ("pyproject.toml", "uv.lock", ".python-version"):
+            (self.project / filename).unlink()
+        (self.project / "agent.py").write_text('raise RuntimeError("must never execute")\n')
+        (self.project / "requirements.txt").write_text("langchain\nlangchain-google-genai\n")
+        (self.project / ".env").write_text(CANARY)
+        report, files = HELPER.inspect(self.project, "agent.py")
+        self.assertIn("requirements.txt", files)
+        self.assertNotIn(".env", files)
+        self.assertNotIn(CANARY, json.dumps(report))
+        self.assertTrue(any(item["kind"] == "lock-setup" for item in report["findings"]))
+        self.assertTrue(any(item["value"] == "generativelanguage.googleapis.com" for item in report["findings"]))
+        self.assert_refused(lambda: HELPER.validate_lock(files))
+
+    @unittest.skipUnless((ROOT / "examples/single-file-agent-kit").is_dir(), "repository golden fixture not present")
+    def test_single_file_golden(self):
+        HELPER.generate(ROOT / "examples/single-file-agent", "agent.py",
+                        ROOT / "examples/single-file-agent.answers.json", self.output)
+        golden = ROOT / "examples/single-file-agent-kit"
+        expected = {path.relative_to(golden).as_posix(): path.read_bytes() for path in golden.rglob("*") if path.is_file()}
+        actual = {path.relative_to(self.output).as_posix(): path.read_bytes() for path in self.output.rglob("*") if path.is_file()}
+        self.assertEqual(expected, actual)
+        self.assertIn("python agent.py", (self.output / "PERMISSIONS.md").read_text())
+
     def test_cli_exit_codes(self):
         self.answers()
         command = [sys.executable, str(SKILL / "scripts/sbx_langchain_kit.py"), "generate", "--project", str(self.project),

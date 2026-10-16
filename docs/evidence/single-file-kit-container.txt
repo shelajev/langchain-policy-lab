@@ -1,0 +1,8 @@
+++ date -u +%FT%TZ
++ printf 'UTC: %s\nCommand: bash scripts/check-single-file-container.sh\n' 2026-10-16T09:03:44Z
+UTC: 2026-10-16T09:03:44Z
+Command: bash scripts/check-single-file-container.sh
++ bash scripts/check-single-file-container.sh
+Evidence class: container only; NOT SBX runtime confinement proof.
+{"category":"technical","ticket_id":"T-101"}
+PASS: unchanged root script, sanitized filesystem, network-none/read-only/uid1000; not SBX policy proof.

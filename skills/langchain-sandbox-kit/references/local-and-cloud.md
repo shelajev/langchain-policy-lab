@@ -22,8 +22,11 @@ explicit denies win but unknown dynamic hosts cannot all be enumerated.
 
 For cloud, use `sbx --cloud env plan/run/exec/rm ./sbxenv.cloud.yaml`. That file
 omits `workspace` entirely. The app is baked into the mixin. Check
-`sbx --cloud --help` and target credential support first, then have the host
-use its existing login, cloud-side secret and explicit service/domain binding.
+`sbx --cloud --help` and target credential support first. The host reports
+`sbx --cloud diagnose` passed authentication, API reachability and subscription:
+the host cloud account and API are reachable, not a crew-observed result.
+Cloud runtime execution is still NOT RUN. Cloud-side secret/service/domain
+binding, baking/upload approval and actual allowed/denied runs remain open.
 Cloud baking may upload app content: review and approve before executing it.
 Do not publish an image or create credentials just to finish a test.
 See Docker's `reference/cli/sbx/env/` and `ai/sandboxes/cloud/usage/` docs.
