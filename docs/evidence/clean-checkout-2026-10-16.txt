@@ -1,28 +1,28 @@
-2026-10-16T08:51:12Z
+2026-10-16T08:53:04Z
 COMMAND: PATH=<pinned-tools>:$PATH bash scripts/clean-checkout.sh
-Cloning into '/tmp/tmp.AjTnpw42d6/checkout'...
-a8a8730571c1f29d299ca2acb5edacc46a797f5e
+Cloning into '/tmp/tmp.wzEGGwbUmb/checkout'...
+95796f18f8344940986617ff896a337da27190b1
 Downloading cpython-3.13.7-linux-aarch64-gnu (download) (27.2MiB)
  Downloaded cpython-3.13.7-linux-aarch64-gnu (download)
-Installed Python 3.13.7 in 3.19s
+Installed Python 3.13.7 in 3.04s
  + cpython-3.13.7-linux-aarch64-gnu
 Using CPython 3.13.7
 Creating virtual environment at: .venv
 Resolved 58 packages in 1ms
-   Building langchain-enterprise-sample @ file:///tmp/tmp.AjTnpw42d6/checkout/sample
-Downloading cryptography (4.5MiB)
-Downloading zstandard (4.8MiB)
+   Building langchain-enterprise-sample @ file:///tmp/tmp.wzEGGwbUmb/checkout/sample
 Downloading pygments (1.2MiB)
+Downloading cryptography (4.5MiB)
 Downloading pydantic-core (2.0MiB)
 Downloading google-genai (1.1MiB)
+Downloading zstandard (4.8MiB)
  Downloaded google-genai
  Downloaded pygments
  Downloaded pydantic-core
+      Built langchain-enterprise-sample @ file:///tmp/tmp.wzEGGwbUmb/checkout/sample
  Downloaded cryptography
  Downloaded zstandard
-      Built langchain-enterprise-sample @ file:///tmp/tmp.AjTnpw42d6/checkout/sample
-Prepared 53 packages in 1.38s
-Installed 53 packages in 30ms
+Prepared 53 packages in 1.43s
+Installed 53 packages in 23ms
  + annotated-types==0.8.0
  + anyio==4.15.1
  + certifi==2026.7.22
@@ -44,7 +44,7 @@ Installed 53 packages in 30ms
  + jsonpointer==3.2.0
  + langchain==1.4.4
  + langchain-core==1.6.9
- + langchain-enterprise-sample==0.1.0 (from file:///tmp/tmp.AjTnpw42d6/checkout/sample)
+ + langchain-enterprise-sample==0.1.0 (from file:///tmp/tmp.wzEGGwbUmb/checkout/sample)
  + langchain-google-genai==4.4.0
  + langchain-protocol==0.0.19
  + langgraph==1.2.14
@@ -77,9 +77,9 @@ Installed 53 packages in 30ms
  + xxhash==4.0.1
  + zstandard==0.25.0
 ============================= test session starts ==============================
-platform linux -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/tmp.AjTnpw42d6/checkout/sample/.venv/bin/python
+platform linux -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/tmp.wzEGGwbUmb/checkout/sample/.venv/bin/python
 cachedir: .pytest_cache
-rootdir: /tmp/tmp.AjTnpw42d6/checkout/sample
+rootdir: /tmp/tmp.wzEGGwbUmb/checkout/sample
 configfile: pyproject.toml
 testpaths: tests
 plugins: anyio-4.15.1, langsmith-0.14.5
@@ -339,12 +339,12 @@ Pinned core and optional provider imports verified; no live calls
 Using CPython 3.13.7
 Creating virtual environment at: .venv
 Resolved 58 packages in 1ms
-   Building ticket-triage @ file:///tmp/tmp.AjTnpw42d6/checkout/examples/ticket-triage
+   Building ticket-triage @ file:///tmp/tmp.wzEGGwbUmb/checkout/examples/ticket-triage
+      Built ticket-triage @ file:///tmp/tmp.wzEGGwbUmb/checkout/examples/ticket-triage
 Downloading google-genai (1.2MiB)
-      Built ticket-triage @ file:///tmp/tmp.AjTnpw42d6/checkout/examples/ticket-triage
  Downloaded google-genai
-Prepared 13 packages in 282ms
-Installed 53 packages in 26ms
+Prepared 13 packages in 542ms
+Installed 53 packages in 22ms
  + annotated-types==0.8.0
  + anyio==4.15.1
  + certifi==2026.7.22
@@ -389,7 +389,7 @@ Installed 53 packages in 26ms
  + requests-toolbelt==1.0.0
  + sniffio==1.3.1
  + tenacity==9.1.4
- + ticket-triage==0.1.0 (from file:///tmp/tmp.AjTnpw42d6/checkout/examples/ticket-triage)
+ + ticket-triage==0.1.0 (from file:///tmp/tmp.wzEGGwbUmb/checkout/examples/ticket-triage)
  + truststore==0.10.5
  + typing-extensions==4.16.0
  + typing-inspection==0.4.4
@@ -399,9 +399,9 @@ Installed 53 packages in 26ms
  + xxhash==4.0.1
  + zstandard==0.25.0
 ============================= test session starts ==============================
-platform linux -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/tmp.AjTnpw42d6/checkout/examples/ticket-triage/.venv/bin/python
+platform linux -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/tmp.wzEGGwbUmb/checkout/examples/ticket-triage/.venv/bin/python
 cachedir: .pytest_cache
-rootdir: /tmp/tmp.AjTnpw42d6/checkout/examples/ticket-triage
+rootdir: /tmp/tmp.wzEGGwbUmb/checkout/examples/ticket-triage
 configfile: pyproject.toml
 testpaths: tests
 plugins: langsmith-0.14.11, anyio-4.15.1
@@ -412,7 +412,7 @@ tests/test_app.py::test_status_transport PASSED                          [ 50%]
 tests/test_app.py::test_fake_cli_has_no_network_or_webhook PASSED        [ 75%]
 tests/test_app.py::test_network_failure_is_clean PASSED                  [100%]
 
-============================== 4 passed in 0.41s ===============================
+============================== 4 passed in 0.40s ===============================
 {"category": "technical", "summary": "Synthetic offline classification; investigate the reported issue.", "ticket_id": "T-101"}
 test_bad_answers_paths_and_lifecycle (test_helper.HelperTests.test_bad_answers_paths_and_lifecycle) ... ok
 test_cli_exit_codes (test_helper.HelperTests.test_cli_exit_codes) ... ok
@@ -428,6 +428,7 @@ test_missing_lock_missing_dependency_unhashed_lock (test_helper.HelperTests.test
 test_no_implicit_grants_and_mixin_ownership (test_helper.HelperTests.test_no_implicit_grants_and_mixin_ownership) ... ok
 test_output_cannot_overlap_excluded_ancestor (test_helper.HelperTests.test_output_cannot_overlap_excluded_ancestor) ... ok
 test_output_cannot_overlap_input (test_helper.HelperTests.test_output_cannot_overlap_input) ... ok
+test_provider_host_deny_cannot_be_overridden_by_package_allow (test_helper.HelperTests.test_provider_host_deny_cannot_be_overridden_by_package_allow) ... ok
 test_requirements_inspection_before_lock_setup (test_helper.HelperTests.test_requirements_inspection_before_lock_setup) ... ok
 test_secret_files_and_ignore_rules_never_enter_context (test_helper.HelperTests.test_secret_files_and_ignore_rules_never_enter_context) ... ok
 test_secret_literal_redacted_and_refused (test_helper.HelperTests.test_secret_literal_redacted_and_refused) ... ok
@@ -437,7 +438,7 @@ test_symlink_and_outside_entrypoint (test_helper.HelperTests.test_symlink_and_ou
 test_syntax_binary_size_and_depth_findings (test_helper.HelperTests.test_syntax_binary_size_and_depth_findings) ... ok
 
 ----------------------------------------------------------------------
-Ran 21 tests in 0.180s
+Ran 22 tests in 0.195s
 
 OK
 PASS: 80 relative file/directory links across 16 current reader-facing files; archived review packets excluded.
@@ -483,25 +484,25 @@ dev (a1d110de)
 #10 transferring context: 127.73kB done
 #10 DONE 0.0s
 
-#11 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#11 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
 #11 CACHED
 
-#12 [build 5/7] COPY sample/data ./data
+#12 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
 #12 CACHED
 
-#13 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
+#13 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
 #13 CACHED
 
-#14 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
+#14 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
 #14 CACHED
 
-#15 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#15 [build 4/7] COPY sample/src ./src
 #15 CACHED
 
 #16 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
 #16 CACHED
 
-#17 [build 4/7] COPY sample/src ./src
+#17 [build 5/7] COPY sample/data ./data
 #17 CACHED
 
 #18 [build 2/7] WORKDIR /opt/langchain/sample
@@ -523,7 +524,7 @@ dev (a1d110de)
 #3 CACHED
 
 #4 [internal] load kit descriptor langchain.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
-#4 transferring dockerfile: 771B done
+#4 transferring dockerfile: 76B done
 #4 DONE 0.0s
 
 #5 [internal] load guidance langchain-context.md
@@ -549,28 +550,28 @@ dev (a1d110de)
 #10 transferring context: 1.03kB done
 #10 DONE 0.0s
 
-#11 [build 5/7] COPY sample/data ./data
+#11 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
 #11 CACHED
 
-#12 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#12 [build 4/7] COPY sample/src ./src
 #12 CACHED
 
-#13 [build 2/7] WORKDIR /opt/langchain/sample
+#13 [build 5/7] COPY sample/data ./data
 #13 CACHED
 
-#14 [build 4/7] COPY sample/src ./src
+#14 [build 2/7] WORKDIR /opt/langchain/sample
 #14 CACHED
 
 #15 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
 #15 CACHED
 
-#16 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
+#16 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
 #16 CACHED
 
 #17 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
 #17 CACHED
 
-#18 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#18 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
 #18 CACHED
 
 #19 [kit] stage sources /usr/share/sandbox/kit/langchain
@@ -581,7 +582,7 @@ dev (a1d110de)
 #20 exporting manifest sha256:e528602c3b76a2b3eda26ec7d9f7904d661cbb2da55ffaf6fd43890b44eafb91 done
 #20 exporting config sha256:79e3bd28168262a6757e36ef8bb6dfc74465da87807913271cb6b0362f68b865 done
 #20 DONE 0.2s
-kit-tck dev (a1d110de) · validate · /tmp/tmp.AjTnpw42d6/policy-layout 1.4.4
+kit-tck dev (a1d110de) · validate · /tmp/tmp.wzEGGwbUmb/policy-layout 1.4.4
 
   passed
     ✓ agent-skill-content       [agent-skill@1/content-present]
@@ -655,28 +656,28 @@ specification
 #10 transferring context: 1.03kB done
 #10 DONE 0.0s
 
-#11 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
+#11 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
 #11 CACHED
 
-#12 [build 2/7] WORKDIR /opt/langchain/sample
+#12 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
 #12 CACHED
 
-#13 [build 5/7] COPY sample/data ./data
+#13 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
 #13 CACHED
 
 #14 [build 4/7] COPY sample/src ./src
 #14 CACHED
 
-#15 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
+#15 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
 #15 CACHED
 
-#16 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#16 [build 2/7] WORKDIR /opt/langchain/sample
 #16 CACHED
 
-#17 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
+#17 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
 #17 CACHED
 
-#18 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#18 [build 5/7] COPY sample/data ./data
 #18 CACHED
 
 #19 [kit] stage sources /usr/share/sandbox/kit/langchain
@@ -686,8 +687,8 @@ specification
 #20 exporting layers done
 #20 exporting manifest sha256:e528602c3b76a2b3eda26ec7d9f7904d661cbb2da55ffaf6fd43890b44eafb91 done
 #20 exporting config sha256:79e3bd28168262a6757e36ef8bb6dfc74465da87807913271cb6b0362f68b865 done
-#20 exporting attestation manifest sha256:a824d00b17795f81ef172e8c45b63c45fbd153a46a1c2ffe28aa2e10821d4ba9 done
-#20 exporting manifest list sha256:dba6bcbf641c396959470152dac755c45a2b2b059e731c28b1713d00af5f7a70 done
+#20 exporting attestation manifest sha256:1267b9a371c011e8becb8a46e7dc72d0c05ae7e5887044351fc53873d9aaada7 done
+#20 exporting manifest list sha256:49635cebd18f4bad1387c0308619d96f47694d82e6ec396fa8a6236bc7284be1 done
 #20 naming to docker.io/library/langchain:filesystem done
 #20 unpacking to docker.io/library/langchain:filesystem done
 #20 DONE 0.0s
@@ -697,10 +698,10 @@ specification
 #1 transferring dockerfile: 337B done
 #1 DONE 0.0s
 
-#2 [internal] load metadata for docker.io/library/langchain:filesystem
+#2 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
 #2 DONE 0.0s
 
-#3 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#3 [internal] load metadata for docker.io/library/langchain:filesystem
 #3 DONE 0.0s
 
 #4 [internal] load .dockerignore
@@ -711,8 +712,8 @@ specification
 #5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
 #5 DONE 0.0s
 
-#6 [overlay 1/1] FROM docker.io/library/langchain:filesystem@sha256:dba6bcbf641c396959470152dac755c45a2b2b059e731c28b1713d00af5f7a70
-#6 resolve docker.io/library/langchain:filesystem@sha256:dba6bcbf641c396959470152dac755c45a2b2b059e731c28b1713d00af5f7a70 done
+#6 [overlay 1/1] FROM docker.io/library/langchain:filesystem@sha256:49635cebd18f4bad1387c0308619d96f47694d82e6ec396fa8a6236bc7284be1
+#6 resolve docker.io/library/langchain:filesystem@sha256:49635cebd18f4bad1387c0308619d96f47694d82e6ec396fa8a6236bc7284be1 done
 #6 DONE 0.0s
 
 #7 [stage-1 2/2] COPY --from=overlay /opt/langchain /opt/langchain
@@ -722,20 +723,20 @@ specification
 #8 exporting layers done
 #8 exporting manifest sha256:ae80ad3b3129caf62fd75b9cdb815a321a0d62db84802901c5c714918e8a92b8 done
 #8 exporting config sha256:7f788bbc4e8612ca8eed5acd554b120bdd3028feaaba6f1ace3e7360f07842ef done
-#8 exporting attestation manifest sha256:f6f207c83a1b896e2e69accc54c37f75a8aae4b38419ca2877553842c0950b77 done
-#8 exporting manifest list sha256:844003048edf9494cdf2b194bb9bfc8cf48ac80b11dc7fbe462c99222bb5920d done
+#8 exporting attestation manifest sha256:017792a8e90ca755f6bdaaa17d6fb21911dd02d6fbbd8f2bdc8d7d06758d2d6e done
+#8 exporting manifest list sha256:5615e69efe7198dcabd15b70d241ef731b073b8d884ea79212ed6ca52e279b58 done
 #8 naming to docker.io/library/langchain:filesystem-probe done
 #8 unpacking to docker.io/library/langchain:filesystem-probe done
 #8 DONE 0.0s
 Python 3.13.7
-	linux-vdso.so.1 (0x0000ffff8deb8000)
-	libpthread.so.0 => /lib/aarch64-linux-gnu/libpthread.so.0 (0x0000ffff874c0000)
-	libdl.so.2 => /lib/aarch64-linux-gnu/libdl.so.2 (0x0000ffff87490000)
-	libutil.so.1 => /lib/aarch64-linux-gnu/libutil.so.1 (0x0000ffff87460000)
-	librt.so.1 => /lib/aarch64-linux-gnu/librt.so.1 (0x0000ffff87430000)
-	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffff87380000)
-	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffff871c0000)
-	/lib/ld-linux-aarch64.so.1 (0x0000ffff8de80000)
+	linux-vdso.so.1 (0x0000ffffae228000)
+	libpthread.so.0 => /lib/aarch64-linux-gnu/libpthread.so.0 (0x0000ffffa7830000)
+	libdl.so.2 => /lib/aarch64-linux-gnu/libdl.so.2 (0x0000ffffa7800000)
+	libutil.so.1 => /lib/aarch64-linux-gnu/libutil.so.1 (0x0000ffffa77d0000)
+	librt.so.1 => /lib/aarch64-linux-gnu/librt.so.1 (0x0000ffffa77a0000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffa76f0000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffa7530000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffae1f0000)
 {
   "provider": "deterministic",
   "passed": true,
@@ -985,90 +986,22 @@ Build/TCK/container checks are not local or cloud SBX runtime confinement eviden
 #11 CACHED
 
 #12 [build 3/5] COPY app/ ./
-#12 DONE 0.0s
+#12 CACHED
 
-#13 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
-#13 1.183 Downloading cpython-3.13.7-linux-aarch64-gnu (download) (27.2MiB)
-#13 5.094  Downloaded cpython-3.13.7-linux-aarch64-gnu (download)
-#13 5.096 Installed Python 3.13.7 in 5.00s
-#13 5.096  + cpython-3.13.7-linux-aarch64-gnu
-#13 5.236 Using CPython 3.13.7
-#13 5.236 Creating virtual environment at: /opt/ticket-triage/venv
-#13 5.238 Resolved 58 packages in 0.41ms
-#13 5.244    Building ticket-triage @ file:///opt/ticket-triage/app
-#13 5.378 Downloading google-genai (1.2MiB)
-#13 5.379 Downloading zstandard (4.8MiB)
-#13 5.379 Downloading pydantic-core (2.0MiB)
-#13 5.380 Downloading cryptography (4.5MiB)
-#13 6.002  Downloaded google-genai
-#13 6.188  Downloaded pydantic-core
-#13 6.284       Built ticket-triage @ file:///opt/ticket-triage/app
-#13 6.450  Downloaded zstandard
-#13 6.456  Downloaded cryptography
-#13 6.456 Prepared 49 packages in 1.21s
-#13 6.486 Installed 49 packages in 29ms
-#13 6.486  + annotated-types==0.8.0
-#13 6.486  + anyio==4.15.1
-#13 6.486  + certifi==2026.7.22
-#13 6.486  + cffi==2.1.1
-#13 6.486  + charset-normalizer==3.5.2
-#13 6.486  + cryptography==50.0.2
-#13 6.486  + distro==1.9.0
-#13 6.486  + filetype==1.2.0
-#13 6.486  + google-auth==2.62.0
-#13 6.486  + google-genai==2.31.0
-#13 6.486  + h11==0.16.0
-#13 6.486  + httpcore==1.0.9
-#13 6.486  + httpcore2==2.13.1
-#13 6.486  + httpx==0.28.1
-#13 6.486  + httpx2==2.13.1
-#13 6.486  + idna==3.20
-#13 6.486  + jsonpatch==1.35
-#13 6.486  + jsonpointer==3.2.1
-#13 6.486  + langchain==1.4.4
-#13 6.486  + langchain-core==1.6.9
-#13 6.486  + langchain-google-genai==4.4.0
-#13 6.486  + langchain-protocol==0.0.19
-#13 6.486  + langgraph==1.2.15
-#13 6.486  + langgraph-checkpoint==4.3.0
-#13 6.486  + langgraph-prebuilt==1.1.1
-#13 6.486  + langgraph-sdk==0.4.7
-#13 6.486  + langsmith==0.14.11
-#13 6.486  + orjson==3.13.0
-#13 6.486  + ormsgpack==1.13.0
-#13 6.486  + packaging==26.3
-#13 6.486  + pyasn1==0.6.4
-#13 6.486  + pyasn1-modules==0.4.2
-#13 6.486  + pycparser==3.11
-#13 6.486  + pydantic==2.14.0
-#13 6.486  + pydantic-core==2.50.0
-#13 6.486  + pyyaml==6.0.3
-#13 6.486  + requests==2.34.2
-#13 6.486  + requests-toolbelt==1.0.0
-#13 6.486  + sniffio==1.3.1
-#13 6.486  + tenacity==9.1.4
-#13 6.486  + ticket-triage==0.1.0 (from file:///opt/ticket-triage/app)
-#13 6.486  + truststore==0.10.5
-#13 6.486  + typing-extensions==4.16.0
-#13 6.486  + typing-inspection==0.4.4
-#13 6.487  + urllib3==2.8.0
-#13 6.487  + uuid-utils==0.17.1
-#13 6.487  + websockets==16.1.1
-#13 6.487  + xxhash==4.0.1
-#13 6.487  + zstandard==0.25.0
-#13 DONE 6.6s
+#13 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
+#13 CACHED
 
-#14 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
-#14 DONE 1.9s
+#14 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
+#14 CACHED
 
-#15 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
-#15 DONE 0.3s
+#15 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#15 CACHED
 
-#16 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
-#16 DONE 0.1s
+#16 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
+#16 CACHED
 
 #17 [kit] stage sources /usr/share/sandbox/kit/ticket-triage
-#17 DONE 0.0s
+#17 CACHED
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from ticket-triage.yaml
@@ -1109,34 +1042,33 @@ Build/TCK/container checks are not local or cloud SBX runtime confinement eviden
 #10 transferring context: 511B done
 #10 DONE 0.0s
 
-#11 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
+#11 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
 #11 CACHED
 
-#12 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
+#12 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
 #12 CACHED
 
-#13 [build 3/5] COPY app/ ./
+#13 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
 #13 CACHED
 
-#14 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#14 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
 #14 CACHED
 
 #15 [build 2/5] WORKDIR /opt/ticket-triage/app
 #15 CACHED
 
-#16 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
+#16 [build 3/5] COPY app/ ./
 #16 CACHED
 
 #17 [kit] stage sources /usr/share/sandbox/kit/ticket-triage
 #17 CACHED
 
 #18 exporting to oci image format
-#18 exporting layers
-#18 exporting layers 4.5s done
+#18 exporting layers done
 #18 exporting manifest sha256:53296bc3b1cc1a0df74ad06eeae3284ef4537a289960413c6f3926ec6c5beccb done
 #18 exporting config sha256:b6acf677e992f5f4955ebcbcfb4ffacf06c58c2d116340f5b63c32346fc1e41f done
-#18 DONE 4.6s
-kit-tck dev (a1d110de) · validate · /tmp/tmp.AjTnpw42d6/generated-layout 0.1.0
+#18 DONE 0.1s
+kit-tck dev (a1d110de) · validate · /tmp/tmp.wzEGGwbUmb/generated-layout 0.1.0
 
   passed
     ✓ agent-skill-content       [agent-skill@1/content-present]
@@ -1210,22 +1142,22 @@ specification
 #10 transferring context: 511B done
 #10 DONE 0.0s
 
-#11 [build 3/5] COPY app/ ./
+#11 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
 #11 CACHED
 
-#12 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#12 [build 3/5] COPY app/ ./
 #12 CACHED
 
 #13 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
 #13 CACHED
 
-#14 [build 2/5] WORKDIR /opt/ticket-triage/app
+#14 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
 #14 CACHED
 
-#15 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
+#15 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
 #15 CACHED
 
-#16 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
+#16 [build 2/5] WORKDIR /opt/ticket-triage/app
 #16 CACHED
 
 #17 [kit] stage sources /usr/share/sandbox/kit/ticket-triage
@@ -1235,12 +1167,11 @@ specification
 #18 exporting layers done
 #18 exporting manifest sha256:53296bc3b1cc1a0df74ad06eeae3284ef4537a289960413c6f3926ec6c5beccb done
 #18 exporting config sha256:b6acf677e992f5f4955ebcbcfb4ffacf06c58c2d116340f5b63c32346fc1e41f done
-#18 exporting attestation manifest sha256:99c1b536aaf50efb20bf12a42ca1e81e5cf0926f7e96a4a1d8e2554d597d8463 done
-#18 exporting manifest list sha256:a6551936c7978ad5433ba79c9f5ba136f0c8b654fd333107b48846e0578b97b2 done
+#18 exporting attestation manifest sha256:b82989a7b451310eb56d0991f98325c4d5a0eb107d2fbb48bab868906d6d5fe1 done
+#18 exporting manifest list sha256:e25386dcb5157e26a78c4b6e041c91adee2c03f8aa3406ac5c0fccefa28f9774 done
 #18 naming to docker.io/library/ticket-triage:probe-overlay done
-#18 unpacking to docker.io/library/ticket-triage:probe-overlay
-#18 unpacking to docker.io/library/ticket-triage:probe-overlay 1.3s done
-#18 DONE 1.3s
+#18 unpacking to docker.io/library/ticket-triage:probe-overlay done
+#18 DONE 0.0s
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from generated-probe.dockerfile
@@ -1261,27 +1192,22 @@ specification
 #5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
 #5 DONE 0.0s
 
-#6 [overlay 1/1] FROM docker.io/library/ticket-triage:probe-overlay@sha256:a6551936c7978ad5433ba79c9f5ba136f0c8b654fd333107b48846e0578b97b2
-#6 resolve docker.io/library/ticket-triage:probe-overlay@sha256:a6551936c7978ad5433ba79c9f5ba136f0c8b654fd333107b48846e0578b97b2 done
+#6 [overlay 1/1] FROM docker.io/library/ticket-triage:probe-overlay@sha256:e25386dcb5157e26a78c4b6e041c91adee2c03f8aa3406ac5c0fccefa28f9774
+#6 resolve docker.io/library/ticket-triage:probe-overlay@sha256:e25386dcb5157e26a78c4b6e041c91adee2c03f8aa3406ac5c0fccefa28f9774 done
 #6 DONE 0.0s
 
-#5 [stage-1 1/2] FROM docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
-#5 CACHED
-
 #7 [stage-1 2/2] COPY --from=overlay /opt/ticket-triage /opt/ticket-triage
-#7 DONE 0.5s
+#7 CACHED
 
 #8 exporting to image
-#8 exporting layers
-#8 exporting layers 4.5s done
+#8 exporting layers done
 #8 exporting manifest sha256:6e7c31bac1bf6bc8941b9e80ab9d595df8f905599971f68d62ca14fa358475ae done
 #8 exporting config sha256:32132f09fc67a3efb1c6c83fb99f7280b2276a7184365eace7021b143342d60b done
-#8 exporting attestation manifest sha256:437a2cec72da7db9391820d6abf17ce4127efbf05473ae2cfbbc29f2d558d9f8 done
-#8 exporting manifest list sha256:2b11f283c4664ff7608f59ff745b60b7ff82dd0573807cb490da2ded9df5c65d done
+#8 exporting attestation manifest sha256:9d5c312a816e427d12274a068fa4f9f57cc845e1b4c0c11885a002ccc0d2b320 done
+#8 exporting manifest list sha256:83c3e895d823457a84daa13399162da4620a31f389a1b9979cbf56f4cd4081d8 done
 #8 naming to docker.io/library/ticket-triage:probe done
-#8 unpacking to docker.io/library/ticket-triage:probe
-#8 unpacking to docker.io/library/ticket-triage:probe 1.3s done
-#8 DONE 5.8s
+#8 unpacking to docker.io/library/ticket-triage:probe done
+#8 DONE 0.0s
 Evidence class: container only; NOT SBX runtime confinement proof.
 {"category": "technical", "summary": "Synthetic offline classification; investigate the reported issue.", "ticket_id": "T-101"}
 PASS: fake app, sanitized filesystem, clean network-none failure; not SBX policy proof.
@@ -1330,10 +1256,10 @@ PASS: root script preserved, questions explicitly answered out-of-scope for fake
 #11 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
 #11 CACHED
 
-#12 [build 2/5] WORKDIR /opt/single-file/app
+#12 [build 3/5] COPY app/ ./
 #12 CACHED
 
-#13 [build 3/5] COPY app/ ./
+#13 [build 2/5] WORKDIR /opt/single-file/app
 #13 CACHED
 
 #14 [build 5/5] RUN chown -R 0:0 /opt/single-file
@@ -1352,8 +1278,8 @@ PASS: root script preserved, questions explicitly answered out-of-scope for fake
 #18 exporting layers done
 #18 exporting manifest sha256:df1d2495b3e46de76b2613b3756afda30eaf8f48f5bc6d7b64fc1cd683279556 done
 #18 exporting config sha256:728ef7d6cd7f771ac852cef9d9953bb48fc2b68403013e9a4e384fca61476e9e done
-#18 exporting attestation manifest sha256:687bc18732fed1f531fea34c55beca0db843a9e139e0996132acd1f5527884cb done
-#18 exporting manifest list sha256:cc5ba8b92965cee64abb73753cf4810f0efb89751901b11567001f282654bfe6 done
+#18 exporting attestation manifest sha256:723026b7a99ac4de407495702c18edccad304221e8f07e278ee938aa9b7a331a done
+#18 exporting manifest list sha256:1852514fd103bd5be75ee530bca094872dfd8179e1bcd0813078d397376120b2 done
 #18 naming to docker.io/library/single-file:probe-overlay done
 #18 unpacking to docker.io/library/single-file:probe-overlay done
 #18 DONE 0.0s
@@ -1377,8 +1303,8 @@ PASS: root script preserved, questions explicitly answered out-of-scope for fake
 #5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
 #5 DONE 0.0s
 
-#6 [overlay 1/1] FROM docker.io/library/single-file:probe-overlay@sha256:cc5ba8b92965cee64abb73753cf4810f0efb89751901b11567001f282654bfe6
-#6 resolve docker.io/library/single-file:probe-overlay@sha256:cc5ba8b92965cee64abb73753cf4810f0efb89751901b11567001f282654bfe6 done
+#6 [overlay 1/1] FROM docker.io/library/single-file:probe-overlay@sha256:1852514fd103bd5be75ee530bca094872dfd8179e1bcd0813078d397376120b2
+#6 resolve docker.io/library/single-file:probe-overlay@sha256:1852514fd103bd5be75ee530bca094872dfd8179e1bcd0813078d397376120b2 done
 #6 DONE 0.0s
 
 #7 [stage-1 2/2] COPY --from=overlay /opt/single-file /opt/single-file
@@ -1388,8 +1314,8 @@ PASS: root script preserved, questions explicitly answered out-of-scope for fake
 #8 exporting layers done
 #8 exporting manifest sha256:83d68510061df6f9b1f2ac26f838a65cbae8797386b077de527acc55cf362e16 done
 #8 exporting config sha256:636c6db9c252fe2f629421a78839d1ed4d2c3840676425a3f9440c5c69810e5d done
-#8 exporting attestation manifest sha256:4fc239cb5bda4cbd488a4439be8da11086af78cc1fbf6530ddae2a37beeaaca9 done
-#8 exporting manifest list sha256:0a6ee1175fdace1c58c93d02c89d0ac21e7ee666e902d541b62d6c668865465e done
+#8 exporting attestation manifest sha256:40cc3739099e05841ab72c3a9386bd0e1ef22895702da9ca93631d4ea64e74b1 done
+#8 exporting manifest list sha256:403bc2928ee2b876498bd2b1ae55c6cdb038095e09c1960fa99a3bec5418a476 done
 #8 naming to docker.io/library/single-file:probe done
 #8 unpacking to docker.io/library/single-file:probe done
 #8 DONE 0.0s

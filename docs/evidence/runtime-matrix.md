@@ -20,8 +20,8 @@ kit build/TCK and filesystem probe. Each log records command, UTC and exit.
 The helper's golden comparison covers the exact sanitized snapshot and hashes.
 
 Final [clean-checkout run](clean-checkout-2026-10-16.txt) PASS at implementation
-commit a8a8730571c1f29d299ca2acb5edacc46a797f5e: 49 policy-lab tests, 4 ticket-triage
-tests, 21 helper tests, 80 current relative links, both kit builds/TCK, both
+commit 95796f18f8344940986617ff896a337da27190b1: 49 policy-lab tests, 4 ticket-triage
+tests, 22 helper tests, 80 current relative links, both kit builds/TCK, both
 ordinary container probes and root agent.py build/run. It used an isolated uv
 cache/managed Python and ended with a clean cloned tree. Subsequent delivery
 changes record evidence/document status only, not source, lock or generated

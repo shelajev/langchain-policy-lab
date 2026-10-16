@@ -110,10 +110,19 @@ sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'c
 sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'test ! -e /opt/ticket-triage/app/.env && test ! -e /opt/ticket-triage/app/private'
 ```
 
-Repeat the live allowed check and **all four denied commands above**, replacing
-`sbx env` with `sbx --cloud env` and `sbxenv.local.yaml` with
-`sbxenv.cloud.yaml`; same model, ticket, expected exits, boundary-event and
-origin-control requirements. If using a private cloud override, consistently
+After a separate host approval for cloud live usage, run the allowed check and
+all four denied checks with the same expected exits, boundary-event and
+origin-control requirements:
+
+```bash
+sbx --cloud env exec -e TRIAGE_MODEL=gemini-2.5-flash -e LANGSMITH_TRACING=false ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json'
+sbx --cloud env exec -e TRIAGE_STATUS_URL=https://example.com ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model --status'
+sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- python -c 'import httpx; httpx.get("https://example.com", timeout=5).raise_for_status()'
+sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- python -c 'import httpx; httpx.get("https://status.example.invalid", timeout=5).raise_for_status()'
+sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model --post-webhook'
+```
+
+If using a private cloud override, consistently
 include it on every command, separate from any local override. Then:
 
 ```bash
