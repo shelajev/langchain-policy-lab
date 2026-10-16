@@ -15,3 +15,7 @@ Independent exact-tip QC of generator, skill behavior, security claims, article 
 Ready for independent QC at the final delivery commit reported in the crew
 handoff (resolve `git rev-parse HEAD`; an embedded self-SHA cannot identify its
 own commit). This is readiness only, not an implementer-issued QC verdict.
+
+Direct-first revision is prepared for independent exact-tip QC, including a
+forward test on a different raw app and manual/assisted reader paths. This note
+records readiness only; implementer checks are not independent QC or host SBX acceptance.

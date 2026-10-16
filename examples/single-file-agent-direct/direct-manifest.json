@@ -1,0 +1,23 @@
+{
+  "answersHash": "a06559ce32d7316489977738d680cd4d11cd4a78900243174f5f439ce06dd864",
+  "entrypoint": "agent.py",
+  "helperVersion": "1.0.0",
+  "inputHashes": {
+    ".python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "README.md": "d4f1e9d0928e6b6a8ba1ad066d0207997c71ba2c6028a286c96a19643a2d9911",
+    "agent.py": "c930322fd3b6a4aed5fda913babaef015eeed0c32d4e3724f0d197dc8d2f9955",
+    "pyproject.toml": "9949881307daff3cbc43d331da6b1c30536cd7d9b31491c3284d45b228697ae5",
+    "uv.lock": "df896d506dfbab7ef07877dc3fcb0c16eed04043b4ff85244882d572d9c5d707"
+  },
+  "name": "single-file",
+  "outputHashes": {
+    "ACCESS.md": "f99002f5c8e99798fcd41ca07e14c8179f4894788952f7396e3879a1aef4ee70",
+    "RUN.md": "1c1a064326552906415af0876889105a8de76f76c4f2bc81589458e68a87cfbd",
+    "sbxenv.yaml": "ae5b419ac257c87bc9c3b7356abcaed71a732b56ed4ca8ba2865a648c88229f4",
+    "setup-deps.sh": "4bc4494d96118634897fb0035d9a4930e39f9633938727a5b39e53c0b9112ba7",
+    "workspace/.python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "workspace/agent.py": "c930322fd3b6a4aed5fda913babaef015eeed0c32d4e3724f0d197dc8d2f9955",
+    "workspace/pyproject.toml": "9949881307daff3cbc43d331da6b1c30536cd7d9b31491c3284d45b228697ae5",
+    "workspace/uv.lock": "df896d506dfbab7ef07877dc3fcb0c16eed04043b4ff85244882d572d9c5d707"
+  }
+}

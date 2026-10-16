@@ -44,6 +44,13 @@ answers = {"name": "raw-agent", "launch": "python agent.py --fake-model", "dataP
 (temporary / "answers.json").write_text(json.dumps(answers))
 print("PASS: unchanged agent.py SHA256=" + hashlib.sha256((temporary / "app/agent.py").read_bytes()).hexdigest())
 PY
+if [ "${1:-}" = --direct-out ]; then
+  python3 "$helper" direct --project . --entrypoint agent.py --answers "$temporary/answers.json" --out "${2:?Pass a new direct output directory}"
+  cmp agent.py "$2/workspace/agent.py"
+  test ! -e "$2/workspace/.env"
+  printf '%s\n' 'PASS: raw fixture lock setup reused for direct snapshot; no kit build requested.'
+  exit 0
+fi
 python3 "$helper" generate --project . --entrypoint agent.py --answers "$temporary/answers.json" --out "$temporary/kit"
 cmp agent.py "$temporary/kit/app/agent.py"
 test ! -e "$temporary/kit/app/.env"

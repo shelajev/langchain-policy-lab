@@ -19,3 +19,16 @@ Create a reusable project-distributed skill and deterministic generator. Accept 
 - [Golden package](../examples/ticket-triage-kit/) and [current spec decisions](../docs/evidence/spec-currency.md).
 - D1: [raw agent.py + requirements fixture](../skills/langchain-sandbox-kit/tests/fixtures/raw-agent/), [verified reviewed-lock commands](../skills/langchain-sandbox-kit/references/dependencies.md), [raw lock/build log](../docs/evidence/raw-single-file.txt). Source SHA256 unchanged; `.env` excluded; no source executed by dependency setup.
 - D2: [single-file answers](../examples/single-file-agent.answers.json) and [committed golden template](../examples/single-file-agent-kit/), byte-compared by helper tests. Separate [build](../docs/evidence/single-file-kit-build.txt), [TCK 19/19](../docs/evidence/single-file-kit-tck.txt) and [nonroot/read-only/network-none container](../docs/evidence/single-file-kit-container.txt) results; not SBX runtime evidence.
+
+## Direct-first delta
+
+The primary path now prepares a sanitized original-layout workspace and reviewed
+access/run plan with `direct`; reusable kit generation is optional and its prior
+outputs/tests remain unchanged. [Tooling verification](../docs/evidence/direct-first-tooling.md)
+selects the official pinned shell workload and documented scoped policy/secret
+commands, not a hypothetical Python kit. [29 helper tests](../docs/evidence/skill-tests.txt)
+include both direct goldens, byte-identical layout, private canary, missing dynamic
+host, wildcard refusal, overwrite guard and no source execution.
+[Raw access-plan evidence](../docs/evidence/direct-first-inspect.txt) and
+[ordinary shell-image probe](../docs/evidence/direct-first-container.txt) pass;
+these are not local/cloud SBX evidence. Independent different-app forward QC remains open.

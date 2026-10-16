@@ -1,134 +1,222 @@
 # Run your LangChain in Docker Sandboxes
 
-Your LangChain app should not inherit everything your laptop can reach. It
-needs a model endpoint and some input files. That does not mean it needs your
-home directory, every credential in your shell, or an unrestricted route to
-the network. The same distinction matters when a coding agent is editing the
-app and when the app itself is processing an untrusted ticket.
-
-This tutorial packages an existing Python app as a Docker Sandboxes v3 mixin.
-You inspect its resources, answer concrete permission questions, review the
-package and run the app inside a sandbox. The agent-assisted example packages
-ticket-triage; the manual path adapts a single-file template for your own
-`agent.py`. Both produce the same kinds of reviewable kit files.
-
-One important limit up front: the repository's offline tests, generated build,
-artifact TCK and ordinary-container probe passed. One host-authorized live
-Gemini call also passed inside the implementation sandbox, with one synthetic
-ticket and bounded output. That is **not local/cloud SBX acceptance**. Actual
-local and cloud SBX have **not run** here because `sbx` is absent.
-The [host acceptance handoff](acceptance-handoff.md)
-contains the remaining commands. A successful image build is useful evidence.
-It is not evidence of a runtime security boundary.
-
-## Start with an app, not a sandbox framework
-
-If your app is a single `agent.py` plus a requirements file, keep it that way.
-Inspection accepts the file directly; the [single-file example](../examples/single-file-agent/README.md)
-shows the minimal supported project. Review dependency versions and build
-configuration, create a normal pyproject with exact pins and a Python-version
-file, then run `uv lock` as ordinary, reviewed project setup. The deterministic
-helper never resolves dependencies itself or runs `agent.py` during inspection.
-No package conversion or Sandbox API is required. Its launch command can remain
-`python agent.py` with the same arguments.
-
-The [ticket-triage app](../examples/ticket-triage/) reads a synthetic JSON support
-ticket, runs a LangChain prompt/model/parser pipeline and prints a validated
-ticket ID, category and summary. There is no Sandbox API in its code.
-
-It also has realistic optional access: a status-page URL from
-`TRIAGE_STATUS_URL`, a webhook behind `--post-webhook`, a model selected through
-`TRIAGE_MODEL`, and optional LangSmith tracing. Those are precisely the choices
-you do not want a packaging tool to make silently.
-
-Use this repository checkout, uv 0.9.26, Python 3.13.7 and Docker with buildx.
-Static inspection needs only Python 3.11+. Build validation additionally needs
-the pinned `kit-tck`. On Linux x86_64/aarch64, from the repository root, install
-project tools into a chosen scratch directory and add them to this shell's PATH.
-The installer needs `curl`, `tar`, `sha256sum`, `git` and Go available; it
-downloads pinned uv and builds the pinned kit-tck into that directory:
-
-```bash
-bash scripts/install-ci-tools.sh /tmp/triage-tools
-export PATH="/tmp/triage-tools:$PATH"
-```
-
-On other hosts, build kit-tck from the exact spec commit in
-[provenance](provenance.md). Actual sandbox steps need a supported Docker
-Sandboxes host with `sbx`, not a nested daemon. No API key is needed for this
-first app check, from the repo root:
-
-```bash
-bash scripts/check-example.sh
-```
-
-The script syncs the frozen dependencies, runs four deterministic tests, then
-runs one fake-model request. Recorded output:
-
-```json
-{"category": "technical", "summary": "Synthetic offline classification; investigate the reported issue.", "ticket_id": "T-101"}
-```
-
-The fake mode uses a LangChain fake chat model. It tests the application's
-wiring without billing a provider or claiming that a real model is correct.
-Status and webhook flags still represent explicit network operations, even
-with a fake model, so leave them off for the offline check.
+Your LangChain app is ordinary Python. You can run its existing `agent.py` in a
+shell sandbox without converting it into a custom kit or moving it into `src/`.
+First decide which files and services it may use. Then mount a sanitized copy,
+install its reviewed dependencies inside the sandbox, and launch the same app.
 
 ## Why isolate the agent and the app?
 
 A coding agent can run tools, read files and execute commands while developing
-your project. Later, the application can read the same ticket data and make
-model or HTTP requests without the coding agent being involved at all.
-Confining only the editor misses the application's runtime access.
+your project. Later, the application can read the same data and make model or
+HTTP requests without the coding agent being involved at all. Confining only
+the editor misses the application's runtime access.
 
 [Docker Sandboxes](https://docs.docker.com/ai/sandboxes/) provides microVM-based
 isolation. Workspace mounts and policy still decide what crosses that boundary.
 Mounting a directory exposes its contents; permitting a service lets requests
-reach it. The useful question is not whether the app is in a sandbox, but
-which files, destinations and credential-backed operations it can use there.
+reach it. The useful question is which files, destinations and credential-backed
+operations the app can use there.
 
-For this example, the intended answer is narrow: the synthetic ticket files
-and the Gemini API host, with a separately approved runtime credential. No
-status enrichment, webhook delivery or tracing. The rest of this tutorial
-makes that decision visible rather than inferring permission from imports.
+For this example, allow only the Gemini API for synthetic ticket classification.
+Leave tracing off. Do not expose `.env`, keys or private data. The shell workload
+runs the app; a coding agent is optional assistance, not the thing being deployed.
 
-## Let a coding agent do the inspection
+## Run your existing app in a sandbox
 
-The repository includes a self-contained
-[LangChain packaging skill](../skills/langchain-sandbox-kit/SKILL.md).
-Ask your coding agent:
+You need this repository checkout, Python 3.11+ for the inspector, and uv 0.9.26
+for lock preparation. Actual sandbox commands need a supported Docker Sandboxes
+host with `sbx`. Docker buildx and kit-tck are needed only for optional packaging
+checks, not for direct local execution. All `sbx` commands below are **host
+steps, NOT RUN here**; local and cloud runtime acceptance remains open.
 
-> Package my LangChain app at ./examples/ticket-triage to run in Docker Sandboxes.
-> Inspect it without executing it. Ask about unresolved access and show me
-> the generated package before requesting any permissions.
-
-Point it at the skill explicitly, or copy the entire skill folder into your
-own project's `.agents/skills/` for Codex or `.claude/skills/` for Claude Code.
-Keep its scripts, templates and references together. No host-level skill
-installation is needed, and this repository does not change personal agent
-configuration. See [official discovery sources](provenance.md).
-
-The skill runs a deterministic helper. You can run its first step yourself:
+Start from the [raw fixture](../skills/langchain-sandbox-kit/tests/fixtures/raw-agent/):
+just `agent.py` and `requirements.txt`. It classifies a synthetic ticket using
+LangChain and Gemini, or a nonbillable fake model. From the repository root:
 
 ```bash
-python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py inspect --project examples/ticket-triage --entrypoint src/ticket_triage/app.py
+cp -R skills/langchain-sandbox-kit/tests/fixtures/raw-agent /tmp/my-agent
+cd /tmp/my-agent
+uv init --bare --no-workspace --name single-file-agent --python 3.13.7
+uv python pin 3.13.7
+uv add --no-sync 'langchain==1.4.4' 'langchain-core==1.6.9' 'langchain-google-genai==4.4.0'
+uv lock
+cd -
 ```
 
-The helper parses source and configuration without importing the application,
-executing it or resolving dependencies. Findings have file:line evidence and
-confidence labels. It reports provider suggestions, environment-variable names,
-literal URL hosts, dynamic URLs, file reads and unknown integrations. It skips
-private files and redacts secret-like literals.
+Use fresh paths. These commands add dependency metadata without changing or
+running `agent.py`. For an existing project, review its metadata/build backend
+first; do not blindly initialize it again. Choose compatible exact versions
+for your app rather than adopting this example's pins. Keep your lock and
+Python pin with the app. The [single-file example](../examples/single-file-agent/README.md)
+explains these constraints.
 
-Expect questions, not a complete permissions proof. Is `TRIAGE_STATUS_URL`
-actually used in your deployment? Which exact host belongs there? Is tracing
-on? Which model and data directory are intended? A package dependency can
-suggest a provider host; it cannot prove that runtime configuration will use it.
+### Manual: prepare only the files the app needs
 
-Every current finding needs an explicit allow, deny or out-of-scope answer,
-with a reason. An unresolved dynamic URL cannot become an allow rule until the
-developer names its hosts. The helper will not auto-grant access, and the host
-must still approve the resulting capability requests.
+Before copying, read the script and requirements. Confirm the model and exact
+provider host, custom base URLs, tracing, subprocesses, files and any other
+network operations. For this fixture: `python agent.py`, Gemini
+`generativelanguage.googleapis.com`, model `gemini-2.5-flash`, no tracing and no
+private data. A Python file cannot prove complete permissions; confirm runtime
+configuration with the developer.
+
+Make a separate control directory and an explicit allowlisted workspace. Do not
+copy the whole project and hope `.dockerignore` filters a mount: it does not.
+For this fixture, from the repository root:
+
+```bash
+mkdir -p /tmp/manual-agent-direct/workspace
+cp /tmp/my-agent/agent.py /tmp/my-agent/pyproject.toml /tmp/my-agent/uv.lock /tmp/my-agent/.python-version /tmp/manual-agent-direct/workspace/
+cp skills/langchain-sandbox-kit/templates/direct-setup.txt /tmp/manual-agent-direct/setup-deps.sh
+```
+
+For your app, retain its relative package layout and copy only reviewed source,
+lock/config and required data files. Never include `.env`, `private/`, keys,
+`.venv`, caches, VCS or agent hook/config directories. Review the copy before
+mounting it; even an innocent-looking data file can contain secrets.
+
+Write `/tmp/manual-agent-direct/sbxenv.yaml`:
+
+```yaml
+schemaVersion: "1"
+name: manual-agent-direct
+agent: sbx-kit-shell
+kits:
+  - docker/sbx-kit-shell:1.0.0@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+workspace: ./workspace
+sandboxOptions:
+  skills: off
+env:
+  GOOGLE_API_KEY: proxy-managed
+  LANGSMITH_TRACING: "false"
+```
+
+This selects an official shell workload, not an app-specific mixin. It has
+Python but no uv, curl or git. The reviewed `setup-deps.sh` uses Python's standard
+library to download uv 0.9.26, verifies the archive checksum, installs only uv
+into the sandbox user's home, then runs `uv sync --locked`. Read it before use;
+it runs **inside** the sandbox. Supported architectures are Linux x86_64/aarch64.
+The dependency install can run package build hooks inside the sandbox.
+
+Keep the environment and setup script outside `workspace/`. Disabling shared
+skills omits that extra mount. The placeholder is not a credential; never put
+an actual key in this YAML.
+
+### With a coding agent: inspect, ask, then direct
+
+Ask your coding agent to read [the repository skill](../skills/langchain-sandbox-kit/SKILL.md):
+
+> Run my existing LangChain app at /tmp/my-agent in Docker Sandboxes. Inspect
+> agent.py without executing it, ask about unresolved access, preserve its layout,
+> and prepare a direct-run plan before requesting permissions. A reusable kit is optional.
+
+The skill is self-contained: keep its scripts, templates and references together.
+For discovery in your own project, copy the folder into
+`.agents/skills/langchain-sandbox-kit/` (Codex) or
+`.claude/skills/langchain-sandbox-kit/` (Claude Code), not a host-global directory.
+You can run the same deterministic steps yourself from the repository root:
+
+```bash
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py inspect --project /tmp/my-agent --entrypoint agent.py --json /tmp/my-agent-inspection.json
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py direct --project /tmp/my-agent --entrypoint agent.py --answers examples/raw-agent.answers.json --out /tmp/my-agent-direct
+```
+
+The answers above match this unchanged fixture and metadata only. For your app,
+answer every finding with an explicit allow, deny or out-of-scope decision and
+reason using the [answer contract](../skills/langchain-sandbox-kit/references/answers.schema.md).
+Ask about exact dynamic URLs and optional tracing; do not auto-allow imports.
+Include required data/config paths explicitly. Missing or stale answers stop
+with exit 2; unsafe inputs with 3; unsafe overwrite with 4.
+
+Review `ACCESS.md`, `RUN.md`, `setup-deps.sh`, manifest hashes and `workspace/`.
+The helper never imports source, resolves dependencies, starts a sandbox or
+grants access. It refuses secret-like literals and unsafe/incomplete scans.
+Use a fresh output directory outside the app. `--force` only replaces unchanged
+helper-owned output, never your edits.
+
+### Host: create, configure access, then run
+
+The following commands use the **manual** directory. If you used the helper,
+follow its `RUN.md` instead: use `/tmp/my-agent-direct/sbxenv.yaml` and sandbox
+name `single-file` consistently, not `manual-agent-direct`.
+
+On your approved host, use an existing approved Google credential. The direct
+route uses Docker's built-in service **google**, not the optional kit's **gemini**
+service. `sbx secret set` prompts on the host; do not print the value or put it
+in an argument. Inspect existing scoped secrets and effective policy first.
+
+```bash
+sbx secret set google --sandbox manual-agent-direct
+sbx env plan /tmp/manual-agent-direct/sbxenv.yaml
+sbx env create /tmp/manual-agent-direct/sbxenv.yaml
+sbx policy ls
+sbx policy allow network --sandbox manual-agent-direct generativelanguage.googleapis.com
+sbx policy deny network --sandbox manual-agent-direct example.com
+sbx policy allow network --sandbox manual-agent-direct github.com,release-assets.githubusercontent.com,pypi.org,files.pythonhosted.org
+sbx env exec /tmp/manual-agent-direct/sbxenv.yaml -- pwd
+sbx env exec -i /tmp/manual-agent-direct/sbxenv.yaml -- sh < /tmp/manual-agent-direct/setup-deps.sh
+```
+
+Review the environment plan before approving. The mounted workspace should be
+its working directory; check `pwd` and the expected `pyproject.toml` before
+setup. The proxy injects the Google API key as `x-goog-api-key` for the approved
+API domain. If the plan requests an additional credential-domain binding, stop
+for host review; this shell composition's binding prompt has not been exercised
+here. Environment bindings can affect other sandboxes and must not be silently added.
+
+The four temporary destinations let uv and the pinned Python/dependencies be
+downloaded. After setup, remove those scoped grants and inspect effective policy:
+
+```bash
+sbx policy rm network --sandbox manual-agent-direct --resource github.com,release-assets.githubusercontent.com,pypi.org,files.pythonhosted.org
+sbx policy ls
+sbx env exec /tmp/manual-agent-direct/sbxenv.yaml -- .venv/bin/python agent.py --fake-model
+```
+
+Expected offline result: `{"category": "technical", "ticket_id": "T-101"}`.
+This runs the existing app inside the sandbox, without billing a model. You can
+also attach with `sbx env run /tmp/manual-agent-direct/sbxenv.yaml`, activate
+`.venv/bin/activate` in that shell, then run `python agent.py --fake-model`.
+
+## Verify allowed and denied operations
+
+For a real allowed call, separately approve the synthetic input, model budget
+and timeout. The fixture selects `gemini-2.5-flash` with bounded output:
+
+```bash
+sbx env exec /tmp/manual-agent-direct/sbxenv.yaml -- python3 -c "import subprocess; subprocess.run(['.venv/bin/python', 'agent.py'], timeout=60, check=True)"
+sbx env exec /tmp/manual-agent-direct/sbxenv.yaml -- python3 -c "import urllib.request; urllib.request.urlopen('https://example.com', timeout=10)"
+sbx policy log
+```
+
+The first should return a valid category, using the approved Gemini host. The
+second must be rejected by policy for `example.com`, with a matching boundary
+event. Confirm the origin is reachable from an approved host-side control first.
+DNS, TLS, timeout or an origin's own 403 is not proof of a sandbox policy denial.
+Check `.env`, `private/` and credentials are absent without printing their content.
+Inspect inherited local/org rules: adding one allow does not cancel broader
+grants, and an org deny cannot be bypassed with a local allow.
+
+Local SBX allowed/denied checks are **NOT RUN** here. The unchanged fixture has
+passed a read-only, nonroot, network-none ordinary container probe on the pinned
+shell image; that does not establish SBX policy or credential injection.
+
+When finished, review the destroy plan:
+
+```bash
+sbx env rm /tmp/manual-agent-direct/sbxenv.yaml
+```
+
+Review remaining sandbox-scoped policy/secret entries and remove only this run's
+entries. Cleanup must not alter shared bindings or unrelated sandbox access.
+
+## Optional: package a reusable kit
+
+A reusable kit packages the environment, dependencies and policy for repeatable
+distribution or cloud baking. It is not required to run each LangChain file.
+The larger [ticket-triage example](../examples/ticket-triage/README.md) exercises
+`src/` layout, data files and optional status/webhook access. Its worked answers
+are fixture-specific; keep those optional destinations denied.
 
 ## Generate packaging you can review
 
@@ -181,7 +269,7 @@ These checks are separate from environment creation, not an assumption that
 Use a fresh layout path. The subshell leaves you at the repository root.
 Continue to the local host handoff, or take the manual route instead.
 
-## The manual path starts from an agent.py template
+### Manual reusable kit from an agent.py template
 
 For a root `agent.py`, start from the
 [single-file kit](../examples/single-file-agent-kit/). It is a template, not
@@ -260,7 +348,7 @@ Use the [guide's container recipe](user-guide.md#probe-your-manual-overlay).
 That checks filesystem compatibility, not actual SBX confinement or credential
 injection. Those remain host checks.
 
-## Run your app inside local Docker Sandboxes
+### Host: run the optional kit locally
 
 On the approved host, from the repository root:
 
@@ -305,7 +393,7 @@ fail DNS even with no policy at all; an origin 403 can also resemble a boundary
 
 ## Cloud changes the resources, not the app
 
-The cloud file keeps the baked app and removes `workspace` entirely. Cloud
+For the optional kit, the cloud file keeps the baked app and removes `workspace` entirely. Cloud
 cannot mount the host directory. The host reports `sbx --cloud diagnose` passed
 authentication, API reachability and subscription: the host cloud account and
 API are reachable. The crew did not observe that diagnosis. Cloud runtime
@@ -348,10 +436,10 @@ availability and cost controls appropriate to the application.
 
 ## Keep the boundary honest
 
-Review the effective policy, not only this mixin. Other kits and host/org
+Review the effective policy, not only your access plan. Other kits and host/org
 defaults can expand access. Use exact hosts, explicit denies where needed,
 separate build and runtime permissions, and minimal mounted data. The helper
-uses host-level `network-policy@1`; do not claim method/path filtering. More
+uses host-level `network-policy@1` only in the optional kit; do not claim method/path filtering. More
 granular @2 policy needs its own target-enforcement tests.
 
 Proxy-managed credentials reduce secret exposure, but an allowed service still
@@ -359,5 +447,4 @@ accepts requests. A malicious instruction can ask the app to send sensitive
 content to the permitted model endpoint or spend its quota. Sandboxing is not
 a cure for prompt injection, and structured output is not proof of truth.
 
-Record the actual local and cloud observations in the
-[runtime matrix](evidence/runtime-matrix.md); those acceptance rows remain open.
+Verify allowed and denied operations on each target before relying on its boundary.

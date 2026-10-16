@@ -11,10 +11,14 @@ Optional per-decision fields:
   A literal-host decision uses its observed host. Dynamic URLs need named hosts.
 - `credential`: the provider's service identifier, only on an explicitly allowed
   provider-package decision with its exact host. No secret value is accepted.
+  The shared answers contract uses `gemini` for Google; `direct` translates it
+  to Docker's built-in `google` service, while `generate` keeps the kit's
+  declared `gemini` service. ACCESS.md/RUN.md show the target-specific name.
 - `allowBroad: true`: explicit exception for wildcard/IP hosts, with a reason;
-  flagged in the summary. Prefer exact hosts.
+  flagged in the optional kit summary. `direct` refuses wildcard/IP hosts even
+  with this exception; use exact DNS hosts.
 
-`dataPaths` lists relative data files/directories copied alongside `src/`.
+`dataPaths` lists required relative data/config files or directories, retaining layout.
 No `..`, absolute paths, symlinks or excluded private paths. `launch` is a reviewed
 simple command such as `python agent.py` or `python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model`.
 No shell expansion, redirection, hooks, `lifecycle` or `sbx@1` fields are allowed.

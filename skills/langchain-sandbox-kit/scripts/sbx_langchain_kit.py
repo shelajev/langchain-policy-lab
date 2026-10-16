@@ -247,7 +247,8 @@ def inspect(project, entrypoint):
     return {"helperVersion": VERSION, "entrypoint": entrypoint, "findings": findings,
             "questions": [{"id": finding["id"], "question": f"{finding['kind']}: {finding['value'] or 'inspect this location'}; allow with reason, deny, or out-of-scope?",
                            "evidence": f"{finding['file']}:{finding['line']}"} for finding in findings],
-            "excluded": excluded, "inputHashes": {name: digest(raw) for name, raw in sorted(files.items())}}, files
+            "excluded": excluded, "inputHashes": {name: digest(raw) for name, raw in sorted(files.items())},
+            "nextSteps": "Review answers, then direct for an access plan; generate is optional reusable packaging."}, files
 
 
 def validate_lock(files):
@@ -317,7 +318,7 @@ def permissions(report, answers, allowed, denied):
     return "\n".join(rows) + "\n"
 
 
-def generate(project, entrypoint, answers_path, output, force=False):
+def generate(project, entrypoint, answers_path, output, force=False, direct=False):
     report, files = inspect(project, entrypoint)
     python = validate_lock(files)
     if answers_path.is_symlink() or answers_path.stat().st_size > MAX_SIZE:
@@ -360,6 +361,10 @@ def generate(project, entrypoint, answers_path, output, force=False):
             raise Refusal("dynamic URL needs exact hosts", 2)
         for host in hosts:
             validate_host(host, answer.get("allowBroad"), answer["reason"])
+            if direct:
+                validate_host(host, False, answer["reason"])
+            if direct and ("*" in host or host.startswith(".") or not re.fullmatch(r"[a-z0-9-]+(?:\.[a-z0-9-]+)+", host)):
+                raise Refusal("direct requires exact DNS hosts; no wildcards or IPs")
             if answer["action"] == "allow":
                 allowed.add(host)
             elif answer["action"] == "deny":
@@ -381,6 +386,7 @@ def generate(project, entrypoint, answers_path, output, force=False):
         raise Refusal("excluded data path")
     selected = {filename: raw for filename, raw in files.items() if filename in ("pyproject.toml", "uv.lock", ".python-version")
                 or ("/" not in filename and filename.endswith(".py"))
+                or (direct and filename.endswith(".py"))
                 or filename.startswith("src/") or any(filename == path or filename.startswith(path + "/") for path in paths)}
     if entrypoint not in selected:
         raise Refusal("entrypoint must be a root Python file or under src/")
@@ -418,10 +424,14 @@ def generate(project, entrypoint, answers_path, output, force=False):
     outputs.update({"app/" + filename: raw for filename, raw in selected.items()})
     outputs[".dockerignore"] = ("**\n" + "\n".join("!" + filename for filename in sorted(outputs) if filename.startswith("app/"))
                                  + f"\n!{name}-context.md\n").encode()
+    manifest_name = "kit-manifest.json"
+    if direct:
+        outputs = direct_outputs(report, answers, selected, allowed, denied, credentials, template_root)
+        manifest_name = "direct-manifest.json"
     manifest = {"helperVersion": VERSION, "name": name, "entrypoint": entrypoint,
                 "inputHashes": report["inputHashes"], "answersHash": digest(answers_raw),
                 "outputHashes": {filename: digest(raw) for filename, raw in sorted(outputs.items())}}
-    outputs["kit-manifest.json"] = encoded(manifest).encode()
+    outputs[manifest_name] = encoded(manifest).encode()
     existing = set()
     if output.exists():
         if not output.is_dir():
@@ -433,13 +443,13 @@ def generate(project, entrypoint, answers_path, output, force=False):
             try:
                 if any(path.is_symlink() for path in output.rglob("*")):
                     raise ValueError()
-                if (output / "kit-manifest.json").stat().st_size > MAX_SIZE:
+                if (output / manifest_name).stat().st_size > MAX_SIZE:
                     raise ValueError()
-                old = json.loads((output / "kit-manifest.json").read_text())
+                old = json.loads((output / manifest_name).read_text())
                 old_hashes = old["outputHashes"]
                 if old["helperVersion"] != VERSION or not isinstance(old_hashes, dict):
                     raise ValueError()
-                if existing != set(old_hashes) | {"kit-manifest.json"}:
+                if existing != set(old_hashes) | {manifest_name}:
                     raise ValueError()
                 expected_directories = {parent.as_posix() for filename in old_hashes for parent in PurePosixPath(relative(filename)).parents if parent.as_posix() != "."}
                 actual_directories = {path.relative_to(output).as_posix() for path in output.rglob("*") if path.is_dir()}
@@ -477,10 +487,58 @@ def generate(project, entrypoint, answers_path, output, force=False):
     return manifest
 
 
+def direct_outputs(report, answers, selected, allowed, denied, credentials, template_root):
+    name = answers["name"]
+    bootstrap = ["github.com", "release-assets.githubusercontent.com", "pypi.org", "files.pythonhosted.org"]
+    if set(bootstrap) & set(denied) or "example.com" in allowed:
+        raise Refusal("direct bootstrap or negative-control host conflicts with reviewed decisions")
+    environment = f'schemaVersion: "1"\nname: {name}\nagent: sbx-kit-shell\nkits:\n  - {SHELL}\nworkspace: ./workspace\nsandboxOptions:\n  skills: off\n'
+    credential_rows, secret_steps = [], []
+    environment_values = {}
+    for host, service, env, header, format_value in sorted(credentials):
+        service = "google" if service == "gemini" else service
+        environment_values[env] = "proxy-managed"
+        credential_rows.append(f"- Service `{service}`; env `{env}` (sentinel); header `{header}`; domain `{host}`; format `{format_value}`.")
+        secret_steps.append(f"sbx secret set {service} --sandbox {name}")
+    if any(finding["kind"] == "optional-tracing" and answers["decisions"][finding["id"]]["action"] == "deny" for finding in report["findings"]):
+        environment_values["LANGSMITH_TRACING"] = "false"
+    if environment_values:
+        environment += "env:\n" + "".join(f"  {env}: {json.dumps(value)}\n" for env, value in sorted(environment_values.items()))
+    review = permissions(report, answers, allowed, denied)
+    review = review[:review.index("## Launch ownership")] + "## Credentials\n\n" + ("\n".join(credential_rows) or "None requested.") + "\n\n## Excluded files\n\n" + "\n".join("- " + item for item in report["excluded"]) + "\n\n## What this does not protect" + review.split("## What this does not protect", 1)[1]
+    review = review.replace("No install-phase network is requested; image builds still download locked dependencies.", "Temporary scoped bootstrap network is requested separately in RUN.md; remove it before runtime.").replace("Other kits and host policy", "The workload and host policy").replace("no host workspace mount is included", "cloud cannot mount this local workspace")
+    rows = ["# Run the unchanged app", "", "Host steps below are NOT RUN here. Review ACCESS.md and every command before approving.",
+            "Keep these control files outside workspace/. Use a fresh sandbox name; inspect inherited policy and existing credentials first.",
+            "No generated mixin is needed. An allow list does not cancel broader host/org grants.", "", "## 1. Host: existing credential and environment", "", "```bash", *secret_steps,
+            "sbx env plan ./sbxenv.yaml", "sbx env create ./sbxenv.yaml", "sbx policy ls", "```", "", "# UNVERIFIED: whether this host's shell composition requests additional binding approval. Stop for host review; no global binding is generated.",
+            "", "## 2. Host: scoped bootstrap and runtime policy", "", "```bash"]
+    rows += [f"sbx policy allow network --sandbox {name} {host}" for host in sorted(set(bootstrap) | set(allowed))]
+    rows += [f"sbx policy deny network --sandbox {name} {host}" for host in sorted(set(denied) | {"example.com"})]
+    rows += ["sbx env exec ./sbxenv.yaml -- pwd", "sbx env exec -i ./sbxenv.yaml -- sh < setup-deps.sh", "```", "", "Setup runs only inside the sandbox, from its mounted workspace; verify pwd and the expected pyproject.toml first.",
+             "The reviewed setup script checks uv's release hash and runs uv sync --locked. Package build hooks may execute inside the sandbox.",
+             "", "## 3. Host: remove temporary grants", "", "```bash"]
+    rows += [f"sbx policy rm network --sandbox {name} --resource {host}" for host in bootstrap if host not in allowed]
+    rows += ["sbx policy ls", "```", "", "Inspect effective policy. Do not claim other hosts are denied if inherited rules allow them.",
+             "", "## 4. Host: execute inside the sandbox", "", "```bash",
+             f"sbx env exec ./sbxenv.yaml -- .venv/bin/{answers['launch']}", "```", "",
+             "For an interactive shell use `sbx env run ./sbxenv.yaml`; inside it activate `.venv/bin/activate`, then run `" + answers["launch"] + "`.",
+             "Approve model cost/data separately. This command is live unless your app selects its fake-model option.",
+             "", "## 5. Host: denied operation and origin control", "", "```bash",
+             "sbx env exec ./sbxenv.yaml -- python3 -c \"import urllib.request; urllib.request.urlopen('https://example.com', timeout=10)\"", "sbx policy log", "```", "",
+             "Expect a policy rejection for example.com, not merely a DNS/TLS/timeout error. Compare an approved host-side origin reachability check and inspect the policy log.",
+             "Check `.env` and private/ are absent without printing secrets. Build/container checks do not prove this SBX boundary.",
+             "", "## 6. Host: cleanup", "", "```bash", "sbx env rm ./sbxenv.yaml", "```", "",
+             "Review leftover sandbox-scoped policy/secret entries and remove only this run's entries. Cloud has no host mount; use an approved kit/bake transfer and separate cloud credentials/policy."]
+    outputs = {"sbxenv.yaml": environment.encode(), "ACCESS.md": review.encode(), "RUN.md": ("\n".join(rows) + "\n").encode(),
+               "setup-deps.sh": (template_root / "direct-setup.txt").read_bytes()}
+    outputs.update({"workspace/" + filename: raw for filename, raw in selected.items()})
+    return outputs
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     subcommands = parser.add_subparsers(dest="command", required=True)
-    for command in ("inspect", "generate"):
+    for command in ("inspect", "direct", "generate"):
         subparser = subcommands.add_parser(command)
         subparser.add_argument("--project", type=Path, required=True)
         subparser.add_argument("--entrypoint", required=True)
@@ -501,11 +559,12 @@ def main():
                     raise Refusal("JSON output must be new and outside the project", 4)
                 args.json.write_text(encoded(report))
                 print("# Inspection\n\n" + "\n".join(f"- {item['id']}: {item['question']} ({item['evidence']})" for item in report["questions"]))
+                print("\nNext: review answers, then direct for an access plan; generate is optional reusable packaging.")
             else:
                 print(encoded(report), end="")
-        elif args.command == "generate":
-            generate(args.project, args.entrypoint, args.answers, args.out, args.force)
-            print("generated reviewable mixin; no capabilities granted or runtime started")
+        elif args.command in ("direct", "generate"):
+            generate(args.project, args.entrypoint, args.answers, args.out, args.force, direct=args.command == "direct")
+            print("wrote reviewable access plan; no runtime started" if args.command == "direct" else "generated reviewable mixin; no capabilities granted or runtime started")
         else:
             if args.manifest.is_symlink():
                 raise Refusal("manifest must not be a symlink")

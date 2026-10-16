@@ -11,7 +11,66 @@ existing provider access if a real call is approved. Keep the generated kit
 unchanged while capturing evidence. Commands here are the current documented
 grammar, not a claim that the target accepted them.
 
-## H1: local SBX, fake first
+## H1 direct variant: existing app, no generated mixin
+
+**NOT RUN.** First use `direct` as shown in the tutorial/README and review its
+ACCESS.md, RUN.md, setup-deps.sh, workspace and manifest. Below uses the
+ready-locked single-file example, output `/tmp/my-agent-direct`, name `single-file`.
+Do not mount the raw app or controls. No live app call is repeated by the crew.
+
+```bash
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py direct --project examples/single-file-agent --entrypoint agent.py --answers examples/single-file-agent.answers.json --out /tmp/my-agent-direct
+sbx secret set google --sandbox single-file
+sbx env plan /tmp/my-agent-direct/sbxenv.yaml
+sbx env create /tmp/my-agent-direct/sbxenv.yaml
+sbx policy ls
+sbx policy allow network --sandbox single-file generativelanguage.googleapis.com
+sbx policy deny network --sandbox single-file example.com
+sbx policy allow network --sandbox single-file github.com,release-assets.githubusercontent.com,pypi.org,files.pythonhosted.org
+sbx env exec /tmp/my-agent-direct/sbxenv.yaml -- pwd
+sbx env exec -i /tmp/my-agent-direct/sbxenv.yaml -- sh < /tmp/my-agent-direct/setup-deps.sh
+sbx policy rm network --sandbox single-file --resource github.com,release-assets.githubusercontent.com,pypi.org,files.pythonhosted.org
+sbx policy ls
+sbx env exec /tmp/my-agent-direct/sbxenv.yaml -- .venv/bin/python agent.py --fake-model
+sbx env exec /tmp/my-agent-direct/sbxenv.yaml -- sh -c 'test ! -e .env && test ! -e private'
+```
+
+Use only an existing approved host credential. Built-in service `google` uses
+GOOGLE_API_KEY/GEMINI_API_KEY placeholders and x-goog-api-key proxy injection;
+the optional kit below uses its separately declared `gemini` service. The
+host must review any unexpected binding prompt; this shell interaction remains
+UNVERIFIED. No global binding is generated. Check working directory before setup.
+Inspect inherited policy/credentials; one narrow allow is not an exclusive policy.
+
+If separately approved for this host target, one bounded synthetic live request:
+
+```bash
+sbx env exec /tmp/my-agent-direct/sbxenv.yaml -- python3 -c "import subprocess; subprocess.run(['.venv/bin/python', 'agent.py'], timeout=60, check=True)"
+```
+
+Expected fake JSON: category technical, ticket_id T-101. Expected real result:
+valid category from gemini-2.5-flash, max output 256, wall timeout 60s. This host
+target test has NOT RUN; the earlier approved implementation-sandbox live call
+does not prove this composition or authorize an additional unattended call.
+
+Negative check and origin control (only run after host approves these destinations):
+
+```bash
+curl --connect-timeout 5 --max-time 10 -I https://example.com
+sbx env exec /tmp/my-agent-direct/sbxenv.yaml -- python3 -c "import urllib.request; urllib.request.urlopen('https://example.com', timeout=10)"
+sbx policy log
+sbx env rm /tmp/my-agent-direct/sbxenv.yaml
+```
+
+Require a matching policy-denied boundary event; timeout, DNS, TLS or an origin
+403 is insufficient. Record actual status/exit, effective policy and workload,
+source hash, exclusion checks and cleanup. Do not record secrets. Inspect and
+remove only this run's leftover scoped rules/secrets; do not prune shared bindings.
+For an interactive session, `sbx env run /tmp/my-agent-direct/sbxenv.yaml`.
+Cloud cannot mount this workspace: use the optional kit path in H2 only after
+host-approved baking/transfer and separate cloud-side policy/secret setup.
+
+## H1 optional kit: local SBX, fake first
 
 ```bash
 sbx version

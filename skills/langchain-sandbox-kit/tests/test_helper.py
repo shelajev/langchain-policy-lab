@@ -17,6 +17,61 @@ CANARY = "TEST_ONLY_PRIVATE_CANARY_4728c2bd"
 
 
 class HelperTests(unittest.TestCase):
+    def direct(self, force=False):
+        return HELPER.generate(self.project, "src/demo/app.py", self.answers_path, self.output, force, direct=True)
+
+    def test_direct_goldens_and_original_layout(self):
+        for example, entrypoint in (("single-file-agent", "agent.py"), ("ticket-triage", "src/ticket_triage/app.py")):
+            project = ROOT / "examples" / example
+            output = self.base / example
+            HELPER.generate(project, entrypoint, ROOT / "examples" / (example + ".answers.json"), output, direct=True)
+            golden = ROOT / "examples" / (example + "-direct")
+            actual = {path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+            expected = {path.relative_to(golden): path.read_bytes() for path in golden.rglob("*") if path.is_file()}
+            self.assertEqual(actual, expected)
+            for path in (output / "workspace").rglob("*"):
+                if path.is_file():
+                    self.assertEqual(path.read_bytes(), (project / path.relative_to(output / "workspace")).read_bytes())
+            self.assertNotIn("  - ./", (output / "sbxenv.yaml").read_text())
+
+    def test_direct_never_executes_and_excludes_private_canary(self):
+        marker = self.base / "executed"
+        with (self.project / "src/demo/app.py").open("a") as stream:
+            stream.write(f'from pathlib import Path\nPath({str(marker)!r}).touch()\n')
+        (self.project / ".env").write_text(CANARY)
+        (self.project / "private").mkdir()
+        (self.project / "private/key.py").write_text(CANARY)
+        self.answers()
+        self.direct()
+        self.assertFalse(marker.exists())
+        for path in self.output.rglob("*"):
+            if path.is_file():
+                self.assertNotIn(CANARY.encode(), path.read_bytes())
+
+    def test_direct_unresolved_host_requires_answer(self):
+        with (self.project / "src/demo/app.py").open("a") as stream:
+            stream.write("import requests\nrequests.get(url)\n")
+        answers = self.answers()
+        finding = next(item for item in self.report()["findings"] if item["kind"] == "dynamic-url")
+        answers["decisions"][finding["id"]] = {"action": "allow", "reason": "Needs a concrete endpoint"}
+        self.answers_path.write_text(json.dumps(answers))
+        self.assert_refused(self.direct, 2)
+
+    def test_direct_wildcard_refused_even_with_broad_authorization(self):
+        answers = self.answers()
+        decision = next(iter(answers["decisions"].values()))
+        decision.update(action="allow", hosts=["*.example.com"], allowBroad=True)
+        self.answers_path.write_text(json.dumps(answers))
+        self.assert_refused(self.direct)
+
+    def test_direct_overwrite_guard(self):
+        self.answers()
+        self.direct()
+        self.assert_refused(self.direct, 4)
+        self.direct(force=True)
+        (self.output / "ACCESS.md").write_text("edited")
+        self.assert_refused(lambda: self.direct(force=True), 4)
+
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)

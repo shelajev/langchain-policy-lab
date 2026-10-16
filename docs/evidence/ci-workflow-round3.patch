@@ -1,0 +1,21 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -25,5 +25,17 @@ jobs:
+         run: bash scripts/check-kit.sh "$RUNNER_TEMP/langchain-layout"
+       - name: Non-SBX filesystem dependency probe
+         run: bash scripts/check-filesystem.sh
++      - name: Existing-app offline tests and safe packager tests
++        run: |
++          bash scripts/check-example.sh
++          bash scripts/check-skill.sh
++      - name: Generated kit build, TCK and non-SBX container probe
++        run: bash scripts/check-generated-kit.sh "$RUNNER_TEMP/ticket-triage-layout"
++      - name: Raw agent requirements to reviewed lock and sanitized build
++        run: bash scripts/check-raw-single-file.sh
++      - name: Single-file golden kit build, TCK and non-SBX container probe
++        run: bash scripts/check-single-file.sh
++      - name: Direct existing-app source and non-SBX shell-image probe
++        run: bash scripts/check-direct.sh
+       - name: Clean-checkout journey
+         run: bash scripts/clean-checkout.sh

@@ -1,0 +1,47 @@
+Evidence class: registry and ordinary no-network container inspection, not SBX.
+Name:      docker.io/docker/sbx-kit-shell:1.0.0@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+MediaType: application/vnd.oci.image.index.v1+json
+Digest:    sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+           
+Manifests: 
+  Name:        docker.io/docker/sbx-kit-shell:1.0.0@sha256:9b1783699b4801cd80a28062231a5eae9347986be8a76b6f720ba86413ff3a9a
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/amd64
+               
+  Name:        docker.io/docker/sbx-kit-shell:1.0.0@sha256:4e1d2882deb35469c593f7bbfed46dbd8eded238317e105a14a78618225e1337
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/arm64
+               
+  Name:        docker.io/docker/sbx-kit-shell:1.0.0@sha256:0b3572d3a02d4b4b365c2ffb696729159388fe65fadf6e7374e1003d926411f3
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest: sha256:9b1783699b4801cd80a28062231a5eae9347986be8a76b6f720ba86413ff3a9a
+    vnd.docker.reference.type:   attestation-manifest
+               
+  Name:        docker.io/docker/sbx-kit-shell:1.0.0@sha256:fcbf0af8757b742bf212f590e15069112b76a68dbb4034e0a1c13031cdc54c11
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    unknown/unknown
+  Annotations: 
+    vnd.docker.reference.digest: sha256:4e1d2882deb35469c593f7bbfed46dbd8eded238317e105a14a78618225e1337
+    vnd.docker.reference.type:   attestation-manifest
+docker.io/docker/sbx-kit-shell@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de: Pulling from docker/sbx-kit-shell
+d44b2c508e5d: Pulling fs layer
+5078e319c9fc: Pulling fs layer
+d44b2c508e5d: Download complete
+9a3cd5acb612: Download complete
+8cb924aef65c: Download complete
+5078e319c9fc: Download complete
+d44b2c508e5d: Pull complete
+5078e319c9fc: Pull complete
+Digest: sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+Status: Downloaded newer image for docker/sbx-kit-shell@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+docker.io/docker/sbx-kit-shell:1.0.0@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+/usr/bin/python3
+NAME="Docker Hardened Images (Debian)"
+ID="debian"
+VERSION_ID="13"
+VERSION_CODENAME="trixie"
+PRETTY_NAME="Docker Hardened Images/Debian GNU/Linux 13 (trixie)"
+HOME_URL="https://docker.com/products/hardened-images/"
+BUG_REPORT_URL="https://docker.com/support/"

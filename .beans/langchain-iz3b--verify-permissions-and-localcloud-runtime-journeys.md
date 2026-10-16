@@ -18,3 +18,7 @@ Verify generated artifacts and application behavior; exercise intended access an
 - [ ] Actual local SBX composition, proxy credential injection and allowed/denied boundary events: NOT RUN, sbx absent; host H1.
 - [ ] Actual cloud SBX: NOT RUN. The host reports `sbx --cloud diagnose` passed authentication, API reachability and subscription; host cloud account/API reachable, not crew-observed. Cloud-side secret/binding, baking/upload approval and actual allowed/denied events remain open; H2.
 - [ ] Current executable sbx help and target-specific policy/composition support: host verification remains required.
+
+- Direct-first delta: [official shell/tooling inspection](../docs/evidence/direct-first-tooling.md), [raw source/container probe](../docs/evidence/direct-first-container.txt) and [manual snapshot container check](../docs/evidence/direct-first-manual.txt) PASS in their separate classes. No source executed on host.
+- [ ] H1 direct variant in the [host handoff](../docs/acceptance-handoff.md): actual local SBX setup, google proxy injection, allowed call, policy-denied event/origin control and cleanup remain NOT RUN. Shell binding prompt is UNVERIFIED until host review.
+- [ ] H2 remains NOT RUN: host-reported diagnose PASS is preserved; separate cloud-side secret/binding, transfer/baking approval and actual runtime checks remain required. No live application model call repeated.

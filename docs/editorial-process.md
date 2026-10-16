@@ -390,3 +390,10 @@ bcf3fdef83eb8ed147875265dee9463d28167be9. Subsequent edits change reader paths,
 prerequisite explanations and evidence/bean/editorial records only; final
 reader links, Bash syntax and packet bytes are checked separately. This record
 does not issue independent exact-tip QC or local/cloud SBX acceptance.
+
+## Direct-first delta: preserved earlier review
+
+r4-03 reviewed the earlier kit-first draft. Its completed review and failed-attempt
+history remain unchanged; it is superseded for the final direct-first article
+by r5-01. The saved completed response SHA-256 matches audience-r4-03.json,
+and its historical packet hashes match commit 3f0651a.

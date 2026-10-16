@@ -1,0 +1,2 @@
+Manual allowlist copy from raw app plus reviewed lock; no helper used to make this snapshot. Container only, NOT SBX.
+{"category":"technical","ticket_id":"T-101"}

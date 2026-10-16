@@ -1,85 +1,76 @@
 # Run your LangChain in Docker Sandboxes
 
-Bring an existing Python app, inspect its access needs, and generate a reviewable
-v3 mixin for Docker Sandboxes. The app runs inside the sandbox, not just the
-coding agent that edits it. Start with the [tutorial](docs/run-your-langchain-in-docker-sandboxes.md)
-or the [step-by-step guide](docs/user-guide.md).
+Run your existing `agent.py` or Python project in a shell sandbox, with reviewed
+dependencies and deliberate access. Keep its layout; a reusable kit is optional.
+Start with the [tutorial](docs/run-your-langchain-in-docker-sandboxes.md) for the
+manual and coding-agent routes, or the [guide](docs/user-guide.md).
 
-## Try the existing-app journey
+## Quick path: direct execution
 
-An existing `agent.py` plus dependencies works without moving it into `src/`:
+From this repository root, inspect the ready-locked single-file example, then
+prepare a separate sanitized workspace and access plan:
 
 ```bash
 python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py inspect --project examples/single-file-agent --entrypoint agent.py
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py direct --project examples/single-file-agent --entrypoint agent.py --answers examples/single-file-agent.answers.json --out /tmp/my-agent-direct
 ```
 
-The [single-file example](examples/single-file-agent/README.md) shows reviewed
-lock setup. The larger example below exercises data paths and optional access.
+Use a fresh output directory. Review `ACCESS.md`, `RUN.md`, `setup-deps.sh`,
+`sbxenv.yaml` and `workspace/` before approving anything. The answers belong to
+this synthetic fixture, not your app. For an unstructured `agent.py` plus
+requirements, the [tutorial](docs/run-your-langchain-in-docker-sandboxes.md)
+shows normal reviewed lock creation and matching raw-fixture answers.
 
-Prerequisites: Python 3.11+ for inspection; uv 0.9.26 and Python 3.13.7 for the
-example; Docker buildx and the pinned [kit-tck installer](scripts/install-ci-tools.sh)
-for builds. Runtime needs a supported host with Docker Sandboxes and `sbx`.
+Inspection needs Python 3.11+ and never imports source. The direct plan preserves
+included files byte-for-byte, excludes secrets/private files, and mounts only
+`workspace/`. It selects the official pinned shell workload, not a generated
+mixin. The shell has Python; setup verifies and installs uv inside the sandbox,
+then installs the locked dependencies there. No app source runs on the host.
 
-From this repository root:
+On a supported, approved Docker Sandboxes host, follow the generated `RUN.md`
+in order: existing credential, plan/create, scoped policy, in-sandbox setup,
+remove bootstrap grants, launch, denied checks and cleanup. All SBX runtime
+steps are **NOT RUN here**. After that setup, an offline app check is:
 
 ```bash
-bash scripts/check-example.sh
-python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py inspect --project examples/ticket-triage --entrypoint src/ticket_triage/app.py
-python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py generate --project examples/ticket-triage --entrypoint src/ticket_triage/app.py --answers examples/ticket-triage.answers.json --out /tmp/my-ticket-triage-kit
-python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py explain --manifest /tmp/my-ticket-triage-kit/kit-manifest.json
-bash scripts/check-skill.sh
-bash scripts/check-generated-kit.sh /tmp/fresh-ticket-triage-layout
+sbx env exec /tmp/my-agent-direct/sbxenv.yaml -- .venv/bin/python agent.py --fake-model
 ```
 
-Use fresh output/layout paths. The answers are reviewed decisions for **this
-synthetic app**, not defaults for yours. The helper does not import source,
-resolve dependencies or grant access. It asks about inferred resources and
-dynamic endpoints; generation requires explicit decisions and reasons.
+For a real model call, approve input, budget and credential use separately.
+Direct uses built-in service `google`; the optional generated kit uses its
+own `gemini` service. Never copy a key into YAML or the workspace. Inspect
+inherited policy: one narrow allow does not cancel broader existing grants.
 
-On your approved host, inspect the environment before creating it:
-
-```bash
-sbx env plan /tmp/my-ticket-triage-kit/sbxenv.local.yaml
-sbx env run --detach /tmp/my-ticket-triage-kit/sbxenv.local.yaml
-sbx env exec /tmp/my-ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
-sbx env rm /tmp/my-ticket-triage-kit/sbxenv.local.yaml
-```
-
-The [host acceptance handoff](docs/acceptance-handoff.md) covers credential
-binding, separately approved real-model calls, denied-operation checks and the
-mount-free cloud equivalent. Cloud execution is not production serving.
-
-## Use a coding agent, or work manually
+## With a coding agent, or manually
 
 Ask your agent to read [the repository skill](skills/langchain-sandbox-kit/SKILL.md):
 
-> Package my LangChain app at ./examples/ticket-triage to run in Docker Sandboxes. Inspect
-> it without executing it, ask about unresolved access, and show packaging before
-> requesting any permissions.
+> Run my existing LangChain app at ./examples/single-file-agent in Docker
+> Sandboxes. Inspect agent.py without executing it, ask about unresolved access,
+> and prepare a direct-run plan. Preserve the app; reusable packaging is optional.
 
-For normal discovery **in your own project**, copy the entire skill folder into
+For discovery **in your own project**, copy the whole skill folder into
 `.agents/skills/langchain-sandbox-kit/` (Codex) or
-`.claude/skills/langchain-sandbox-kit/` (Claude Code). Both support symlinks. Its
-relative scripts/templates/references are required. This repo leaves ACR-managed
-agent folders alone and installs nothing into personal host skill directories.
-See [source provenance](docs/provenance.md). The [manual path](docs/user-guide.md)
-shows how to adapt a single-file kit template to your own app, dependencies,
-launch command and permissions without running the helper.
+`.claude/skills/langchain-sandbox-kit/` (Claude Code). Keep scripts, templates
+and references together; do not install into host-global skill directories.
+The [manual tutorial](docs/run-your-langchain-in-docker-sandboxes.md) writes
+an environment and sanitized workspace by hand without the helper.
 
-## What has actually passed?
+## Optional: reusable kit
 
-| Evidence class | Current status |
-| --- | --- |
-| Offline app + helper tests, source/build | PASS |
-| Generated v3 artifact TCK | PASS |
-| Read-only, nonroot, network-none container probe | PASS, **not SBX confinement proof** |
-| Actual local SBX and cloud SBX | **NOT RUN**, host acceptance required |
-| Live application model | PASS: one approved synthetic ticket in the implementation sandbox, **not local/cloud SBX acceptance** |
+LangChain is ordinary Python. A kit packages environment, dependencies and
+policy for repeatable distribution or cloud baking; it is not a per-file
+conversion or a prerequisite for the first local run. Existing kit generation,
+manual template edits and build/TCK checks remain in the [guide](docs/user-guide.md).
+The larger [ticket-triage example](examples/ticket-triage/README.md) adds data,
+status and webhook questions without changing the direct-first workflow.
 
-Exact commands and logs: [runtime matrix](docs/evidence/runtime-matrix.md).
-A kit requests capabilities; the host decides. Review effective composition.
-Isolation does not solve prompt injection, answer correctness or side effects
-on allowed services. Keep real `.env` and private files out of contexts/images.
+Cloud cannot mount your host workspace. It requires an approved transfer or
+baked kit, separate secrets/bindings and cloud policy. The host reports cloud
+diagnose passed authentication/API/subscription; actual cloud runtime remains
+**NOT RUN**, as does local SBX. Ordinary container success is not SBX confinement.
+The [host handoff](docs/acceptance-handoff.md) lists allowed/denied checks.
+Isolation does not solve prompt injection or side effects on allowed services.
 
 ## Supporting example: policy lab
 
