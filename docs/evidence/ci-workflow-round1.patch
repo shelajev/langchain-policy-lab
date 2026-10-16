@@ -1,0 +1,16 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index aa5b2e8..6eb3401 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -25,5 +25,11 @@ jobs:
+         run: bash scripts/check-kit.sh "$RUNNER_TEMP/langchain-layout"
+       - name: Non-SBX filesystem dependency probe
+         run: bash scripts/check-filesystem.sh
++      - name: Existing-app offline tests and safe packager tests
++        run: |
++          bash scripts/check-example.sh
++          bash scripts/check-skill.sh
++      - name: Generated kit build, TCK and non-SBX container probe
++        run: bash scripts/check-generated-kit.sh "$RUNNER_TEMP/ticket-triage-layout"
+       - name: Clean-checkout journey
+         run: bash scripts/clean-checkout.sh

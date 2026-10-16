@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "can_fire": false,
+  "blocked_by": "no_history",
+  "reason": "no shape history at docs/_blog-skill/post-shapes.json — audit 6 cannot fire until 2 posts are recorded",
+  "compared": 0,
+  "converged": false,
+  "converged_axes": [],
+  "compared_posts": [],
+  "skipped_newer_records": 0
+}

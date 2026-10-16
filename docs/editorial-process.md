@@ -1,5 +1,51 @@
 # Editorial working record
 
+## Bring-your-own-app tutorial, 2026-10-16
+
+Current reader deliverables: [article](run-your-langchain-in-docker-sandboxes.md),
+[README](../README.md) and [guide](user-guide.md). Older sections below are
+historical policy-lab records, not claims about the new workflow.
+
+Pinned blog-writer `61844184d925b9f925951241a0d476db7c193e7e` was installed and
+realized through ACR. Root realization failed on credentials and then its
+existing freshness ledger. The host authorized the established anonymous
+scratch route; freshness none, no hook created/trusted, no profile copied and
+no configuration repaired. That route passed: [actual output](evidence/acr-2026-10-16.txt).
+
+Read the realized instructions; applied scoped documentation review to the
+README/guide/product copy and the full new-blog intake/plan/revision/shape route
+to the article. Recovery followed the initial prose draft; the route was replayed
+as a review/revision pass, not backdated. Title/path/neutral voice came from the
+task, so no extra author choice was needed. Profiles were used in place only,
+never copied, committed, quoted in reports or sent to Gemini. No byline or
+personal/corporate claim was invented. The [working record](editorial-research-langchain-sandboxes.md)
+records preservation, audits, limitations and independent completion states.
+
+Catalog: installed 1.1.50, latest unknown, exit 2 because `tessl` is absent;
+followed its route to skip freshness comparison. Shape audit returned
+no_history. Recording first refused a missing storage directory; after ordinary
+directory creation its owner script created the history. No history was deleted
+or hand-edited. [Draft/final sweep JSON](evidence/editorial-r3/) preserves exit 1:
+zero required hits, 24 contextual #14 hits retained with
+[individual dispositions](evidence/editorial-r3/dispositions.json), not a zero-hit
+claim. Manual three-pass catalog, structural, accuracy, preservation and
+paragraph-continuity reviews completed. Formal personal-author voice calibration
+is not asserted for the explicitly neutral/unattributed tutorial; no author's
+endorsement is implied.
+
+Fresh/stateless Gemini received **only** reader prerequisites, README, guide and
+article, never profiles/private plans/source trees/crew files/earlier reviews or
+history. Exact model and packet/request hashes:
+[r3-01](evidence/audience-r3-01.json), [r3-02](evidence/audience-r3-02.json).
+Both returned READABLE with no substantive blockers:
+[review 1](reviews/gemini-r3-01.md), [final review](reviews/gemini-r3-02.md).
+Review 2 followed the substantive single-file and authorized-live-evidence
+clarifications. Optional repetition of a `cd` or PATH snippet was declined:
+prose already names the repository-root context and links setup before checks,
+so neither is a missing premise. No optional-polish loop or third call.
+Final verdict: **READABLE**. Audience review is not code validation or actual
+local/cloud acceptance: [runtime gaps](evidence/runtime-matrix.md).
+
 ## Assignment and preservation contract
 
 Route: scoped non-blog writing, using ACR 0.2.1's project-local realization of

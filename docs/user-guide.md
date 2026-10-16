@@ -1,396 +1,202 @@
-# Build and evaluate a synthetic policy assistant
+# Package an existing LangChain app
 
-## Who this is for
+Use a normal Python app, inspect its resources, and review its Docker Sandboxes
+packaging before you grant access. The same ticket-triage app works through the
+coding-agent and manual paths. There is no Sandbox API in its application code.
 
-Python developers and AI platform engineers can use this lab to inspect a small
-retrieval pipeline before adapting it to internal support. The exercise connects
-policy ingestion, cited answers, bounded tools and evaluation with a reproducible
-Docker Sandboxes v3 mixin. All policies and thresholds are fictional.
+## Prerequisites
 
-Your first result is a credential-free policy-QA workflow: check the retrieved
-answer against its citations, invoke an expense tool explicitly, and run the
-evaluation before changing the sample. Steps 1-4 run locally without Docker or
-SBX. Step 5 builds and checks the kit artifact. Steps 6-7 are optional human
-handoffs for actual SBX composition and live Gemini; both remain unrun here.
-For the product story instead of commands, read the
-[product overview](product-overview.md) and [marketing brief](marketing-brief.md).
-
-The default assistant is an extractive fake chat model. It returns retrieved
-passages verbatim, so its results test orchestration and citation plumbing rather
-than live LLM reasoning. A separately approved Gemini path is available later.
-
-A Docker Sandboxes kit is an OCI (Open Container Initiative) image containing
-files plus a descriptor. Version 3 is the descriptor grammar used here. A
-workload kit supplies the operating system and agent launch; a mixin layers
-tools and environment values onto it. The sandbox runtime composes these
-artifacts and handles their typed capability requests. This mixin's sole
-request, agent context, supplies packaged guidance text for the agent to read.
-It does not provide policy data from the workload or grant network access.
-
-[langchain.yaml](../langchain.yaml) declares the mixin and its capability;
-[langchain.dockerfile](../langchain.dockerfile) builds the overlay;
-[langchain-context.md](../langchain-context.md) contains the agent guidance.
-The editable [sample project](../sample/) supplies the policy-QA exercise.
-Its [sample/sbxenv.yaml](../sample/sbxenv.yaml) declares a pinned shell workload,
-this local mixin and the repository workspace for the optional runtime path.
-The mixin requests no credentials, extra mounts or privilege. Workload requests
-and runtime policies still matter to the composed environment's access.
-
-## Prerequisites and downloads
-
-Assume basic Python, terminal and Git knowledge. No prior uv, SBX or Kits v3
-knowledge is needed. uv manages Python installations and locked project
-dependencies; the commands below explain its relevant options. Familiarity
-with containers is useful for step 5 onward, where Docker tooling is required.
-
-The Python journey requires Git, Linux, uv **0.9.26** and access to public Python
-downloads. `sample/.python-version` pins **CPython 3.13.7**. uv downloads the
-managed interpreter when requested; no system Python installation is needed.
-The local verified target is Linux arm64, Debian 12/glibc 2.36. The automated
-workflow targets native x86-64 `ubuntu-24.04`; its first hosted run passed.
-macOS, Windows, Alpine/musl and arbitrary minimal images are not verified targets.
-
-If uv is missing, install it from the [official 0.9.26 release](https://github.com/astral-sh/uv/releases/tag/0.9.26).
-The following commands support x86_64 and aarch64 (arm64) Linux with glibc.
-They require curl, tar, and the `sha256sum` and `install` commands from GNU
-coreutils. If a command is missing, install its package with your Linux
-distribution's package manager first.
-
-Run this block in Bash from any directory. It downloads into a temporary
-directory, checks the published checksum, extracts the archive's nested
-directory, and installs only `uv` to `~/.local/bin`. The parentheses keep the
-working-directory change local; `set -eu` stops installation on an error.
+Run commands from this repository root unless stated. You need Python 3.11+
+for the stdlib helper; uv 0.9.26 and Python 3.13.7 for the example; Docker with
+buildx for packaging; and `kit-tck` built from the pinned spec. On Linux
+x86_64/aarch64, install project tools in a chosen scratch directory:
 
 ```bash
-(
-  set -eu
-  case "$(uname -m)" in
-    x86_64) target="x86_64-unknown-linux-gnu" ;;
-    aarch64|arm64) target="aarch64-unknown-linux-gnu" ;;
-    *) printf 'Supported architectures: x86_64 and aarch64\n' >&2; exit 1 ;;
-  esac
-  download_dir="$(mktemp -d)"
-  cd "$download_dir"
-  archive="uv-$target.tar.gz"
-  release_url="https://github.com/astral-sh/uv/releases/download/0.9.26"
-  curl --fail --location --output "$archive" "$release_url/$archive"
-  curl --fail --location --output "$archive.sha256" "$release_url/$archive.sha256"
-  sha256sum -c "$archive.sha256"
-  tar -xzf "$archive"
-  mkdir -p "$HOME/.local/bin"
-  install -m 755 "uv-$target/uv" "$HOME/.local/bin/uv"
-)
+bash scripts/install-ci-tools.sh /tmp/triage-tools
+export PATH="/tmp/triage-tools:$PATH"
 ```
 
-Expect `uv-<target>.tar.gz: OK` from the checksum check. A failed download or
-checksum check stops the block before installation; do not continue on an error.
-After the block succeeds, add the install directory to this terminal's PATH
-and verify the version:
+On another host, build kit-tck from the exact commit in [provenance](provenance.md).
+No key is needed for offline tests. Actual runtime needs a supported host with
+Docker Sandboxes and `sbx`. Do not start a nested daemon inside a sandbox.
+The implementation environment lacked `sbx`: local/cloud commands below are a
+host handoff, not observed success. One separately authorized live-model call
+passed inside that implementation environment, not local/cloud SBX acceptance.
+See [the matrix](evidence/runtime-matrix.md).
+
+### Already have agent.py?
+
+Start with your file, without restructuring it. The helper accepts a root
+Python entrypoint as well as a packaged app:
 
 ```bash
-export PATH="$HOME/.local/bin:$PATH"
-uv --version
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py inspect --project examples/single-file-agent --entrypoint agent.py
 ```
 
-The version line must start with `uv 0.9.26`. The PATH change applies to this
-terminal only. For future
-Bash terminals, add `export PATH="$HOME/.local/bin:$PATH"` to `~/.bashrc`, or
-repeat that export in each terminal before running the sample commands.
+For your own project, substitute its directory and entrypoint. If it only has
+requirements, review those dependencies and any build configuration, create a
+normal `pyproject.toml` with intended exact pins and `.python-version`, then run
+`uv lock` in an approved development environment. Preserve `agent.py`; no
+Sandbox API or `src/` migration is required. Choose `python agent.py` (plus its
+existing arguments) as the reviewed launch command. See the
+[single-file fixture](../examples/single-file-agent/README.md).
 
-If also preparing kit tooling, `scripts/install-ci-tools.sh` installs uv
-with pinned checksums for x86-64 and arm64, and builds kit-tck; it additionally
-requires curl, tar, sha256sum, Git and Go with toolchain downloads enabled.
-kit-tck is Docker's checker for kit artifact format and declarations, not a
-sandbox runtime or a runtime security test.
-
-Building the kit requires a functioning Docker Engine and Buildx that supports
-OCI directory export. Local checks used Docker **29.4.3**, Buildx **0.33.0** and
-BuildKit **0.29.0**. The CI script selects a docker-container builder. Installation
-needs access to GitHub/release assets, PyPI/files.pythonhosted.org, Go module and
-checksum services, GHCR and Docker Hub. Runtime deterministic checks need none
-of those connections. No credential is needed for the Python quickstart.
-
-Start from a checkout or an extracted copy of this repository. Commands below
-begin at its root unless a `cd` changes the directory. The repository is on GitHub;
-the kit image has not been published to a registry.
-
-## 1. Install the locked sample
-
-`uv --version` checks the tool pin. `uv python install --no-bin` downloads
-CPython into uv's user-level store (normally `~/.local/share/uv/python` on Linux;
-`uv python dir` shows the configured location) without adding Python launchers
-to the user bin directory or replacing system Python. The following `uv sync`
-creates `sample/.venv` and installs the project/test dependencies using that
-managed interpreter.
+## 1. Check the existing app
 
 ```bash
-uv --version
-uv python install --no-bin 3.13.7
-cd sample
-uv sync --locked --managed-python
+bash scripts/check-example.sh
 ```
 
-Expect `uv 0.9.26` and a `sample/.venv` containing the pinned project. The default
-sync includes development tests but excludes the optional Gemini dependency.
-`uv.lock` pins the full dependency graph and distribution hashes. Build-backend
-dependencies are also pinned by uv build constraints and recorded in a separate
-`build` dependency group; that group is not installed in the kit runtime. Do not
-run an unlocked upgrade while reproducing the results.
-
-In this `sample` directory, `data/policies` is the default corpus. Elsewhere,
-pass `--policies /absolute/path/to/policies`. The kit's bundled corpus is
-`/opt/langchain/sample/data/policies`; its interpreter is
-`/opt/langchain/venv/bin/python`. Commands using that interpreter do not need uv.
-
-## 2. Retrieve policy passages and inspect citations
-
-```bash
-uv run --locked --offline python -m langchain_enterprise.cli --query 'What is the Tier 1 meal allowance?'
-```
-
-Expect JSON with `status: "grounded"`, `provider: "deterministic"`, an answer
-containing `Tier 1: $90 per day`, and a citation like:
+This syncs the frozen lock, runs four offline tests and one fake-model request.
+Observed output:
 
 ```json
-{"source": "travel_policy.md", "section": "Meal allowance", "chunk_id": "travel_policy:1", "title": "Synthetic Travel Policy"}
+{"category": "technical", "summary": "Synthetic offline classification; investigate the reported issue.", "ticket_id": "T-101"}
 ```
 
-Open `data/policies/travel_policy.md`, find **Meal allowance**, and compare its
-text to the answer. It is a daily meal allowance, not a separate dinner cap.
-Other useful queries include `What is the receipt threshold?`,
-`What is the home office equipment stipend?`, and
-`Where are API keys and secrets stored?`.
+The fake model checks pipeline wiring, not answer quality. Optional status fetch
+and webhook flags are not enabled. LangSmith tracing is left off. A live run
+requires separate provider-use approval and an existing runtime credential.
 
-Ingestion reads only the selected directory's Markdown files and splits at
-`##` section headings. Each section becomes a LangChain `Document` with metadata.
-A `BaseRetriever` implementation ranks token overlap after a small synonym map,
-requires 60% query-token coverage, and returns at most two passages. LangChain
-Expression Language (LCEL) then
-connects payload preparation, `ChatPromptTemplate`, `BaseChatModel`, and
-`StrOutputParser`. The result must parse and cite only retrieved chunk IDs.
-
-This lexical retriever is intentionally small: there is no vector database,
-embedding service, persistent index, PDF loader or access-control filter.
-Synonyms are limited; changing wording can produce a refusal for an otherwise
-answerable question. Partial overlap can also produce a relevant passage that
-does not answer the full question. `grounded` means passages were retrieved and
-citations validated; it does **not** certify semantic entailment or factual
-correctness of a live answer.
-
-## 3. Invoke bounded read-only tools
+## 2. Inspect without executing input
 
 ```bash
-uv run --locked --offline python -m langchain_enterprise.cli --tool meal --city-tier 1 --days 3
-uv run --locked --offline python -m langchain_enterprise.cli --tool receipt --amount 25
-uv run --locked --offline python -m langchain_enterprise.cli --tool receipt --amount 24.99
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py inspect --project examples/ticket-triage --entrypoint src/ticket_triage/app.py
 ```
 
-Expect a meal total of `270` USD, `receipt_required: true` at `25`, and `false`
-at `24.99`. Each result includes the source section's citation. The LangChain
-tools read the already ingested policy passages; the thresholds are not a
-second, independent copy of the dataset.
+Inspection parses Python AST, TOML and lock metadata, without imports, resolvers
+or project subprocesses. Findings carry IDs, file:line evidence and
+declared/inferred/unresolved confidence. URL evidence reveals hosts only, not
+paths or embedded credentials. Secret-like source literals are redacted and
+block packaging. `.env`, private/key files and ignored paths are excluded.
 
-Meal inputs are strict integers: tiers 1-3 and days 1-30. Receipt amounts must
-be finite numbers from 0 through 100,000 USD. Tools reject extra input fields,
-strings used as numbers, booleans, invalid tiers and out-of-range amounts.
-They cannot write files, run shell commands, fetch URLs or select arbitrary
-paths. The CLI invokes tools explicitly; the model does not autonomously select
-or execute them. This makes the execution boundary easy to inspect.
+The report asks about Gemini, model selection, status enrichment, webhook,
+tracing, data reads and test-only sockets. All findings require decisions.
+Static inspection cannot prove that runtime config or a plugin will not need
+other resources. Ask the developer about their full intended use.
 
-## 4. Evaluate refusals and failures
+For another app, change project and entrypoint. Supported generation layout:
+root Python files or packaged `src/`, exact direct pins, `pyproject.toml`, hashed
+public-PyPI `uv.lock` and exact `.python-version`. Requirements-only input can
+be inspected; generation needs reviewed lock setup first. Custom registries, optional
+dependency selections and VCS/path dependencies need manual packaging. Resolve
+locks yourself in an approved environment; the helper never executes a resolver.
+
+## 3. Answer resource questions
+
+Read the [worked answers](../examples/ticket-triage.answers.json) and
+[answer contract](../skills/langchain-sandbox-kit/references/answers.schema.md).
+Each finding ID has an action and reason. Stale IDs fail generation. The example
+explicitly allows Gemini and requests service `gemini` at runtime only. It
+denies status/webhook destinations and tracing, declares `data/tickets` as data,
+and confirms `gemini-2.5-flash`. These are app-specific developer choices.
+
+Dynamic URLs need named hosts before an allow decision. Wildcard/IP access
+requires an explicit broad-access exception and is flagged; prefer exact hosts.
+Do not put credential values into answers, reasons or reports.
+
+For the assisted path, ask your agent to read the
+[skill](../skills/langchain-sandbox-kit/SKILL.md) and perform steps 2 through 4:
+
+> Package my LangChain app at ./ticket-triage to run in Docker Sandboxes. Inspect
+> first and ask which resources I want it to use. Do not grant access automatically.
+
+For automatic discovery in your own repo, copy the whole skill directory into
+`.agents/skills/` for Codex or `.claude/skills/` for Claude Code. No personal host
+installation is needed. Manual use below bypasses the agent, not the review.
+
+## 4. Generate a separate build context
 
 ```bash
-uv run --locked --offline python -m langchain_enterprise.cli --query 'Can I bring my pet python into the office?'
-uv run --locked --offline python -m langchain_enterprise.cli --eval-suite
-uv run --locked --offline pytest -v
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py generate --project examples/ticket-triage --entrypoint src/ticket_triage/app.py --answers examples/ticket-triage.answers.json --out /tmp/my-ticket-triage-kit
+python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py explain --manifest /tmp/my-ticket-triage-kit/kit-manifest.json
 ```
 
-Expect the pet question to return `unsupported`, no citations, and exit 0.
-The evaluation prints `passed: true` for six grounded and five unsupported
-questions; a failing case exits 1. Tests cover those cases, changed policy data,
-tool boundaries, invalid JSON/citations, exceptions and CLI failures. The local
-suite has 49 passing tests. It removes provider keys and prohibits socket
-connections during test cases; all tests use fake models.
+Choose a new path outside the project. Existing nonempty output exits 4.
+`--force` replaces only an unchanged helper-owned tree, never developer edits or
+unowned files. Source input is not modified. Review the output:
 
-Try `--tool meal --days 31` or `--policies /nonexistent --eval-suite` to see a
-configuration/tool failure with exit 1. Empty or oversized questions produce
-`invalid_question`; model exceptions or malformed JSON produce
-`model_or_output_failure`; unknown or duplicate citation IDs produce
-`invalid_citations`. Errors never return a guessed answer or raw exception text.
-For diagnosis, check the policy directory and exact input bounds first; for a
-live call, check approval, optional package and credential/network availability.
+| Artifact | Review |
+| --- | --- |
+| `ticket-triage.yaml` | v3 mixin, agent context, runtime allow/deny and credential request |
+| `ticket-triage.dockerfile` | Pinned uv base/Python, locked install, scratch overlay |
+| `app/`, `.dockerignore` | Selected snapshot with explicit context allowlist |
+| `sbxenv.local.yaml` | Pinned shell workload and only the sanitized kit workspace |
+| `sbxenv.cloud.yaml` | Same baked app with no host mount |
+| `PERMISSIONS.md` | Reasons, evidence, excluded paths and boundaries |
+| `kit-manifest.json` | Input, answers and output hashes |
 
-`--offline` constrains uv's package operations. The default fake makes no model
-request, but that flag is not a network sandbox for arbitrary Python. To check
-the shipped runtime with the network disabled, use the filesystem probe below.
+The original ignore file is not reused as the build context policy. The helper
+always removes private files even if that file would include them, and applies
+additional project ignore rules conservatively. Symlinks and incomplete scans
+block generation. Secret-like source must be removed, not acknowledged into an
+image. Only root Python files, `src/`, lock/config and declared data are copied.
 
-## 5. Build and verify the mixin
-
-Return to the repository root:
+## 5. Build and check the same files manually
 
 ```bash
-cd ..
+cd /tmp/my-ticket-triage-kit
+docker buildx build . -f ticket-triage.yaml --progress plain --output type=cacheonly
+docker buildx build . -f ticket-triage.yaml --progress plain -t ticket-triage:0.1.0 --output type=oci,dest=/tmp/new-triage-layout,tar=false
+kit-tck validate --verbose --layout /tmp/new-triage-layout 0.1.0
 ```
 
-`install-ci-tools.sh` downloads checksum-pinned uv and builds Docker's kit-tck
-from its exact source commit. It writes tools to the directory you supply,
-downloads a Go 1.26.8 toolchain if needed, and deletes its temporary source
-checkout. Put the resulting binaries on PATH:
+Use a fresh layout. Version 0.1.0 identifies the app kit, not LangChain itself.
+The [committed golden kit](../examples/ticket-triage-kit/) is byte-compared in
+helper tests. Back at the repository root, run:
 
 ```bash
-bash scripts/install-ci-tools.sh /tmp/langchain-tools
-export PATH="/tmp/langchain-tools:$PATH"
+bash scripts/check-skill.sh
+bash scripts/check-generated-kit.sh /tmp/another-fresh-triage-layout
 ```
 
-Use a fresh OCI directory; `check-kit.sh` refuses an existing path. It executes
-`docker buildx build` against `langchain.yaml` for source validation **and** the
-content build, exports OCI, and runs `kit-tck validate --layout ... 1.4.4`.
-Local artifact evidence reports 19/19 conformance checks. `sbx kit validate` is
-not a v3 source validator.
+The latter builds/exports, runs TCK and probes the overlay in an ordinary Debian
+container: no network, read-only root, uid 1000. It verifies fake execution,
+private-file absence and clean network failure. These recorded checks pass.
+They do not establish microVM confinement, credential injection or effective SBX
+policy. Actual shell-workload composition remains part of host acceptance.
+
+## 6. Run the app inside local SBX
+
+On the approved host, from the repository root:
 
 ```bash
-bash scripts/check-kit.sh /tmp/langchain-layout-new
+sbx env plan ./examples/ticket-triage-kit/sbxenv.local.yaml
+sbx env run --detach ./examples/ticket-triage-kit/sbxenv.local.yaml
+sbx env exec ./examples/ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
 ```
 
-The recipe starts from digest-pinned uv on Debian, installs a managed interpreter
-inside `/opt/langchain/python`, and creates a locked noneditable environment
-inside `/opt/langchain/venv`. Both trees, the project and synthetic documents go
-into the scratch overlay. No symlink depends on the build stage's system Python.
-The final `PATH` is additive during SBX composition. Mixin entrypoint, user and
-workdir remain the workload's responsibility.
+For your generated `/tmp` copy, substitute its absolute environment-file path.
+The mixin adds app files and capabilities; the workload owns entrypoint, user
+and `sbx@1`. Starting a sandbox is not starting the app: `env exec` runs it.
+The optional credential means fake mode needs no secret. A real call needs an
+existing, explicitly approved `gemini` service binding, not just a host env var.
+Do not put the key into YAML or argv. Follow the [host handoff](acceptance-handoff.md)
+for credential preparation, allowed and denied operations, boundary events and
+origin controls. A failed request alone is not proof of policy denial.
 
-Bundling Python does not bundle a complete operating system. The GNU runtime
-still requires the matching architecture's ELF loader and glibc/libm. The
-filesystem probe copies the overlay onto digest-pinned Debian bookworm with no
-system Python and runs the evaluation as uid 1000, read-only, `--network none`.
-Run it with `scripts/check-filesystem.sh`. It manually supplies `PATH`; it does not exercise SBX's additive config merge,
-capability negotiation, launch contract or policy enforcement.
+## 7. Adapt for cloud and clean up
 
 ```bash
-bash scripts/check-filesystem.sh
+sbx --cloud env plan ./examples/ticket-triage-kit/sbxenv.cloud.yaml
+sbx --cloud env run --detach ./examples/ticket-triage-kit/sbxenv.cloud.yaml
+sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
+sbx --cloud env rm ./examples/ticket-triage-kit/sbxenv.cloud.yaml
+sbx env rm ./examples/ticket-triage-kit/sbxenv.local.yaml
 ```
 
-The clean-checkout script clones the current local commit into a temporary
-directory, uses an isolated dependency cache and managed Python, installs from
-the lock, runs tests and the CLI journey, then removes the temporary checkout.
-It only tests committed files. Run it after committing your own changes.
+Cloud needs an existing login, upload/baking approval, compatible target and
+separate cloud-side secrets/bindings. It cannot mount your host workspace;
+the app is already baked in. No cloud upload ran here. Repeat the same
+allowed/denied checks; local acceptance is not cloud acceptance. Keep the same
+account/endpoint/file paths for cleanup. This is cloud execution, not production
+serving with ingress, autoscaling, durability or availability guarantees.
 
-```bash
-bash scripts/clean-checkout.sh
-```
+## Conclusion
 
-GitHub Actions uses a real `ubuntu-24.04` runner, downloads checksum-pinned uv,
-fetches Docker's exact kit-tck source commit, builds it with Go 1.26.8 and
-executes all verification scripts. Required checks have no conditional skips
-or `continue-on-error`. No hosted SBX runner or daemon is assumed. The workflow
-passed in its first hosted run after the repository was pushed to GitHub.
-
-## 6. Optional HUMAN Docker Sandboxes journey
-
-`sbx` is the Docker Sandboxes command-line tool. Its `sbxenv.yaml` environment
-file selects a workload, mixins and workspace for the runtime to assemble.
-
-This actual composed SBX run is an unrun human handoff. On a human-controlled
-machine with Docker Sandboxes **v0.47.0** or a compatible Kits-v3 runtime and an
-existing working daemon, inspect `sample/sbxenv.yaml`. It selects the official
-digest-pinned `docker/sbx-kit-shell:1.0.0` workload, adds `../` as this mixin,
-and mounts the repository root (`workspace: ..`). `agent: sbx-kit-shell` is
-the reference-derived handle, not an arbitrary agent name.
-
-If that runtime is not already installed, the human operator should follow
-Docker's installation instructions at `https://docs.docker.com/ai/sandboxes/install/`
-and obtain platform-specific packages from
-`https://github.com/docker/sbx-releases/releases/tag/v0.47.0`.
-Installing just an extracted CLI is sufficient for the help checks performed
-here, but not for this daemon-backed journey. Follow Docker's platform/runtime
-requirements and verify the installed `sbx version` before continuing.
-
-From the repository root, the v0.47.0 help supports the commands below. Run
-them one at a time: inspect the plan before approving the run, and wait for
-the evaluation to finish before removing the environment.
-
-```bash
-sbx env plan sample/sbxenv.yaml
-sbx env run --detached sample/sbxenv.yaml
-sbx env exec sample/sbxenv.yaml -- /opt/langchain/venv/bin/python -m langchain_enterprise.cli --policies /opt/langchain/sample/data/policies --eval-suite
-sbx env rm sample/sbxenv.yaml
-```
-
-Expected outcomes for the human operator, not outputs observed in this delivery:
-
-- `plan` prints the proposed environment and changes nothing. Check that it
-  selects the pinned shell workload, local LangChain mixin and repository workspace.
-- After your approval, `run --detached` creates or starts the declared sandbox
-  without attaching a terminal. The following `exec` must reach its bundled Python;
-  a failed launch or missing interpreter is a failed composition check.
-- `exec` should print evaluation JSON with `passed: true` for the same 11 cases
-  as the local run. Save the actual result; an error or failing case needs investigation.
-- After removal approval, `rm` should remove the declared sandbox. Treat a
-  cleanup error as unfinished cleanup, not a passing handoff.
-
-These success criteria do not predict exact daemon messages or demonstrate
-denied-network behavior. Record actual output and check runtime policy separately.
-
-Review and approve the environment plan yourself. These commands create and
-remove a sandbox only on that human machine. No host lifecycle commands,
-secrets or new credential bindings are in this file. Environment lifecycle
-commands would run on the **host**, so do not add a `postCreate` test hook here.
-The workload may request its own capabilities; this mixin adds only agent
-context. The environment's workspace is the sole project mount.
-
-Grammar was checked by downloading Docker's official sbx v0.47.0 Linux arm64
-archive inside this task sandbox and running **only version/help**, not a
-daemon. Relative paths, kits mappings and environment command forms appear in
-that help and the pinned official example. No environment parse/create/run or
-actual assembled policy test was performed. Before calling an adaptation
-secure, a human must check actual composition, merged environment and denied
-network behavior under their own organization's policy.
-
-## 7. Optional approved live Gemini
-
-Live Gemini sample validation remains an unrun human handoff.
-
-The sample can send the question and retrieved synthetic passages to
-`gemini-2.5-flash` using `langchain-google-genai==4.4.0`. This may incur provider
-charges. The editorial Gemini review of these documents is a separate API use;
-it is not validation of this sample's live-provider behavior.
-
-Use only an existing organization-approved `GEMINI_API_KEY` or `GOOGLE_API_KEY`
-already supplied to the process by your approved environment. Do not put keys
-in this checkout, shell history, logs, or `sbxenv.yaml`. For a proxy-managed
-sentinel credential, the human operator must approve routing to
-`generativelanguage.googleapis.com` and its `x-goog-api-key` injection. This
-minimal kit intentionally requests neither that egress nor a credential; the
-default environment does not grant live access. Use the operator's installed
-`sbx` help and approval process rather than assuming this file enables it.
-
-After explicit approval, from `sample`:
-
-```bash
-uv sync --locked --extra gemini
-uv run --locked --offline python -m langchain_enterprise.cli --provider gemini --approve-live --query 'What is the receipt threshold?'
-```
-
-Both the provider selection and `--approve-live` are required. The SDK has zero
-retries, a 30-second request timeout and a 512-token output bound. Verify the
-answer's `$25` rule yourself against the cited policy. A live response can
-still misinterpret a passage while citing a valid ID. No live-provider quality
-or reliability claim follows from the deterministic tests. Live sample calls
-have not been run for this delivery.
-
-## Enterprise adaptation choices
-
-Keep policy ownership and effective dates explicit. Introduce access control
-before retrieval, policy versioning, audit retention rules and representative
-evaluation data before using real internal documents. Select an approved model
-and data-handling agreement; measure unsupported questions and injection
-attempts. A production index requires a separate storage/embedding decision.
-
-The demo's heading-based chunk IDs change when sections are reordered. The
-lexical retriever and citation-ID check are not authorization or entailment
-controls. Read-only tool bounds limit these two functions, not arbitrary
-Python execution by a developer. Docker artifact conformance is not evidence
-of runtime isolation, compliance or readiness for enterprise deployment.
-
-Exact source pins and API paths are in [provenance](provenance.md).
-Observed commands, logs and unrun checks are in the [verification report](verification-report.md).
+Reviewable packaging preserves the app and makes access choices visible.
+Acceptance still requires actual local/cloud observations. Allowed APIs can
+spend money and retain data; isolation does not fix prompt injection or model
+correctness. See the [tutorial](run-your-langchain-in-docker-sandboxes.md),
+[evidence matrix](evidence/runtime-matrix.md), [source pins](provenance.md) and
+[supporting policy lab](policy-lab-guide.md) for the next level of detail.

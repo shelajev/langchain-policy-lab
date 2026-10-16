@@ -1,0 +1,23 @@
+[project]
+name = "ticket-triage"
+version = "0.1.0"
+description = "Classify synthetic support tickets with LangChain"
+requires-python = ">=3.13,<3.14"
+dependencies = ["langchain==1.4.4", "langchain-core==1.6.9", "langchain-google-genai==4.4.0", "httpx==0.28.1", "pydantic==2.14.0"]
+
+[dependency-groups]
+dev = ["pytest==8.4.2"]
+build = ["hatchling==1.27.0", "packaging==26.3", "pathspec==0.12.1", "pluggy==1.6.0", "trove-classifiers==2026.9.21.13"]
+
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ticket_triage"]
+
+[tool.uv]
+build-constraint-dependencies = ["hatchling==1.27.0", "packaging==26.3", "pathspec==0.12.1", "pluggy==1.6.0", "trove-classifiers==2026.9.21.13"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

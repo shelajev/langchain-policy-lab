@@ -1,0 +1,6 @@
+2026-10-16T08:43:39.134268+00:00
+Evidence class: live model in implementation sandbox; NOT local/cloud SBX acceptance.
+Host approved one synthetic ticket via existing provider route; max_tokens=256, timeout=60s.
+COMMAND (cwd examples/ticket-triage): TRIAGE_MODEL=gemini-2.5-flash LANGSMITH_TRACING=false uv run --locked --offline python -m ticket_triage.app --ticket data/tickets/t-101.json
+EXIT: 0
+PASS: {"category": "technical", "summary": "Dashboard error when exporting report", "ticket_id": "T-101"}

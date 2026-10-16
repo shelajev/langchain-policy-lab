@@ -1,5 +1,30 @@
 # Primary source and API provenance
 
+## Bring-your-own-app update, 2026-10-16
+
+The earlier sections below describe the policy-lab baseline. The new workflow
+retains those reproducible build pins. Current official spec HEAD is
+`e223cd4c52be3407ffecb5208777289c07583360`; the @1 network and credential
+normative pages have no diff from the existing TCK/spec pin. See
+[the currency check](evidence/spec-currency.md) for exact sources, the host-only
+CLI-help gap and the host-level network-policy decision. New app dependencies
+are exact direct pins in `examples/ticket-triage/pyproject.toml` and a fully
+hashed uv lock, including build constraints. Helper copies only a sanitized,
+hashed app snapshot into a new kit context; it never imports the input app.
+
+Skill discovery locations checked against official docs on 2026-10-16:
+https://developers.openai.com/codex/skills/ (redirects to
+https://learn.chatgpt.com/docs/build-skills) specifies `.agents/skills/` for
+Codex project skills; https://code.claude.com/docs/en/skills specifies
+`.claude/skills/` for Claude Code project skills. No host skill was installed.
+
+ACR install succeeded; direct realization failed with Bad credentials, then an
+anonymous project attempt hit the existing freshness ledger conflict. The host
+explicitly approved the established anonymous scratch route with freshness none.
+That route installed and realized the same pin successfully, without creating
+or trusting hooks or changing the project ledger. See
+[ACR output](evidence/acr-2026-10-16.txt) and [editorial process](editorial-process.md).
+
 Collected inside this task sandbox on 2026-10-09. A version pin is a reproducible
 input, not a claim that it is permanently the newest release. Distribution
 metadata, file hashes and observed commands are in `evidence/`.

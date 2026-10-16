@@ -1,0 +1,11 @@
+# syntax=@FRONTEND@
+schemaVersion: "3"
+kind: mixin
+displayName: @NAME@
+description: Reviewed LangChain app overlay
+version: "0.1.0"
+provides: ["@NAME@@0.1.0"]
+capabilities:
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./@NAME@-context.md

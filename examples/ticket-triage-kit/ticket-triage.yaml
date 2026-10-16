@@ -1,0 +1,28 @@
+# syntax=docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+schemaVersion: "3"
+kind: mixin
+displayName: ticket-triage
+description: Reviewed LangChain app overlay
+version: "0.1.0"
+provides: ["ticket-triage@0.1.0"]
+capabilities:
+  - type: com.docker.sandbox/agent-context@1
+    config:
+      contentFile: ./ticket-triage-context.md
+  - type: com.docker.sandbox/network-policy@1
+    config:
+      runtime:
+        allow: ["generativelanguage.googleapis.com"]
+        deny: ["hooks.example.invalid", "status.example.invalid"]
+  - type: com.docker.sandbox/credential@1
+    optional: true
+    config:
+      service: gemini
+      phase: runtime
+      apiKey:
+        name: GOOGLE_API_KEY
+        proxyManaged: true
+        inject:
+          - domain: generativelanguage.googleapis.com
+            header: x-goog-api-key
+            format: "%s"

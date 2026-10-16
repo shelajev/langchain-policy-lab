@@ -1,0 +1,218 @@
+[
+  {
+    "file": "README.md",
+    "line": 34,
+    "pattern": "#14",
+    "context": "Use fresh output/layout paths. The answers are reviewed decisions for **this synthetic app",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/README-final.json"
+  },
+  {
+    "file": "README.md",
+    "line": 78,
+    "pattern": "#14",
+    "context": "Exact commands and logs: [runtime matrix](docs/evidence/runtime-matrix.md). A kit requests",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/README-final.json"
+  },
+  {
+    "file": "docs/marketing-brief.md",
+    "line": 7,
+    "pattern": "#14",
+    "context": "Use the same ticket-triage app in agent-assisted and manual paths. Show the mixin/workload",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/marketing-brief-final.json"
+  },
+  {
+    "file": "docs/product-overview.md",
+    "line": 8,
+    "pattern": "#14",
+    "context": "Private files are excluded from a separate context. Capabilities have reasons and evidence",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/product-overview-final.json"
+  },
+  {
+    "file": "docs/product-overview.md",
+    "line": 15,
+    "pattern": "#14",
+    "context": "Build/TCK/offline container checks and one separately approved live app call in the implem",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/product-overview-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 19,
+    "pattern": "#14",
+    "context": "One important limit up front: the repository's offline tests, generated build, artifact TC",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 29,
+    "pattern": "#14",
+    "context": "If your app is a single `agent.py` plus a requirements file, keep it that way. Inspection ",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 44,
+    "pattern": "#14",
+    "context": "Use this repository checkout, uv 0.9.26, Python 3.13.7 and Docker with buildx. Static insp",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 111,
+    "pattern": "#14",
+    "context": "Expect questions, not a complete permissions proof. Is `TRIAGE_STATUS_URL` actually used i",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 116,
+    "pattern": "#14",
+    "context": "Every current finding needs an explicit allow, deny or out-of-scope answer, with a reason.",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 125,
+    "pattern": "#14",
+    "context": "The [worked answers](../examples/ticket-triage.answers.json) allow only Gemini for model u",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 187,
+    "pattern": "#14",
+    "context": "A mixin does not own `ENTRYPOINT`, `CMD`, runtime user or `sbx@1`. The pinned shell worklo",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 216,
+    "pattern": "#14",
+    "context": "For your generated or manual copy, use its absolute environment-file path. Review the plan",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 223,
+    "pattern": "#14",
+    "context": "Fake mode needs no credential. For a real request, the host must bind an existing `gemini`",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 237,
+    "pattern": "#14",
+    "context": "The cloud file keeps the baked app and removes `workspace` entirely. Cloud cannot mount th",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/run-your-langchain-in-docker-sandboxes-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 19,
+    "pattern": "#14",
+    "context": "On another host, build kit-tck from the exact commit in [provenance](provenance.md). No ke",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 57,
+    "pattern": "#14",
+    "context": "The fake model checks pipeline wiring, not answer quality. Optional status fetch and webho",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 68,
+    "pattern": "#14",
+    "context": "Inspection parses Python AST, TOML and lock metadata, without imports, resolvers or projec",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 80,
+    "pattern": "#14",
+    "context": "For another app, change project and entrypoint. Supported generation layout: root Python f",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 87,
+    "pattern": "#14",
+    "context": "Read the [worked answers](../examples/ticket-triage.answers.json) and [answer contract](..",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 94,
+    "pattern": "#14",
+    "context": "Dynamic URLs need named hosts before an allow decision. Wildcard/IP access requires an exp",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 131,
+    "pattern": "#14",
+    "context": "The original ignore file is not reused as the build context policy. The helper always remo",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 144,
+    "pattern": "#14",
+    "context": "Use a fresh layout. Version 0.1.0 identifies the app kit, not LangChain itself. The [commi",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 169,
+    "pattern": "#14",
+    "context": "For your generated `/tmp` copy, substitute its absolute environment-file path. The mixin a",
+    "decision": "retained",
+    "reason": "Reviewed this paragraph in context: distinct operational prerequisites, safety limits or follow-on actions carry separate information. Similar counted sentence lengths do not establish flat prose here; no filler or lost technical detail is justified to change the counts.",
+    "rawEvidence": "docs/evidence/editorial-r3/user-guide-final.json"
+  }
+]

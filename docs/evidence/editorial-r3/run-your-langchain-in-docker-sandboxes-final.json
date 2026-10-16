@@ -1,0 +1,206 @@
+{
+  "ok": true,
+  "path": "docs/run-your-langchain-in-docker-sandboxes.md",
+  "mode": "final",
+  "hits": [
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 19,
+      "detail": "[8, 7, 9] of [17, 18, 6, 13, 8, 7, 9]",
+      "context": "One important limit up front: the repository's offline tests, generated build, artifact TC",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 29,
+      "detail": "[12, 8, 10] of [15, 13, 25, 12, 8, 10]",
+      "context": "If your app is a single `agent.py` plus a requirements file, keep it that way. Inspection ",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 44,
+      "detail": "[13, 15, 13] of [12, 6, 13, 15, 13]",
+      "context": "Use this repository checkout, uv 0.9.26, Python 3.13.7 and Docker with buildx. Static insp",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 111,
+      "detail": "[7, 7, 5] of [7, 7, 5, 3, 7, 17]",
+      "context": "Expect questions, not a complete permissions proof. Is `TRIAGE_STATUS_URL` actually used i",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 116,
+      "detail": "[14, 15, 16] of [14, 15, 16]",
+      "context": "Every current finding needs an explicit allow, deny or out-of-scope answer, with a reason.",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 125,
+      "detail": "[9, 10, 9] of [22, 9, 10, 9]",
+      "context": "The [worked answers](../examples/ticket-triage.answers.json) allow only Gemini for model u",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 187,
+      "detail": "[11, 12, 15] of [11, 12, 15]",
+      "context": "A mixin does not own `ENTRYPOINT`, `CMD`, runtime user or `sbx@1`. The pinned shell worklo",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 216,
+      "detail": "[16, 12, 11] of [11, 5, 16, 12, 11]",
+      "context": "For your generated or manual copy, use its absolute environment-file path. Review the plan",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 223,
+      "detail": "[9, 12, 13] of [5, 25, 9, 12, 13]",
+      "context": "Fake mode needs no credential. For a real request, the host must bind an existing `gemini`",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 237,
+      "detail": "[11, 6, 9] of [11, 6, 9]",
+      "context": "The cloud file keeps the baked app and removes `workspace` entirely. Cloud cannot mount th",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    }
+  ],
+  "candidates": {
+    "assistant_chatter": []
+  },
+  "observations": {
+    "em_dashes": {
+      "paired_asides": [],
+      "spacing": {
+        "spaced": 0,
+        "closed": 0,
+        "mixed": 0,
+        "boundary": 0
+      },
+      "sections": [
+        {
+          "heading": "# Run your LangChain in Docker Sandboxes",
+          "line": 1,
+          "count": 0
+        },
+        {
+          "heading": "## Start with an app, not a sandbox framework",
+          "line": 23,
+          "count": 0
+        },
+        {
+          "heading": "## Why isolate the agent and the app?",
+          "line": 65,
+          "count": 0
+        },
+        {
+          "heading": "## Let a coding agent do the inspection",
+          "line": 83,
+          "count": 0
+        },
+        {
+          "heading": "## Generate packaging you can review",
+          "line": 121,
+          "count": 0
+        },
+        {
+          "heading": "## The manual path uses the same kit",
+          "line": 156,
+          "count": 0
+        },
+        {
+          "heading": "## Run your app inside local Docker Sandboxes",
+          "line": 205,
+          "count": 0
+        },
+        {
+          "heading": "## Cloud changes the resources, not the app",
+          "line": 235,
+          "count": 0
+        },
+        {
+          "heading": "## Keep the boundary honest",
+          "line": 263,
+          "count": 0
+        }
+      ],
+      "total": 0,
+      "note": "Observations only: apply patterns #7 and #8 with same-mode identity evidence and assignment genre."
+    }
+  },
+  "coverage": {
+    "ran": [
+      "#3/#4 fragment chains",
+      "#14 low burstiness",
+      "#18 unicode giveaways",
+      "#28/#30 announcement clauses (enumerable shapes only)",
+      "#31 category claims (shape only \u2014 the subject swap is the check)"
+    ],
+    "supplemental_checks": [
+      "WP:OAICITE citation-artifact leakage",
+      "WP:TRACKING AI-source tracking parameters",
+      "WP:ASSISTANT assistant-chatter candidate discovery",
+      "WP:SECTIONBREAK thematic breaks between every section",
+      "WP:FINALIZATION unresolved placeholders and VERIFY markers"
+    ],
+    "not_run_judgment": [
+      "#1 contrastive negation \u2014 is it the same slot?",
+      "#7 paired em-dashes \u2014 compare identity, genre, and rhetorical function",
+      "#8 em-dash density \u2014 compare observations with same-mode evidence",
+      "#10 introductory filler \u2014 apply the delete test",
+      "#12 AI vocabulary \u2014 the watchlist qualifiers are the check",
+      "#17 synonym cycling \u2014 do two phrases denote one concept?",
+      "#28 labelled devices \u2014 delete-test the clauses the sweep did not match",
+      "#30 telegraphing \u2014 delete-test the clauses the sweep did not match",
+      "#32 stacked data points \u2014 do two numbers make one point?",
+      "#35 temporal filler \u2014 apply the delete test",
+      "#36 corporate cliche \u2014 apply the interchangeability test",
+      "#40 vague connection \u2014 name the relationship",
+      "#41 source-unavailability hedging \u2014 cut unsupported claims",
+      "#42 ceremonial coverage \u2014 use what the source establishes",
+      "#43 intent-only sentences \u2014 restate each load-bearing sentence as a claim"
+    ],
+    "patterns_examined": 7,
+    "patterns_total": 43,
+    "note": "36 of the 43 patterns were not examined by this script. An empty hits list is not an anti-pattern check: the judgment sweeps in not_run_judgment and the rest of references/ai-anti-patterns.md still need a read."
+  }
+}

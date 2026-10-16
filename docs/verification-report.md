@@ -1,5 +1,8 @@
 # Verification report
 
+Historical policy-lab results. Current bring-your-own-app evidence and remaining
+runtime gaps are in [the runtime matrix](evidence/runtime-matrix.md).
+
 Date: 2026-10-09. All observed commands ran inside the task sandbox on Linux
 arm64. No code ran on a host, no nested SBX daemon was started, and nothing was
 pushed/published. ESC-001's earlier apparent passes were planning assertions;
