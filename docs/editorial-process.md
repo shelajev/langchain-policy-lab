@@ -397,3 +397,61 @@ r4-03 reviewed the earlier kit-first draft. Its completed review and failed-atte
 history remain unchanged; it is superseded for the final direct-first article
 by r5-01. The saved completed response SHA-256 matches audience-r4-03.json,
 and its historical packet hashes match commit 3f0651a.
+
+## Direct-first final reader and scoped edit
+
+The existing article/README/guide were revised through the pinned
+`shelajev/blog-writer@61844184d925b9f925951241a0d476db7c193e7e` scoped route,
+using the existing anonymous scratch ACR realization. No host skill install,
+credential restoration, hooks or runtime/global configuration change occurred.
+Approved guide/blog profiles were consulted in place only; none was copied,
+quoted here, committed or included in the reader packet.
+
+Preservation contract: retain the host/files/network/credential rationale,
+unchanged-app behavior, concrete manual and agent-assisted instructions,
+separate local/cloud status and allowed/denied verification. The authorized
+change makes direct existing-app execution primary and kit generation optional.
+The opening now says the existing agent.py runs in a shell sandbox; “Why isolate
+the agent and the app?” retains the runtime-exposure argument. The manual
+allowlist/workload/setup sequence and assisted `direct` sequence precede
+“Optional: package a reusable kit”, which retains the concrete kit-edit checklist.
+No personal experience, corporate identity or publication claim was added.
+
+[Final r5-01 review](reviews/gemini-r5-01.md) made exactly **one** stateless call
+with only article, README, guide and audience prerequisites. No profiles, crew
+files, history, source trees or earlier reviews were supplied. Configuration:
+gemini-3.8-flash, thinkingLevel low, maxOutputTokens 32768, temperature 0.2,
+600-second client timeout. It completed with **STOP**, a verdict and a clean
+END OF REVIEW terminator. [Hashes, usage and completion record](evidence/audience-r5-01.json)
+preserve the actual **NEEDS REVISION** verdict: one substantive first-use gap,
+the unexplained internal term “crew” in cloud attribution. Replaced it in the
+article and matching guide with explicit host-reported/not-independently-verified
+wording. This does not change the host diagnose attribution or cloud NOT RUN.
+No second reader call or optional editorial polish followed. The record includes
+original packet and final repaired-file hashes; the repaired wording was not
+re-reviewed. This is audience comprehension evidence, not runtime validation.
+
+Independent editorial states:
+- Author preservation: pass for the requested direct-first shift and retained
+  rationale, manual instructions, optional kit checklist and runtime caveats.
+- Mechanical sweep: final-mode findings, zero required/chatter; 25 contextual
+  low-burstiness matches retained with [per-passage dispositions](evidence/editorial-r5/).
+  Raw exit 1 is not relabelled as zero hits.
+- Manual anti-pattern review: complete within the changed passages and their
+  context; no fabricated experience, blanket grants or unexplained route switch.
+- Voice calibration: neutral developer tutorial, supplied profiles used in place;
+  no personal attribution or identity impersonation.
+- Assignment mode: scoped direct-first technical revision, not new-blog intake.
+- Calibration evidence: task's neutral tutorial direction and the mounted guide/
+  blog profiles, consulted in place; no profile excerpts are reproduced.
+- Paragraph continuity: pass; why leads to direct setup, access verification,
+  optional distribution and cloud limitations. Unaffected kit instructions remain.
+
+The [single clean-clone run](evidence/clean-checkout-round3.txt) at
+99ec914318bcf3e15f83c4c9b42831f8333c36c7 passed 49 lab + 4 app + 29 helper
+tests, three TCK cohorts (19/19 each), kit/container probes, raw locking and the
+new direct/manual ordinary-container checks. Later changes are prose, evidence
+and bean records only. One initial staged audit found trailing whitespace in
+captured registry output; whitespace was normalized and the final audit rerun.
+No passed baseline was separately restarted and no live app call was repeated.
+Exact-tip independent QC and actual local/cloud SBX checks remain open.

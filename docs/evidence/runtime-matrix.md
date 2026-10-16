@@ -50,3 +50,15 @@ CI workflow additions are preserved as a
 `.github/workflows/ci.yml` itself is unchanged to respect host token scope.
 The existing CI clean-checkout step will run the extended check script; no new
 hosted CI run was started or claimed here.
+
+Direct-first [clean-clone journey](clean-checkout-round3.txt) PASS at
+99ec914318bcf3e15f83c4c9b42831f8333c36c7: 49 policy-lab tests, 4 app tests,
+29 helper tests (82 total), 98 relative links, three TCK groups each 19/19,
+all prior artifact/container checks, raw lock preparation and direct/manual
+shell-image container probes. It used an isolated cache/managed Python and
+ended with a clean cloned tree. The direct negative network control failed
+with Network is unreachable under ordinary container `--network none`, not
+with a claimed SBX policy event. Later edits are reader attribution wording,
+evidence/bean/editorial records and captured-log whitespace only. Local/cloud
+SBX and shell bootstrap/binding approval remain NOT RUN/UNVERIFIED; the prior
+live application call was not repeated.

@@ -396,7 +396,7 @@ fail DNS even with no policy at all; an origin 403 can also resemble a boundary
 For the optional kit, the cloud file keeps the baked app and removes `workspace` entirely. Cloud
 cannot mount the host directory. The host reports `sbx --cloud diagnose` passed
 authentication, API reachability and subscription: the host cloud account and
-API are reachable. The crew did not observe that diagnosis. Cloud runtime
+API are reachable. That host-reported diagnosis was not independently verified for this walkthrough. Cloud runtime
 execution is still **NOT RUN**; cloud-side secret/binding, approval to bake or
 upload, and the actual allowed/denied runs remain open. On the approved host:
 

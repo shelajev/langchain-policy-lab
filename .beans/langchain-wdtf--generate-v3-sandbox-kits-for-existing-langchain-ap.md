@@ -4,7 +4,7 @@ title: Generate v3 sandbox kits for existing LangChain applications
 status: completed
 type: task
 created_at: 2026-10-15T21:58:07Z
-updated_at: 2026-10-16T09:06:11Z
+updated_at: 2026-10-16T09:43:44Z
 parent: langchain-oqr4
 ---
 

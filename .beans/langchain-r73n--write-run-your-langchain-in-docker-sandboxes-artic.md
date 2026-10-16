@@ -4,7 +4,7 @@ title: Write Run your LangChain in Docker Sandboxes article and guides
 status: completed
 type: task
 created_at: 2026-10-15T21:58:07Z
-updated_at: 2026-10-16T09:18:00Z
+updated_at: 2026-10-16T09:43:44Z
 parent: langchain-oqr4
 ---
 
@@ -20,3 +20,6 @@ Finished reviewable article: why, coding-agent assisted howto, equivalent manual
 - [r4-01](../docs/reviews/gemini-r4-01.md) and [r4-02](../docs/reviews/gemini-r4-02.md) identified substantive first-use gaps; repaired the route promise, tool setup, generated build, actual app prompts and consistent generated/manual launch/cleanup paths. [Final r4-03: READABLE, no substantive blockers](../docs/reviews/gemini-r4-03.md), [reader-only packet/model/hash/parameters](../docs/evidence/audience-r4-03.json). Incomplete retries are explicitly preserved, not passed off as reviews; optional polish declined.
 
 - Direct-first revision: r4-03 reviewed the earlier kit-first draft and is superseded for the final article by r5-01. Its completed review and failed-attempt history remain unchanged; completed response hash and historical 3f0651a packet linkage match.
+
+- Direct-first final [r5-01](../docs/reviews/gemini-r5-01.md): exactly one stateless call, low thinking, 32768 output cap, timeout 600s, STOP and complete report. Actual verdict NEEDS REVISION preserved. One unexplained internal “crew” reference was repaired in article and matching guide; no re-review, per task instruction. [Packet/request/response/final-file hashes and usage](../docs/evidence/audience-r5-01.json).
+- [Final sweeps and individual dispositions](../docs/evidence/editorial-r5/): zero required/chatter, 25 contextual findings retained; profiles only in place. [Clean-clone technical cohort](../docs/evidence/clean-checkout-round3.txt) PASS at 99ec914; not independent QC or local/cloud runtime acceptance.

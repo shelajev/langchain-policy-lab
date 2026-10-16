@@ -1,0 +1,30 @@
+{
+  "file": "README.md",
+  "rawExit": 1,
+  "requiredHits": 0,
+  "assistantChatter": 0,
+  "contextualHits": 3,
+  "dispositions": [
+    {
+      "line": 18,
+      "pattern": "#14",
+      "context": "Use a fresh output directory. Review `ACCESS.md`, `RUN.md`, `setup-deps.sh`, `sbxenv.yaml`",
+      "decision": "retain",
+      "reason": "Artifact review checklist protects the generated workspace boundary; the following sentences explain fixture-specific answers rather than repeat a slogan."
+    },
+    {
+      "line": 39,
+      "pattern": "#14",
+      "context": "For a real model call, approve input, budget and credential use separately. Direct uses bu",
+      "decision": "retain",
+      "reason": "The paragraph separates model-use approval from service naming and key placement; each similar-length sentence adds a distinct operational constraint."
+    },
+    {
+      "line": 52,
+      "pattern": "#14",
+      "context": "For discovery **in your own project**, copy the whole skill folder into `.agents/skills/la",
+      "decision": "retain",
+      "reason": "Discovery locations are two supported alternatives, followed by required bundled resources and a helper-free route; not interchangeable flat assertions."
+    }
+  ]
+}

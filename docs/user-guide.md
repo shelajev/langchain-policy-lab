@@ -362,8 +362,8 @@ sbx env rm /tmp/manual-agent-kit/sbxenv.local.yaml
 ```
 
 The host reports `sbx --cloud diagnose` passed authentication, API reachability
-and subscription; the host cloud account and API are reachable. The crew did
-not observe that diagnosis. Cloud runtime execution is still **NOT RUN**;
+and subscription; the host cloud account and API are reachable. That host-reported
+diagnosis was not independently verified for this walkthrough. Cloud runtime execution is still **NOT RUN**;
 cloud-side secrets/bindings, upload/baking approval and actual allowed/denied
 runs remain open. Cloud cannot mount your host workspace;
 the app is already baked in. No cloud upload ran here. Repeat the same
