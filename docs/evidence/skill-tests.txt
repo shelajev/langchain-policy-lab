@@ -1,4 +1,4 @@
-2026-10-16T08:48:15Z
+2026-10-16T08:53:03Z
 COMMAND: bash scripts/check-skill.sh
 test_bad_answers_paths_and_lifecycle (test_helper.HelperTests.test_bad_answers_paths_and_lifecycle) ... ok
 test_cli_exit_codes (test_helper.HelperTests.test_cli_exit_codes) ... ok
@@ -14,6 +14,7 @@ test_missing_lock_missing_dependency_unhashed_lock (test_helper.HelperTests.test
 test_no_implicit_grants_and_mixin_ownership (test_helper.HelperTests.test_no_implicit_grants_and_mixin_ownership) ... ok
 test_output_cannot_overlap_excluded_ancestor (test_helper.HelperTests.test_output_cannot_overlap_excluded_ancestor) ... ok
 test_output_cannot_overlap_input (test_helper.HelperTests.test_output_cannot_overlap_input) ... ok
+test_provider_host_deny_cannot_be_overridden_by_package_allow (test_helper.HelperTests.test_provider_host_deny_cannot_be_overridden_by_package_allow) ... ok
 test_requirements_inspection_before_lock_setup (test_helper.HelperTests.test_requirements_inspection_before_lock_setup) ... ok
 test_secret_files_and_ignore_rules_never_enter_context (test_helper.HelperTests.test_secret_files_and_ignore_rules_never_enter_context) ... ok
 test_secret_literal_redacted_and_refused (test_helper.HelperTests.test_secret_literal_redacted_and_refused) ... ok
@@ -23,7 +24,7 @@ test_symlink_and_outside_entrypoint (test_helper.HelperTests.test_symlink_and_ou
 test_syntax_binary_size_and_depth_findings (test_helper.HelperTests.test_syntax_binary_size_and_depth_findings) ... ok
 
 ----------------------------------------------------------------------
-Ran 21 tests in 0.189s
+Ran 22 tests in 0.193s
 
 OK
 EXIT: 0

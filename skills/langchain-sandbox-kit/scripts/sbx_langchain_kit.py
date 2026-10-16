@@ -350,7 +350,7 @@ def generate(project, entrypoint, answers_path, output, force=False):
         provider = PROVIDERS.get(finding["value"]) if finding["kind"] == "provider-package" else None
         if not hosts and provider:
             hosts = [provider[0]]
-        if not hosts and finding["kind"] == "literal-host":
+        if not hosts and finding["kind"] in ("literal-host", "provider-host"):
             hosts = [finding["value"]]
         if answer["action"] == "allow" and finding["kind"] == "dynamic-url" and not hosts:
             raise Refusal("dynamic URL needs exact hosts", 2)

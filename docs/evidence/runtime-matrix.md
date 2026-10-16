@@ -18,3 +18,17 @@ boundary events remain unverified until H1/H2. No production deployment claim.
 The baseline was run before implementation at aeac822, including sample tests,
 kit build/TCK and filesystem probe. Each log records command, UTC and exit.
 The helper's golden comparison covers the exact sanitized snapshot and hashes.
+
+Final [clean-checkout run](clean-checkout-2026-10-16.txt) PASS at implementation
+commit a8a8730571c1f29d299ca2acb5edacc46a797f5e: 49 policy-lab tests, 4 ticket-triage
+tests, 21 helper tests, 80 current relative links, both kit builds/TCK, both
+ordinary container probes and root agent.py build/run. It used an isolated uv
+cache/managed Python and ended with a clean cloned tree. Subsequent delivery
+changes record evidence/document status only, not source, lock or generated
+artifact changes. Exact final-commit independent QC is still the next phase.
+
+CI workflow additions are preserved as a
+[reviewable patch](ci-workflow-round1.patch) and under the crew handoff path;
+`.github/workflows/ci.yml` itself is unchanged to respect host token scope.
+The existing CI clean-checkout step will run the extended check script; no new
+hosted CI run was started or claimed here.

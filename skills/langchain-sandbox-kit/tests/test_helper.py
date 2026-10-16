@@ -172,6 +172,16 @@ class HelperTests(unittest.TestCase):
         self.assertIn("proxyManaged: true", descriptor)
         self.assertIn('allow: ["api.openai.com"]', descriptor)
 
+    def test_provider_host_deny_cannot_be_overridden_by_package_allow(self):
+        answers = self.answers()
+        for finding in self.report()["findings"]:
+            if finding["kind"] == "provider-package":
+                answers["decisions"][finding["id"]] = {"action": "allow", "reason": "Provider requested"}
+            if finding["kind"] == "provider-host":
+                answers["decisions"][finding["id"]] = {"action": "deny", "reason": "Host explicitly refused"}
+        self.answers_path.write_text(json.dumps(answers))
+        self.assert_refused(self.generate)
+
     def test_force_refuses_manual_edits_and_unknown_files(self):
         self.answers()
         self.generate()
