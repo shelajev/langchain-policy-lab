@@ -44,7 +44,9 @@ you do not want a packaging tool to make silently.
 Use this repository checkout, uv 0.9.26, Python 3.13.7 and Docker with buildx.
 Static inspection needs only Python 3.11+. Build validation additionally needs
 the pinned `kit-tck`. On Linux x86_64/aarch64, from the repository root, install
-project tools into a chosen scratch directory and add them to this shell's PATH:
+project tools into a chosen scratch directory and add them to this shell's PATH.
+The installer needs `curl`, `tar`, `sha256sum`, `git` and Go available; it
+downloads pinned uv and builds the pinned kit-tck into that directory:
 
 ```bash
 bash scripts/install-ci-tools.sh /tmp/triage-tools
@@ -96,7 +98,7 @@ The repository includes a self-contained
 [LangChain packaging skill](../skills/langchain-sandbox-kit/SKILL.md).
 Ask your coding agent:
 
-> Package my LangChain app at ./ticket-triage to run in Docker Sandboxes.
+> Package my LangChain app at ./examples/ticket-triage to run in Docker Sandboxes.
 > Inspect it without executing it. Ask about unresolved access and show me
 > the generated package before requesting any permissions.
 
@@ -263,13 +265,14 @@ injection. Those remain host checks.
 On the approved host, from the repository root:
 
 ```bash
-sbx env plan ./examples/ticket-triage-kit/sbxenv.local.yaml
-sbx env run --detach ./examples/ticket-triage-kit/sbxenv.local.yaml
-sbx env exec ./examples/ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
+sbx env plan /tmp/my-ticket-triage-kit/sbxenv.local.yaml
+sbx env run --detach /tmp/my-ticket-triage-kit/sbxenv.local.yaml
+sbx env exec /tmp/my-ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
 ```
 
-For your generated ticket-triage copy, use its absolute environment-file path
-with the same ticket-triage launch command. For the manual single-file copy,
+These paths use the generated and validated copy. The repository's
+`examples/ticket-triage-kit` is a prepackaged reference, not this output directory.
+If you chose another output path, change it on every command. For the manual single-file copy,
 use this alternative host handoff instead (also NOT RUN here):
 
 ```bash
@@ -310,9 +313,9 @@ execution is still **NOT RUN**; cloud-side secret/binding, approval to bake or
 upload, and the actual allowed/denied runs remain open. On the approved host:
 
 ```bash
-sbx --cloud env plan ./examples/ticket-triage-kit/sbxenv.cloud.yaml
-sbx --cloud env run --detach ./examples/ticket-triage-kit/sbxenv.cloud.yaml
-sbx --cloud env exec ./examples/ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
+sbx --cloud env plan /tmp/my-ticket-triage-kit/sbxenv.cloud.yaml
+sbx --cloud env run --detach /tmp/my-ticket-triage-kit/sbxenv.cloud.yaml
+sbx --cloud env exec /tmp/my-ticket-triage-kit/sbxenv.cloud.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
 ```
 
 For the manual single-file copy, use the matching cloud handoff instead:
@@ -331,8 +334,8 @@ in the implementation environment, and no image was published or app uploaded.
 Clean up each environment using the same account, target and file paths:
 
 ```bash
-sbx --cloud env rm ./examples/ticket-triage-kit/sbxenv.cloud.yaml
-sbx env rm ./examples/ticket-triage-kit/sbxenv.local.yaml
+sbx --cloud env rm /tmp/my-ticket-triage-kit/sbxenv.cloud.yaml
+sbx env rm /tmp/my-ticket-triage-kit/sbxenv.local.yaml
 ```
 
 For the manual alternative, remove `/tmp/manual-agent-kit/sbxenv.cloud.yaml`

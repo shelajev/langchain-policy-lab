@@ -28,7 +28,7 @@
   },
   {
     "file": "docs/run-your-langchain-in-docker-sandboxes.md",
-    "line": 54,
+    "line": 56,
     "pattern": "#14",
     "context": "On other hosts, build kit-tck from the exact spec commit in [provenance](provenance.md). A",
     "decision": "retained",
@@ -37,7 +37,7 @@
   },
   {
     "file": "docs/run-your-langchain-in-docker-sandboxes.md",
-    "line": 121,
+    "line": 123,
     "pattern": "#14",
     "context": "Expect questions, not a complete permissions proof. Is `TRIAGE_STATUS_URL` actually used i",
     "decision": "retained",
@@ -46,7 +46,7 @@
   },
   {
     "file": "docs/run-your-langchain-in-docker-sandboxes.md",
-    "line": 126,
+    "line": 128,
     "pattern": "#14",
     "context": "Every current finding needs an explicit allow, deny or out-of-scope answer, with a reason.",
     "decision": "retained",
@@ -55,7 +55,7 @@
   },
   {
     "file": "docs/run-your-langchain-in-docker-sandboxes.md",
-    "line": 135,
+    "line": 137,
     "pattern": "#14",
     "context": "The [worked answers](../examples/ticket-triage.answers.json) allow only Gemini for model u",
     "decision": "retained",
@@ -64,7 +64,7 @@
   },
   {
     "file": "docs/run-your-langchain-in-docker-sandboxes.md",
-    "line": 184,
+    "line": 186,
     "pattern": "#14",
     "context": "For a root `agent.py`, start from the [single-file kit](../examples/single-file-agent-kit/",
     "decision": "retained",
@@ -73,7 +73,16 @@
   },
   {
     "file": "docs/run-your-langchain-in-docker-sandboxes.md",
-    "line": 282,
+    "line": 273,
+    "pattern": "#14",
+    "context": "These paths use the generated and validated copy. The repository's `examples/ticket-triage",
+    "decision": "retained",
+    "reason": "Names the generated directory used throughout the workflow, distinguishes the reference fixture, and requires consistent substitution before introducing the manual alternative. These are separate missing premises found by the reader, not filler to alter cadence.",
+    "rawEvidence": "docs/evidence/editorial-r4/article-final.json"
+  },
+  {
+    "file": "docs/run-your-langchain-in-docker-sandboxes.md",
+    "line": 285,
     "pattern": "#14",
     "context": "Use your own offline arguments if your script differs from the fixture. Review the plan be",
     "decision": "retained",
@@ -82,7 +91,7 @@
   },
   {
     "file": "docs/run-your-langchain-in-docker-sandboxes.md",
-    "line": 289,
+    "line": 292,
     "pattern": "#14",
     "context": "Fake mode needs no credential. For a real request, the host must bind an existing `gemini`",
     "decision": "retained",
@@ -91,7 +100,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 20,
+    "line": 22,
     "pattern": "#14",
     "context": "On another host, build kit-tck from the exact commit in [provenance](provenance.md). No ke",
     "decision": "retained",
@@ -100,7 +109,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 58,
+    "line": 60,
     "pattern": "#14",
     "context": "The fake model checks pipeline wiring, not answer quality. Optional status fetch and webho",
     "decision": "retained",
@@ -109,7 +118,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 69,
+    "line": 71,
     "pattern": "#14",
     "context": "Inspection parses Python AST, TOML and lock metadata, without imports, resolvers or projec",
     "decision": "retained",
@@ -118,7 +127,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 81,
+    "line": 83,
     "pattern": "#14",
     "context": "For another app, change project and entrypoint. Supported generation layout: root Python f",
     "decision": "retained",
@@ -127,7 +136,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 88,
+    "line": 90,
     "pattern": "#14",
     "context": "Read the [worked answers](../examples/ticket-triage.answers.json) and [answer contract](..",
     "decision": "retained",
@@ -136,7 +145,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 95,
+    "line": 97,
     "pattern": "#14",
     "context": "Dynamic URLs need named hosts before an allow decision. Wildcard/IP access requires an exp",
     "decision": "retained",
@@ -145,7 +154,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 132,
+    "line": 134,
     "pattern": "#14",
     "context": "The original ignore file is not reused as the build context policy. The helper always remo",
     "decision": "retained",
@@ -154,7 +163,7 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 235,
+    "line": 237,
     "pattern": "#14",
     "context": "Use a fresh layout. Version 0.1.0 identifies the app kit, not LangChain itself. The [commi",
     "decision": "retained",
@@ -163,7 +172,16 @@
   },
   {
     "file": "docs/user-guide.md",
-    "line": 270,
+    "line": 262,
+    "pattern": "#14",
+    "context": "These commands use the copy generated and validated above. The repository's `examples/tick",
+    "decision": "retained",
+    "reason": "Keeps the generated output separate from the committed reference, requires substitutions on every command, and introduces the single-file alternative. Removing a sentence would reintroduce the path confusion identified in review.",
+    "rawEvidence": "docs/evidence/editorial-r4/guide-final.json"
+  },
+  {
+    "file": "docs/user-guide.md",
+    "line": 274,
     "pattern": "#14",
     "context": "The mixin adds app files and capabilities; the workload owns entrypoint, user and `sbx@1`.",
     "decision": "retained",

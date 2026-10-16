@@ -303,3 +303,90 @@ whitespace check excludes that one class per command to preserve reviewed bytes;
 prose has no whitespace findings and no persistent Git configuration changed.
 Unchanged builds, tests, OCI checks and kit-tck were not rerun. No SBX composition,
 live sample invocation, push or publication occurred.
+
+## Round 4: bounded raw-script and manual-path corrections, 2026-10-16
+
+Scoped revision of the existing tutorial, guide and README, not a new article
+or an optional polish pass. Reused the approved anonymous scratch ACR
+realization of blog-writer at `61844184d925b9f925951241a0d476db7c193e7e`.
+No root realization, hook trust, host skill installation or configuration repair.
+Guide/blog profiles were read in place only; none were copied, quoted here,
+committed or included in Gemini requests. The tutorial stays neutral and
+unattributed; no invented author experience or endorsement.
+
+Preservation contract: keep the existing app's source and launch semantics,
+make resource choices explicit, teach a usable manual route, and retain the
+build/TCK/container versus local/cloud runtime distinction. The old manual
+instruction to replace source and adjust paths is now an eight-file checklist
+using the single-file template, with verified raw dependency-lock commands and
+a concrete offline container recipe. The source script remains byte-identical.
+The mixin still does not own launch; both examples use explicit `sbx env exec`.
+The cloud diagnosis is attributed to the host, not to the crew.
+
+Independent editorial states:
+
+- Author preservation: PASS. The vague replacement instruction now names
+  actual generated fields and commands. The false same-app promise was
+  corrected to distinguish assisted ticket-triage from the manual agent.py
+  template. Public prompt paths now name `./examples/ticket-triage`, and the
+  generated `/tmp/my-ticket-triage-kit` path survives through build, local/cloud
+  execution and cleanup. No application behavior or permissions were broadened.
+- Mechanical sweep: FINDINGS, raw exit 1 for each final artifact. Zero required
+  hits and zero assistant-chatter candidates; 23 contextual #14 hits retained.
+  [Raw JSON and individual dispositions](evidence/editorial-r4/) remain visible,
+  not relabeled as a clean sweep.
+- Manual anti-pattern review: COMPLETE for changed passages and their context.
+  The file checklist is procedural work, not a glossary or feature matrix;
+  counted sentence lengths do not establish padded cadence. No fabricated
+  experience, unsupported runtime assertion or added theme slogan was found.
+  Scope was not widened to unrelated prose or sentence-count rewrites.
+- Voice calibration: NOT APPLICABLE to an individual author; no formal personal
+  calibration or author approval is asserted. Assignment mode: neutral technical
+  tutorial/local revision. The in-place profiles inform clarity and register,
+  not an impersonated byline.
+- Paragraph continuity: PASS. Template selection precedes edits, edits precede
+  build/TCK/probe, and each host path names its matching app/launch/cleanup.
+  Modular numbered edits intentionally follow files, not a narrative cadence.
+
+Fresh review used the pinned `fresh-reader.py` with only the audience brief,
+article, README and guide: no profile, source tree, earlier review, crew file,
+conversation or tool access. The initial 60-second attempt timed out without
+a completed review ([diagnostic](evidence/audience-r4-01-attempt1.txt)). A scratch
+copy changed only the timeout to 240 seconds, not the request or tool selection
+([exact diff](evidence/editorial-r4/reader-timeout.diff)). No installed skill was
+modified. This is editorial review, not a repeat of the live application test.
+
+- [r4-01](reviews/gemini-r4-01.md), [packet hash](evidence/audience-r4-01.json):
+  NEEDS REVISION. Fixed the false same-app promise, supplied tool installation
+  and prerequisites, added generated-kit validation, and supplied the manual
+  app's actual local/cloud launch commands. Ticket-only negative-test flags
+  are no longer presented as single-file script arguments.
+- [r4-02](reviews/gemini-r4-02.md), [packet hash](evidence/audience-r4-02.json):
+  NEEDS REVISION. Fixed the prompt's nonexistent relative path and used the
+  generated output, rather than the reference fixture, for execution/cleanup
+  in all three reader-facing files. Optional stylistic changes were not made.
+  Saved responses have trailing whitespace trimmed; wording is intact.
+- [r4-03](reviews/gemini-r4-03.md), [exact final packet/request hashes and
+  parameters](evidence/audience-r4-03.json): **READABLE**, no substantive
+  blockers. Only optional notes about the TCK version argument and a working
+  directory reminder remain. No optional polish was applied: the guide already
+  defines kit version, and runtime commands use absolute environment-file
+  paths. This is the final, unchanged reader packet, not an inferred verdict.
+
+The r4-03 transport/completion failures are preserved separately: a timeout,
+an incomplete 5,000-token attempt, then a 16,000-token `MAX_TOKENS` result
+([usage/finish metadata](evidence/audience-r4-03-attempt3-metadata.json)). These
+were not called completed reviews. The final retry kept the same four reader
+files, pinned reader instruction and model, used a 16,000-token cap with the
+documented request-level `thinkingConfig.thinkingLevel: low`, and completed
+with `STOP` ([completion metadata](evidence/audience-r4-03-completion.json)).
+The configuration source and each request hash are in the packet record.
+No private context, profile, previous review or thought signature was supplied.
+No runtime/global configuration changed, and no live app test was repeated.
+
+The code/build regression cohort is the
+[clean-clone run](evidence/clean-checkout-2026-10-16T091120Z.txt) at
+bcf3fdef83eb8ed147875265dee9463d28167be9. Subsequent edits change reader paths,
+prerequisite explanations and evidence/bean/editorial records only; final
+reader links, Bash syntax and packet bytes are checked separately. This record
+does not issue independent exact-tip QC or local/cloud SBX acceptance.

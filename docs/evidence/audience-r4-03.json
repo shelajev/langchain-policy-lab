@@ -1,0 +1,74 @@
+{
+  "review": "r4-03",
+  "model": "gemini-3.8-flash",
+  "history": "none",
+  "files": [
+    "docs/run-your-langchain-in-docker-sandboxes.md",
+    "docs/reviews/audience-r3.md",
+    "README.md",
+    "docs/user-guide.md"
+  ],
+  "fileSha256": {
+    "docs/run-your-langchain-in-docker-sandboxes.md": "46499fed8e7ac2ee5d0be487625ad2bcd9fe2b35149c6f0e281e3394ec144c1f",
+    "docs/reviews/audience-r3.md": "0133388d3d4b6bee4c121f1e85d426ccd0cd4d85bcb0dcab971154fc7641bfab",
+    "README.md": "b016596b7cad3f9637a2e9036b58258374aa1dbd0fe1871c2a193473b3c21ac6",
+    "docs/user-guide.md": "cf5abe45adafe13ef506b2d68ffa78dfc3cf0905921c61a6dc5446fefd595266"
+  },
+  "packetSha256": "ab25f091c3e511f008ff05ae895ae67a56b203d47577c6b56b2363a6dd3665ed",
+  "requestSha256": "aea4f6a44a546da98dfa3438ce78f1d6088848df8885d988df8f6e0bd0e4f4a7",
+  "profileIncluded": false,
+  "tool": "pinned fresh-reader.py payload/main in scratch; timeout 240s and bounded generation as recorded",
+  "generationConfig": {
+    "temperature": 0.2,
+    "maxOutputTokens": 16000,
+    "thinkingConfig": {
+      "thinkingLevel": "low"
+    }
+  },
+  "attempts": [
+    {
+      "timeoutSeconds": 240,
+      "requestSha256": "ab25f091c3e511f008ff05ae895ae67a56b203d47577c6b56b2363a6dd3665ed",
+      "result": "TimeoutError; no completed review",
+      "diagnostic": "docs/evidence/audience-r4-03-attempt1.txt"
+    },
+    {
+      "timeoutSeconds": 240,
+      "requestSha256": "68bfbe0733f33c2b8d91267c9ebafc276c04f51458b9d8ace16e444acf3f968e",
+      "result": "incomplete or blocked; no report written",
+      "generationConfig": {
+        "temperature": 0.2,
+        "maxOutputTokens": 5000
+      },
+      "diagnostic": "docs/evidence/audience-r4-03-attempt2.txt"
+    },
+    {
+      "timeoutSeconds": 240,
+      "requestSha256": "803f52e7a580d87600d8486b97fd6befa184e6549685c5235b774e557dd33e76",
+      "result": "MAX_TOKENS; incomplete response correctly not saved as a review",
+      "generationConfig": {
+        "temperature": 0.2,
+        "maxOutputTokens": 16000
+      },
+      "diagnostic": "docs/evidence/audience-r4-03-attempt3.txt",
+      "completionMetadata": "docs/evidence/audience-r4-03-attempt3-metadata.json"
+    },
+    {
+      "timeoutSeconds": 240,
+      "requestSha256": "aea4f6a44a546da98dfa3438ce78f1d6088848df8885d988df8f6e0bd0e4f4a7",
+      "result": "completed; STOP; READABLE; no substantive blockers",
+      "generationConfig": {
+        "temperature": 0.2,
+        "maxOutputTokens": 16000,
+        "thinkingConfig": {
+          "thinkingLevel": "low"
+        }
+      },
+      "completionMetadata": "docs/evidence/audience-r4-03-completion.json"
+    }
+  ],
+  "thinkingConfigurationSource": "https://ai.google.dev/gemini-api/docs/generate-content/thinking.md",
+  "responseSha256": "ccd7e56223019046868d484978bca0a5c6a2e9f2b9f18f3dce45d28faf04c092",
+  "result": "READABLE; only optional polish, deliberately not applied",
+  "responseFormatting": "unchanged"
+}

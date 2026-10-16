@@ -34,6 +34,16 @@ results, plus the [hand-edited manual forward test](manual-path-forward.md).
 These are source/build/TCK/ordinary-container evidence only; local and cloud
 SBX remain NOT RUN. The already approved live app test was not repeated.
 
+Round-2 [clean-clone journey](clean-checkout-2026-10-16T091120Z.txt) PASS at
+bcf3fdef83eb8ed147875265dee9463d28167be9: 49 policy-lab tests, 4 app tests,
+24 helper tests (including both byte-for-byte golden kits), 93 relative links,
+all three kit builds/TCK (19/19 each), raw requirements lock/build and ordinary
+container probes. The clone used an isolated uv cache and managed Python,
+and ended clean. Subsequent delivery changes are reader-path/prerequisite
+clarifications and evidence/bean/editorial records, not app, lock, helper,
+template or check-script changes. Final reader links and Bash syntax are
+checked separately; exact-tip independent QC is still required.
+
 CI workflow additions are preserved as a
 [round-2 reviewable patch](ci-workflow-round2.patch) and under the crew handoff path;
 `.github/workflows/ci.yml` itself is unchanged to respect host token scope.

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "deliveryFiles": 158,
+  "credentialValuesPrinted": false,
+  "nonSentinelCredentialValueMatches": 0,
+  "knownProxySentinelNames": [
+    "GEMINI_API_KEY",
+    "GH_TOKEN"
+  ],
+  "realProxySecretMaterial": "not available in sandbox and not inspected",
+  "canaryMatches": "only explicit test/probe definitions",
+  "forbiddenPaths": 0,
+  "workflowChanges": "separate reviewable patch, not staged workflow file"
+}

@@ -36,7 +36,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 54,
+      "line": 56,
       "detail": "[12, 15, 14] of [12, 15, 14]",
       "context": "On other hosts, build kit-tck from the exact spec commit in [provenance](provenance.md). A",
       "verify_context": true,
@@ -46,7 +46,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 121,
+      "line": 123,
       "detail": "[7, 7, 5] of [7, 7, 5, 3, 7, 17]",
       "context": "Expect questions, not a complete permissions proof. Is `TRIAGE_STATUS_URL` actually used i",
       "verify_context": true,
@@ -56,7 +56,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 126,
+      "line": 128,
       "detail": "[14, 15, 16] of [14, 15, 16]",
       "context": "Every current finding needs an explicit allow, deny or out-of-scope answer, with a reason.",
       "verify_context": true,
@@ -66,7 +66,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 135,
+      "line": 137,
       "detail": "[9, 10, 9] of [22, 9, 10, 9]",
       "context": "The [worked answers](../examples/ticket-triage.answers.json) allow only Gemini for model u",
       "verify_context": true,
@@ -76,7 +76,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 184,
+      "line": 186,
       "detail": "[9, 10, 8] of [9, 10, 8, 8, 11]",
       "context": "For a root `agent.py`, start from the [single-file kit](../examples/single-file-agent-kit/",
       "verify_context": true,
@@ -86,7 +86,17 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 282,
+      "line": 273,
+      "detail": "[8, 11, 11] of [8, 11, 11, 15]",
+      "context": "These paths use the generated and validated copy. The repository's `examples/ticket-triage",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 285,
       "detail": "[16, 12, 11] of [12, 5, 16, 12, 11]",
       "context": "Use your own offline arguments if your script differs from the fixture. Review the plan be",
       "verify_context": true,
@@ -96,7 +106,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 289,
+      "line": 292,
       "detail": "[9, 12, 13] of [5, 25, 9, 12, 13]",
       "context": "Fake mode needs no credential. For a real request, the host must bind an existing `gemini`",
       "verify_context": true,
@@ -129,37 +139,37 @@
         },
         {
           "heading": "## Why isolate the agent and the app?",
-          "line": 75,
+          "line": 77,
           "count": 0
         },
         {
           "heading": "## Let a coding agent do the inspection",
-          "line": 93,
+          "line": 95,
           "count": 0
         },
         {
           "heading": "## Generate packaging you can review",
-          "line": 131,
+          "line": 133,
           "count": 0
         },
         {
           "heading": "## The manual path starts from an agent.py template",
-          "line": 182,
+          "line": 184,
           "count": 0
         },
         {
           "heading": "## Run your app inside local Docker Sandboxes",
-          "line": 261,
+          "line": 263,
           "count": 0
         },
         {
           "heading": "## Cloud changes the resources, not the app",
-          "line": 303,
+          "line": 306,
           "count": 0
         },
         {
           "heading": "## Keep the boundary honest",
-          "line": 346,
+          "line": 349,
           "count": 0
         }
       ],

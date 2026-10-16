@@ -17,5 +17,7 @@
   "packetSha256": "9383fc6718945d4c0c91ff507200455b0472194c58e60380d0f8fb8d603cd5bf",
   "requestSha256": "9383fc6718945d4c0c91ff507200455b0472194c58e60380d0f8fb8d603cd5bf",
   "profileIncluded": false,
-  "tool": "pinned blog-writer fresh-reader.py scratch copy with timeout 240s only"
+  "tool": "pinned blog-writer fresh-reader.py scratch copy with timeout 240s only",
+  "result": "completed; NEEDS REVISION",
+  "responseFormatting": "trailing whitespace trimmed; wording unchanged"
 }

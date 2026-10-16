@@ -39,10 +39,10 @@ dynamic endpoints; generation requires explicit decisions and reasons.
 On your approved host, inspect the environment before creating it:
 
 ```bash
-sbx env plan ./examples/ticket-triage-kit/sbxenv.local.yaml
-sbx env run --detach ./examples/ticket-triage-kit/sbxenv.local.yaml
-sbx env exec ./examples/ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
-sbx env rm ./examples/ticket-triage-kit/sbxenv.local.yaml
+sbx env plan /tmp/my-ticket-triage-kit/sbxenv.local.yaml
+sbx env run --detach /tmp/my-ticket-triage-kit/sbxenv.local.yaml
+sbx env exec /tmp/my-ticket-triage-kit/sbxenv.local.yaml -- sh -lc 'cd /opt/ticket-triage/app && python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model'
+sbx env rm /tmp/my-ticket-triage-kit/sbxenv.local.yaml
 ```
 
 The [host acceptance handoff](docs/acceptance-handoff.md) covers credential
@@ -53,7 +53,7 @@ mount-free cloud equivalent. Cloud execution is not production serving.
 
 Ask your agent to read [the repository skill](skills/langchain-sandbox-kit/SKILL.md):
 
-> Package my LangChain app at ./ticket-triage to run in Docker Sandboxes. Inspect
+> Package my LangChain app at ./examples/ticket-triage to run in Docker Sandboxes. Inspect
 > it without executing it, ask about unresolved access, and show packaging before
 > requesting any permissions.
 

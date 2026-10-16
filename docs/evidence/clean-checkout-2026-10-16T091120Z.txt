@@ -1,0 +1,1617 @@
+UTC: 2026-10-16T09:11:20Z
+Command: bash scripts/clean-checkout.sh
+Cloning into '/tmp/tmp.REl2DZxo1n/checkout'...
+bcf3fdef83eb8ed147875265dee9463d28167be9
+Downloading cpython-3.13.7-linux-aarch64-gnu (download) (27.2MiB)
+ Downloaded cpython-3.13.7-linux-aarch64-gnu (download)
+Installed Python 3.13.7 in 5.75s
+ + cpython-3.13.7-linux-aarch64-gnu
+Using CPython 3.13.7
+Creating virtual environment at: .venv
+Resolved 58 packages in 1ms
+   Building langchain-enterprise-sample @ file:///tmp/tmp.REl2DZxo1n/checkout/sample
+Downloading pygments (1.2MiB)
+Downloading cryptography (4.5MiB)
+Downloading google-genai (1.1MiB)
+Downloading zstandard (4.8MiB)
+Downloading pydantic-core (2.0MiB)
+ Downloaded google-genai
+ Downloaded pygments
+ Downloaded pydantic-core
+ Downloaded zstandard
+ Downloaded cryptography
+      Built langchain-enterprise-sample @ file:///tmp/tmp.REl2DZxo1n/checkout/sample
+Prepared 53 packages in 1.49s
+Installed 53 packages in 33ms
+ + annotated-types==0.8.0
+ + anyio==4.15.1
+ + certifi==2026.7.22
+ + cffi==2.1.1
+ + charset-normalizer==3.5.2
+ + cryptography==50.0.2
+ + distro==1.9.0
+ + filetype==1.2.0
+ + google-auth==2.61.0
+ + google-genai==2.29.0
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpcore2==2.13.1
+ + httpx==0.28.1
+ + httpx2==2.13.1
+ + idna==3.20
+ + iniconfig==2.3.1
+ + jsonpatch==1.34
+ + jsonpointer==3.2.0
+ + langchain==1.4.4
+ + langchain-core==1.6.9
+ + langchain-enterprise-sample==0.1.0 (from file:///tmp/tmp.REl2DZxo1n/checkout/sample)
+ + langchain-google-genai==4.4.0
+ + langchain-protocol==0.0.19
+ + langgraph==1.2.14
+ + langgraph-checkpoint==4.2.0
+ + langgraph-prebuilt==1.1.0
+ + langgraph-sdk==0.4.6
+ + langsmith==0.14.5
+ + orjson==3.13.0
+ + ormsgpack==1.12.2
+ + packaging==26.3
+ + pluggy==1.6.0
+ + pyasn1==0.6.4
+ + pyasn1-modules==0.4.2
+ + pycparser==3.1
+ + pydantic==2.14.0
+ + pydantic-core==2.50.0
+ + pygments==2.21.0
+ + pytest==8.4.2
+ + pyyaml==6.0.3
+ + requests==2.34.2
+ + requests-toolbelt==1.0.0
+ + sniffio==1.3.1
+ + tenacity==9.1.4
+ + truststore==0.10.4
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+ + urllib3==2.8.0
+ + uuid-utils==0.17.1
+ + websockets==16.1.1
+ + xxhash==4.0.1
+ + zstandard==0.25.0
+============================= test session starts ==============================
+platform linux -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/tmp.REl2DZxo1n/checkout/sample/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/tmp.REl2DZxo1n/checkout/sample
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, langsmith-0.14.5
+collecting ... collected 49 items
+
+tests/test_behavior.py::test_ingestion PASSED                            [  2%]
+tests/test_behavior.py::test_evaluation_cases[What is the Tier 1 meal allowance?-grounded-$90-travel_policy.md] PASSED [  4%]
+tests/test_behavior.py::test_evaluation_cases[What is the receipt threshold?-grounded-$25-expense_policy.md] PASSED [  6%]
+tests/test_behavior.py::test_evaluation_cases[What is the home office equipment stipend?-grounded-$500-remote_work_policy.md] PASSED [  8%]
+tests/test_behavior.py::test_evaluation_cases[What is the monthly internet reimbursement?-grounded-$50-remote_work_policy.md] PASSED [ 10%]
+tests/test_behavior.py::test_evaluation_cases[Where are API keys and secrets stored?-grounded-vault-security_policy.md] PASSED [ 12%]
+tests/test_behavior.py::test_evaluation_cases[What are the data classification levels?-grounded-Restricted-security_policy.md] PASSED [ 14%]
+tests/test_behavior.py::test_evaluation_cases[Can I bring my pet python into the office?-unsupported--None] PASSED [ 16%]
+tests/test_behavior.py::test_evaluation_cases[What is the company car policy?-unsupported--None] PASSED [ 18%]
+tests/test_behavior.py::test_evaluation_cases[What holiday bonuses are paid?-unsupported--None] PASSED [ 20%]
+tests/test_behavior.py::test_evaluation_cases[What is the stock option vesting schedule?-unsupported--None] PASSED [ 22%]
+tests/test_behavior.py::test_evaluation_cases[What are the parental leave benefits?-unsupported--None] PASSED [ 24%]
+tests/test_behavior.py::test_suite PASSED                                [ 26%]
+tests/test_behavior.py::test_retriever_ranking_and_bounds PASSED         [ 28%]
+tests/test_behavior.py::test_fake_answers_changed_corpus_not_canned PASSED [ 30%]
+tests/test_behavior.py::test_meal_tool[1-90] PASSED                      [ 32%]
+tests/test_behavior.py::test_meal_tool[2-70] PASSED                      [ 34%]
+tests/test_behavior.py::test_meal_tool[3-50] PASSED                      [ 36%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs0] PASSED         [ 38%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs1] PASSED         [ 40%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs2] PASSED         [ 42%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs3] PASSED         [ 44%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs4] PASSED         [ 46%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs5] PASSED         [ 48%]
+tests/test_behavior.py::test_invalid_meal_inputs[inputs6] PASSED         [ 51%]
+tests/test_behavior.py::test_receipt_boundary[0-False] PASSED            [ 53%]
+tests/test_behavior.py::test_receipt_boundary[24.99-False] PASSED        [ 55%]
+tests/test_behavior.py::test_receipt_boundary[25-True] PASSED            [ 57%]
+tests/test_behavior.py::test_receipt_boundary[25.01-True] PASSED         [ 59%]
+tests/test_behavior.py::test_receipt_boundary[100000-True] PASSED        [ 61%]
+tests/test_behavior.py::test_invalid_receipt_inputs[-1] PASSED           [ 63%]
+tests/test_behavior.py::test_invalid_receipt_inputs[100001] PASSED       [ 65%]
+tests/test_behavior.py::test_invalid_receipt_inputs[nan] PASSED          [ 67%]
+tests/test_behavior.py::test_invalid_receipt_inputs[inf] PASSED          [ 69%]
+tests/test_behavior.py::test_invalid_receipt_inputs[True] PASSED         [ 71%]
+tests/test_behavior.py::test_invalid_receipt_inputs[25] PASSED           [ 73%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[not json-model_or_output_failure] PASSED [ 75%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[{"answer":"invented", "chunk_ids": ["not-a-source"]}-invalid_citations] PASSED [ 77%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[{"answer":"empty", "chunk_ids": []}-model_or_output_failure] PASSED [ 79%]
+tests/test_behavior.py::test_invalid_model_output_fails_closed[{"answer":"duplicates", "chunk_ids": ["expense_policy:1", "expense_policy:1"]}-invalid_citations] PASSED [ 81%]
+tests/test_behavior.py::test_model_exception_is_sanitized PASSED         [ 83%]
+tests/test_behavior.py::test_unsupported_never_calls_model PASSED        [ 85%]
+tests/test_behavior.py::test_provider_explicit_approval PASSED           [ 87%]
+tests/test_behavior.py::test_invalid_corpus PASSED                       [ 89%]
+tests/test_behavior.py::test_missing_tool_section PASSED                 [ 91%]
+tests/test_behavior.py::test_invalid_question[] PASSED                   [ 93%]
+tests/test_behavior.py::test_invalid_question[          ] PASSED         [ 95%]
+tests/test_behavior.py::test_invalid_question[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] PASSED [ 97%]
+tests/test_behavior.py::test_cli PASSED                                  [100%]
+
+============================== 49 passed in 0.11s ==============================
+{
+  "provider": "deterministic",
+  "passed": true,
+  "cases": [
+    {
+      "question": "What is the Tier 1 meal allowance?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Meals are reimbursed up to the daily meal allowance, not a separate dinner limit.\nTier 1: $90 per day. Tier 2: $70 per day. Tier 3: $50 per day.\nEmployees must use the approved city tier list; this demo does not supply real cities.",
+        "citations": [
+          {
+            "source": "travel_policy.md",
+            "section": "Meal allowance",
+            "chunk_id": "travel_policy:1",
+            "title": "Synthetic Travel Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the receipt threshold?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "A receipt is required for an expense of $25 or more. Expenses below $25 do not require a receipt.",
+        "citations": [
+          {
+            "source": "expense_policy.md",
+            "section": "Receipts",
+            "chunk_id": "expense_policy:1",
+            "title": "Synthetic Expense Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the home office equipment stipend?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "The home office equipment stipend is $500 once per employee.",
+        "citations": [
+          {
+            "source": "remote_work_policy.md",
+            "section": "Equipment",
+            "chunk_id": "remote_work_policy:1",
+            "title": "Synthetic Remote Work Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the monthly internet reimbursement?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Monthly internet reimbursement is limited to $50.",
+        "citations": [
+          {
+            "source": "remote_work_policy.md",
+            "section": "Internet",
+            "chunk_id": "remote_work_policy:2",
+            "title": "Synthetic Remote Work Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "Where are API keys and secrets stored?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Store API keys and secrets in the approved credential vault. Never commit secrets to source control.",
+        "citations": [
+          {
+            "source": "security_policy.md",
+            "section": "Secrets",
+            "chunk_id": "security_policy:2",
+            "title": "Synthetic Information Security Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What are the data classification levels?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Data classification levels are Public, Internal, Confidential, and Restricted.",
+        "citations": [
+          {
+            "source": "security_policy.md",
+            "section": "Classification",
+            "chunk_id": "security_policy:1",
+            "title": "Synthetic Information Security Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "Can I bring my pet python into the office?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the company car policy?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What holiday bonuses are paid?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the stock option vesting schedule?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What are the parental leave benefits?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    }
+  ]
+}
+{
+  "status": "grounded",
+  "answer": "Meals are reimbursed up to the daily meal allowance, not a separate dinner limit.\nTier 1: $90 per day. Tier 2: $70 per day. Tier 3: $50 per day.\nEmployees must use the approved city tier list; this demo does not supply real cities.",
+  "citations": [
+    {
+      "source": "travel_policy.md",
+      "section": "Meal allowance",
+      "chunk_id": "travel_policy:1",
+      "title": "Synthetic Travel Policy"
+    }
+  ],
+  "provider": "deterministic"
+}
+{
+  "status": "unsupported",
+  "answer": "Not covered by the synthetic policies.",
+  "citations": [],
+  "provider": "deterministic"
+}
+{
+  "daily_usd": 90,
+  "days": 3,
+  "total_usd": 270,
+  "citation": {
+    "source": "travel_policy.md",
+    "section": "Meal allowance",
+    "chunk_id": "travel_policy:1",
+    "title": "Synthetic Travel Policy"
+  }
+}
+{
+  "amount_usd": 25.0,
+  "receipt_required": true,
+  "threshold_usd": 25,
+  "citation": {
+    "source": "expense_policy.md",
+    "section": "Receipts",
+    "chunk_id": "expense_policy:1",
+    "title": "Synthetic Expense Policy"
+  }
+}
+Pinned core and optional provider imports verified; no live calls
+Using CPython 3.13.7
+Creating virtual environment at: .venv
+Resolved 58 packages in 1ms
+   Building ticket-triage @ file:///tmp/tmp.REl2DZxo1n/checkout/examples/ticket-triage
+      Built ticket-triage @ file:///tmp/tmp.REl2DZxo1n/checkout/examples/ticket-triage
+Downloading google-genai (1.2MiB)
+ Downloaded google-genai
+Prepared 13 packages in 733ms
+Installed 53 packages in 25ms
+ + annotated-types==0.8.0
+ + anyio==4.15.1
+ + certifi==2026.7.22
+ + cffi==2.1.1
+ + charset-normalizer==3.5.2
+ + cryptography==50.0.2
+ + distro==1.9.0
+ + filetype==1.2.0
+ + google-auth==2.62.0
+ + google-genai==2.31.0
+ + h11==0.16.0
+ + httpcore==1.0.9
+ + httpcore2==2.13.1
+ + httpx==0.28.1
+ + httpx2==2.13.1
+ + idna==3.20
+ + iniconfig==2.3.1
+ + jsonpatch==1.35
+ + jsonpointer==3.2.1
+ + langchain==1.4.4
+ + langchain-core==1.6.9
+ + langchain-google-genai==4.4.0
+ + langchain-protocol==0.0.19
+ + langgraph==1.2.15
+ + langgraph-checkpoint==4.3.0
+ + langgraph-prebuilt==1.1.1
+ + langgraph-sdk==0.4.7
+ + langsmith==0.14.11
+ + orjson==3.13.0
+ + ormsgpack==1.13.0
+ + packaging==26.3
+ + pluggy==1.6.0
+ + pyasn1==0.6.4
+ + pyasn1-modules==0.4.2
+ + pycparser==3.11
+ + pydantic==2.14.0
+ + pydantic-core==2.50.0
+ + pygments==2.21.0
+ + pytest==8.4.2
+ + pyyaml==6.0.3
+ + requests==2.34.2
+ + requests-toolbelt==1.0.0
+ + sniffio==1.3.1
+ + tenacity==9.1.4
+ + ticket-triage==0.1.0 (from file:///tmp/tmp.REl2DZxo1n/checkout/examples/ticket-triage)
+ + truststore==0.10.5
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+ + urllib3==2.8.0
+ + uuid-utils==0.17.1
+ + websockets==16.1.1
+ + xxhash==4.0.1
+ + zstandard==0.25.0
+============================= test session starts ==============================
+platform linux -- Python 3.13.7, pytest-8.4.2, pluggy-1.6.0 -- /tmp/tmp.REl2DZxo1n/checkout/examples/ticket-triage/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/tmp.REl2DZxo1n/checkout/examples/ticket-triage
+configfile: pyproject.toml
+testpaths: tests
+plugins: langsmith-0.14.11, anyio-4.15.1
+collecting ... collected 4 items
+
+tests/test_app.py::test_shape_and_citation PASSED                        [ 25%]
+tests/test_app.py::test_status_transport PASSED                          [ 50%]
+tests/test_app.py::test_fake_cli_has_no_network_or_webhook PASSED        [ 75%]
+tests/test_app.py::test_network_failure_is_clean PASSED                  [100%]
+
+============================== 4 passed in 0.45s ===============================
+{"category": "technical", "summary": "Synthetic offline classification; investigate the reported issue.", "ticket_id": "T-101"}
+test_bad_answers_paths_and_lifecycle (test_helper.HelperTests.test_bad_answers_paths_and_lifecycle) ... ok
+test_cli_exit_codes (test_helper.HelperTests.test_cli_exit_codes) ... ok
+test_dynamic_url_needs_answer_and_exact_host (test_helper.HelperTests.test_dynamic_url_needs_answer_and_exact_host) ... ok
+test_explicit_provider_credential_request (test_helper.HelperTests.test_explicit_provider_credential_request) ... ok
+test_force_preserves_unowned_empty_directories (test_helper.HelperTests.test_force_preserves_unowned_empty_directories) ... ok
+test_force_refuses_manual_edits_and_unknown_files (test_helper.HelperTests.test_force_refuses_manual_edits_and_unknown_files) ... ok
+test_force_refuses_symlinks (test_helper.HelperTests.test_force_refuses_symlinks) ... ok
+test_golden (test_helper.HelperTests.test_golden) ... ok
+test_inputs_unchanged_and_manifest_hashes (test_helper.HelperTests.test_inputs_unchanged_and_manifest_hashes) ... ok
+test_inspect_provider_and_never_execute_input (test_helper.HelperTests.test_inspect_provider_and_never_execute_input) ... ok
+test_missing_lock_missing_dependency_unhashed_lock (test_helper.HelperTests.test_missing_lock_missing_dependency_unhashed_lock) ... ok
+test_no_implicit_grants_and_mixin_ownership (test_helper.HelperTests.test_no_implicit_grants_and_mixin_ownership) ... ok
+test_output_cannot_overlap_excluded_ancestor (test_helper.HelperTests.test_output_cannot_overlap_excluded_ancestor) ... ok
+test_output_cannot_overlap_input (test_helper.HelperTests.test_output_cannot_overlap_input) ... ok
+test_provider_host_deny_cannot_be_overridden_by_package_allow (test_helper.HelperTests.test_provider_host_deny_cannot_be_overridden_by_package_allow) ... ok
+test_raw_requirements_ask_for_lock_without_running_source (test_helper.HelperTests.test_raw_requirements_ask_for_lock_without_running_source) ... ok
+test_requirements_inspection_before_lock_setup (test_helper.HelperTests.test_requirements_inspection_before_lock_setup) ... ok
+test_secret_files_and_ignore_rules_never_enter_context (test_helper.HelperTests.test_secret_files_and_ignore_rules_never_enter_context) ... ok
+test_secret_literal_redacted_and_refused (test_helper.HelperTests.test_secret_literal_redacted_and_refused) ... ok
+test_single_file_golden (test_helper.HelperTests.test_single_file_golden) ... ok
+test_single_file_without_restructuring (test_helper.HelperTests.test_single_file_without_restructuring) ... ok
+test_structured_fake_output_is_not_an_entropy_secret (test_helper.HelperTests.test_structured_fake_output_is_not_an_entropy_secret) ... ok
+test_symlink_and_outside_entrypoint (test_helper.HelperTests.test_symlink_and_outside_entrypoint) ... ok
+test_syntax_binary_size_and_depth_findings (test_helper.HelperTests.test_syntax_binary_size_and_depth_findings) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.215s
+
+OK
+PASS: 93 relative file/directory links across 17 current reader-facing files; archived review packets excluded.
+github.com/docker/buildx v0.33.0 f7897eba028583e0071642db3c011e860444f8cf
+dev (a1d110de)
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from langchain.yaml
+#1 transferring dockerfile: 727B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor langchain.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 1.69kB done
+#4 DONE 0.0s
+
+#5 [internal] load guidance langchain-context.md
+#5 transferring context: 867B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from langchain.dockerfile
+#6 transferring dockerfile: 965B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 257B done
+#8 DONE 0.0s
+
+#9 [build 1/7] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 127.73kB done
+#10 DONE 0.0s
+
+#11 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
+#11 CACHED
+
+#12 [build 4/7] COPY sample/src ./src
+#12 CACHED
+
+#13 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
+#13 CACHED
+
+#14 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#14 CACHED
+
+#15 [build 2/7] WORKDIR /opt/langchain/sample
+#15 CACHED
+
+#16 [build 5/7] COPY sample/data ./data
+#16 CACHED
+
+#17 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#17 CACHED
+
+#18 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
+#18 CACHED
+
+#19 [kit] stage sources /usr/share/sandbox/kit/langchain
+#19 CACHED
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from langchain.yaml
+#1 transferring dockerfile: 727B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor langchain.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 76B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance langchain-context.md
+#5 transferring context: 42B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from langchain.dockerfile
+#6 transferring dockerfile: 965B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 257B done
+#8 DONE 0.0s
+
+#9 [build 1/7] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 1.03kB done
+#10 DONE 0.0s
+
+#11 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
+#11 CACHED
+
+#12 [build 4/7] COPY sample/src ./src
+#12 CACHED
+
+#13 [build 5/7] COPY sample/data ./data
+#13 CACHED
+
+#14 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#14 CACHED
+
+#15 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
+#15 CACHED
+
+#16 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
+#16 CACHED
+
+#17 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#17 CACHED
+
+#18 [build 2/7] WORKDIR /opt/langchain/sample
+#18 CACHED
+
+#19 [kit] stage sources /usr/share/sandbox/kit/langchain
+#19 CACHED
+
+#20 exporting to oci image format
+#20 exporting layers done
+#20 exporting manifest sha256:e528602c3b76a2b3eda26ec7d9f7904d661cbb2da55ffaf6fd43890b44eafb91 done
+#20 exporting config sha256:79e3bd28168262a6757e36ef8bb6dfc74465da87807913271cb6b0362f68b865 done
+#20 DONE 0.2s
+kit-tck dev (a1d110de) · validate · /tmp/tmp.REl2DZxo1n/policy-layout 1.4.4
+
+  passed
+    ✓ agent-skill-content       [agent-skill@1/content-present]
+    ✓ descriptor-valid          [SPEC-v3 §9.3]
+    ✓ schema-version-annotation [SPEC-v3 §9.3]
+    ✓ capabilities-annotation   [SPEC-v3 §9.3]
+    ✓ built-by-annotation       [SPEC-v3 §9.3]
+    ✓ oci-annotations           [SPEC-v3 §9.3]
+    ✓ at-least-one-layer        [SPEC-v3 §10]
+    ✓ staged-sources            [SPEC-v3 §10]
+    ✓ staged-recipe             [SPEC-v3 §10]
+    ✓ agent-context-staged      [agent-context@1]
+    ✓ image-config              [SPEC-v3 §10]
+    ✓ overlay-home-ownership    [SPEC-v3 §10]
+    ✓ overlay-links-resolve     [SPEC-v3 §10]
+    ✓ sbx-platform-floor        [sbx@1]
+    ✓ sbx-persistent-env        [sbx@1]
+    ✓ derived-provides          [SPEC-v3 §9.6]
+    ✓ merged-set                [SPEC-v3 §9.5]
+    ✓ merged-set-declarations   [SPEC-v3 §9.5]
+    ✓ index-annotations         [SPEC-v3 §9.3]
+  19 checks · 19 passed
+
+✓ conforms
+
+specification
+  agent-skill@1/content-present  https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-skill@1.md#config
+  SPEC-v3 §9.3                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#93-annotations
+  SPEC-v3 §10                    https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#10-the-oci-layout
+  agent-context@1                https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md
+  sbx@1                          https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/sbx@1.md
+  SPEC-v3 §9.6                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#96-derived-provides
+  SPEC-v3 §9.5                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#95-merging-a-set
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from langchain.yaml
+#1 transferring dockerfile: 727B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor langchain.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 76B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance langchain-context.md
+#5 transferring context: 42B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from langchain.dockerfile
+#6 transferring dockerfile: 965B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 257B done
+#8 DONE 0.0s
+
+#9 [build 1/7] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 1.03kB done
+#10 DONE 0.0s
+
+#11 [kit] stage guidance /usr/share/sandbox/kit/langchain/langchain-context.md
+#11 CACHED
+
+#12 [build 5/7] COPY sample/data ./data
+#12 CACHED
+
+#13 [build 4/7] COPY sample/src ./src
+#13 CACHED
+
+#14 [build 3/7] COPY sample/pyproject.toml sample/uv.lock sample/.python-version ./
+#14 CACHED
+
+#15 [build 2/7] WORKDIR /opt/langchain/sample
+#15 CACHED
+
+#16 [build 7/7] RUN /opt/langchain/venv/bin/python -c "import importlib.metadata as m; assert m.version('langchain') == '1.4.4'; import ssl, sqlite3, langchain_google_genai"     && chown -R 0:0 /opt/langchain
+#16 CACHED
+
+#17 [stage-1 1/1] COPY --from=build /opt/langchain /opt/langchain
+#17 CACHED
+
+#18 [build 6/7] RUN uv python install --no-bin 3.13.7 && uv sync --locked --all-extras --no-dev --no-editable --python 3.13.7 --managed-python
+#18 CACHED
+
+#19 [kit] stage sources /usr/share/sandbox/kit/langchain
+#19 CACHED
+
+#20 exporting to image
+#20 exporting layers done
+#20 exporting manifest sha256:e528602c3b76a2b3eda26ec7d9f7904d661cbb2da55ffaf6fd43890b44eafb91 done
+#20 exporting config sha256:79e3bd28168262a6757e36ef8bb6dfc74465da87807913271cb6b0362f68b865 done
+#20 exporting attestation manifest sha256:bad5af9131e88363f29896fc51d1a3871744cc8064562fba0ad1f2b8d06dc253 done
+#20 exporting manifest list sha256:27389f12adfecd8bf586e5c9e0f7bc1f156ac7f395c28bc1188b4a8e81555b96 done
+#20 naming to docker.io/library/langchain:filesystem done
+#20 unpacking to docker.io/library/langchain:filesystem done
+#20 DONE 0.0s
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from filesystem-probe.dockerfile
+#1 transferring dockerfile: 337B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/langchain:filesystem
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 257B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
+#5 DONE 0.0s
+
+#6 [overlay 1/1] FROM docker.io/library/langchain:filesystem@sha256:27389f12adfecd8bf586e5c9e0f7bc1f156ac7f395c28bc1188b4a8e81555b96
+#6 resolve docker.io/library/langchain:filesystem@sha256:27389f12adfecd8bf586e5c9e0f7bc1f156ac7f395c28bc1188b4a8e81555b96 done
+#6 DONE 0.0s
+
+#7 [stage-1 2/2] COPY --from=overlay /opt/langchain /opt/langchain
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:ae80ad3b3129caf62fd75b9cdb815a321a0d62db84802901c5c714918e8a92b8 done
+#8 exporting config sha256:7f788bbc4e8612ca8eed5acd554b120bdd3028feaaba6f1ace3e7360f07842ef done
+#8 exporting attestation manifest sha256:80e8d57b7ad30b1cdee6ddeb8245173ede9fd6ba7d7eabf642d64f450ff896ad done
+#8 exporting manifest list sha256:35a4505195f1af3916a2d86bad1dfd4737c3dd0005a739ade5d6bb835b456f7b done
+#8 naming to docker.io/library/langchain:filesystem-probe done
+#8 unpacking to docker.io/library/langchain:filesystem-probe done
+#8 DONE 0.0s
+Python 3.13.7
+	linux-vdso.so.1 (0x0000ffffa8bb8000)
+	libpthread.so.0 => /lib/aarch64-linux-gnu/libpthread.so.0 (0x0000ffffa21c0000)
+	libdl.so.2 => /lib/aarch64-linux-gnu/libdl.so.2 (0x0000ffffa2190000)
+	libutil.so.1 => /lib/aarch64-linux-gnu/libutil.so.1 (0x0000ffffa2160000)
+	librt.so.1 => /lib/aarch64-linux-gnu/librt.so.1 (0x0000ffffa2130000)
+	libm.so.6 => /lib/aarch64-linux-gnu/libm.so.6 (0x0000ffffa2080000)
+	libc.so.6 => /lib/aarch64-linux-gnu/libc.so.6 (0x0000ffffa1ec0000)
+	/lib/ld-linux-aarch64.so.1 (0x0000ffffa8b80000)
+{
+  "provider": "deterministic",
+  "passed": true,
+  "cases": [
+    {
+      "question": "What is the Tier 1 meal allowance?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Meals are reimbursed up to the daily meal allowance, not a separate dinner limit.\nTier 1: $90 per day. Tier 2: $70 per day. Tier 3: $50 per day.\nEmployees must use the approved city tier list; this demo does not supply real cities.",
+        "citations": [
+          {
+            "source": "travel_policy.md",
+            "section": "Meal allowance",
+            "chunk_id": "travel_policy:1",
+            "title": "Synthetic Travel Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the receipt threshold?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "A receipt is required for an expense of $25 or more. Expenses below $25 do not require a receipt.",
+        "citations": [
+          {
+            "source": "expense_policy.md",
+            "section": "Receipts",
+            "chunk_id": "expense_policy:1",
+            "title": "Synthetic Expense Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the home office equipment stipend?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "The home office equipment stipend is $500 once per employee.",
+        "citations": [
+          {
+            "source": "remote_work_policy.md",
+            "section": "Equipment",
+            "chunk_id": "remote_work_policy:1",
+            "title": "Synthetic Remote Work Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the monthly internet reimbursement?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Monthly internet reimbursement is limited to $50.",
+        "citations": [
+          {
+            "source": "remote_work_policy.md",
+            "section": "Internet",
+            "chunk_id": "remote_work_policy:2",
+            "title": "Synthetic Remote Work Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "Where are API keys and secrets stored?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Store API keys and secrets in the approved credential vault. Never commit secrets to source control.",
+        "citations": [
+          {
+            "source": "security_policy.md",
+            "section": "Secrets",
+            "chunk_id": "security_policy:2",
+            "title": "Synthetic Information Security Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What are the data classification levels?",
+      "passed": true,
+      "result": {
+        "status": "grounded",
+        "answer": "Data classification levels are Public, Internal, Confidential, and Restricted.",
+        "citations": [
+          {
+            "source": "security_policy.md",
+            "section": "Classification",
+            "chunk_id": "security_policy:1",
+            "title": "Synthetic Information Security Policy"
+          }
+        ],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "Can I bring my pet python into the office?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the company car policy?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What holiday bonuses are paid?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What is the stock option vesting schedule?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    },
+    {
+      "question": "What are the parental leave benefits?",
+      "passed": true,
+      "result": {
+        "status": "unsupported",
+        "answer": "Not covered by the synthetic policies.",
+        "citations": [],
+        "provider": "deterministic"
+      }
+    }
+  ]
+}
+Evidence class: source/build/TCK/container; NOT SBX runtime confinement proof.
+# Permission review
+
+Capabilities are host requests, not grants. Review the target runtime's effective composition.
+
+| Resource | Decision | Reason / source |
+| --- | --- | --- |
+| httpx (pyproject.toml:6) | out-of-scope | Informational dependency or test-only evidence; no extra runtime access needed |
+| langchain-core (pyproject.toml:6) | out-of-scope | Informational dependency or test-only evidence; no extra runtime access needed |
+| GEMINI_API_KEY (pyproject.toml:6) | out-of-scope | Informational dependency or test-only evidence; no extra runtime access needed |
+| GOOGLE_API_KEY (pyproject.toml:6) | out-of-scope | Informational dependency or test-only evidence; no extra runtime access needed |
+| generativelanguage.googleapis.com (pyproject.toml:6) | out-of-scope | Informational dependency or test-only evidence; no extra runtime access needed |
+| langchain-google-genai (pyproject.toml:6) | allow | Use Gemini to classify synthetic tickets only, with separately approved live budget |
+| LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled) (src/ticket_triage/app.py:0) | deny | Tracing is off; do not provision a LangSmith credential or network access |
+| Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources (src/ticket_triage/app.py:0) | allow | Confirmed synthetic data/tickets only, Gemini gemini-2.5-flash, no tracing, no status fetch, no webhook; static inference remains incomplete |
+| LANGSMITH_TRACING (src/ticket_triage/app.py:20) | deny | Tracing is off; do not provision a LangSmith credential or network access |
+| LANGCHAIN_TRACING_V2 (src/ticket_triage/app.py:21) | deny | Tracing is off; do not provision a LangSmith credential or network access |
+| developer must confirm data paths (src/ticket_triage/app.py:23) | allow | Read synthetic ticket JSON from declared data/tickets only |
+| dynamic-url (src/ticket_triage/app.py:27) | deny | Status enrichment is disabled; name an exact host and review policy before enabling it |
+| TRIAGE_STATUS_URL (src/ticket_triage/app.py:27) | deny | Status enrichment is disabled; name an exact host and review policy before enabling it |
+| TRIAGE_MODEL (src/ticket_triage/chain.py:27) | allow | Developer selects gemini-2.5-flash; no alternate provider endpoint is authorized |
+| dynamic-url (src/ticket_triage/sources.py:6) | deny | Status enrichment is disabled; name an exact host and review policy before enabling it |
+| hooks.example.invalid (src/ticket_triage/sources.py:13) | deny | Webhook and test status endpoints must not receive ticket data |
+| socket (tests/test_app.py:2) | out-of-scope | Informational dependency or test-only evidence; no extra runtime access needed |
+| developer must confirm data paths (tests/test_app.py:17) | out-of-scope | Informational dependency or test-only evidence; no extra runtime access needed |
+| status.example.invalid (tests/test_app.py:25) | deny | Webhook and test status endpoints must not receive ticket data |
+| TRIAGE_STATUS_URL (tests/test_app.py:38) | deny | Status enrichment is disabled; name an exact host and review policy before enabling it |
+| status.example.invalid (tests/test_app.py:38) | deny | Webhook and test status endpoints must not receive ticket data |
+
+Runtime allow: generativelanguage.googleapis.com. Runtime deny: hooks.example.invalid, status.example.invalid.
+
+Excluded by policy: .env/.env.* (except .env.example), private/, VCS/venv/cache directories, keys and credential files; additional project ignore rules apply.
+
+Broad/IP access: none
+
+## Launch ownership
+
+This is a mixin, not a workload. The pinned shell workload owns entrypoint, user and sbx@1.
+Run the command in the context file with sbx env exec after environment creation.
+Launch from /opt/ticket-triage/app: `python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model`.
+
+## What this does not protect
+
+Static inspection is incomplete. Denied/out-of-scope findings are not proof of absence.
+No install-phase network is requested; image builds still download locked dependencies.
+Other kits and host policy affect the effective boundary. Allowed services can incur costs, store data or have side effects.
+Isolation does not solve prompt injection or answer correctness. Cloud needs separate secrets and policy; no host workspace mount is included.
+Build/TCK/container checks are not local or cloud SBX runtime confinement evidence.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ticket-triage.yaml
+#1 transferring dockerfile: 927B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor ticket-triage.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 1.54kB done
+#4 DONE 0.0s
+
+#5 [internal] load guidance ticket-triage-context.md
+#5 transferring context: 300B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from ticket-triage.dockerfile
+#6 transferring dockerfile: 609B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 285B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 115.14kB done
+#10 DONE 0.0s
+
+#11 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
+#11 CACHED
+
+#12 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#12 CACHED
+
+#13 [build 2/5] WORKDIR /opt/ticket-triage/app
+#13 CACHED
+
+#14 [build 3/5] COPY app/ ./
+#14 CACHED
+
+#15 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
+#15 CACHED
+
+#16 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/ticket-triage
+#17 CACHED
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ticket-triage.yaml
+#1 transferring dockerfile: 927B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor ticket-triage.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 84B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance ticket-triage-context.md
+#5 transferring context: 46B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from ticket-triage.dockerfile
+#6 transferring dockerfile: 609B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 285B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 511B done
+#10 DONE 0.0s
+
+#11 [build 2/5] WORKDIR /opt/ticket-triage/app
+#11 CACHED
+
+#12 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
+#12 CACHED
+
+#13 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
+#13 CACHED
+
+#14 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
+#14 CACHED
+
+#15 [build 3/5] COPY app/ ./
+#15 CACHED
+
+#16 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/ticket-triage
+#17 CACHED
+
+#18 exporting to oci image format
+#18 exporting layers done
+#18 exporting manifest sha256:53296bc3b1cc1a0df74ad06eeae3284ef4537a289960413c6f3926ec6c5beccb done
+#18 exporting config sha256:b6acf677e992f5f4955ebcbcfb4ffacf06c58c2d116340f5b63c32346fc1e41f done
+#18 DONE 0.1s
+kit-tck dev (a1d110de) · validate · /tmp/tmp.REl2DZxo1n/generated-layout 0.1.0
+
+  passed
+    ✓ agent-skill-content       [agent-skill@1/content-present]
+    ✓ descriptor-valid          [SPEC-v3 §9.3]
+    ✓ schema-version-annotation [SPEC-v3 §9.3]
+    ✓ capabilities-annotation   [SPEC-v3 §9.3]
+    ✓ built-by-annotation       [SPEC-v3 §9.3]
+    ✓ oci-annotations           [SPEC-v3 §9.3]
+    ✓ at-least-one-layer        [SPEC-v3 §10]
+    ✓ staged-sources            [SPEC-v3 §10]
+    ✓ staged-recipe             [SPEC-v3 §10]
+    ✓ agent-context-staged      [agent-context@1]
+    ✓ image-config              [SPEC-v3 §10]
+    ✓ overlay-home-ownership    [SPEC-v3 §10]
+    ✓ overlay-links-resolve     [SPEC-v3 §10]
+    ✓ sbx-platform-floor        [sbx@1]
+    ✓ sbx-persistent-env        [sbx@1]
+    ✓ derived-provides          [SPEC-v3 §9.6]
+    ✓ merged-set                [SPEC-v3 §9.5]
+    ✓ merged-set-declarations   [SPEC-v3 §9.5]
+    ✓ index-annotations         [SPEC-v3 §9.3]
+  19 checks · 19 passed
+
+✓ conforms
+
+specification
+  agent-skill@1/content-present  https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-skill@1.md#config
+  SPEC-v3 §9.3                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#93-annotations
+  SPEC-v3 §10                    https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#10-the-oci-layout
+  agent-context@1                https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md
+  sbx@1                          https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/sbx@1.md
+  SPEC-v3 §9.6                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#96-derived-provides
+  SPEC-v3 §9.5                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#95-merging-a-set
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from ticket-triage.yaml
+#1 transferring dockerfile: 927B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor ticket-triage.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 84B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance ticket-triage-context.md
+#5 transferring context: 46B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from ticket-triage.dockerfile
+#6 transferring dockerfile: 609B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 285B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 511B done
+#10 DONE 0.0s
+
+#11 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#11 CACHED
+
+#12 [build 5/5] RUN chown -R 0:0 /opt/ticket-triage
+#12 CACHED
+
+#13 [build 2/5] WORKDIR /opt/ticket-triage/app
+#13 CACHED
+
+#14 [kit] stage guidance /usr/share/sandbox/kit/ticket-triage/ticket-triage-context.md
+#14 CACHED
+
+#15 [stage-1 1/1] COPY --from=build /opt/ticket-triage /opt/ticket-triage
+#15 CACHED
+
+#16 [build 3/5] COPY app/ ./
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/ticket-triage
+#17 CACHED
+
+#18 exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:53296bc3b1cc1a0df74ad06eeae3284ef4537a289960413c6f3926ec6c5beccb done
+#18 exporting config sha256:b6acf677e992f5f4955ebcbcfb4ffacf06c58c2d116340f5b63c32346fc1e41f done
+#18 exporting attestation manifest sha256:da550fca8766ea451e478d71d6954047313aa8c9b69a144eb14e0e3cb6e3ca22 done
+#18 exporting manifest list sha256:559c254efa870d2fe17ecc148b670dbb64e8c977db7d6cfc24d1f186e725aff4 done
+#18 naming to docker.io/library/ticket-triage:probe-overlay done
+#18 unpacking to docker.io/library/ticket-triage:probe-overlay done
+#18 DONE 0.0s
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from generated-probe.dockerfile
+#1 transferring dockerfile: 355B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ticket-triage:probe-overlay
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 257B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
+#5 DONE 0.0s
+
+#6 [overlay 1/1] FROM docker.io/library/ticket-triage:probe-overlay@sha256:559c254efa870d2fe17ecc148b670dbb64e8c977db7d6cfc24d1f186e725aff4
+#6 resolve docker.io/library/ticket-triage:probe-overlay@sha256:559c254efa870d2fe17ecc148b670dbb64e8c977db7d6cfc24d1f186e725aff4 done
+#6 DONE 0.0s
+
+#7 [stage-1 2/2] COPY --from=overlay /opt/ticket-triage /opt/ticket-triage
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:6e7c31bac1bf6bc8941b9e80ab9d595df8f905599971f68d62ca14fa358475ae done
+#8 exporting config sha256:32132f09fc67a3efb1c6c83fb99f7280b2276a7184365eace7021b143342d60b done
+#8 exporting attestation manifest sha256:37501971fcdce7401bc2bf152b5fcee2a50875253fa28605db35562876367f09 done
+#8 exporting manifest list sha256:9fe4ae30fe79a088feda25ec25f5b52ddd58db78293e87a6c8a298f747a5ec48 done
+#8 naming to docker.io/library/ticket-triage:probe done
+#8 unpacking to docker.io/library/ticket-triage:probe done
+#8 DONE 0.0s
+Evidence class: container only; NOT SBX runtime confinement proof.
+{"category": "technical", "summary": "Synthetic offline classification; investigate the reported issue.", "ticket_id": "T-101"}
+PASS: fake app, sanitized filesystem, clean network-none failure; not SBX policy proof.
+Evidence class: raw source/lock setup/build only; NOT SBX or live-model execution.
+# Inspection
+
+- ac44dc36b992bda9: lock-setup: Create reviewed dependency metadata with normal uv tooling before generation: .python-version, pyproject.toml, uv.lock; allow with reason, deny, or out-of-scope? (agent.py:0)
+- 9cecf24e13bc3f3f: optional-tracing: LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled); allow with reason, deny, or out-of-scope? (agent.py:0)
+- 4a5dadb29ae4a1d0: scope-confirmation: Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources; allow with reason, deny, or out-of-scope? (agent.py:0)
+- 1313c81151bf928b: env-name: LANGSMITH_TRACING; allow with reason, deny, or out-of-scope? (agent.py:14)
+- f0e004b3ac835aae: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- f468e3608a7f1579: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 92a0ca4d3a8270f8: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 4131e93f13fbe35b: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+PASS: requirements inspected, lock-setup question raised, .env excluded
+Initialized project `single-file-agent`
+Pinned `.python-version` to `3.13.7`
+Using CPython 3.13.7
+Resolved 50 packages in 903ms
+Using CPython 3.13.7
+Resolved 50 packages in 1ms
+# Inspection
+
+- 9cecf24e13bc3f3f: optional-tracing: LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled); allow with reason, deny, or out-of-scope? (agent.py:0)
+- 4a5dadb29ae4a1d0: scope-confirmation: Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources; allow with reason, deny, or out-of-scope? (agent.py:0)
+- 1313c81151bf928b: env-name: LANGSMITH_TRACING; allow with reason, deny, or out-of-scope? (agent.py:14)
+- e052a12c9a3c7012: dependency: langchain-core; allow with reason, deny, or out-of-scope? (pyproject.toml:7)
+- a0fddeaa0198d02c: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- fcdff6b3142ba65f: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- 2f23ceb98c1a74c0: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- 3f81b54c78a07b5d: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (pyproject.toml:8)
+- f0e004b3ac835aae: env-name: GEMINI_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- f468e3608a7f1579: env-name: GOOGLE_API_KEY; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 92a0ca4d3a8270f8: provider-host: generativelanguage.googleapis.com; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+- 4131e93f13fbe35b: provider-package: langchain-google-genai; allow with reason, deny, or out-of-scope? (requirements.txt:2)
+PASS: unchanged agent.py SHA256=c930322fd3b6a4aed5fda913babaef015eeed0c32d4e3724f0d197dc8d2f9955
+generated reviewable mixin; no capabilities granted or runtime started
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from raw-agent.yaml
+#1 transferring dockerfile: 511B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor raw-agent.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 1.09kB done
+#4 DONE 0.0s
+
+#5 [internal] load guidance raw-agent-context.md
+#5 transferring context: 243B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from raw-agent.dockerfile
+#6 transferring dockerfile: 577B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 133B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 241.95kB done
+#10 DONE 0.0s
+
+#11 [kit] stage guidance /usr/share/sandbox/kit/raw-agent/raw-agent-context.md
+#11 CACHED
+
+#12 [build 2/5] WORKDIR /opt/raw-agent/app
+#12 CACHED
+
+#13 [stage-1 1/1] COPY --from=build /opt/raw-agent /opt/raw-agent
+#13 CACHED
+
+#14 [build 5/5] RUN chown -R 0:0 /opt/raw-agent
+#14 CACHED
+
+#15 [build 3/5] COPY app/ ./
+#15 CACHED
+
+#16 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/raw-agent
+#17 CACHED
+PASS: raw app -> reviewed uv lock -> sanitized kit build; no app source executed.
+Evidence class: single-file source/build/TCK/container; NOT SBX runtime confinement proof.
+# Permission review
+
+Capabilities are host requests, not grants. Review the target runtime's effective composition.
+
+| Resource | Decision | Reason / source |
+| --- | --- | --- |
+| LangSmith: api.smith.langchain.com; LANGSMITH_API_KEY (off unless explicitly enabled) (agent.py:0) | deny | Tracing is disabled; no LangSmith network or key requested |
+| Static inspection cannot prove complete permissions; confirm model, files, tracing and runtime resources (agent.py:0) | allow | Developer selects gemini-2.5-flash for synthetic ticket classification, with separate live budget approval; no files or other runtime resources needed |
+| LANGSMITH_TRACING (agent.py:14) | deny | Keep LANGSMITH_TRACING false; tracing is not part of this task |
+| langchain-core (pyproject.toml:5) | out-of-scope | Core dependency needs no additional runtime access |
+| GEMINI_API_KEY (pyproject.toml:5) | out-of-scope | Use the GOOGLE_API_KEY proxy sentinel; no second Gemini credential needed |
+| GOOGLE_API_KEY (pyproject.toml:5) | allow | Use GOOGLE_API_KEY as the SDK sentinel for the runtime-only gemini service binding; host must approve and bind it |
+| generativelanguage.googleapis.com (pyproject.toml:5) | allow | Only the selected Gemini API host is needed |
+| langchain-google-genai (pyproject.toml:5) | allow | Selected Gemini provider; no alternate provider or endpoint authorized |
+
+Runtime allow: generativelanguage.googleapis.com. Runtime deny: (none).
+
+Excluded by policy: .env/.env.* (except .env.example), private/, VCS/venv/cache directories, keys and credential files; additional project ignore rules apply.
+
+Broad/IP access: none
+
+## Launch ownership
+
+This is a mixin, not a workload. The pinned shell workload owns entrypoint, user and sbx@1.
+Run the command in the context file with sbx env exec after environment creation.
+Launch from /opt/single-file/app: `python agent.py`.
+
+## What this does not protect
+
+Static inspection is incomplete. Denied/out-of-scope findings are not proof of absence.
+No install-phase network is requested; image builds still download locked dependencies.
+Other kits and host policy affect the effective boundary. Allowed services can incur costs, store data or have side effects.
+Isolation does not solve prompt injection or answer correctness. Cloud needs separate secrets and policy; no host workspace mount is included.
+Build/TCK/container checks are not local or cloud SBX runtime confinement evidence.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from single-file.yaml
+#1 transferring dockerfile: 870B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor single-file.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 1.47kB done
+#4 DONE 0.0s
+
+#5 [internal] load guidance single-file-context.md
+#5 transferring context: 236B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from single-file.dockerfile
+#6 transferring dockerfile: 593B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 135B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 104.63kB done
+#10 DONE 0.0s
+
+#11 [build 5/5] RUN chown -R 0:0 /opt/single-file
+#11 CACHED
+
+#12 [kit] stage guidance /usr/share/sandbox/kit/single-file/single-file-context.md
+#12 CACHED
+
+#13 [build 2/5] WORKDIR /opt/single-file/app
+#13 CACHED
+
+#14 [build 3/5] COPY app/ ./
+#14 CACHED
+
+#15 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#15 CACHED
+
+#16 [stage-1 1/1] COPY --from=build /opt/single-file /opt/single-file
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/single-file
+#17 CACHED
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from single-file.yaml
+#1 transferring dockerfile: 870B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor single-file.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 80B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance single-file-context.md
+#5 transferring context: 44B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from single-file.dockerfile
+#6 transferring dockerfile: 593B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 135B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 165B done
+#10 DONE 0.0s
+
+#11 [build 2/5] WORKDIR /opt/single-file/app
+#11 CACHED
+
+#12 [build 5/5] RUN chown -R 0:0 /opt/single-file
+#12 CACHED
+
+#13 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#13 CACHED
+
+#14 [build 3/5] COPY app/ ./
+#14 CACHED
+
+#15 [stage-1 1/1] COPY --from=build /opt/single-file /opt/single-file
+#15 CACHED
+
+#16 [kit] stage guidance /usr/share/sandbox/kit/single-file/single-file-context.md
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/single-file
+#17 CACHED
+
+#18 exporting to oci image format
+#18 exporting layers done
+#18 exporting manifest sha256:f47373e9c6e630e0ea3ead658e0ec29a2afc7d6c162eeab4cb5a701c9952dd5c done
+#18 exporting config sha256:7373f22ea3dbed544d79ae07d97ffcea30c8483abc40556ec77b2ccbd5dd0cf6 done
+#18 DONE 0.1s
+kit-tck dev (a1d110de) · validate · /tmp/tmp.Ach9KOsZsy/layout 0.1.0
+
+  passed
+    ✓ agent-skill-content       [agent-skill@1/content-present]
+    ✓ descriptor-valid          [SPEC-v3 §9.3]
+    ✓ schema-version-annotation [SPEC-v3 §9.3]
+    ✓ capabilities-annotation   [SPEC-v3 §9.3]
+    ✓ built-by-annotation       [SPEC-v3 §9.3]
+    ✓ oci-annotations           [SPEC-v3 §9.3]
+    ✓ at-least-one-layer        [SPEC-v3 §10]
+    ✓ staged-sources            [SPEC-v3 §10]
+    ✓ staged-recipe             [SPEC-v3 §10]
+    ✓ agent-context-staged      [agent-context@1]
+    ✓ image-config              [SPEC-v3 §10]
+    ✓ overlay-home-ownership    [SPEC-v3 §10]
+    ✓ overlay-links-resolve     [SPEC-v3 §10]
+    ✓ sbx-platform-floor        [sbx@1]
+    ✓ sbx-persistent-env        [sbx@1]
+    ✓ derived-provides          [SPEC-v3 §9.6]
+    ✓ merged-set                [SPEC-v3 §9.5]
+    ✓ merged-set-declarations   [SPEC-v3 §9.5]
+    ✓ index-annotations         [SPEC-v3 §9.3]
+  19 checks · 19 passed
+
+✓ conforms
+
+specification
+  agent-skill@1/content-present  https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-skill@1.md#config
+  SPEC-v3 §9.3                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#93-annotations
+  SPEC-v3 §10                    https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#10-the-oci-layout
+  agent-context@1                https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/agent-context@1.md
+  sbx@1                          https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/capabilities/com.docker.sandbox/sbx@1.md
+  SPEC-v3 §9.6                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#96-derived-provides
+  SPEC-v3 §9.5                   https://github.com/docker/sandbox-kit-spec/blob/main/docs/spec/SPEC-v3.md#95-merging-a-set
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from single-file.yaml
+#1 transferring dockerfile: 870B done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#2 DONE 0.0s
+
+#3 docker-image://docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d
+#3 resolve docker.io/docker/sandbox-kit:3@sha256:e6a397771e865625047cf84256a914c7974b3e749d858259b5bc9c653ddb6f0d done
+#3 CACHED
+
+#4 [internal] load kit descriptor single-file.yaml · sandbox-kit 3.0.0-m.8 (129be2ff)
+#4 transferring dockerfile: 80B done
+#4 DONE 0.0s
+
+#5 [internal] load guidance single-file-context.md
+#5 transferring context: 44B done
+#5 DONE 0.0s
+
+#6 [internal] load build definition from single-file.dockerfile
+#6 transferring dockerfile: 593B done
+#6 DONE 0.0s
+
+#7 [internal] load metadata for ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#7 DONE 0.0s
+
+#8 [internal] load .dockerignore
+#8 transferring context: 135B done
+#8 DONE 0.0s
+
+#9 [build 1/5] FROM ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954
+#9 resolve ghcr.io/astral-sh/uv:0.9.26-bookworm-slim@sha256:85c530098e4db6143cf1b63d1634a9150210a3f98690b3eb6e9fa6515bc60954 done
+#9 DONE 0.0s
+
+#10 [internal] load build context
+#10 transferring context: 165B done
+#10 DONE 0.0s
+
+#11 [build 4/5] RUN uv python install --no-bin 3.13.7 && uv sync --locked --no-dev --no-editable --python 3.13.7 --managed-python
+#11 CACHED
+
+#12 [build 2/5] WORKDIR /opt/single-file/app
+#12 CACHED
+
+#13 [stage-1 1/1] COPY --from=build /opt/single-file /opt/single-file
+#13 CACHED
+
+#14 [build 3/5] COPY app/ ./
+#14 CACHED
+
+#15 [kit] stage guidance /usr/share/sandbox/kit/single-file/single-file-context.md
+#15 CACHED
+
+#16 [build 5/5] RUN chown -R 0:0 /opt/single-file
+#16 CACHED
+
+#17 [kit] stage sources /usr/share/sandbox/kit/single-file
+#17 CACHED
+
+#18 exporting to image
+#18 exporting layers done
+#18 exporting manifest sha256:f47373e9c6e630e0ea3ead658e0ec29a2afc7d6c162eeab4cb5a701c9952dd5c done
+#18 exporting config sha256:7373f22ea3dbed544d79ae07d97ffcea30c8483abc40556ec77b2ccbd5dd0cf6 done
+#18 exporting attestation manifest sha256:626ebcf555f76d37b9a97ff531c2cf5e4fa7d1c1d1f3d27314bb88e727dfce39 done
+#18 exporting manifest list sha256:37cfdd93602c17dc2da641fcf20bfc35ca86fc584f6ac7d481da408e544ae1d4 done
+#18 naming to docker.io/library/single-file:probe-overlay done
+#18 unpacking to docker.io/library/single-file:probe-overlay done
+#18 DONE 0.0s
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from single-file-probe.dockerfile
+#1 transferring dockerfile: 349B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/single-file:probe-overlay
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 257B done
+#4 DONE 0.0s
+
+#5 [stage-1 1/2] FROM docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587
+#5 resolve docker.io/library/debian:bookworm-slim@sha256:7c7b2c966bc9ee8cedfeef67e0e279108992c77681fa595db4a9d65c06ccc587 done
+#5 DONE 0.0s
+
+#6 [overlay 1/1] FROM docker.io/library/single-file:probe-overlay@sha256:37cfdd93602c17dc2da641fcf20bfc35ca86fc584f6ac7d481da408e544ae1d4
+#6 resolve docker.io/library/single-file:probe-overlay@sha256:37cfdd93602c17dc2da641fcf20bfc35ca86fc584f6ac7d481da408e544ae1d4 done
+#6 DONE 0.0s
+
+#7 [stage-1 2/2] COPY --from=overlay /opt/single-file /opt/single-file
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers done
+#8 exporting manifest sha256:83d68510061df6f9b1f2ac26f838a65cbae8797386b077de527acc55cf362e16 done
+#8 exporting config sha256:636c6db9c252fe2f629421a78839d1ed4d2c3840676425a3f9440c5c69810e5d done
+#8 exporting attestation manifest sha256:1705d92fc73c12b6c2ebb07f996026e3826d0143bf9bbf87a63665b5ad0e0afd done
+#8 exporting manifest list sha256:18d221d1e459e8bff368400006896cc24326e01a942059581b7ae667e335c61b done
+#8 naming to docker.io/library/single-file:probe done
+#8 unpacking to docker.io/library/single-file:probe done
+#8 DONE 0.0s
+Evidence class: container only; NOT SBX runtime confinement proof.
+{"category":"technical","ticket_id":"T-101"}
+PASS: unchanged root script, sanitized filesystem, network-none/read-only/uid1000; not SBX policy proof.
+Clean-checkout journey passed with isolated dependency cache and managed interpreter.
+Exit: 0

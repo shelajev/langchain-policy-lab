@@ -6,7 +6,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 20,
+      "line": 22,
       "detail": "[11, 7, 11] of [11, 7, 11, 9, 15, 14, 3]",
       "context": "On another host, build kit-tck from the exact commit in [provenance](provenance.md). No ke",
       "verify_context": true,
@@ -16,7 +16,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 58,
+      "line": 60,
       "detail": "[9, 9, 5] of [9, 9, 5, 12]",
       "context": "The fake model checks pipeline wiring, not answer quality. Optional status fetch and webho",
       "verify_context": true,
@@ -26,7 +26,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 69,
+      "line": 71,
       "detail": "[8, 10, 8] of [14, 8, 10, 8, 8]",
       "context": "Inspection parses Python AST, TOML and lock metadata, without imports, resolvers or projec",
       "verify_context": true,
@@ -36,7 +36,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 81,
+      "line": 83,
       "detail": "[11, 11, 13] of [7, 19, 11, 11, 13]",
       "context": "For another app, change project and entrypoint. Supported generation layout: root Python f",
       "verify_context": true,
@@ -46,7 +46,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 88,
+      "line": 90,
       "detail": "[7, 8, 4] of [7, 8, 4, 12, 13, 5]",
       "context": "Read the [worked answers](../examples/ticket-triage.answers.json) and [answer contract](..",
       "verify_context": true,
@@ -56,7 +56,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 95,
+      "line": 97,
       "detail": "[9, 13, 10] of [9, 13, 10]",
       "context": "Dynamic URLs need named hosts before an allow decision. Wildcard/IP access requires an exp",
       "verify_context": true,
@@ -66,7 +66,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 132,
+      "line": 134,
       "detail": "[6, 10, 11] of [12, 20, 6, 10, 11]",
       "context": "The original ignore file is not reused as the build context policy. The helper always remo",
       "verify_context": true,
@@ -76,7 +76,7 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 235,
+      "line": 237,
       "detail": "[4, 9, 9] of [4, 9, 9, 6]",
       "context": "Use a fresh layout. Version 0.1.0 identifies the app kit, not LangChain itself. The [commi",
       "verify_context": true,
@@ -86,7 +86,17 @@
     {
       "pattern": "#14",
       "label": "low burstiness",
-      "line": 270,
+      "line": 262,
+      "detail": "[9, 11, 12] of [9, 11, 12, 22]",
+      "context": "These commands use the copy generated and validated above. The repository's `examples/tick",
+      "verify_context": true,
+      "review": "contextual",
+      "token": null
+    },
+    {
+      "pattern": "#14",
+      "label": "low burstiness",
+      "line": 274,
       "detail": "[14, 11, 9] of [14, 11, 9, 17, 9, 27, 10]",
       "context": "The mixin adds app files and capabilities; the workload owns entrypoint, user and `sbx@1`.",
       "verify_context": true,
@@ -119,57 +129,57 @@
         },
         {
           "heading": "### Already have agent.py?",
-          "line": 28,
+          "line": 30,
           "count": 0
         },
         {
           "heading": "## 1. Check the existing app",
-          "line": 45,
+          "line": 47,
           "count": 0
         },
         {
           "heading": "## 2. Inspect without executing input",
-          "line": 62,
+          "line": 64,
           "count": 0
         },
         {
           "heading": "## 3. Answer resource questions",
-          "line": 86,
+          "line": 88,
           "count": 0
         },
         {
           "heading": "## 4. Generate a separate build context",
-          "line": 109,
+          "line": 111,
           "count": 0
         },
         {
           "heading": "## 5. Adapt the single-file template manually",
-          "line": 136,
+          "line": 138,
           "count": 0
         },
         {
           "heading": "### Probe your manual overlay",
-          "line": 196,
+          "line": 198,
           "count": 0
         },
         {
           "heading": "### Check the packaged example instead",
-          "line": 224,
+          "line": 226,
           "count": 0
         },
         {
           "heading": "## 6. Run the app inside local SBX",
-          "line": 250,
+          "line": 252,
           "count": 0
         },
         {
           "heading": "## 7. Adapt for cloud and clean up",
-          "line": 279,
+          "line": 283,
           "count": 0
         },
         {
           "heading": "## Conclusion",
-          "line": 309,
+          "line": 313,
           "count": 0
         }
       ],
