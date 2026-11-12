@@ -1,6 +1,8 @@
 name: Build and verify
 on:
   push:
+    branches-ignore:
+      - dependabot/**
   workflow_dispatch:
 permissions:
   contents: read
