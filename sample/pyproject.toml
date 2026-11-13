@@ -1,0 +1,30 @@
+[project]
+name = "langchain-enterprise-sample"
+version = "0.1.0"
+description = "Synthetic policy retrieval and bounded read-only LangChain tools"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "langchain==1.4.4",
+  "langchain-core==1.6.9",
+  "pydantic==2.14.0",
+]
+
+[project.optional-dependencies]
+gemini = ["langchain-google-genai==4.4.0"]
+
+[dependency-groups]
+dev = ["pytest==8.4.2"]
+build = ["hatchling==1.27.0", "packaging==26.3", "pathspec==0.12.1", "pluggy==1.6.0", "trove-classifiers==2026.9.21.13"]
+
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/langchain_enterprise"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv]
+build-constraint-dependencies = ["hatchling==1.27.0", "packaging==26.3", "pathspec==0.12.1", "pluggy==1.6.0", "trove-classifiers==2026.9.21.13"]

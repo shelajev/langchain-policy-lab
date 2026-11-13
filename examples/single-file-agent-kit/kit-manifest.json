@@ -1,0 +1,25 @@
+{
+  "answersHash": "0940d81c8384abd35ed5eb9ff2599de23e90932d2036aff7b68a5026968b972e",
+  "entrypoint": "agent.py",
+  "helperVersion": "1.1.0",
+  "inputHashes": {
+    ".python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "README.md": "38380cfa5a849456ff90145fa390b5e42604d9e63e30203c73096c163a0b8e68",
+    "agent.py": "9aa6277faee22f5b7818afd1062d15f497c4a4c117cbaf1f519e23904d7cfd0c",
+    "pyproject.toml": "9949881307daff3cbc43d331da6b1c30536cd7d9b31491c3284d45b228697ae5",
+    "uv.lock": "95a52387228a3e2388cd7ca18fcdfd6bfe6ef8fd64078cfca72c0794704135b5"
+  },
+  "name": "single-file-agent-kit",
+  "outputHashes": {
+    ".dockerignore": "91b12ae659e93b0581a86d319243ced4c2833fd1659609b9dd9f7ee42bd63ea2",
+    "PERMISSIONS.md": "b5745a7e9af432bfa868054289b0984843e9908775a973a33f7b1553dfb52e9a",
+    "RUN.md": "3a7a7cf411e598730d62c13424c1c5903442f94c83ec8f70a4e94afd208e77fa",
+    "app/.python-version": "3ce16e94590543a327d3e5ae412e663206e0ed1b46628ed3dd5ad29caa1ff5ac",
+    "app/agent.py": "9aa6277faee22f5b7818afd1062d15f497c4a4c117cbaf1f519e23904d7cfd0c",
+    "app/pyproject.toml": "9949881307daff3cbc43d331da6b1c30536cd7d9b31491c3284d45b228697ae5",
+    "app/uv.lock": "95a52387228a3e2388cd7ca18fcdfd6bfe6ef8fd64078cfca72c0794704135b5",
+    "single-file-agent-kit-context.md": "a4fafe4fa3730263e5c93540e7eced419dcf6120cb3e03c23bfcd14e92fab349",
+    "single-file-agent-kit.dockerfile": "04b390b1e74a98936689e702a8d0da1a558ddaa196d5a66171c6fb67a7ff02ce",
+    "single-file-agent-kit.yaml": "83a4018f4a936a05504fe9fe9ad7b2a0a3337f486f274852db5c6821fad070d2"
+  }
+}

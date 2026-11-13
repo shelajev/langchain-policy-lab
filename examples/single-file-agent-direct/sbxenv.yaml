@@ -1,0 +1,11 @@
+schemaVersion: "1"
+name: single-file-agent-kit
+agent: sbx-kit-shell
+kits:
+  - docker/sbx-kit-shell:1.0.0@sha256:367c9a4b3fd550f777e1d57cc53550afb4a1385055d79111acf6f996272ff6de
+workspace: ./workspace
+sandboxOptions:
+  skills: off
+env:
+  GOOGLE_API_KEY: "proxy-managed"
+  LANGSMITH_TRACING: "false"

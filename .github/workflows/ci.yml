@@ -1,0 +1,34 @@
+name: Build and verify
+on:
+  push:
+    branches-ignore:
+      - dependabot/**
+    tags:
+      - "**"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kit-and-sample:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      UV_EXCLUDE_NEWER: P7D
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Install pinned official tools
+        run: |
+          bash scripts/install-ci-tools.sh "$RUNNER_TEMP/langchain-tools"
+          echo "$RUNNER_TEMP/langchain-tools" >> "$GITHUB_PATH"
+      - name: Provision isolated BuildKit builder
+        run: |
+          docker buildx create --name langchain-ci --driver docker-container --driver-opt image=moby/buildkit:v0.29.0@sha256:0039c1d47e8748b5afea56f4e85f14febaf34452bd99d9552d2daa82262b5cc5 --use
+          docker buildx inspect --bootstrap
+      - name: Locked behavioral and provider import checks
+        run: bash scripts/check-sample.sh
+      - name: Descriptor source build, OCI export and kit-tck
+        run: bash scripts/check-kit.sh "$RUNNER_TEMP/langchain-layout"
+      - name: Non-SBX filesystem dependency probe
+        run: bash scripts/check-filesystem.sh
+      - name: Clean-checkout journey
+        run: bash scripts/clean-checkout.sh

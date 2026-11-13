@@ -1,0 +1,94 @@
+{
+  "dataPaths": [
+    "data/tickets"
+  ],
+  "decisions": {
+    "1d3e0b1a6d70ba41": {
+      "action": "deny",
+      "reason": "Webhook and test status endpoints must not receive ticket data"
+    },
+    "33fcf85aad809285": {
+      "action": "allow",
+      "reason": "Read synthetic ticket JSON from declared data/tickets only"
+    },
+    "3aae005633753d25": {
+      "action": "out-of-scope",
+      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+    },
+    "41df9692f97dfa06": {
+      "action": "out-of-scope",
+      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+    },
+    "641df40c78ee350e": {
+      "action": "deny",
+      "reason": "Webhook and test status endpoints must not receive ticket data"
+    },
+    "6a0ba9240e119312": {
+      "action": "deny",
+      "reason": "Tracing is off; do not provision a LangSmith credential or network access"
+    },
+    "7ec4a5c6fb438324": {
+      "action": "out-of-scope",
+      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+    },
+    "96141b50af073eb3": {
+      "action": "deny",
+      "reason": "Status enrichment is disabled; name an exact host and review policy before enabling it"
+    },
+    "9806f8c67a2a145f": {
+      "action": "allow",
+      "reason": "Developer selects gemini-2.5-flash; no alternate provider endpoint is authorized"
+    },
+    "a0c39dbac3bade1c": {
+      "action": "deny",
+      "reason": "Tracing is off; do not provision a LangSmith credential or network access"
+    },
+    "b14aa44ef93e3362": {
+      "action": "allow",
+      "credential": "google",
+      "reason": "Use Gemini to classify synthetic tickets only, with separately approved live budget"
+    },
+    "b96768704a56e667": {
+      "action": "deny",
+      "reason": "Tracing is off; do not provision a LangSmith credential or network access"
+    },
+    "cc9124f43e726045": {
+      "action": "deny",
+      "reason": "Status enrichment is disabled; name an exact host and review policy before enabling it"
+    },
+    "ccbf409717a56f08": {
+      "action": "deny",
+      "reason": "Webhook and test status endpoints must not receive ticket data"
+    },
+    "db7087de1ac56a42": {
+      "action": "allow",
+      "reason": "Confirmed synthetic data/tickets only, Gemini gemini-2.5-flash, no tracing, no status fetch, no webhook; static inference remains incomplete"
+    },
+    "de6c7c05a1434621": {
+      "action": "deny",
+      "reason": "Status enrichment is disabled; name an exact host and review policy before enabling it"
+    },
+    "e06299dc6bf69367": {
+      "action": "out-of-scope",
+      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+    },
+    "e67636b447a7b42c": {
+      "action": "out-of-scope",
+      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+    },
+    "ecb30d470b252382": {
+      "action": "deny",
+      "reason": "Status enrichment is disabled; name an exact host and review policy before enabling it"
+    },
+    "f722740a078f1ea4": {
+      "action": "out-of-scope",
+      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+    },
+    "fc568246fa600700": {
+      "action": "out-of-scope",
+      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+    }
+  },
+  "launch": "python -m ticket_triage.app --ticket data/tickets/t-101.json --fake-model",
+  "name": "ticket-triage-kit"
+}

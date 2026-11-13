@@ -1,0 +1,10 @@
+**
+!app/.python-version
+!app/data/tickets/t-101.json
+!app/pyproject.toml
+!app/src/ticket_triage/__init__.py
+!app/src/ticket_triage/app.py
+!app/src/ticket_triage/chain.py
+!app/src/ticket_triage/sources.py
+!app/uv.lock
+!ticket-triage-kit-context.md
