@@ -1,6 +1,7 @@
 import hashlib
 import importlib.util
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -16,6 +17,16 @@ ROOT = SKILL.parents[1]
 CANARY = "TEST_ONLY_PRIVATE_CANARY_4728c2bd"
 
 
+def copy_example_source(project, destination):
+    def ignore_tool_directories(directory, names):
+        return [name for name in names
+                if name in {".venv", ".pytest_cache", "__pycache__"}
+                and not (Path(directory) / name).is_symlink()
+                and (Path(directory) / name).is_dir()]
+
+    shutil.copytree(project, destination, symlinks=True, ignore=ignore_tool_directories)
+
+
 class HelperTests(unittest.TestCase):
     def direct(self, force=False):
         return HELPER.generate(self.project, "src/demo/app.py", self.answers_path, self.output, force, direct=True)
@@ -23,8 +34,10 @@ class HelperTests(unittest.TestCase):
     def test_direct_goldens_and_original_layout(self):
         for example, entrypoint in (("single-file-agent", "agent.py"), ("ticket-triage", "src/ticket_triage/app.py")):
             project = ROOT / "examples" / example
+            isolated_project = self.base / (example + "-source")
+            copy_example_source(project, isolated_project)
             output = self.base / example
-            HELPER.generate(project, entrypoint, ROOT / "examples" / (example + ".answers.json"), output, direct=True)
+            HELPER.generate(isolated_project, entrypoint, ROOT / "examples" / (example + ".answers.json"), output, direct=True)
             golden = ROOT / "examples" / (example + "-direct")
             actual = {path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
             expected = {path.relative_to(golden): path.read_bytes() for path in golden.rglob("*") if path.is_file()}
@@ -33,6 +46,68 @@ class HelperTests(unittest.TestCase):
                 if path.is_file():
                     self.assertEqual(path.read_bytes(), (project / path.relative_to(output / "workspace")).read_bytes())
             self.assertNotIn("  - ./", (output / "sbxenv.yaml").read_text())
+
+    def test_direct_golden_source_is_independent_of_tool_cache_state(self):
+        marker = self.base / "executed"
+        with (self.project / "src/demo/app.py").open("a") as stream:
+            stream.write(f'from pathlib import Path\nPath({str(marker)!r}).touch()\n')
+        self.answers()
+        original = {path.relative_to(self.project): path.read_bytes()
+                    for path in self.project.rglob("*") if path.is_file()}
+        clean_source = self.base / "clean-source"
+        copy_example_source(self.project, clean_source)
+        clean_output = self.base / "clean-output"
+        clean_manifest = HELPER.generate(clean_source, "src/demo/app.py", self.answers_path, clean_output, direct=True)
+
+        cache_paths = (".venv", ".pytest_cache", "src/demo/__pycache__", "tests/__pycache__")
+        for relative in cache_paths:
+            directory = self.project / relative
+            directory.mkdir(parents=True)
+            (directory / "canary.py").write_text(CANARY)
+        dirty_output = self.base / "dirty-output"
+        dirty_manifest = HELPER.generate(self.project, "src/demo/app.py", self.answers_path, dirty_output, direct=True)
+        self.assertEqual(clean_manifest["inputHashes"], dirty_manifest["inputHashes"])
+        self.assertNotEqual((clean_output / "ACCESS.md").read_bytes(), (dirty_output / "ACCESS.md").read_bytes())
+        for relative in cache_paths:
+            self.assertIn(relative, self.report()["excluded"])
+            self.assertIn("- " + relative + "\n", (dirty_output / "ACCESS.md").read_text())
+
+        isolated_source = self.base / "isolated-source"
+        copy_example_source(self.project, isolated_source)
+        isolated_output = self.base / "isolated-output"
+        HELPER.generate(isolated_source, "src/demo/app.py", self.answers_path, isolated_output, direct=True)
+        expected = {path.relative_to(clean_output): path.read_bytes()
+                    for path in clean_output.rglob("*") if path.is_file()}
+        actual = {path.relative_to(isolated_output): path.read_bytes()
+                  for path in isolated_output.rglob("*") if path.is_file()}
+        self.assertEqual(actual, expected)
+        for relative, content in original.items():
+            self.assertEqual((self.project / relative).read_bytes(), content)
+        for output in (dirty_output, isolated_output):
+            for path in output.rglob("*"):
+                if path.is_file():
+                    self.assertNotIn(CANARY.encode(), path.read_bytes())
+        self.assertFalse(marker.exists())
+
+    def test_golden_copy_preserves_noncache_paths_and_symlinks(self):
+        (self.project / ".env").write_text(CANARY)
+        (self.project / "private").mkdir()
+        (self.project / "private/payload.py").write_text(CANARY)
+        (self.project / ".gitignore").write_text("ignored.txt\n")
+        (self.project / "ignored.txt").write_text(CANARY)
+        (self.project / "regular-files").mkdir()
+        for name in (".venv", ".pytest_cache", "__pycache__"):
+            (self.project / "regular-files" / name).write_text("ordinary file: " + name)
+        outside = self.base / "outside"
+        outside.mkdir()
+        (self.project / ".venv").symlink_to(outside, target_is_directory=True)
+        copied = self.base / "copied"
+        copy_example_source(self.project, copied)
+        for path in self.project.rglob("*"):
+            if path.is_file() and not path.is_symlink():
+                self.assertEqual((copied / path.relative_to(self.project)).read_bytes(), path.read_bytes())
+        self.assertTrue((copied / ".venv").is_symlink())
+        self.assertEqual((copied / ".venv").readlink(), outside)
 
     def test_direct_never_executes_and_excludes_private_canary(self):
         marker = self.base / "executed"

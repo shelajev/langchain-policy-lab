@@ -13,7 +13,7 @@
     },
     "3aae005633753d25": {
       "action": "out-of-scope",
-      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+      "reason": "Duplicate provider evidence; the approved langchain-google-genai package decision already requests the Gemini host and GOOGLE_API_KEY credential."
     },
     "41df9692f97dfa06": {
       "action": "out-of-scope",
@@ -70,7 +70,7 @@
     },
     "e06299dc6bf69367": {
       "action": "out-of-scope",
-      "reason": "Informational dependency or test-only evidence; no extra runtime access needed"
+      "reason": "Duplicate provider evidence; the approved langchain-google-genai package decision already requests the Gemini host and GOOGLE_API_KEY credential."
     },
     "e67636b447a7b42c": {
       "action": "out-of-scope",
