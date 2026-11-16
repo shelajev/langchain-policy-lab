@@ -58,7 +58,7 @@ On push and manual dispatch, [ci.yml](../.github/workflows/ci.yml) installs pinn
 | --- | --- | --- | --- |
 | `check-sample.sh` | yes | yes | Locked sample environment, pytest, eval suite, deterministic queries/read-only tools and optional-provider imports; no live call |
 | `check-example.sh` | no | yes | Locked ticket-triage environment, pytest and fake CLI output |
-| `check-skill.sh` | no | yes | 32 helper unit tests, including provider mappings, hash checks and regeneration/byte comparisons against committed fixtures ("golden" checks) |
+| `check-skill.sh` | no | yes | helper unit tests, including provider mappings, hash checks and regeneration/byte comparisons against committed fixtures ("golden" checks) |
 | `check-doc-links.py` | no | yes | The repository checker's internal Markdown link targets |
 | `check-kit.sh` | yes | yes | Build root `langchain.yaml`, export its OCI layout and validate it with `kit-tck` |
 | `check-filesystem.sh` | yes | yes | Build the policy overlay; check its interpreter and eval suite in an offline read-only uid-1000 Debian probe |
