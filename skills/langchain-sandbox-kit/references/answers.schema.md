@@ -4,8 +4,8 @@ The answers file is a JSON object with `name` (in lowercase-kebab form),
 `decisions` and `launch`. Its optional `dataPaths` list defaults to empty. `decisions` must
 map **every** finding ID from the current `inspect` report to an object with
 `action` (`allow`, `deny`, or `out-of-scope`) and a non-empty `reason`. Extra or
-stale IDs are rejected with exit code `2` so old approvals cannot quietly carry
-over after code edits; regenerate the answers after changing source files.
+stale IDs are rejected with exit code `2`. After source changes, inspect again
+and re-review the answers: edits that leave findings unchanged can keep the same IDs.
 
 Choose the action for the intended access, not merely because an item was found:
 
