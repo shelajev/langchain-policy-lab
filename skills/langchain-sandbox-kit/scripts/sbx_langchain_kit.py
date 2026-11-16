@@ -311,23 +311,26 @@ def validate_host(host, broad, reason):
         raise Refusal("wildcard/IP requires allowBroad true with reason")
 
 
-def permissions(report, answers, allowed, denied):
-    rows = ["# Permission review", "", "Capabilities are host requests, not grants. Review the target runtime's effective composition.",
+def permissions(report, answers, allowed, denied, credentials=()):
+    rows = ["# Permission review", "", "These entries record review decisions. Resolved hosts and provider credentials become access requests, not automatic grants; review the effective policy composed with your target runtime and existing host rules.",
+            "A row can be out-of-scope because another approved finding already covers that request. Deny without a resolved host records intent but creates no host deny rule. In particular, `optional-tracing` is informational: a hostname in its description is not a resolved host unless the answer supplies `hosts`.",
             "", "| Resource | Decision | Reason / source |", "| --- | --- | --- |"]
     for finding in report["findings"]:
         answer = answers["decisions"][finding["id"]]
-        text = f"{finding['value'] or finding['kind']} ({finding['file']}:{finding['line']})"
+        text = f"{finding['kind']}: {finding['value'] or finding['kind']} ({finding['file']}:{finding['line']})"
         rows.append(f"| {text} | {answer['action']} | {answer['reason'].replace('|', '/').replace(chr(10), ' ')} |")
-    rows += ["", f"Runtime allow: {', '.join(allowed) or '(none)'}. Runtime deny: {', '.join(denied) or '(none)' }.",
-             "", "Excluded by policy: .env/.env.* (except .env.example), private/, VCS/venv/cache directories, keys and credential files; additional project ignore rules apply.", "",
+    rows += ["", f"Requested runtime allow: {', '.join(allowed) or '(none)'}. Requested runtime deny: {', '.join(denied) or '(none)' }. An allow request adds to composed policy rather than creating an exclusive allowlist.",
+             "", "Excluded from the snapshot by policy: .env/.env.* (except .env.example), private/, VCS/venv/cache directories, and key or credential files; additional project ignore rules also apply.", "",
              "Broad/IP access: " + ("explicitly authorized; review carefully" if any(item.get("allowBroad") for item in answers["decisions"].values()) else "none"),
-             "", "## Launch ownership", "", "This is a mixin, not a workload. Docker's `shell` agent is the workload and owns entrypoint, user and session.",
-             f"Launch from /opt/{answers['name']}/app: `{venv_launch(answers['name'], answers['launch'])}` (see RUN.md).",
-             "", "## What this does not protect", "", "Static inspection is incomplete. Denied/out-of-scope findings are not proof of absence.",
+             "", "## Launch ownership", "", "This kit is a mixin, not a standalone workload. Docker's `shell` agent is the workload and owns the entrypoint, user, and session.",
+             f"Inside the sandbox, launch from /opt/{answers['name']}/app: `{venv_launch(answers['name'], answers['launch'])}` (see RUN.md).",
+             "", "## Credentials", "",
+             *([f"- Service `{service}`; runtime only, optional; placeholder env `{env}`; header `{header}`; domain `{host}`; format `{format_value}`." for host, service, env, header, format_value in sorted(credentials)] or ["None requested."]),
+             "", "## What this does not protect", "", "Static inspection is incomplete: denied or out-of-scope findings do not prove a capability is absent in code or dependencies.",
              "No install-phase network is requested; image builds still download locked dependencies.",
-             "Other kits and host policy affect the effective boundary. Allowed services can incur costs, store data or have side effects.",
-             "Isolation does not solve prompt injection or answer correctness. Cloud needs separate secrets and policy.",
-             "Build/TCK/container checks are not local or cloud SBX runtime confinement evidence."]
+             "Other kits and host policy affect the effective boundary, and allow requests do not override broader inherited grants. Allowed services can incur costs, store data, or cause external side effects.",
+             "Sandbox isolation does not solve prompt injection or answer correctness. Cloud sandboxes need separate secrets and policy, and proxy header injection applies only to supported matching requests.",
+             "Builds, Docker kit conformance checks (`kit-tck`), and ordinary container runs are not evidence of local or cloud SBX runtime confinement."]
     return "\n".join(rows) + "\n"
 
 
@@ -432,12 +435,12 @@ def generate(project, entrypoint, answers_path, output, force=False, direct=Fals
                        f"        inject:\n          - domain: {host}\n            header: {header}\n            format: {json.dumps(format_value)}\n")
     recipe = (template_root / "dockerfile.txt").read_text().replace("@BASE@", BASE).replace("@NAME@", name).replace("@PYTHON@", python).replace("@LOCK_OPTIONS@", lock_options)
     command = venv_launch(name, launch)
-    context = (f"# {name}\n\nThe reviewed app is installed at /opt/{name}/app with its own locked Python environment.\n"
-               f"Run it from a shell in this sandbox:\n\n    cd /opt/{name}/app && {command}\n\n"
-               "Use the app's own interpreter path shown above; plain `python` is the workload's system Python without the app's dependencies.\n")
+    context = (f"# {name}\n\nThe reviewed app is installed inside this sandbox at /opt/{name}/app with its own locked Python environment.\n"
+               f"Run it from a shell inside this sandbox:\n\n    cd /opt/{name}/app && {command}\n\n"
+               "Use the app's virtual-environment interpreter path shown above; plain `python` runs the `shell` workload's system Python without the app's dependencies.\n")
     outputs = {f"{name}.yaml": descriptor.encode(), f"{name}.dockerfile": recipe.encode(),
                f"{name}-context.md": context.encode(), "RUN.md": run_instructions(name, command, sorted(credentials)).encode(),
-               "PERMISSIONS.md": permissions(report, answers, allowed, denied).encode()}
+               "PERMISSIONS.md": permissions(report, answers, allowed, denied, sorted(credentials)).encode()}
     outputs.update({"app/" + filename: raw for filename, raw in selected.items()})
     outputs[".dockerignore"] = ("**\n" + "\n".join("!" + filename for filename in sorted(outputs) if filename.startswith("app/"))
                                  + f"\n!{name}-context.md\n").encode()
@@ -513,38 +516,45 @@ def run_instructions(name, command, credentials):
     services = [service for _host, service, _env, _header, _format in credentials]
     rows = [f"# Run {name} in Docker Sandboxes", "",
             f"This directory is a generated mixin kit. It adds the reviewed app snapshot in `app/`, its locked Python",
-            f"environment and the access requests in PERMISSIONS.md to Docker's `shell` agent. The `shell` agent is the",
-            "workload: it owns the sandbox user, entrypoint and session. Nothing here grants access by itself; review",
+            f"environment, and the access requests in PERMISSIONS.md to Docker's `shell` agent. The `shell` agent is the",
+            "workload: it owns the sandbox user, entrypoint, and session. Generated files grant no permissions by",
+            "themselves, and allow requests do not form an exclusive allowlist under composed policy; review",
             "PERMISSIONS.md and every prompt Docker Sandboxes shows before approving it.", "",
-            f"Keep this directory named `{name}`. Its descriptor (`{name}.yaml`), recipe (`{name}.dockerfile`) and",
-            f"agent context (`{name}-context.md`) follow the kit filename convention. Run the host commands below from",
-            f"the directory that contains `{name}/`.", "",
+            f"Keep this directory named `{name}`. Its descriptor (`{name}.yaml`), recipe (`{name}.dockerfile`), and",
+            f"agent context (`{name}-context.md`) follow the kit filename convention. Run all host `sbx` commands below",
+            f"from the parent directory that contains `{name}/`.", "",
             "## 1. Create the sandbox", "", "```bash",
             f"sbx run --detach shell --kit ./{name} --name {name} ./{name}", "```", "",
-            f"This composes the `shell` agent with this kit, mounts this generated directory (not your original project)",
-            "as the workspace, and prints the sandbox ID without opening a session.", ""]
+            f"Run this on your host. It composes the `shell` agent with this kit, mounts this generated directory (not",
+            "your original project) as the sandbox workspace, and prints the sandbox ID without opening a shell.", ""]
     step = 2
     if services:
-        rows += [f"## {step}. Store the model provider secret for this sandbox only", "", "```bash"]
+        rows += [f"## {step}. For live use: store the model provider secret for this sandbox only", "", "```bash"]
         rows += [f"sbx secret set {service} --sandbox {name}" for service in services]
         rows += ["```", "",
-                 "`sbx` prompts for the value. Do not pass it with `--token`, put it in a file in this directory, or",
-                 "export it into the sandbox. The kit sets a placeholder environment variable and the Docker Sandboxes proxy",
-                 "adds the real key only to requests for the allowed provider host.", ""]
+                 "Skip this step for an offline or fake-model run that needs no key. Otherwise run it on your host; `sbx` prompts for the provider key. Do not pass it with `--token`, write it",
+                 "into a file in this directory, or export it into the sandbox. The kit sets only a placeholder sentinel",
+                 "environment variable inside the sandbox, and the Docker Sandboxes proxy injects the selected header",
+                 "only on supported matching requests to the configured provider host.", ""]
         step += 1
     rows += [f"## {step}. Open a shell and run the app", "", "```bash", f"sbx run --name {name}", "```", "",
-             "Inside the sandbox:", "", "```bash", f"cd /opt/{name}/app", command, "```", "",
-             "Use the kit's interpreter path as shown. Plain `python` in the `shell` agent is the system Python, which does",
+             "Run the command above on your host to open a shell. Choose a mode before running app commands inside the guest:", "",
+             *(["The reviewed command below selects `--fake-model`. The repository examples use it for offline model checks, which need no model key. A live variant requires separate review of the app's settings and flags."] if "--fake-model" in command.split() else [
+                 "The reviewed command has no `--fake-model` flag and may call a live provider. If the app documents `--fake-model` (as this repository's single-file example does), this is an offline alternative:",
+                 "```bash", f"cd /opt/{name}/app", command + " --fake-model", "```",
+                 "Use that alternative only if the app supports it. Otherwise use the reviewed command below after completing the secret step and approving any live call. These are alternatives: do not run both just because both are shown."]),
+             "", "Reviewed launch command:", "", "```bash", f"cd /opt/{name}/app", command, "```", "",
+             "Compare results with the app's own documented offline check before attempting live use. Fake-model checks and live prerequisites are documented for the [single-file example](https://github.com/shelajev/langchain-policy-lab/tree/main/examples/single-file-agent) and [ticket-triage example](https://github.com/shelajev/langchain-policy-lab/tree/main/examples/ticket-triage). A successful process exit alone does not establish answer quality.", "", "Run `exit` to leave the guest shell before host cleanup.", "", "Use the kit's interpreter path as shown. Plain `python` in the `shell` agent is the system Python, which does",
              "not have the app's dependencies.", ""]
     step += 1
     rows += [f"## {step}. Clean up", "", "```bash", f"sbx rm {name}", "```", "",
-             "`sbx rm` asks for confirmation, then removes the sandbox and the secrets scoped to it. Global secrets and",
-             "policy rules stay: check `sbx secret ls` and `sbx policy ls`.", "",
+             "Run this on your host. `sbx rm` asks for confirmation, then removes the sandbox and its sandbox-scoped",
+             "secrets. Global secrets and policy rules persist across runs; check them with `sbx secret ls` and `sbx policy ls`.", "",
              "## Optional: cloud and Docker Hub", "",
-             f"Not verified with this kit: `sbx --cloud run --detach shell --kit ./{name} --name {name}` starts a cloud",
-             "sandbox without a workspace path. It builds the kit in Docker's cloud, so `app/` leaves your machine, and the",
-             "cloud sandbox needs its own secret. Publishing the kit to a registry such as Docker Hub shares the same app",
-             "snapshot with anyone who can pull it. Neither is needed to run locally.", ""]
+             f"Not run or verified with this kit: `sbx --cloud run --detach shell --kit ./{name} --name {name}` starts a cloud",
+             "sandbox without a local workspace mount. It builds the kit in Docker's cloud, so `app/` leaves your machine,",
+             "and the cloud sandbox needs its own separate secret and policy. Publishing the kit to a registry such as Docker",
+             "Hub shares the same `app/` snapshot with anyone who can pull it. Neither option is needed to run locally.", ""]
     return "\n".join(rows)
 
 
@@ -564,31 +574,36 @@ def direct_outputs(report, answers, selected, allowed, denied, credentials, temp
         environment_values["LANGSMITH_TRACING"] = "false"
     if environment_values:
         environment += "env:\n" + "".join(f"  {env}: {json.dumps(value)}\n" for env, value in sorted(environment_values.items()))
-    review = permissions(report, answers, allowed, denied)
+    review = permissions(report, answers, allowed, denied, credentials)
     review = review[:review.index("## Launch ownership")] + "## Credentials\n\n" + ("\n".join(credential_rows) or "None requested.") + "\n\n## Excluded files\n\n" + "\n".join("- " + item for item in report["excluded"]) + "\n\n## What this does not protect" + review.split("## What this does not protect", 1)[1]
     review = review.replace("No install-phase network is requested; image builds still download locked dependencies.", "Temporary scoped bootstrap network is requested separately in RUN.md; remove it before runtime.").replace("Other kits and host policy", "The workload and host policy").replace("no host workspace mount is included", "cloud cannot mount this local workspace")
-    rows = ["# Run the unchanged app", "", "Host steps below are NOT RUN here. Review ACCESS.md and every command before approving.",
-            "Keep these control files outside workspace/. Use a fresh sandbox name; inspect inherited policy and existing credentials first.",
-            "No generated mixin is needed. An allow list does not cancel broader host/org grants.", "", "## 1. Host: existing credential and environment", "", "```bash", *secret_steps,
-            "sbx env plan ./sbxenv.yaml", "sbx env create ./sbxenv.yaml", "sbx policy ls", "```", "", "# UNVERIFIED: whether this host's shell composition requests additional binding approval. Stop for host review; no global binding is generated.",
-            "", "## 2. Host: scoped bootstrap and runtime policy", "", "```bash"]
-    rows += [f"sbx policy allow network --sandbox {name} {host}" for host in sorted(set(bootstrap) | set(allowed))]
+    rows = ["# Run the unchanged app", "", "Regression-support route only (not the primary kit tutorial); these native sandbox steps have not been run. Review ACCESS.md and every command before approving.",
+            "These files were generated by `sbx_langchain_kit.py direct` from the reviewed app and answers. They are pre-generated regression-support fixtures: `sbxenv.yaml`, the filtered `workspace/` snapshot, `setup-deps.sh` copied from the helper template, ACCESS.md and this runbook. The [helper tests](https://github.com/shelajev/langchain-policy-lab/blob/main/skills/langchain-sandbox-kit/tests/test_helper.py) regenerate these fixtures from `examples/<app>/` and `examples/<app>.answers.json` and compare every output byte. Run `bash scripts/check-skill.sh` from the repository root for that check. The separate [check-direct.sh](https://github.com/shelajev/langchain-policy-lab/blob/main/scripts/check-direct.sh) builds an ordinary-container probe from a raw fixture; it does not run these native steps or validate SBX confinement. These are maintainer regression fixtures, not a fallback for failed kit builds. Learners should follow the kit tutorial and use `generate`.",
+            f"Run host commands from this control directory. `sbxenv.yaml` selects a pinned shell workload, mounts `workspace/`, and names the sandbox `{name}`; every `--sandbox` command below uses that same name. Stop if the name is already in use; do not change only one command's target.",
+            "If a provider credential was selected, `sbxenv.yaml` sets its SDK environment variable to a `proxy-managed` placeholder, never the real key. The host secret command below stores that service value only after the named sandbox exists.",
+            "`workspace/` contains the selected app, data and lock files. `setup-deps.sh` downloads checksum-verified uv from GitHub releases inside the guest, then `uv sync --locked` creates `.venv` in that mounted workspace.",
+            "No generated mixin is needed. An allow request adds to composed policy and does not cancel broader inherited grants.", "Choose offline or live mode before Step 1. For a supported fake/offline model run, skip the live-only secret and provider-host commands; temporary dependency-download access is still needed for setup. A fake model does not disable separately requested HTTP tools.", "", "## 1. Host: inspect and create", "", "```bash",
+            "sbx policy ls", "sbx secret ls", "sbx env plan ./sbxenv.yaml", "```", "", "Pause and review the plan before creating anything. Confirm the declared workload, workspace and reviewed resources. Then create the environment:", "", "```bash", "sbx env create ./sbxenv.yaml", "```", "", "For separately approved live provider use only, bind the credential after creation. Skip this block for fake/offline model checks:", "", "```bash", *secret_steps, "```", "",
+            "Review the plan and any approval prompt before continuing. It should select only the declared workload, workspace and reviewed resources. Additional credential-binding prompts are unverified: stop and review any unexpected scope; these commands create no global binding. The secret step is unnecessary for a fake/offline run that needs no key.",
+            "", "## 2. Host: scoped bootstrap and runtime policy", "", "The `example.com` deny below creates the resolvable negative control tested in Step 5. Other denies come from ACCESS.md.", "", "```bash"]
+    rows += [f"sbx policy allow network --sandbox {name} {host}" for host in sorted(set(bootstrap) | (set(allowed) - {item[0] for item in credentials}))]
     rows += [f"sbx policy deny network --sandbox {name} {host}" for host in sorted(set(denied) | {"example.com"})]
-    rows += ["sbx env exec ./sbxenv.yaml -- pwd", "sbx env exec -i ./sbxenv.yaml -- sh < setup-deps.sh", "```", "", "Setup runs only inside the sandbox, from its mounted workspace; verify pwd and the expected pyproject.toml first.",
-             "The reviewed setup script checks uv's release hash and runs uv sync --locked. Package build hooks may execute inside the sandbox.",
+    rows += ["sbx env exec ./sbxenv.yaml -- pwd", "sbx env exec ./sbxenv.yaml -- ls -la", "sbx env exec ./sbxenv.yaml -- test -f pyproject.toml", "```", "",
+             "Stop here. `pwd` prints the guest's resolved working directory; the YAML's host-relative `workspace/` path does not specify that guest path. `test -f` must succeed (exit 0). Compare the guest listing with the local reviewed `workspace/` before setup; stop if the expected project files are missing.", "",
+             "For separately approved live provider use only, add these provider-host requests. Skip this block for fake/offline model checks:", "", "```bash", *[f"sbx policy allow network --sandbox {name} {host}" for host in sorted(set(allowed) & {item[0] for item in credentials})], "```", "", "Only after the workspace check, run setup inside the guest:", "", "```bash", "sbx env exec -i ./sbxenv.yaml -- sh < setup-deps.sh", "```", "",
+             "The reviewed setup script checks uv's release hash and runs uv sync --locked in that workspace. Package build hooks execute inside the sandbox. Proxy credentials use a sentinel environment value; real keys are injected only on supported matching requests.",
              "", "## 3. Host: remove temporary grants", "", "```bash"]
     rows += [f"sbx policy rm network --sandbox {name} --resource {host}" for host in bootstrap if host not in allowed]
-    rows += ["sbx policy ls", "```", "", "Inspect effective policy. Do not claim other hosts are denied if inherited rules allow them.",
-             "", "## 4. Host: execute inside the sandbox", "", "```bash",
-             f"sbx env exec ./sbxenv.yaml -- .venv/bin/{answers['launch']}", "```", "",
-             "For an interactive shell use `sbx env run ./sbxenv.yaml`; inside it activate `.venv/bin/activate`, then run `" + answers["launch"] + "`.",
-             "Approve model cost/data separately. This command is live unless your app selects its fake-model option.",
-             "", "## 5. Host: denied operation and origin control", "", "```bash",
-             "sbx env exec ./sbxenv.yaml -- python3 -c \"import urllib.request; urllib.request.urlopen('https://example.com', timeout=10)\"", "sbx policy log", "```", "",
-             "Expect a policy rejection for example.com, not merely a DNS/TLS/timeout error. Compare an approved host-side origin reachability check and inspect the policy log.",
-             "Check `.env` and private/ are absent without printing secrets. Build/container checks do not prove this SBX boundary.",
-             "", "## 6. Host: cleanup", "", "```bash", "sbx env rm ./sbxenv.yaml", "```", "",
-             "Review leftover sandbox-scoped policy/secret entries and remove only this run's entries. Cloud has no host mount; use an approved kit/bake transfer and separate cloud credentials/policy."]
+    rows += ["sbx policy ls", "```", "", "Inspect effective policy on the host after removing temporary bootstrap rules. Do not claim other hosts are denied if inherited host or org rules allow them.",
+             "", "## 4. Host: execute inside the sandbox", "",
+             *(["The reviewed command below selects `--fake-model`; for these examples it makes no model call and needs no model key. Review app-specific settings separately before choosing a live variant."] if "--fake-model" in answers["launch"].split() else ["Choose a mode first. The reviewed command has no fake flag and may call a live provider. If the app documents `--fake-model`, this offline alternative avoids that model call; the repository's single-file example supports it:", "", "```bash", f"sbx env exec ./sbxenv.yaml -- .venv/bin/{answers['launch']} --fake-model", "```", "That single-file fixture classifies its built-in synthetic ticket; fake mode prints category `technical` and ticket ID `T-101`. Do not assume that flag or output for other apps. Use either this alternative or the reviewed command below, not both. Before the reviewed live command, complete both the Step 1 secret and Step 2 provider-host grant, and approve live cost/data egress."]),
+             "", "Reviewed launch command:", "", "```bash", f"sbx env exec ./sbxenv.yaml -- .venv/bin/{answers['launch']}", "```", "",
+             ("Run the shown fake-model command from the host. The live variant is outside this fixture's reviewed launch; follow the app documentation and obtain a new launch review before omitting its fake flag." if "--fake-model" in answers["launch"].split() else "Run either the reviewed live command or the supported offline alternative from the host, according to your mode choice."), "For an interactive shell use `sbx env run ./sbxenv.yaml`, activate the guest `.venv`, and run the corresponding reviewed app command there.",
+             "", "Compare output and app-specific live-mode flags with the reviewed app documentation. The repository [single-file example](https://github.com/shelajev/langchain-policy-lab/tree/main/examples/single-file-agent) and [ticket-triage example](https://github.com/shelajev/langchain-policy-lab/tree/main/examples/ticket-triage) document their fake-model checks and live prerequisites. Do not treat a successful process exit as answer validation.", "", "## 5. Host: denied operation and origin control", "", "```bash",
+             "sbx env exec ./sbxenv.yaml -- python3 -c \"import urllib.request; urllib.request.urlopen('https://example.com', timeout=10)\"", f"sbx policy log {name}", "```", "", "First confirm from the host that https://example.com resolves and responds normally. Then match the guest failure to an example.com denial in this sandbox's policy log; DNS, TLS or timeout errors alone do not prove a policy block. Use a resolvable destination for this control; a DNS failure is not proof of a sandbox-policy block.",
+             "Verify inside the sandbox that `.env` and private/ are absent without printing secrets. Build or container checks do not prove this SBX runtime boundary.",
+             "", "## 6. Host: cleanup", "", "```bash",
+             "sbx env rm ./sbxenv.yaml", "```", "", "Use `sbx policy ls` and `sbx secret ls` on the host to review leftovers; remove only this run's scoped entries. Cloud sandboxes are unverified here and have no host workspace mount; cloud runs require an approved kit or bake transfer plus separate cloud credentials and policy.", "", "## Maintainer check: regenerate the fixture", "", f"From this repository's root, use `python3 skills/langchain-sandbox-kit/scripts/sbx_langchain_kit.py direct --project APP --entrypoint {report['entrypoint']} --answers ANSWERS.json --out NEW_OUT`. Replace APP and ANSWERS.json with absolute paths to the original app and its reviewed answers, and NEW_OUT with a new directory outside the app. The committed examples use `examples/single-file-agent/` with `examples/single-file-agent.answers.json`, or `examples/ticket-triage/` with `examples/ticket-triage.answers.json`. Generate into a new directory and compare all outputs before replacing a fixture; this command starts no runtime."]
     outputs = {"sbxenv.yaml": environment.encode(), "ACCESS.md": review.encode(), "RUN.md": ("\n".join(rows) + "\n").encode(),
                "setup-deps.sh": (template_root / "direct-setup.txt").read_bytes()}
     outputs.update({"workspace/" + filename: raw for filename, raw in selected.items()})
